@@ -1,0 +1,67 @@
+.introduce{
+  .main-content{
+    padding: 4% 10%;
+/* =======================service introduce======================= */
+  .service-introduce{
+    margin-top: 70px;
+    .quote-heading::before {
+      content: '“';
+      position: absolute;
+      left: -17px;
+      top: -10px;
+      font-size: 40px;
+      color:  #fb2c36;
+      font-weight: bold;
+    }
+    .service-introduce-cotent{
+      font-size: 17px;
+      line-height: 2.2;
+      margin-top: 20px;
+    }
+  }
+  .why-choose-us{
+    margin: 0  auto;
+    .why-choose-us-title{
+      font-weight: 600;
+      color:  #ef1f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .why-choose-us-items{
+
+      .item{
+        .content{
+          padding-top: 10px;
+          h1{
+            font-weight: 600;
+            color: #4d4c4c;
+            font-size: 18px;
+            padding-bottom: 5px;
+          }
+          p{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+/* =======================service carousel======================= */
+  .partners{
+    margin-top: 60px;
+    .partners-title{
+      font-weight: 600;
+      color:  #ef1f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .partners-cards{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 20px;
+      .item{
+        text-align: center;
+      }
+    }
+  }
+  }
+}

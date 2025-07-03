@@ -1,0 +1,41 @@
+<nz-layout>
+  <nz-sider [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null"
+            nzWidth="256px"
+            nzBreakpoint="md"
+            nzTheme="light"
+            (nzCollapsedChange)="onCollapse($event)">
+    <div class="logo text-black font-bold md:text-center border">ADMIN</div>
+    <ul nz-menu nzTheme="light" nzMode="inline">
+      <li nz-submenu nzTitle="User" nzIcon="user">
+        <ul>
+          <li nz-menu-item>Tom</li>
+          <li nz-menu-item>Bill</li>
+          <li nz-menu-item>Alex</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Team" nzIcon="team">
+        <ul>
+          <li nz-menu-item>Team 1</li>
+          <li nz-menu-item>Team 2</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <nz-icon nzType="file" />
+        <span>File</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <nz-icon
+        class="trigger"
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      />
+    </nz-header>
+    <nz-content class="border! py-4! px-8!">
+      Content in here
+    </nz-content>
+  </nz-layout>
+</nz-layout>

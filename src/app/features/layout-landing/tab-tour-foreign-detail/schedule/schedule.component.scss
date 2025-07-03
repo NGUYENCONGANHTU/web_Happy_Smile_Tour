@@ -1,0 +1,14 @@
+::ng-deep .ant-timeline-item-head-blue{
+  border-color: #0b9444;
+  background-color: #0b9444;
+}
+::ng-deep .anticon svg{
+  display: block;
+  font-weight: bold;
+}
+::ng-deep .ant-collapse-header {
+  font-weight: bold;
+}
+::ng-deep .ant-timeline-item-head {
+  margin-top: 10px; /* Đẩy dấu tròn xuống */
+}

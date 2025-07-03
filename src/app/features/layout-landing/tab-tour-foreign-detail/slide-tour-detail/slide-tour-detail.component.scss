@@ -1,0 +1,8 @@
+::ng-deep .slick-dots li button {
+  width: 15px !important;
+  height: 3px !important;
+}
+
+::ng-deep .slick-dots li button:before {
+  content: none !important;
+}

@@ -1,0 +1,128 @@
+<section>
+  @for (data of dataBannerHome; track data.id) {
+  <div class="relative h-[480px] overflow-hidden">
+    <!-- Carousel background only -->
+    <nz-carousel nzAutoPlay class="absolute inset-0 z-0" [nzDots]="false">
+      @for (image of array; track $index) {
+
+
+        <div nz-carousel-content
+             [ngStyle]="{
+          'background-image': 'url(' + image.image + ')',
+          'background-position': 'center',
+          'background-size': 'cover',
+          'height': '100%'
+        }">
+        </div>
+      }
+    </nz-carousel>
+    <!-- Fixed content above carousel -->
+    <div class="absolute inset-0 z-10 flex justify-center items-center text-white">
+      <div class="flex flex-col">
+        <div class="text-[60px] text-white! font-bold">{{data.title}}</div>
+        <div class="text-[20px]">
+          {{data.description}}
+        </div>
+        <nz-input-group [nzPrefix]="prefixTemplate" class="w-[700px]! px-2! flex !mt-4 rounded-lg! shadow-custom-input bg-white focus-within:!shadow-custom-focus">
+          <ng-template #prefixTemplate>
+            <fa-icon [icon]="faMagnifyingGlass" class="close-menu-icon text-[20px] px-2! text-[#ccc]"></fa-icon>
+          </ng-template>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="searchValue"
+            placeholder="disneyland shanghai"
+            class="input !w-[540px] text-[16px]!"
+          />
+          <button class="bg-[#ff5b00] px-[18px]! py-[10px]! rounded-sm text-white! cursor-pointer">Khám phá</button>
+        </nz-input-group>
+      </div>
+    </div>
+  </div>
+  }
+
+  <div class="!px-[10%]">
+    <!--  ========== Hoạt động nổi bật ==========    -->
+    <div class="feature-action">
+      <div class="slide-cards">
+        <div class="slide-cards-title">{{dataHomeTitle[0]?.title}}</div>
+        <app-feature-action/>
+      </div>
+    </div>
+
+
+
+
+<!-- ========== Tour nước ngoài  ==========  -->
+    <div class="foreign-tour">
+      <div class="foreign-tour-slides gap-10 ">
+        <div class="foreign-tour-title">{{ dataHomeTitle[1]?.title }}</div>
+
+        <div class="tabs-foreign-tour flex gap-4">
+          <app-tabs-foreign-tour
+            *ngFor="let item of tabsForeignTour"
+            [tab]="item.name"
+            [active]="selectedTabForeignTour?.name === item.name"
+            (onChangeTab)="handleChangeForeignTour($event)"
+          >
+          </app-tabs-foreign-tour>
+        </div>
+      </div>
+      <div class="app-tour-feature-foreign" *ngIf="selectedTabForeignTour && dataTourForeign?.length">
+        <p *ngIf="selectedTabForeignTour && dataTourForeign?.length === 0">Chưa có dữ liệu tour</p>
+        <app-tour-feature-foreign
+          [selectedTabForeignTour]="selectedTabForeignTour"
+          [dataTour]="dataTourForeign">
+        </app-tour-feature-foreign>
+      </div>
+    </div>
+
+
+<!--  ========== Tour nước ngoài ==========  -->
+  <div class="domestic-tour">
+      <div class="domestic-tour-slides">
+        <div class="domestic-tour-title">{{dataHomeTitle[2]?.title}}</div>
+        <div class="tabs-domestic-tour flex gap-4">
+            <app-tabs-domestic-tour
+              *ngFor="let item of tabsDomesticTour"
+              [tab] ="item.name"
+              [active]="selectedTabDomesticTour?.name === item.name"
+              (onChangeTab)="handleChangeDomesticTour($event)"
+            >
+            </app-tabs-domestic-tour>
+          </div>
+      </div>
+      <div class="app-tour-feature-foreign" *ngIf="selectedTabDomesticTour && dataTourDomestic?.length">
+        <p *ngIf="selectedTabDomesticTour && dataTourDomestic?.length === 0">Chưa có dữ liệu tour</p>
+        <app-tour-feature-domestic
+          [selectedTabDomesticTour]="selectedTabDomesticTour"
+          [dataDomesticTour]="dataTourDomestic">
+        ></app-tour-feature-domestic>
+      </div>
+    </div>
+
+
+<!--  ========== Cẩm nang du lịch ==========    -->
+  <div class="travel-handbook">
+    <div class="travel-handbook-title">{{dataHomeTitle[3]?.title}}</div>
+    <app-travel-handbook
+      [featureNews]="featureNews"
+      [featureLeftNews]="featureLeftNews"
+      [featureRightNews]="featureRightNews"
+    >
+    </app-travel-handbook>
+  </div>
+
+<!--========== Khách hàng nói gì về chúng tôi ==========-->
+  <div class="customer-feedback">
+    <div class="customer-feedback-title">{{dataHomeTitle[4]?.title}}</div>
+    <app-customer-feedback [dataCustomerFeedback]="dataCustomerFeedback"></app-customer-feedback>
+  </div>
+<!--========== Khách hàng tiêu biểu ==========-->
+    <div class="feature-customer">
+      <div class="feature-customer-title">{{dataHomeTitle[5]?.title}}</div>
+      <app-feature-customer [dataCustomerFeature]="dataHomeImage"></app-feature-customer>
+    </div>
+  </div>
+</section>
+

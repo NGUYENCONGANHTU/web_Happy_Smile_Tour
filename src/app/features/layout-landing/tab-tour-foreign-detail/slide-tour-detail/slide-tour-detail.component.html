@@ -1,0 +1,7 @@
+<nz-carousel nzAutoPlay [nzDots]="true" nzEffect="fade" [nzEnableSwipe]="true" >
+  @for (index of array; track index) {
+    <div nz-carousel-content>
+      <img [src]="index" alt="" class="w-full h-full object-cover">
+    </div>
+  }
+</nz-carousel>

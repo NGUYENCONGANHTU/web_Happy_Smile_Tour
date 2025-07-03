@@ -1,0 +1,54 @@
+<section class="tab-tour-foreign-detail">
+<!--  =====================breadcrumb==========================-->
+  <nz-breadcrumb nzSeparator=">" class="breadcrumb">
+    <nz-breadcrumb-item>
+      <a routerLink="/">Trang chủ</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/tour-feature-foreign" class="font-medium">Tour Nước Ngoài</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item class="font-medium">THƯỢNG HẢI - TÔ CHÂU - HÀNG CHÂU - BỘC VIỆN CỔ TRẤN</nz-breadcrumb-item>
+  </nz-breadcrumb>
+<!--  ====================content==========================-->
+  <div class="tab-tour-foreign-detail-main-content">
+      <div class="left-content">
+        <app-slide-tour-detail></app-slide-tour-detail>
+      <div class="tour-detail-title">THƯỢNG HẢI - TÔ CHÂU - HÀNG CHÂU - BỘC VIỆN CỔ TRẤN</div>
+      <div class="tour-detail-title-tabs">
+        <div class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc]">
+          <button (click)="scrollTo('diemNoiBat')">ĐIỂM NỔI BẬT</button>
+          <button (click)="scrollTo('lichTrinh')">LỊCH TRÌNH</button>
+          <button (click)="scrollTo('bangGia')">BẢNG GIÁ</button>
+          <button (click)="scrollTo('dichVu')">DỊCH VỤ BAO GỒM</button>
+        </div>
+        <div class="tour-detail-title-tabs-content">
+          <!-- Sections -->
+          <div #diemNoiBat id="diem-noi-bat" class="tab">
+            <div class="tab-title">ĐIỂM NỔI BẬT</div>
+            <app-feature-place></app-feature-place>
+          </div>
+
+          <div #lichTrinh id="lich-trinh" class="tab">
+            <div class="tab-title">LỊCH TRÌNH</div>
+            <app-schedule></app-schedule>
+          </div>
+
+          <div #bangGia id="bang-gia" class="tab">
+            <div class="tab-title">BẢNG GIÁ</div>
+            <app-price-list></app-price-list>
+          </div>
+
+          <div #dichVu id="dich-vu" class="tab">
+            <div class="tab-title">DỊCH VỤ BAO GỒM</div>
+            <app-service></app-service>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="right-content shadow-sm rounded-xl">
+        <app-sidebar-tab-tour-foreign></app-sidebar-tab-tour-foreign>
+      </div>
+  </div>
+</section>
+
+

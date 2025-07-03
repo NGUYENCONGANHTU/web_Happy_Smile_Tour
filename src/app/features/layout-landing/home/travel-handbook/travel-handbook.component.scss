@@ -1,0 +1,68 @@
+.news-tour{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:30px;
+  .news-left{
+    /*  ============Tin tức nổi bật ở trên  ============ */
+    .feature-news{
+      margin-bottom: 15px;
+      .feature-news-title{
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      img{
+        border-radius: 8px;
+      }
+      .feature-news-title{
+        font-weight:  bold;
+      }
+    }
+    /*  ============Tin tức nổi bật ở dưới ============ */
+    .normal-news{
+      .normal-news-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:10px;
+        .normal-news-cards-item{
+          .normal-news-cards-item-image{
+            border-radius: 8px;
+            img{
+              border-radius: 8px;
+            }
+          }
+          .normal-news-cards-item-title{
+            margin: 5px 0;
+            a{
+              color: black!important;
+              font-weight:  bold;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+  /*  ============Tin tức nổi bật bên phải============ */
+  .news-right{
+    .news-right-cards{
+      display: flex;
+      flex-direction: column;
+      gap:20px;
+      .news-right-cards-item{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+        .news-right-cards-item-image{
+          img{
+            border-radius: 8px;
+          }
+        }
+        .news-right-cards-item-info{
+          .news-right-cards-item-info-title{
+            font-weight:  bold;
+          }
+        }
+      }
+    }
+  }
+}

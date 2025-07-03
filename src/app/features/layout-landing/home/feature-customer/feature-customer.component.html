@@ -1,0 +1,67 @@
+<swiper-container loop="true"
+                  slides-per-view="1"
+                  class="mySwiper"
+                   autoplay-delay="1800" autoplay-disable-on-interaction="false"
+                  space-between="15"
+                  breakpoints='{
+                      "640": { "slidesPerView": 1 },
+                      "768": { "slidesPerView": 2 },
+                      "1024": { "slidesPerView": 3 },
+                      "1280": { "slidesPerView": 5 }
+                    }'
+>
+  @for (data of dataCustomerFeature; track data.id) {
+      <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">
+        <img [src]="data.title" alt="" class="h-[70px] object-cover bg-center bg-cover">
+      </swiper-slide>
+  }
+</swiper-container>
+
+
+
+
+
+
+
+
+
+<!--<swiper-container loop="true"-->
+<!--                  slides-per-view="1"-->
+<!--                  class="mySwiper"-->
+<!--                  autoplay-delay="1800" autoplay-disable-on-interaction="false"-->
+<!--                  space-between="15"-->
+<!--                  breakpoints='{-->
+<!--                      "640": { "slidesPerView": 1 },-->
+<!--                      "768": { "slidesPerView": 2 },-->
+<!--                      "1024": { "slidesPerView": 3 },-->
+<!--                      "1280": { "slidesPerView": 5 }-->
+<!--                    }'-->
+<!--&gt;-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">-->
+<!--    <img src="https://hanoitourist.vn/sites/default/files/styles/thumbnail/public/2024-01/Sun-group-logo.png?itok=C0pZukv7" alt="">-->
+<!--  </swiper-slide>-->
+<!--</swiper-container>-->

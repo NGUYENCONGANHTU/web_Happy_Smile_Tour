@@ -1,0 +1,149 @@
+.navbar {
+  padding-top: 8px;
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+    position: relative;
+
+    .menu-toggle-btn {
+      display: inline-flex;
+      z-index: 1;
+    }
+
+    // MENU MOBILE
+    .navbar-menu-small-screen {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 280px;
+      background: white;
+      z-index: 1000;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+      // Hiệu ứng ban đầu
+      transform: translateX(100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease-in-out;
+      .expandable-item{
+        &:hover{
+          color:#ef1f28;
+        }
+      }
+      .close-menu {
+        cursor: pointer;
+        .close-menu-icon{
+          padding: 5px;
+          font-size: 25px;
+        &:hover{
+          background-color: lightgray;
+          border-radius: 5px;
+          color:#ef1f28;
+          transition: all 0.2s ease-in-out
+        }
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          border-bottom: 1px solid lightgray;
+          a {
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+            &:hover{
+              color: #ef1f28;
+            }
+          }
+        }
+      }
+    }
+
+    // Khi active
+    .navbar-menu-small-screen.active {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .navbar-menu {
+      display: none;
+    }
+  }
+}
+.footer{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap:40px;
+  .travel-footer{
+    .travel-footer-description{
+      color: #b9b8b8;
+    }
+  }
+  .travel-footer-contact{
+    .travel-footer-contact-title{
+      margin-bottom: 20px;
+      color: white;
+
+    }
+    .travel-footer-contact-address{
+      color: #b9b8b8;
+    }
+  }
+}
+@media(min-width: 768px){
+  .footer{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media(min-width: 1084px){
+  .navbar{
+    padding:8px 5%;
+    .navbar-container{
+      padding: 0 6%;
+      .menu-toggle-btn,
+      {
+        display: none;
+      }
+      .navbar-menu-small-screen {
+        display: none !important;
+      }
+      .navbar-menu{
+        padding: 0;
+        display: block;
+        .menu-items{
+          display: flex;
+          justify-content: center;
+          align-items: end;
+          gap: 20px;
+          height: 100%;
+          li{
+            a{
+              height: 100%;
+              font-size: 14px;
+              padding-bottom: 20px;
+              &:hover{
+                color: #ef1f28;
+                border-bottom: 2px solid #ef1f28;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+

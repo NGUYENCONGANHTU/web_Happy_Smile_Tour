@@ -1,0 +1,68 @@
+.tab-tour-foreign-detail{
+  .breadcrumb{
+    background-color: #f3f0f0;
+    padding: 10px 10%;
+    margin-bottom: 10px;
+  }
+  .tab-tour-foreign-detail-main-content{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 100%;
+    gap: 10px;
+    padding: 0 10%;
+    .left-content {
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      .tour-detail-title{
+        font-size: 25px;
+        font-weight: bold;
+        margin: 20px 0;
+      }
+      .tour-detail-title-tabs{
+        //border: 1px solid red;
+        .tour-detail-title-tabs-title{
+          display: flex;
+          justify-content: space-between;
+          gap:10px;
+          margin-top: 30px;
+          button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s;
+            &:hover {
+              color: #007bff;
+            }
+          }
+        }
+        .tour-detail-title-tabs-content{
+          .tab{
+            margin: 50px 0;
+            .tab-title{
+              font-weight:  bold;
+              font-size: 14px;
+              margin-bottom: 30px;
+            }
+          }
+        }
+      }
+    }
+    .right-content{
+      min-height: 350px !important;
+      align-self: start;
+      height: auto;
+      position: sticky;
+      top: 0;
+      right: 10%;
+      width: 300px;
+      background: white;
+      z-index: 10;
+    }
+    app-slide-tour-detail, swiper-container {
+      width: 100%;
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+.private-group-tour{
+  .breadcrumb{
+    background-color: #f3f0f0;
+    padding: 10px 10%;
+    margin-bottom: 10px;
+  }
+  .section-private-group-tour{
+    padding: 0 10%;
+    .private-group-tour-title{
+      font-size: 24px;
+      font-weight: bold;
+      color: #ed1d26;
+      margin-bottom: 20px;
+    }
+    .private-group-tour-content{
+      font-size: 16px;
+      line-height: 2;
+      text-align: justify;
+    }
+    .private-group-tour-contact{
+      padding: 3% 2%;
+      .private-group-tour-contact-title{
+        font-size: 24px;
+        font-weight: bold;
+        color: #ed1d26;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .private-group-tour-contact-form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding:0 15%;
+        input, textarea, .ant-picker {
+          border-radius: 4px;
+          padding: 8px;
+        }
+        .full-width {
+          grid-column: span 2;
+        }
+        .btn-submit{
+          background: #099544;
+          padding: 10px 50px;
+          border-radius: 6px;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .btn-reset{
+          border: 1px solid #ed1d26;
+          padding: 9px 40px;
+          border-radius: 6px;
+          color: black;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+}

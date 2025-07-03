@@ -1,0 +1,131 @@
+<div class="min-h-screen flex flex-col">
+  <header>
+    <div class="container-header">
+      <div class="logo">
+        <a href="/">
+          <img src="https://happysmilesvietnam.com/client_/images/logo.webp" width="w-full" alt="">
+        </a>
+      </div>
+      <nav>
+        <ul class="menu-items">
+          <li>
+            <a [routerLink]="['/introduce']"
+                 routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold"
+                 [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+              Giới thiệu
+            </a>
+          </li>
+<!--=========Tour trong nước=========-->
+          <li>
+            <a [routerLink]="['/tour-feature-domestic']"
+               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+              Tour trong nước
+            </a>
+          </li>
+<!--==========Tour nước ngoài=========-->
+          <li>
+            <a [routerLink]="['/tour-feature-foreign']"
+               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+              Tour nước ngoài
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/private-group-tour']"
+               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+              Tour đoàn riêng
+            </a>
+          </li>
+          <li>
+            <a nz-dropdown nzTrigger="click" class= "text-[14px]" [nzDropdownMenu]="menu"  [nzPlacement]="'bottomCenter'">
+              Dịch vụ
+              <fa-icon [icon]="faCaretDown" class="close-menu-icon"></fa-icon>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu class="grid grid-cols-2 w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
+                <li nz-menu-item>Cung cấp tour quốc tế</li>
+                <li nz-menu-item>Thiết kế Landtour chuyên nghiệp</li>
+                <li nz-menu-item>Nhiều Landtour Đa Dạng Hấp Dẫn</li>
+                <li nz-menu-item>Giá Landtour Tận Gốc Trực Tiếp Từ Đối Tác</li>
+              </ul>
+            </nz-dropdown-menu>
+          </li>
+          <li>
+            <a [routerLink]="['/contact-page']"
+               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+              Liên hệ
+            </a>
+          </li>
+          <li>
+          <li>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="language" class="flex items-center" [nzPlacement]="'bottomRight'">
+              <img src="https://flagcdn.com/w40/vn.png" width="20" alt="" />
+              <fa-icon [icon]="faCaretDown" class="close-menu-icon !ml-2"></fa-icon>
+            </a>
+            <nz-dropdown-menu #language="nzDropdownMenu">
+
+              <ul nz-menu class="grid grid-cols-3 w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
+                <li nz-menu-item *ngFor="let lang of languages">
+                  <div class="flex items-center justify-between w-full gap-2 text-[12px]">
+                    <img [src]="'https://flagcdn.com/w40/' + lang.flag + '.png'" width="20" />
+                    <span>{{ lang.name }}</span>
+                  </div>
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <div class="footer">
+      <div class="travel-footer">
+        <div class="travel-footer-logo">
+          <a href="">
+            <img src="https://happysmilesvietnam.com/client_/images/logo.webp" width="150"  alt="">
+          </a>
+        </div>
+        <div class="travel-footer-description ">
+          HAPPY SMILE VIET NAM – Cầu nối #1 giữa Công Ty Lữ Hành Quốc Tế tại Việt Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới.
+        </div>
+        <div class="travel-footer-partners">
+          <img src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png" width="150"  alt="">
+        </div>
+      </div>
+      <div class="travel-footer-contact">
+        <div class="travel-footer-contact-title">
+          <h1>Liên Hệ Happy Smile Viet Nam</h1>
+        </div>
+        <div class="travel-footer-contact-address space-y-4!">
+          <div class="travel-footer-contact-address-1">
+            – TP.HCM: 112/6 Phạm Văn Bạch, P.15, Q.Tân Bình, TP.HCM.
+          </div>
+          <div class="travel-footer-contact-address-2">
+            – Đà Nẵng: 52 Đội Cung, Khuê Trung, Cẩm Lệ, Đà Nẵng.
+          </div>
+          <div class="travel-footer-contact-address-3">
+            – Hà Nội: 102-G4, ngõ 12 Nguyên Hồng, Ba Đình, Hà Nội.
+          </div>
+          <div class="travel-footer-contact-address-hotline">
+            Hotline : 0939.889.579
+          </div>
+          <div class="travel-footer-contact-address-feedback">
+            Phản ánh dịch vụ: 0932.051.510
+          </div>
+          <div class="travel-footer-contact-email">
+            dieuhanh&#64;tanvanlang.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

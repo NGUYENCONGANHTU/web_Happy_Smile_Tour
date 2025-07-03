@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+body{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100%;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img{
+  display: inline-block;
+}
+h1,h2,h3,h4,p,ul,li,p{
+  margin-bottom: 0;
+}
+p{
+  margin-bottom: 0;
+}
+.ant-layout-header{
+  background-color: #ffffff;
+  height: 80px;
+  padding: 0;
+}
+.ant-layout-content{
+  background-color: #ffffff;
+}
+.ant-layout-footer{
+  background-color: #202020;
+  padding:3% 6%;
+}
+.ant-dropdown-menu-item{
+  font-size: 13px;
+}
+
+

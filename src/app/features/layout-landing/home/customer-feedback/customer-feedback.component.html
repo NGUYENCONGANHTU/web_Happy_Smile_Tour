@@ -1,0 +1,232 @@
+<swiper-container class="px-1!" loop="true"
+                  slides-per-view="1"
+                  pagination="true"
+                  pagination-clickable="true"
+                  space-between="15"
+                  breakpoints='{
+                      "640": { "slidesPerView": 1 },
+                      "768": { "slidesPerView": 2 },
+                      "1024": { "slidesPerView": 3 },
+                      "1280": { "slidesPerView": 3 }
+                    }'
+>
+  @for ( data of dataCustomerFeedback ; track data.id) {
+    <swiper-slide class="slide">
+      <div class="customer-feedback-card-item">
+        <div class="customer-feedback-card-item-info">
+          <!--avatar customer-->
+          <div class="customer-feedback-card-item-info-image">
+<!--        <img [src]="data.image" alt="">-->
+            <img src="https://hanoitourist.vn/sites/default/files/2024/01/Hinh-anh-chan-dung-nam-dep.jpg" alt="">
+          </div>
+          <!--customer info -->
+          <div class="customer-feedback-card-item-info-title">
+            <div class="customer-feedback-card-item-info-title-name">
+             {{data.name}}
+            </div>
+            <div class="customer-feedback-card-item-info-title-role">
+              Khách hàng {{data.description}}
+            </div>
+            <!--star-->
+            <div class="customer-feedback-card-item-info-title-star">
+
+            </div>
+          </div>
+        </div>
+        <div class="customer-feedback-card-item-text">
+          <div class="customer-feedback-card-item-text-detail">
+            {{data.content}}
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+  }
+
+</swiper-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<swiper-container class="px-1!" loop="true"-->
+<!--                  slides-per-view="1"-->
+<!--                  pagination="true"-->
+<!--                  pagination-clickable="true"-->
+<!--                  space-between="15"-->
+<!--                  breakpoints='{-->
+<!--                      "640": { "slidesPerView": 1 },-->
+<!--                      "768": { "slidesPerView": 2 },-->
+<!--                      "1024": { "slidesPerView": 3 },-->
+<!--                      "1280": { "slidesPerView": 3 }-->
+<!--                    }'-->
+<!--&gt;-->
+
+<!--  <swiper-slide class="slide">-->
+<!--    <div class="customer-feedback-card-item">-->
+<!--      <div class="customer-feedback-card-item-info">-->
+<!--        &lt;!&ndash;avatar customer&ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-image">-->
+<!--          <img src="https://hanoitourist.vn/sites/default/files/2024/01/Hinh-anh-chan-dung-nam-dep.jpg" alt="">-->
+<!--        </div>-->
+<!--        &lt;!&ndash;customer info &ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-title">-->
+<!--          <div class="customer-feedback-card-item-info-title-name">-->
+<!--            Trần Hà Linh-->
+<!--          </div>-->
+<!--          <div class="customer-feedback-card-item-info-title-role">-->
+<!--            Khách hàng Cá nhân-->
+<!--          </div>-->
+<!--          &lt;!&ndash;star&ndash;&gt;-->
+<!--          <div class="customer-feedback-card-item-info-title-star">-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="customer-feedback-card-item-text">-->
+<!--        <div class="customer-feedback-card-item-text-detail">-->
+<!--          Chuyến du lịch đài Loan vừa rồi của công ty HanoiTourist là một trải-->
+<!--          nghiệm tuyệt vời, lịch trình linh hoạt, đầy đủ các điểm tham quan, ít-->
+<!--          shopping, đồ ăn ngon.-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide">-->
+<!--    <div class="customer-feedback-card-item">-->
+<!--      <div class="customer-feedback-card-item-info">-->
+<!--        &lt;!&ndash;avatar customer&ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-image">-->
+<!--          <img src="https://hanoitourist.vn/sites/default/files/2024/01/Hinh-anh-chan-dung-nam-dep.jpg" alt="">-->
+<!--        </div>-->
+<!--        &lt;!&ndash;customer info &ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-title">-->
+<!--          <div class="customer-feedback-card-item-info-title-name">-->
+<!--            Trần Hà Linh-->
+<!--          </div>-->
+<!--          <div class="customer-feedback-card-item-info-title-role">-->
+<!--            Khách hàng Cá nhân-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="customer-feedback-card-item-text">-->
+<!--        <div class="customer-feedback-card-item-text-detail">-->
+<!--          Chuyến du lịch đài Loan vừa rồi của công ty HanoiTourist là một trải nghiệm tuyệt vời, lịch trình linh hoạt, đầy đủ các điểm tham quan, ít shopping, đồ ăn ngon-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide">-->
+<!--    <div class="customer-feedback-card-item">-->
+<!--      <div class="customer-feedback-card-item-info">-->
+<!--        &lt;!&ndash;avatar customer&ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-image">-->
+<!--          <img src="https://hanoitourist.vn/sites/default/files/2024/01/Hinh-anh-chan-dung-nam-dep.jpg" alt="">-->
+<!--        </div>-->
+<!--        &lt;!&ndash;customer info &ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-title">-->
+<!--          <div class="customer-feedback-card-item-info-title-name">-->
+<!--            Trần Hà Linh-->
+<!--          </div>-->
+<!--          <div class="customer-feedback-card-item-info-title-role">-->
+<!--            Khách hàng Cá nhân-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="customer-feedback-card-item-text">-->
+<!--        <div class="customer-feedback-card-item-text-detail">-->
+<!--          Chuyến du lịch đài Loan vừa rồi của công ty HanoiTourist là một trải nghiệm tuyệt vời, lịch trình linh hoạt, đầy đủ các điểm tham quan, ít shopping, đồ ăn ngon-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide">-->
+<!--    <div class="customer-feedback-card-item">-->
+<!--      <div class="customer-feedback-card-item-info">-->
+<!--        &lt;!&ndash;avatar customer&ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-image">-->
+<!--          <img src="https://hanoitourist.vn/sites/default/files/2024/01/Hinh-anh-chan-dung-nam-dep.jpg" alt="">-->
+<!--        </div>-->
+<!--        &lt;!&ndash;customer info &ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-title">-->
+<!--          <div class="customer-feedback-card-item-info-title-name">-->
+<!--            Trần Hà Linh-->
+<!--          </div>-->
+<!--          <div class="customer-feedback-card-item-info-title-role">-->
+<!--            Khách hàng Cá nhân-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="customer-feedback-card-item-text">-->
+<!--        <div class="customer-feedback-card-item-text-detail">-->
+<!--          Chuyến du lịch đài Loan vừa rồi của công ty HanoiTourist là một trải nghiệm tuyệt vời, lịch trình linh hoạt, đầy đủ các điểm tham quan, ít shopping, đồ ăn ngon-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </swiper-slide>-->
+<!--  <swiper-slide class="slide">-->
+<!--    <div class="customer-feedback-card-item">-->
+<!--      <div class="customer-feedback-card-item-info">-->
+<!--        &lt;!&ndash;avatar customer&ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-image">-->
+<!--          <img src="https://hanoitourist.vn/sites/default/files/2024/01/Hinh-anh-chan-dung-nam-dep.jpg" alt="">-->
+<!--        </div>-->
+<!--        &lt;!&ndash;customer info &ndash;&gt;-->
+<!--        <div class="customer-feedback-card-item-info-title">-->
+<!--          <div class="customer-feedback-card-item-info-title-name">-->
+<!--            Trần Hà Linh-->
+<!--          </div>-->
+<!--          <div class="customer-feedback-card-item-info-title-role">-->
+<!--            Khách hàng Cá nhân-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="customer-feedback-card-item-text">-->
+<!--        <div class="customer-feedback-card-item-text-detail">-->
+<!--          Chuyến du lịch đài Loan vừa rồi của công ty HanoiTourist là một trải nghiệm tuyệt vời, lịch trình linh hoạt, đầy đủ các điểm tham quan, ít shopping, đồ ăn ngon-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </swiper-slide>-->
+
+<!--</swiper-container>-->
