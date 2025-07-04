@@ -5,16 +5,26 @@
         <!--logo-->
         <div class="navbar-logo">
           <a href="">
-            <img src="https://happysmilesvietnam.com/client_/images/logo.webp" width="120"  alt="">
+            <img
+              src="https://happysmilesvietnam.com/client_/images/logo.webp"
+              width="120"
+              alt="" />
           </a>
         </div>
         <!-- menu toggle button -->
-        <button class="menu-toggle-btn" nz-button nzType="text" (click)="toggleMenu()">
+        <button
+          class="menu-toggle-btn"
+          nz-button
+          nzType="text"
+          (click)="toggleMenu()">
           <fa-icon [icon]="faBars" class="text-lg"></fa-icon>
         </button>
 
         <!-- menu for mobile -->
-        <nav class="navbar-menu-small-screen" *ngIf="isMenuOpen" [class.active]="isMenuOpen">
+        <nav
+          class="navbar-menu-small-screen"
+          *ngIf="isMenuOpen"
+          [class.active]="isMenuOpen">
           <button class="close-menu" (click)="toggleMenu()">
             <fa-icon [icon]="faXmark" class="close-menu-icon"></fa-icon>
           </button>
@@ -25,7 +35,7 @@
             <li><a href="">Tour đoàn riêng</a></li>
 
             <!-- Dịch vụ mở rộng -->
-            <li (click)="toggleServiceDropdown()" class="expandable-item ">
+            <li (click)="toggleServiceDropdown()" class="expandable-item">
               <div class="flex justify-between items-center cursor-pointer">
                 <span>Dịch vụ</span>
                 <nz-icon [nzType]="isServiceOpen ? 'up' : 'down'"></nz-icon>
@@ -102,14 +112,21 @@
       <div class="travel-footer !space-y-4">
         <div class="travel-footer-logo">
           <a href="">
-            <img src="https://happysmilesvietnam.com/client_/images/logo.webp" width="150"  alt="">
+            <img
+              src="https://happysmilesvietnam.com/client_/images/logo.webp"
+              width="150"
+              alt="" />
           </a>
         </div>
-        <div class="travel-footer-description text-lg ">
-          LANDTOUR QUỐC TẾ – Cầu nối #1 giữa Công Ty Lữ Hành Quốc Tế tại Việt Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới.
+        <div class="travel-footer-description text-lg">
+          LANDTOUR QUỐC TẾ – Cầu nối #1 giữa Công Ty Lữ Hành Quốc Tế tại Việt
+          Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới.
         </div>
         <div class="travel-footer-partners">
-          <img src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png" width="150"  alt="">
+          <img
+            src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"
+            width="150"
+            alt="" />
         </div>
       </div>
       <div class="travel-footer-contact">
@@ -136,7 +153,6 @@
             dieuhanh&#64;tanvanlang.com
           </div>
         </div>
-
       </div>
     </div>
   </nz-footer>
