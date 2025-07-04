@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
@@ -11,6 +11,7 @@ import {
 } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {AppService} from '../../../../app.service';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -29,7 +30,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',
 })
-export class TabServiceComponent {
+export class TabServiceComponent implements  OnInit {
+  appService = inject(AppService);
+  ngOnInit() {
+  }
+
+
   faPhoneFlip = faPhoneFlip;
   private fb = inject(FormBuilder);
   validateForm = this.fb.group({
