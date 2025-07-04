@@ -1,4 +1,4 @@
-.tab-service{
+.tab-service {
   .banner-tab-service {
     position: relative;
     height: 90vh;
@@ -6,7 +6,7 @@
     background-position: center;
     display: flex;
     justify-content: center;
-    align-items:  center;
+    align-items: center;
     .overlay {
       position: absolute;
       top: 0;
@@ -54,25 +54,25 @@
       }
     }
   }
-  .banner-tab-service-content{
+  .banner-tab-service-content {
     padding: 3% 8%;
-    .content-service-contact{
+    .content-service-contact {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
-      .content-service{
-        .content-service-title{
+      .content-service {
+        .content-service-title {
           font-size: 45px;
           color: #010e4b;
-          font-weight:  bold;
+          font-weight: bold;
           line-height: 1.3;
         }
-        .content-service-list{
-          .content-service-list-item{
+        .content-service-list {
+          .content-service-list-item {
             list-style: inherit;
           }
         }
-        .btn-contact{
+        .btn-contact {
           color: white;
           padding: 10px 80px;
           cursor: pointer;
@@ -82,45 +82,55 @@
           background-color: #0a9444;
         }
       }
-      .service-contact{
-        .service-contact-title{
+      .service-contact {
+        .service-contact-title {
           font-size: 23px;
           font-weight: 600;
           text-align: center;
-          margin-top:  10px;
+          margin-top: 10px;
           margin-bottom: 20px;
         }
-        .service-contact-form{
-          display:grid;
+        .service-contact-form {
+          display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 10px;
         }
-
       }
     }
-    .workflow{
+    .paperwork {
       margin: 10% 0 5% 0;
-      .workflow-title{
+    }
+    .workflow {
+      margin: 10% 0 5% 0;
+      .workflow-title {
         font-size: 22px;
       }
       .workflow-steps {
         padding: 0 5%;
         gap: 20px;
         .workflow-step {
-          flex: 0 0 calc(25% - 20px); /* 4 cột, trừ khoảng cách */
+          flex: 0 0 calc(25% - 20px);
           box-sizing: border-box;
-          border: 1px solid #ccc;
-          padding: 10px;
+          border: 2px solid #ccc;
+          box-shadow:
+            rgba(67, 71, 85, 0.27) 0 0 0.25em,
+            rgba(90, 125, 188, 0.05) 0 0.25em 1em;
+          padding: 20px;
           text-align: center;
+          border-radius: 15px;
+          .step-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #ef1f28;
+          }
         }
       }
     }
   }
 }
 
-
 @media (min-width: 1025px) {
-  .workflow-steps{
+  .workflow-steps {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
