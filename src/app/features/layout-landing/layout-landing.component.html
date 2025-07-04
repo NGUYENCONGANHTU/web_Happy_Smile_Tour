@@ -3,48 +3,66 @@
     <div class="container-header">
       <div class="logo">
         <a href="/">
-          <img src="https://happysmilesvietnam.com/client_/images/logo.webp" width="w-full" alt="">
+          <img
+            src="https://happysmilesvietnam.com/client_/images/logo.webp"
+            width="w-full"
+            alt="" />
         </a>
       </div>
       <nav>
         <ul class="menu-items">
           <li>
-            <a [routerLink]="['/introduce']"
-                 routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold"
-                 [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+            <a
+              [routerLink]="['/introduce']"
+              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-[14px]">
               Giới thiệu
             </a>
           </li>
-<!--=========Tour trong nước=========-->
+          <!--=========Tour trong nước=========-->
           <li>
-            <a [routerLink]="['/tour-feature-domestic']"
-               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
-               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+            <a
+              [routerLink]="['/tour-feature-domestic']"
+              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-[14px]">
               Tour trong nước
             </a>
           </li>
-<!--==========Tour nước ngoài=========-->
+          <!--==========Tour nước ngoài=========-->
           <li>
-            <a [routerLink]="['/tour-feature-foreign']"
-               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
-               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+            <a
+              [routerLink]="['/tour-feature-foreign']"
+              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-[14px]">
               Tour nước ngoài
             </a>
           </li>
           <li>
-            <a [routerLink]="['/private-group-tour']"
-               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
-               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+            <a
+              [routerLink]="['/private-group-tour']"
+              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-[14px]">
               Tour đoàn riêng
             </a>
           </li>
           <li>
-            <a nz-dropdown nzTrigger="click" class= "text-[14px]" [nzDropdownMenu]="menu"  [nzPlacement]="'bottomCenter'">
+            <a
+              nz-dropdown
+              nzTrigger="click"
+              class="text-[14px]"
+              [nzDropdownMenu]="menu"
+              [nzPlacement]="'bottomCenter'">
               Dịch vụ
               <fa-icon [icon]="faCaretDown" class="close-menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
-              <ul nz-menu class="grid grid-cols-2 w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
+              <ul
+                nz-menu
+                class="grid grid-cols-2 w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
                 <li nz-menu-item>Cung cấp tour quốc tế</li>
                 <li nz-menu-item>Thiết kế Landtour chuyên nghiệp</li>
                 <li nz-menu-item>Nhiều Landtour Đa Dạng Hấp Dẫn</li>
@@ -53,24 +71,38 @@
             </nz-dropdown-menu>
           </li>
           <li>
-            <a [routerLink]="['/contact-page']"
-               routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
-               [routerLinkActiveOptions]="{ exact: true }" class="text-[14px]">
+            <a
+              [routerLink]="['/contact-page']"
+              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-[14px]">
               Liên hệ
             </a>
           </li>
+          <li></li>
           <li>
-          <li>
-            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="language" class="flex items-center" [nzPlacement]="'bottomRight'">
+            <a
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="language"
+              class="flex items-center"
+              [nzPlacement]="'bottomRight'">
               <img src="https://flagcdn.com/w40/vn.png" width="20" alt="" />
-              <fa-icon [icon]="faCaretDown" class="close-menu-icon !ml-2"></fa-icon>
+              <fa-icon
+                [icon]="faCaretDown"
+                class="close-menu-icon !ml-2"></fa-icon>
             </a>
             <nz-dropdown-menu #language="nzDropdownMenu">
-
-              <ul nz-menu class="grid grid-cols-3 w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
+              <ul
+                nz-menu
+                class="grid grid-cols-3 w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
                 <li nz-menu-item *ngFor="let lang of languages">
-                  <div class="flex items-center justify-between w-full gap-2 text-[12px]">
-                    <img [src]="'https://flagcdn.com/w40/' + lang.flag + '.png'" width="20" />
+                  <div
+                    class="flex items-center justify-between w-full gap-2 text-[12px]">
+                    <img
+                      [src]="'https://flagcdn.com/w40/' + lang.flag + '.png'"
+                      width="20"
+                      alt="icon" />
                     <span>{{ lang.name }}</span>
                   </div>
                 </li>
@@ -91,14 +123,21 @@
       <div class="travel-footer">
         <div class="travel-footer-logo">
           <a href="">
-            <img src="https://happysmilesvietnam.com/client_/images/logo.webp" width="150"  alt="">
+            <img
+              src="https://happysmilesvietnam.com/client_/images/logo.webp"
+              width="150"
+              alt="" />
           </a>
         </div>
-        <div class="travel-footer-description ">
-          HAPPY SMILE VIET NAM – Cầu nối #1 giữa Công Ty Lữ Hành Quốc Tế tại Việt Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới.
+        <div class="travel-footer-description">
+          HAPPY SMILE VIET NAM – Cầu nối #1 giữa Công Ty Lữ Hành Quốc Tế tại
+          Việt Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới.
         </div>
         <div class="travel-footer-partners">
-          <img src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png" width="150"  alt="">
+          <img
+            src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"
+            width="150"
+            alt="" />
         </div>
       </div>
       <div class="travel-footer-contact">

@@ -1,13 +1,19 @@
-import {Component, inject} from '@angular/core';
-import {faPhoneFlip, faStar} from '@fortawesome/free-solid-svg-icons';
-import {FaIconComponent} from '@fortawesome/angular-fontawesome';
-import {NzColDirective, NzRowDirective} from 'ng-zorro-antd/grid';
-import {NzDatePickerComponent} from 'ng-zorro-antd/date-picker';
-import {NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent} from 'ng-zorro-antd/form';
-import {NzInputDirective} from 'ng-zorro-antd/input';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
+import {
+  NzFormControlComponent,
+  NzFormDirective,
+  NzFormItemComponent,
+  NzFormLabelComponent,
+} from 'ng-zorro-antd/form';
+import { NzInputDirective } from 'ng-zorro-antd/input';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-tab-service',
+  standalone: true,
   imports: [
     FaIconComponent,
     NzColDirective,
@@ -18,10 +24,10 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
     NzInputDirective,
     NzRowDirective,
     ReactiveFormsModule,
-    NzFormLabelComponent
+    NzFormLabelComponent,
   ],
   templateUrl: './tab-service.component.html',
-  styleUrl: './tab-service.component.scss'
+  styleUrl: './tab-service.component.scss',
 })
 export class TabServiceComponent {
   faPhoneFlip = faPhoneFlip;
@@ -30,12 +36,12 @@ export class TabServiceComponent {
     name: ['', [Validators.required]],
     email: [''],
     phone: ['', [Validators.required]],
-    note: ['']
+    note: [''],
   });
   submitForm() {
     if (this.validateForm.valid) {
       console.log('Dữ liệu gửi:', this.validateForm.value);
-    }  else {
+    } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();

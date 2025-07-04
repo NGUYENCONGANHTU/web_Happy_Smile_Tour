@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NzSelectModule} from 'ng-zorro-antd/select';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
-import {DecimalPipe, NgForOf} from '@angular/common';
+import { DecimalPipe, NgForOf } from '@angular/common';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 @Component({
   selector: 'app-sidebar-feature-foreign',
+  standalone: true,
   imports: [
     NzButtonModule,
     NzCheckboxModule,
@@ -20,7 +21,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     RouterLinkActive,
     RouterLink,
     DecimalPipe,
-    NgForOf
+    NgForOf,
   ],
   templateUrl: './sidebar-feature-foreign.component.html',
   styleUrl: './sidebar-feature-foreign.component.scss',
@@ -29,15 +30,15 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
       nz-date-picker {
         margin: 0 8px 12px 0;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class SidebarFeatureForeignComponent {
   // Ngân sách
   rangeValue: number[] = [0, 200000000];
   // Điểm đi và điểm đến
-  departure: string = '';
-  destination: string = '';
+  departure = '';
+  destination = '';
   // Ngày khởi hành và ngày hồi hương
   departureDate!: Date;
   returnDate!: Date;
@@ -50,7 +51,6 @@ export class SidebarFeatureForeignComponent {
     { id: 1, name: 'Chùm tour Châu Âu hoa lệ' },
     { id: 2, name: 'Chùm tour du lịch Hà Nội' },
   ];
-
 
   onTopicChange(topic: any): void {
     const index = this.selectedTopics.indexOf(topic.id);
@@ -69,7 +69,7 @@ export class SidebarFeatureForeignComponent {
       // returnDate: this.returnDate,
       checkbox1: this.checked1,
       checkbox2: this.checked2,
-      selectedTopics: this.selectedTopics
+      selectedTopics: this.selectedTopics,
     };
 
     console.log('Form data:', formData);
@@ -77,12 +77,12 @@ export class SidebarFeatureForeignComponent {
 
   tabs = [
     {
-      tabName:'Trong nước',
-      href:'/tour-feature-domestic'
+      tabName: 'Trong nước',
+      href: '/tour-feature-domestic',
     },
     {
-      tabName:'Nước ngoài',
-      href:'/tour-feature-foreign'
-    }
-  ]
+      tabName: 'Nước ngoài',
+      href: '/tour-feature-foreign',
+    },
+  ];
 }
