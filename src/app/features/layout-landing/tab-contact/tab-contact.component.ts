@@ -6,10 +6,12 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from '../../../../app.service';
+import { ContactPageResDTO } from '../../../../interface';
+import { NgIf, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-tab-contact',
-  imports: [FaIconComponent],
+  imports: [FaIconComponent, NgStyle, NgIf],
   templateUrl: './tab-contact.component.html',
   standalone: true,
   styleUrl: './tab-contact.component.scss',
@@ -22,9 +24,40 @@ export class TabContactComponent implements OnInit {
   appService = inject(AppService);
 
   ngOnInit() {
-    this.getAllDataContactPage();
+    this.getAllDataBannerContactPage();
+    this.getAllDataPhoneContactPage();
+    this.getAllDataEmailContactPage();
+    this.getAllDataAddressContactPage();
   }
-  getAllDataContactPage() {
-    console.log('dont let it empty!');
+  // api contact Banner
+  dataContactBanner: ContactPageResDTO[] = [];
+  getAllDataBannerContactPage() {
+    this.appService.getAllDataBannerContactPage().subscribe(data => {
+      this.dataContactBanner = data;
+    });
+  }
+
+  // api contact Phone
+  dataContactPhone: ContactPageResDTO[] = [];
+  getAllDataPhoneContactPage() {
+    this.appService.getAllDataPhoneContactPage().subscribe(data => {
+      this.dataContactPhone = data;
+    });
+  }
+
+  // api contact Email
+  dataContactEmail: ContactPageResDTO[] = [];
+  getAllDataEmailContactPage() {
+    this.appService.getAllDataEmailContactPage().subscribe(data => {
+      this.dataContactEmail = data;
+    });
+  }
+
+  // api contact Address
+  dataContactAddress: ContactPageResDTO[] = [];
+  getAllDataAddressContactPage() {
+    this.appService.getAllDataAddressContactPage().subscribe(data => {
+      this.dataContactAddress = data;
+    });
   }
 }

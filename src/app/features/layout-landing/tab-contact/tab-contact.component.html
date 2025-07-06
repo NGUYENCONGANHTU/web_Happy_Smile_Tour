@@ -1,40 +1,71 @@
 <section class="tab-contact">
-  <div class="banner-contact" style="background-image: url('https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1744887444/banner/mtjajbd973gg6rboqqrj.webp'); width: auto; height: 480px; background-position: center; background-size: cover;">
-    <div class="banner-contact-title">Liên hệ hợp tác</div>
-    <div class="banner-contact-description">Không có gì mãi mãi, chỉ có lợi ích là mãi mãi</div>
-  </div>
+  <!--  <div class="banner-contact" style="background-image: url('https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1744887444/banner/mtjajbd973gg6rboqqrj.webp'); width: auto; height: 480px; background-position: center; background-size: cover;">-->
+  <!--    <div class="banner-contact-title">Liên hệ hợp tác</div>-->
+  <!--    <div class="banner-contact-description">Không có gì mãi mãi, chỉ có lợi ích là mãi mãi</div>-->
+  <!--  </div>-->
+  @for (data of dataContactBanner; track data.id) {
+    <div
+      class="banner-contact"
+      [ngStyle]="{
+        'background-image': 'url(' + data.description + ')',
+        width: 'auto',
+        height: '480px',
+        'background-position': 'center',
+        'background-size': 'cover',
+      }">
+      <div class="banner-contact-title">{{ data.title }}</div>
+    </div>
+  }
   <div class="cards-contact">
-    <div class="cards-contact-item">
+    <div
+      class="cards-contact-item"
+      *ngIf="dataContactPhone && dataContactPhone.length > 0">
       <div class="cards-contact-item-image">
         <fa-icon [icon]="faPhoneVolume" class="icon"></fa-icon>
       </div>
       <div class="cards-contact-item-info-detail space-y-4!">
-        <div class="cards-contact-item-info-detail-title">HOTLINE LIÊN HỆ</div>
-        <div class="cards-contact-item-info-detail-description">Chúng tôi hỗ trợ quý khách 24/7 nhiệt tình và hoàn toàn miễn phí</div>
-        <div class="cards-contact-item-info-detail-number"><a href="#">0987654321</a></div>
+        @for (data of dataContactPhone; track data.id) {
+          <div class="cards-contact-item-info-detail-title">
+            {{ data.title }}
+          </div>
+          <div class="cards-contact-item-info-detail-description">
+            {{ data.description }}
+          </div>
+        }
       </div>
     </div>
     <div class="cards-contact-item">
-      <div class="cards-contact-item-image">
+      <div
+        class="cards-contact-item-image"
+        *ngIf="dataContactEmail && dataContactEmail.length > 0">
         <fa-icon [icon]="faEnvelope" class="icon"></fa-icon>
       </div>
       <div class="cards-contact-item-info-detail space-y-4!">
-        <div class="cards-contact-item-info-detail-title">EMAIL</div>
-        <div class="cards-contact-item-info-detail-description">Email trao đổi với chúng tôi tại địa chỉ chính thức bên dưới</div>
-        <div class="cards-contact-item-info-detail-number"><a href="#">dtdi&#64;gmail.com</a></div>
+        @for (data of dataContactEmail; track data.id) {
+          <div class="cards-contact-item-info-detail-title">
+            {{ data.title }}
+          </div>
+          <div class="cards-contact-item-info-detail-description">
+            {{ data.description }}
+          </div>
+        }
       </div>
     </div>
     <div class="cards-contact-item">
-      <div class="cards-contact-item-image">
+      <div
+        class="cards-contact-item-image"
+        *ngIf="dataContactAddress && dataContactAddress.length > 0">
         <fa-icon [icon]="faLocationDot" class="icon"></fa-icon>
       </div>
       <div class="cards-contact-item-info-detail space-y-4!">
-        <div class="cards-contact-item-info-detail-title">ĐỊA CHỈ CÔNG TY</div>
-        <div class="cards-contact-item-info-detail-description">
-          – TP.HCM: 112/6 Phạm Văn Bạch, P.15, Q.Tân Bình, TP.HCM. <br>
-          – Đà Nẵng: 52 Đội Cung, Khuê Trung, Cẩm Lệ, Đà Nẵng. <br>
-          – Hà Nội: 102-G4, ngõ 12 Nguyên Hồng, Ba Đình, Hà Nội.
-        </div>
+        @for (data of dataContactAddress; track data.id) {
+          <div class="cards-contact-item-info-detail-title">
+            {{ data.title }}
+          </div>
+          <div class="cards-contact-item-info-detail-description">
+            {{ data.description }}
+          </div>
+        }
       </div>
     </div>
   </div>
