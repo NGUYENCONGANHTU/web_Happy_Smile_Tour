@@ -21,48 +21,52 @@
         </button>
 
         <!-- menu for mobile -->
-        <nav
-          class="navbar-menu-small-screen"
-          *ngIf="isMenuOpen"
-          [class.active]="isMenuOpen">
-          <button class="close-menu" (click)="toggleMenu()">
-            <fa-icon [icon]="faXmark" class="close-menu-icon"></fa-icon>
-          </button>
-          <ul class="menu-items-small-screen">
-            <li><a href="">Giới thiệu</a></li>
-            <li><a href="">Tour trong nước</a></li>
-            <li><a href="">Tour nước ngoài</a></li>
-            <li><a href="">Tour đoàn riêng</a></li>
-
-            <!-- Dịch vụ mở rộng -->
-            <li (click)="toggleServiceDropdown()" class="expandable-item">
-              <div class="flex justify-between items-center cursor-pointer">
-                <span>Dịch vụ</span>
-                <nz-icon [nzType]="isServiceOpen ? 'up' : 'down'"></nz-icon>
-              </div>
-              <ul class="submenu" *ngIf="isServiceOpen">
-                <li><a href="">Dịch vụ tăng thiết giáp</a></li>
-                <li><a href="">Y tế hậu cần</a></li>
-              </ul>
-            </li>
-            <li><a href="">Liên hệ</a></li>
-            <!-- Language (giữ nguyên) -->
-            <li (click)="toggleLanguageDropdown()" class="expandable-item">
-              <div class="flex justify-between items-center cursor-pointer">
-                <span>
-                  Tiếng Việt
-                  <img src="https://flagcdn.com/w40/vn.png" width="20" alt="" />
-                </span>
-                <nz-icon [nzType]="isLanguageOpen ? 'up' : 'down'"></nz-icon>
-              </div>
-
-              <ul class="submenu" *ngIf="isLanguageOpen">
-                <li><a href="">Tiếng Việt</a></li>
-                <li><a href="">Trung Quốc</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
+        @if (isMenuOpen) {
+          <nav class="navbar-menu-small-screen" [class.active]="isMenuOpen">
+            <button class="close-menu" (click)="toggleMenu()">
+              <fa-icon [icon]="faXmark" class="close-menu-icon"></fa-icon>
+            </button>
+            <ul class="menu-items-small-screen">
+              <li><a href="">Giới thiệu</a></li>
+              <li><a href="">Tour trong nước</a></li>
+              <li><a href="">Tour nước ngoài</a></li>
+              <li><a href="">Tour đoàn riêng</a></li>
+              <!-- Dịch vụ mở rộng -->
+              <li (click)="toggleServiceDropdown()" class="expandable-item">
+                <div class="flex justify-between items-center cursor-pointer">
+                  <span>Dịch vụ</span>
+                  <nz-icon [nzType]="isServiceOpen ? 'up' : 'down'"></nz-icon>
+                </div>
+                @if (isServiceOpen) {
+                  <ul class="submenu">
+                    <li><a href="">Dịch vụ tăng thiết giáp</a></li>
+                    <li><a href="">Y tế hậu cần</a></li>
+                  </ul>
+                }
+              </li>
+              <li><a href="">Liên hệ</a></li>
+              <!-- Language (giữ nguyên) -->
+              <li (click)="toggleLanguageDropdown()" class="expandable-item">
+                <div class="flex justify-between items-center cursor-pointer">
+                  <span>
+                    Tiếng Việt
+                    <img
+                      src="https://flagcdn.com/w40/vn.png"
+                      width="20"
+                      alt="" />
+                  </span>
+                  <nz-icon [nzType]="isLanguageOpen ? 'up' : 'down'"></nz-icon>
+                </div>
+                @if (isLanguageOpen) {
+                  <ul class="submenu">
+                    <li><a href="">Tiếng Việt</a></li>
+                    <li><a href="">Trung Quốc</a></li>
+                  </ul>
+                }
+              </li>
+            </ul>
+          </nav>
+        }
         <!--menu for laptop-->
         <nav class="navbar-menu">
           <ul class="menu-items">

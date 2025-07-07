@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import {NzMenuDirective, NzMenuItemComponent} from 'ng-zorro-antd/menu';
-import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
-import {NgForOf} from '@angular/common';
-import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-layout-landing',
@@ -14,12 +14,11 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
     NzDropDownModule,
     NzMenuDirective,
     NzMenuItemComponent,
-    NgForOf,
     FaIconComponent,
     RouterLinkActive,
   ],
   templateUrl: './layout-landing.component.html',
-  styleUrl: './layout-landing.component.scss'
+  styleUrl: './layout-landing.component.scss',
 })
 export class LayoutLandingComponent {
   faCaretDown = faCaretDown;
@@ -37,5 +36,4 @@ export class LayoutLandingComponent {
     { code: 'en', name: 'English', flag: 'gb' },
     { code: 'cn', name: '中文', flag: 'cn' },
   ];
-
 }

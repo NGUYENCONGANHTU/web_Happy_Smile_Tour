@@ -8,7 +8,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
-import { NgForOf, NgIf, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -42,14 +42,12 @@ import {
     FaIconComponent,
     FeatureActionComponent,
     TabsForeignTourComponent,
-    NgForOf,
     TabsDomesticTourComponent,
     TourFeatureForeignComponent,
     TourFeatureDomesticComponent,
     TravelHandbookComponent,
     CustomerFeedbackComponent,
     FeatureCustomerComponent,
-    NgIf,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

@@ -96,16 +96,18 @@
               <ul
                 nz-menu
                 class="grid grid-cols-3 w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
-                <li nz-menu-item *ngFor="let lang of languages">
-                  <div
-                    class="flex items-center justify-between w-full gap-2 text-[12px]">
-                    <img
-                      [src]="'https://flagcdn.com/w40/' + lang.flag + '.png'"
-                      width="20"
-                      alt="icon" />
-                    <span>{{ lang.name }}</span>
-                  </div>
-                </li>
+                @for (lang of languages; track lang) {
+                  <li nz-menu-item>
+                    <div
+                      class="flex items-center justify-between w-full gap-2 text-[12px]">
+                      <img
+                        [src]="'https://flagcdn.com/w40/' + lang.flag + '.png'"
+                        width="20"
+                        alt="icon" />
+                      <span>{{ lang.name }}</span>
+                    </div>
+                  </li>
+                }
               </ul>
             </nz-dropdown-menu>
           </li>

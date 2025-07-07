@@ -2,12 +2,12 @@
   <h1 class="router-tour-title">Tìm chuyến đi phù hợp với bạn tại đây!</h1>
   <ul class="routes-tab-tours">
     @for (tab of tabs; track tab.href) {
-      <li class="routes-tab-tours-item"
-          [routerLink]="tab.href"
-          routerLinkActive="!font-bold !text-[#ed1d26] border-b-2 !border-b-[#ed1d26]"
-          [routerLinkActiveOptions]="{ exact: true }"
-      >
-        {{tab.tabName}}
+      <li
+        class="routes-tab-tours-item"
+        [routerLink]="tab.href"
+        routerLinkActive="!font-bold !text-[#ed1d26] border-b-2 !border-b-[#ed1d26]"
+        [routerLinkActiveOptions]="{ exact: true }">
+        {{ tab.tabName }}
       </li>
     }
   </ul>
@@ -16,52 +16,66 @@
 <!--=============================== OPTIONS TOUR =====================================-->
 <div class="options-tour">
   <h1 class="text-[18px] !mt-[45px] !mb-[25px] font-bold!">Ngân sách bạn có</h1>
-    <div class="options-items space-y-5!">
-
+  <div class="options-items space-y-5!">
     <!--=============Chọn ngân sách===================-->
-      <nz-slider
-        [nzRange]="true"
-        [nzMin]="0"
-        [nzMax]="200000000"
-        [nzStep]="1000000"
-        [(ngModel)]="rangeValue"
-        nzTooltipVisible="never">
-      </nz-slider>
+    <nz-slider
+      [nzRange]="true"
+      [nzMin]="0"
+      [nzMax]="200000000"
+      [nzStep]="1000000"
+      [(ngModel)]="rangeValue"
+      nzTooltipVisible="never">
+    </nz-slider>
 
-      <div class="font-bold text-center text-[16px]">
-        {{ rangeValue[0] | number }} - {{ rangeValue[1] | number }} VNĐ
-      </div>
-
+    <div class="font-bold text-center text-[16px]">
+      {{ rangeValue[0] | number }} - {{ rangeValue[1] | number }} VNĐ
+    </div>
 
     <!--============= Chọn điểm đi ===================-->
-      <h1 class="text-[17px]">Chọn địa điểm</h1>
-      <nz-select  [(ngModel)]="departure" name="departure"  class="w-full" nzPlaceHolder="Điểm đi">
-          <nz-option nzLabel="option" nzValue="option"></nz-option>
-      </nz-select>
-
+    <h1 class="text-[17px]">Chọn địa điểm</h1>
+    <nz-select
+      [(ngModel)]="departure"
+      name="departure"
+      class="w-full"
+      nzPlaceHolder="Điểm đi">
+      <nz-option nzLabel="option" nzValue="option"></nz-option>
+    </nz-select>
 
     <!--============= Chọn điểm đến ===================-->
-      <nz-select [(ngModel)]="destination" name="destination" class="w-full"  nzPlaceHolder="Điểm đến">
-        <nz-option nzLabel="option" nzValue="option"></nz-option>
-      </nz-select>
+    <nz-select
+      [(ngModel)]="destination"
+      name="destination"
+      class="w-full"
+      nzPlaceHolder="Điểm đến">
+      <nz-option nzLabel="option" nzValue="option"></nz-option>
+    </nz-select>
 
     <!--==============================-->
-      <nz-collapse >
-        <nz-collapse-panel
-          nzHeader="CHỦ ĐỀ TOUR"
-          [nzActive]="false"
-          [nzShowArrow]="true">
-
-          <div *ngFor="let topic of topics" class="mb-2">
+    <nz-collapse>
+      <nz-collapse-panel
+        nzHeader="CHỦ ĐỀ TOUR"
+        [nzActive]="false"
+        [nzShowArrow]="true">
+        @for (topic of topics; track topic) {
+          <div class="mb-2">
             <label>
-              <input type="checkbox" [value]="topic.id" (change)="onTopicChange(topic)" />
+              <input
+                type="checkbox"
+                [value]="topic.id"
+                (change)="onTopicChange(topic)" />
               {{ topic.name }}
             </label>
           </div>
-
-        </nz-collapse-panel>
-      </nz-collapse>
+        }
+      </nz-collapse-panel>
+    </nz-collapse>
     <!--button search-->
-      <button class="w-full !uppercase font-medium! text-lg!" nz-button nzType="primary" (click)="searchTour()">Tìm tour</button>
-    </div>
+    <button
+      class="w-full !uppercase font-medium! text-lg!"
+      nz-button
+      nzType="primary"
+      (click)="searchTour()">
+      Tìm tour
+    </button>
+  </div>
 </div>

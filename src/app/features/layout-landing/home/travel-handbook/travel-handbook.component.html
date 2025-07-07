@@ -1,24 +1,32 @@
 <div class="news-tour">
   <div class="news-left">
-    <div class="feature-news" *ngIf="featureNews">
-      <img [src]="featureNews.image" alt=""  class="w-full h-full object-cover bg-center bg-cover">
-      <div class="feature-news-title">{{ featureNews.title }}</div>
-      <div class="">06/19/2025 - 14:38</div>
-    </div>
+    @if (featureNews) {
+      <div class="feature-news">
+        <img
+          [src]="featureNews.image"
+          alt=""
+          class="w-full h-full object-cover bg-center bg-cover" />
+        <div class="feature-news-title">{{ featureNews.title }}</div>
+        <div class="">06/19/2025 - 14:38</div>
+      </div>
+    }
     <div class="normal-news">
       <div class="normal-news-cards">
-        @for ( data of featureLeftNews; track data.id) {
-        <div class="normal-news-cards-item">
-          <div class="normal-news-cards-item-image">
-            <img [src]="data.image" alt="" class="w-full h-[120px] object-cover bg-center bg-cover">
+        @for (data of featureLeftNews; track data.id) {
+          <div class="normal-news-cards-item">
+            <div class="normal-news-cards-item-image">
+              <img
+                [src]="data.image"
+                alt=""
+                class="w-full h-[120px] object-cover bg-center bg-cover" />
+            </div>
+            <div class="normal-news-cards-item-title">
+              <a href="">
+                {{ data.title }}
+              </a>
+            </div>
+            <div class="news-right-cards-item-date">06/19/2025 - 14:38</div>
           </div>
-          <div class="normal-news-cards-item-title">
-            <a href="">
-              {{data.title}}
-            </a>
-          </div>
-          <div class="news-right-cards-item-date">06/19/2025 - 14:38</div>
-        </div>
         }
       </div>
     </div>
@@ -26,36 +34,24 @@
   <div class="news-right">
     <div class="news-right-cards">
       @for (data of featureRightNews; track data.id) {
-      <div class="news-right-cards-item">
-        <div class="news-right-cards-item-image">
-          <img [src]="data.image" alt="" class="w-full h-[120px] object-cover bg-center bg-cover">
+        <div class="news-right-cards-item">
+          <div class="news-right-cards-item-image">
+            <img
+              [src]="data.image"
+              alt=""
+              class="w-full h-[120px] object-cover bg-center bg-cover" />
+          </div>
+          <div class="news-right-cards-item-info">
+            <div class="news-right-cards-item-info-title">{{ data.title }}</div>
+            <div class="news-right-cards-item-info-date">
+              06/19/2025 - 14:38
+            </div>
+          </div>
         </div>
-        <div class="news-right-cards-item-info">
-          <div class="news-right-cards-item-info-title"> {{data.title}}</div>
-          <div class="news-right-cards-item-info-date">06/19/2025 - 14:38</div>
-        </div>
-      </div>
       }
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--<div class="news-tour">-->
 <!--  <div class="news-left">-->

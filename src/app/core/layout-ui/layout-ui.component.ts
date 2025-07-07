@@ -6,7 +6,7 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'app-layout-ui',
   imports: [
@@ -16,7 +16,6 @@ import { NgIf } from '@angular/common';
     FaIconComponent,
     NzDropDownModule,
     NzIconModule,
-    NgIf,
   ],
   templateUrl: './layout-ui.component.html',
   styleUrl: './layout-ui.component.scss',

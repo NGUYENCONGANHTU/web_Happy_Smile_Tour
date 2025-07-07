@@ -1,15 +1,15 @@
 <nz-timeline>
-  <nz-timeline-item
-    *ngFor="let day of tourDays; let i = index"
-  >
-    <nz-collapse>
-      <nz-collapse-panel
-        [nzHeader]="'NGÀY ' + (i + 1) + ': ' + day.title + ' (' + day.meal + ')'"
-        [nzActive]="false"
-      >
-        <div>{{ day.detail }}</div>
-      </nz-collapse-panel>
-    </nz-collapse>
-  </nz-timeline-item>
+  @for (day of tourDays; track day; let i = $index) {
+    <nz-timeline-item>
+      <nz-collapse>
+        <nz-collapse-panel
+          [nzHeader]="
+            'NGÀY ' + (i + 1) + ': ' + day.title + ' (' + day.meal + ')'
+          "
+          [nzActive]="false">
+          <div>{{ day.detail }}</div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-timeline-item>
+  }
 </nz-timeline>
-

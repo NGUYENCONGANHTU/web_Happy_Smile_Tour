@@ -61,25 +61,26 @@
         <div class="foreign-tour-title">{{ dataHomeTitle[1]?.title }}</div>
 
         <div class="tabs-foreign-tour flex gap-4">
-          <app-tabs-foreign-tour
-            *ngFor="let item of tabsForeignTour"
-            [tab]="item.name"
-            [active]="selectedTabForeignTour?.name === item.name"
-            (tabChanged)="handleChangeForeignTour($event)">
-          </app-tabs-foreign-tour>
+          @for (item of tabsForeignTour; track item) {
+            <app-tabs-foreign-tour
+              [tab]="item.name"
+              [active]="selectedTabForeignTour?.name === item.name"
+              (tabChanged)="handleChangeForeignTour($event)">
+            </app-tabs-foreign-tour>
+          }
         </div>
       </div>
-      <div
-        class="app-tour-feature-foreign"
-        *ngIf="selectedTabForeignTour && dataTourForeign?.length">
-        <p *ngIf="selectedTabForeignTour && dataTourForeign?.length === 0">
-          Chưa có dữ liệu tour
-        </p>
-        <app-tour-feature-foreign
-          [selectedTabForeignTour]="selectedTabForeignTour"
-          [dataTour]="dataTourForeign">
-        </app-tour-feature-foreign>
-      </div>
+      @if (selectedTabForeignTour && dataTourForeign?.length) {
+        <div class="app-tour-feature-foreign">
+          @if (selectedTabForeignTour && dataTourForeign?.length === 0) {
+            <p>Chưa có dữ liệu tour</p>
+          }
+          <app-tour-feature-foreign
+            [selectedTabForeignTour]="selectedTabForeignTour"
+            [dataTour]="dataTourForeign">
+          </app-tour-feature-foreign>
+        </div>
+      }
     </div>
 
     <!--  ========== Tour nước ngoài ==========  -->
@@ -87,26 +88,27 @@
       <div class="domestic-tour-slides">
         <div class="domestic-tour-title">{{ dataHomeTitle[2]?.title }}</div>
         <div class="tabs-domestic-tour flex gap-4">
-          <app-tabs-domestic-tour
-            *ngFor="let item of tabsDomesticTour"
-            [tab]="item.name"
-            [active]="selectedTabDomesticTour?.name === item.name"
-            (tabChanged)="handleChangeDomesticTour($event)">
-          </app-tabs-domestic-tour>
+          @for (item of tabsDomesticTour; track item) {
+            <app-tabs-domestic-tour
+              [tab]="item.name"
+              [active]="selectedTabDomesticTour?.name === item.name"
+              (tabChanged)="handleChangeDomesticTour($event)">
+            </app-tabs-domestic-tour>
+          }
         </div>
       </div>
-      <div
-        class="app-tour-feature-foreign"
-        *ngIf="selectedTabDomesticTour && dataTourDomestic?.length">
-        <p *ngIf="selectedTabDomesticTour && dataTourDomestic?.length === 0">
-          Chưa có dữ liệu tour
-        </p>
-        <app-tour-feature-domestic
-          [selectedTabDomesticTour]="selectedTabDomesticTour"
-          [dataDomesticTour]="dataTourDomestic">
-          ></app-tour-feature-domestic
-        >
-      </div>
+      @if (selectedTabDomesticTour && dataTourDomestic?.length) {
+        <div class="app-tour-feature-foreign">
+          @if (selectedTabDomesticTour && dataTourDomestic?.length === 0) {
+            <p>Chưa có dữ liệu tour</p>
+          }
+          <app-tour-feature-domestic
+            [selectedTabDomesticTour]="selectedTabDomesticTour"
+            [dataDomesticTour]="dataTourDomestic">
+            ></app-tour-feature-domestic
+          >
+        </div>
+      }
     </div>
 
     <!--  ========== Cẩm nang du lịch ==========    -->
