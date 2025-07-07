@@ -1,10 +1,7 @@
 <nz-tabs nzType="card">
   <!-- Banner -->
   <nz-tab nzTitle="Banner">
-    <nz-upload
-      nzListType="picture-card"
-      [nzFileList]="banners"
-      [nzBeforeUpload]="() => false">
+    <nz-upload nzListType="picture-card" [nzFileList]="banners">
       <div>
         <i nz-icon nzType="plus"></i>
         <div>Upload</div>
@@ -85,10 +82,7 @@
 
   <!-- Khách hàng tiêu biểu -->
   <nz-tab nzTitle="Khách hàng tiêu biểu">
-    <nz-upload
-      nzListType="picture-card"
-      [nzFileList]="clients"
-      [nzBeforeUpload]="() => false">
+    <nz-upload nzListType="picture-card" [nzFileList]="clients">
       <div>
         <i nz-icon nzType="plus"></i>
         <div>Tải logo</div>

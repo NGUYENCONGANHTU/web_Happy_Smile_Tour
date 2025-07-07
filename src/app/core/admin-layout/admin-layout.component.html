@@ -9,22 +9,40 @@
     (nzCollapsedChange)="onCollapse($event)">
     <div class="logo text-black font-bold md:text-center border">ADMIN</div>
     <ul nz-menu nzTheme="light" nzMode="inline">
-      <li nz-submenu nzTitle="User" nzIcon="user">
+      <li nz-menu-item nzMatchRouter>
+        <nz-icon class="!mr-2" nzType="dashboard" />
+        <a [routerLink]="['/', 'admin', 'dashboard']">Dashboard</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <nz-icon class="!mr-2" nzType="home" />
+        <a [routerLink]="['/', 'admin', 'home-config']">Cấu hình trang chủ</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <nz-icon class="!mr-2" nzType="phone" />
+        <a [routerLink]="['/', 'admin', 'contact-config']">Cấu hình liên hệ</a>
+      </li>
+      <li nz-submenu nzTitle="Cấu hình tour" nzIcon="car">
         <ul>
-          <li nz-menu-item>Tom</li>
-          <li nz-menu-item>Bill</li>
-          <li nz-menu-item>Alex</li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/', 'admin', 'tour-config', 'domestic']"
+              >Trong nước</a
+            >
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/', 'admin', 'tour-config', 'international']"
+              >Ngoài nước</a
+            >
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/', 'admin', 'tour-config', 'private']"
+              >Cá nhân</a
+            >
+          </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Team" nzIcon="team">
-        <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
-        </ul>
-      </li>
-      <li nz-menu-item>
-        <nz-icon nzType="file" />
-        <span>File</span>
+      <li nz-menu-item nzMatchRouter>
+        <nz-icon class="!mr-2" nzType="customer-service" />
+        <a [routerLink]="['/', 'admin', 'service-config']">Cấu hình dịch vụ</a>
       </li>
     </ul>
   </nz-sider>
@@ -35,6 +53,8 @@
         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed" />
     </nz-header>
-    <nz-content class="border! py-4! px-8!"> Content in here </nz-content>
+    <nz-content class="py-4! px-8!">
+      <router-outlet></router-outlet>
+    </nz-content>
   </nz-layout>
 </nz-layout>

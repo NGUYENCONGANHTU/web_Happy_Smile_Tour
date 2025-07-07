@@ -19,6 +19,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
   ],
   templateUrl: './layout-landing.component.html',
   styleUrl: './layout-landing.component.scss',
+  standalone: true,
 })
 export class LayoutLandingComponent {
   faCaretDown = faCaretDown;

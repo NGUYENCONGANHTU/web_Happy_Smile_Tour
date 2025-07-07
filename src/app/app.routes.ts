@@ -12,6 +12,13 @@ import { TestComponent } from './features/layout-landing/tab-tour-foreign-detail
 import { TabServiceComponent } from './features/layout-landing/tab-service/tab-service.component';
 import { LoginPageComponent } from './core/auth/pages/login-page/login-page.component';
 import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component';
+import { HomeConfigComponent } from './features/admin/home-config/home-config.component';
+import { ContactConfigComponent } from './features/admin/contact-config/contact-config.component';
+import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
+import { ServiceConfigComponent } from './features/admin/service-config/service-config.component';
+import { ListDomesticToursComponent } from './features/admin/tour-config/domestic/pages/list-domestic-tours/list-domestic-tours.component';
+import { ListInternationalToursComponent } from './features/admin/tour-config/international/pages/list-international-tours/list-international-tours.component';
+import { ListPrivateToursComponent } from './features/admin/tour-config/private/pages/list-private-tours/list-private-tours.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -68,11 +75,81 @@ export const routes: Routes = [
         path: '',
         component: AdminLayoutComponent,
         // canActivate: [AuthGuard],
-        // children: [
-        //   {
-        //
-        //   }
-        // ]
+        children: [
+          {
+            path: '',
+            redirectTo: 'dashboard',
+            pathMatch: 'full',
+          },
+          {
+            path: 'dashboard',
+            component: DashboardComponent,
+          },
+          {
+            path: 'home-config',
+            component: HomeConfigComponent,
+          },
+          {
+            path: 'contact-config',
+            component: ContactConfigComponent,
+          },
+          {
+            path: 'service-config',
+            component: ServiceConfigComponent,
+          },
+          {
+            path: 'tour-config',
+            children: [
+              {
+                path: '',
+                redirectTo: 'domestic',
+                pathMatch: 'full',
+              },
+              {
+                path: 'domestic',
+                children: [
+                  {
+                    path: '',
+                    redirectTo: 'list',
+                    pathMatch: 'full',
+                  },
+                  {
+                    path: 'list',
+                    component: ListDomesticToursComponent,
+                  },
+                ],
+              },
+              {
+                path: 'international',
+                children: [
+                  {
+                    path: '',
+                    redirectTo: 'list',
+                    pathMatch: 'full',
+                  },
+                  {
+                    path: 'list',
+                    component: ListInternationalToursComponent,
+                  },
+                ],
+              },
+              {
+                path: 'private',
+                children: [
+                  {
+                    path: '',
+                    redirectTo: 'list',
+                    pathMatch: 'full',
+                  },
+                  {
+                    path: 'list',
+                    component: ListPrivateToursComponent,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
     ],
   },
