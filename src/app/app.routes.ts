@@ -51,7 +51,7 @@ export const routes: Routes = [
         component: TabTourForeignDetailComponent,
       },
       {
-        path: 'tab-tour-travel-guide-detail',
+        path: 'tab-tour-travel-guide-detail/:id',
         component: TabTourTravelGuideDetailComponent,
       },
       {
