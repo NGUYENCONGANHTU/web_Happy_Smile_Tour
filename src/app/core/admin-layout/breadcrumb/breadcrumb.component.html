@@ -1,0 +1,9 @@
+<nz-breadcrumb>
+  @for (breadcrumb of breadcrumbs(); track $index) {
+    <nz-breadcrumb-item>
+      <a [routerLink]="breadcrumb.url" class="text-lg font-semibold">{{
+        breadcrumb.label
+      }}</a>
+    </nz-breadcrumb-item>
+  }
+</nz-breadcrumb>

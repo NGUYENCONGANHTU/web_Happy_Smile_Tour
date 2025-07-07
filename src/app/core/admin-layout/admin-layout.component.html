@@ -48,10 +48,13 @@
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <nz-icon
-        class="trigger"
-        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-        (click)="isCollapsed = !isCollapsed" />
+      <div class="flex gap-4 h-full items-center">
+        <nz-icon
+          class="trigger"
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed" />
+        <app-breadcrumb-component></app-breadcrumb-component>
+      </div>
     </nz-header>
     <nz-content class="py-4! px-8!">
       <router-outlet></router-outlet>

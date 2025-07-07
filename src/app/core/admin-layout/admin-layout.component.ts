@@ -5,6 +5,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
@@ -15,6 +16,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     NzLayoutModule,
     RouterOutlet,
     RouterLink,
+    BreadcrumbComponent,
   ],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.scss',

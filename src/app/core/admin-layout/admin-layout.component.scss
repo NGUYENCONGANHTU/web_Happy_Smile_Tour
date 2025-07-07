@@ -1,7 +1,9 @@
 .trigger {
+  display: inline-flex !important;
+  padding: 0 !important;
+  margin-left: 8px;
+  height: fit-content !important;
   font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
   cursor: pointer;
   transition: color 0.3s;
 }

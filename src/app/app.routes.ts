@@ -15,10 +15,10 @@ import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component
 import { HomeConfigComponent } from './features/admin/home-config/home-config.component';
 import { ContactConfigComponent } from './features/admin/contact-config/contact-config.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
-import { ServiceConfigComponent } from './features/admin/service-config/service-config.component';
 import { ListDomesticToursComponent } from './features/admin/tour-config/domestic/pages/list-domestic-tours/list-domestic-tours.component';
 import { ListInternationalToursComponent } from './features/admin/tour-config/international/pages/list-international-tours/list-international-tours.component';
 import { ListPrivateToursComponent } from './features/admin/tour-config/private/pages/list-private-tours/list-private-tours.component';
+import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -84,18 +84,32 @@ export const routes: Routes = [
           {
             path: 'dashboard',
             component: DashboardComponent,
+            data: { breadcrumb: 'Dashboard' },
           },
           {
             path: 'home-config',
             component: HomeConfigComponent,
+            data: { breadcrumb: 'Cấu hình trang chủ' },
           },
           {
             path: 'contact-config',
             component: ContactConfigComponent,
+            data: { breadcrumb: 'Cấu hình liên hệ' },
           },
           {
             path: 'service-config',
-            component: ServiceConfigComponent,
+            data: { breadcrumb: 'Cấu hình liên hệ' },
+            children: [
+              {
+                path: '',
+                redirectTo: 'list',
+                pathMatch: 'full',
+              },
+              {
+                path: 'list',
+                component: ListServicesComponent,
+              },
+            ],
           },
           {
             path: 'tour-config',
@@ -107,6 +121,7 @@ export const routes: Routes = [
               },
               {
                 path: 'domestic',
+                data: { breadcrumb: 'Cấu hình tour trong nước' },
                 children: [
                   {
                     path: '',
@@ -121,6 +136,7 @@ export const routes: Routes = [
               },
               {
                 path: 'international',
+                data: { breadcrumb: 'Cấu hình tour nước ngoài' },
                 children: [
                   {
                     path: '',
@@ -135,6 +151,7 @@ export const routes: Routes = [
               },
               {
                 path: 'private',
+                data: { breadcrumb: 'Cấu hình tour cá nhân' },
                 children: [
                   {
                     path: '',
