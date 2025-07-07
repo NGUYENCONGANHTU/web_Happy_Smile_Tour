@@ -1,0 +1,59 @@
+<div class="login-page">
+  <form
+    nz-form
+    [formGroup]="loginForm"
+    class="login-form"
+    (ngSubmit)="submitForm()">
+    <div class="flex flex-col items-center gap-4 mb-3">
+      <img src="/images/logo_dtdi_login.png" alt="logo_login" />
+      <h1 class="!text-primary text-xl">Đăng nhập</h1>
+    </div>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Tên đăng nhập không được để trống!">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type="text"
+            nz-input
+            formControlName="username"
+            placeholder="Tài khoản" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Mật khẩu không được để trống!">
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            nz-input
+            formControlName="password"
+            placeholder="Mật khẩu" />
+        </nz-input-group>
+        <ng-template #suffixTemplate>
+          <nz-icon
+            class="ant-input-password-icon"
+            [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+            (click)="passwordVisible = !passwordVisible" />
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="12">
+        <div nz-checkbox formControlName="remember">
+          <span>Nhớ mật khẩu</span>
+        </div>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <a href="/auth/forgot-password" class="login-form-forgot"
+          >Quên mật khẩu</a
+        >
+      </div>
+    </div>
+    <button
+      nz-button
+      class="login-form-button login-form-margin !h-[40px] !rounded"
+      [nzLoading]="logging"
+      [nzType]="'primary'">
+      Đăng nhập
+    </button>
+  </form>
+</div>
