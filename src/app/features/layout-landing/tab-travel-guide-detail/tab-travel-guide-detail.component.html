@@ -1,0 +1,25 @@
+<section class="tab-trave-tour-detail">
+  @if (dataContentTravelGuide) {
+    <nz-breadcrumb nzSeparator=">" class="breadcrumb">
+      <nz-breadcrumb-item>
+        <a routerLink="/">Trang chủ</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item class="font-bold italic">
+        {{ dataContentTravelGuide.title }}
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+
+    <div class="trave-tour-detail space-y-5!">
+      <div class="trave-tour-detail-title">
+        {{ dataContentTravelGuide.title }}
+      </div>
+      <div class="mt-3!">
+        <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
+        <span class="italic">27/12/2002</span>
+      </div>
+      <div class="trave-tour-detail-content">
+        {{ dataContentTravelGuide.content }}
+      </div>
+    </div>
+  }
+</section>
