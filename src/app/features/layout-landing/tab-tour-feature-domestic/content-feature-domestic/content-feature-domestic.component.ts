@@ -8,9 +8,11 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
 import { FilterTourService } from '../filter-tour.service';
+import { NgClass } from '@angular/common';
+import { AppService } from '../../../../../app.service';
 @Component({
   selector: 'app-content-feature-domestic',
-  imports: [FaIconComponent],
+  imports: [FaIconComponent, NgClass],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',
 })
@@ -24,10 +26,14 @@ export class ContentFeatureDomesticComponent implements OnChanges {
   tours: FeatureResDTO[] = [];
 
   filterTourService = inject(FilterTourService);
-
+  appService = inject(AppService);
   ngOnChanges() {
-    if (this.filterParams) {
+    if (this.filterParams && Object.keys(this.filterParams).length > 0) {
       this.filterTourService.getTours(this.filterParams).subscribe(data => {
+        this.tours = data;
+      });
+    } else {
+      this.appService.getDataTourDomestic().subscribe(data => {
         this.tours = data;
       });
     }

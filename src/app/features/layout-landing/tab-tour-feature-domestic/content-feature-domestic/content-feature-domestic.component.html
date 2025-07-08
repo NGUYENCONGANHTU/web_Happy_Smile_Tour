@@ -10,8 +10,13 @@
         <div class="card-content-feature-domestic-item-info-title">
           <div class="">{{ data.title }}</div>
         </div>
-        <div class="star">
-          <fa-icon [icon]="faStar" class="close-menu-icon"></fa-icon>
+        <div class="star flex">
+          @for (i of [1, 2, 3, 4, 5]; track i) {
+            <fa-icon
+              [icon]="faStar"
+              [ngClass]="i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'"
+              class="mr-1"></fa-icon>
+          }
         </div>
         <!--===== Ngày đi ======-->
         <div class="departureDate">
