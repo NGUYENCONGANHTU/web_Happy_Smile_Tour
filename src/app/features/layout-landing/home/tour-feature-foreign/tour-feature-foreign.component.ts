@@ -6,11 +6,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-tour-feature-foreign',
-  imports: [FaIconComponent, DecimalPipe],
+  imports: [FaIconComponent, DecimalPipe, NgClass],
   standalone: true,
   templateUrl: './tour-feature-foreign.component.html',
   styleUrl: './tour-feature-foreign.component.scss',
