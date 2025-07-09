@@ -14,7 +14,7 @@
           <li>
             <a
               [routerLink]="['/introduce']"
-              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold"
+              routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="text-[14px]">
               Giới thiệu
@@ -24,7 +24,7 @@
           <li>
             <a
               [routerLink]="['/tour-feature-domestic']"
-              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="text-[14px]">
               Tour trong nước
@@ -34,7 +34,7 @@
           <li>
             <a
               [routerLink]="['/tour-feature-foreign']"
-              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="text-[14px]">
               Tour nước ngoài
@@ -43,7 +43,7 @@
           <li>
             <a
               [routerLink]="['/private-group-tour']"
-              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="text-[14px]">
               Tour đoàn riêng
@@ -57,23 +57,24 @@
               [nzDropdownMenu]="menu"
               [nzPlacement]="'bottomCenter'">
               Dịch vụ
-              <fa-icon [icon]="faCaretDown" class="close-menu-icon"></fa-icon>
+              <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul
                 nz-menu
-                class="grid grid-cols-2 w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
+                class="grid grid-cols-2 max-w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
                 <li nz-menu-item>Cung cấp tour quốc tế</li>
-                <li nz-menu-item>Thiết kế Landtour chuyên nghiệp</li>
-                <li nz-menu-item>Nhiều Landtour Đa Dạng Hấp Dẫn</li>
-                <li nz-menu-item>Giá Landtour Tận Gốc Trực Tiếp Từ Đối Tác</li>
+                <li nz-menu-item>Cung cấp tour quốc tế</li>
+                <li nz-menu-item>Cung cấp tour quốc tế</li>
+                <li nz-menu-item>Cung cấp tour quốc tế</li>
+                <li nz-menu-item>Cung cấp tour quốc tế</li>
               </ul>
             </nz-dropdown-menu>
           </li>
           <li>
             <a
               [routerLink]="['/contact-page']"
-              routerLinkActive="!text-[#fff] !bg-[#e5831e] font-bold!"
+              routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="text-[14px]">
               Liên hệ
@@ -95,7 +96,7 @@
             <nz-dropdown-menu #language="nzDropdownMenu">
               <ul
                 nz-menu
-                class="grid grid-cols-3 w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
+                class="grid grid-cols-3 max-w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
                 @for (lang of languages; track lang) {
                   <li nz-menu-item>
                     <div

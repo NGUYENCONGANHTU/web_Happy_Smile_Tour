@@ -39,7 +39,7 @@ export class AppService {
   apiUrl8 = environment.API_URL + '/home-comment';
   apiUrl9 = environment.API_URL + '/intro';
   apiUrl10 = environment.API_URL + '/intro-title';
-  apiUrl11 = environment.API_URL + '/custom-service-trans';
+  apiUrl11 = environment.API_URL + '/group-tour';
   apiUrl12 = environment.API_URL + '/tour-contact';
   apiUrl13 = environment.API_URL + '/info';
 
@@ -267,32 +267,34 @@ export class AppService {
 
   /*============================== PAGE LIÊN HỆ ================================*/
   createDataContactPage(data: IntroducePageReqDTO) {
-    return this.http.post<IntroducePageResDTO>(this.apiUrl9, data);
+    return this.http.post<IntroducePageResDTO>(this.apiUrl13, data);
   }
   getAllDataBannerContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl9 + '/type/BANNER');
+    return this.http.get<IntroducePageResDTO[]>(this.apiUrl13 + '/type/BANNER');
   }
   getAllDataAddressContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl9 + '/type/ADDRESS');
+    return this.http.get<IntroducePageResDTO[]>(
+      this.apiUrl13 + '/type/ADDRESS'
+    );
   }
   getAllDataPhoneContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl9 + '/type/PHONE');
+    return this.http.get<IntroducePageResDTO[]>(this.apiUrl13 + '/type/PHONE');
   }
   getAllDataEmailContactPage() {
-    return this.http.get<IntroduceTitleResDTO[]>(this.apiUrl10 + '/type/EMAIL');
+    return this.http.get<IntroducePageResDTO[]>(this.apiUrl13 + '/type/EMAIL');
   }
   getAllDataFooterContactPage() {
     return this.http.get<IntroduceTitleResDTO[]>(
-      this.apiUrl10 + '/type/FOOTER'
+      this.apiUrl13 + '/type/FOOTER'
     );
   }
   getDataByIdContactPage(id: number) {
-    return this.http.get<IntroducePageResDTO>(`${this.apiUrl9}/${id}`);
+    return this.http.get<IntroducePageResDTO>(`${this.apiUrl13}/${id}`);
   }
   updateDataContactPage(data: IntroducePageReqDTO, id: number) {
-    return this.http.put<IntroducePageResDTO>(`${this.apiUrl9}/${id}`, data);
+    return this.http.put<IntroducePageResDTO>(`${this.apiUrl13}/${id}`, data);
   }
   deleteDataContactPage(id: number) {
-    return this.http.delete<IntroducePageResDTO>(`${this.apiUrl9}/${id}`);
+    return this.http.delete<IntroducePageResDTO>(`${this.apiUrl13}/${id}`);
   }
 }
