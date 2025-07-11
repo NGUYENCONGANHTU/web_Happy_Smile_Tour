@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-list-international-tours',
-  templateUrl: 'list-international-tours.component.html',
+  templateUrl: 'list-foreign-tours.component.html',
   standalone: true,
 })
-export class ListInternationalToursComponent {}
+export class ListForeignToursComponent {}

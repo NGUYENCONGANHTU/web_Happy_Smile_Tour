@@ -16,9 +16,9 @@ import { HomeConfigComponent } from './features/admin/home-config/home-config.co
 import { ContactConfigComponent } from './features/admin/contact-config/contact-config.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
 import { ListDomesticToursComponent } from './features/admin/tour-config/domestic/pages/list-domestic-tours/list-domestic-tours.component';
-import { ListInternationalToursComponent } from './features/admin/tour-config/international/pages/list-international-tours/list-international-tours.component';
 import { ListPrivateToursComponent } from './features/admin/tour-config/private/pages/list-private-tours/list-private-tours.component';
 import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
+import { ListForeignToursComponent } from './features/admin/tour-config/foreign/pages/list-foreign-tours/list-foreign-tours.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -135,7 +135,7 @@ export const routes: Routes = [
                 ],
               },
               {
-                path: 'international',
+                path: 'foreign',
                 data: { breadcrumb: 'Cấu hình tour nước ngoài' },
                 children: [
                   {
@@ -145,7 +145,7 @@ export const routes: Routes = [
                   },
                   {
                     path: 'list',
-                    component: ListInternationalToursComponent,
+                    component: ListForeignToursComponent,
                   },
                 ],
               },
