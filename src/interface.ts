@@ -72,17 +72,19 @@ export enum LocationType {
 export interface FeatureReqDTO {
   title: string;
   star: number;
+  numberComment: number;
   destination: string[];
   originalPrice: number;
   discount: number;
   finalPrice: number;
   stayDate: string;
   location: LocationResDTO;
-  startingPoint: LocationResDTO;
+  startingPoints: LocationResDTO[];
   highlight: string;
-  schedule: string;
-  priceTable: string;
   service: string;
+  nonService: string;
+  regulation: string;
+  note: string;
   imageUrl: string[];
 }
 export interface FeatureResDTO {
@@ -96,11 +98,12 @@ export interface FeatureResDTO {
   finalPrice: number;
   stayDate: string;
   location: LocationResDTO;
-  startingPoint: LocationResDTO;
+  startingPoints: LocationResDTO[];
   highlight: string;
-  schedule: string;
-  priceTable: string;
   service: string;
+  nonService: string;
+  regulation: string;
+  note: string;
   imageUrl: string[];
 }
 /* ==================== Tour nước ngoài ==================== */
@@ -222,4 +225,45 @@ export enum ContactPage {
   PHONE,
   EMAIL,
   FOOTER,
+}
+
+/* ==================== ĐÁNH GIÁ CHI TIẾT TOUR  ==================== */
+export interface TourCommentDetailReqDTO {
+  name: string;
+  content: string;
+  star: number;
+}
+export interface TourCommentDetailResDTO {
+  id: number;
+  name: string;
+  content: string;
+  star: number;
+  tourId: number;
+}
+/* ==================== LANGUAGE  ==================== */
+export interface LanguageReqDTO {
+  name: string;
+  code: string;
+  flag: string;
+}
+export interface LanguageResDTO {
+  id: number;
+  name: string;
+  code: string;
+  flag: string;
+}
+
+/* ==================== LỊCH TRÌNH  ==================== */
+export interface TourScheduleReqDTO {
+  tourScheduleId: number;
+  title: string;
+  description: string;
+  tourId: number;
+}
+export interface TourScheduleResDTO {
+  id: number;
+  tourScheduleId: number;
+  title: string;
+  description: string;
+  tourId: number;
 }

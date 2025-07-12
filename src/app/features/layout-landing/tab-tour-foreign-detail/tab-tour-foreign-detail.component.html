@@ -1,54 +1,124 @@
 <section class="tab-tour-foreign-detail">
-<!--  =====================breadcrumb==========================-->
-  <nz-breadcrumb nzSeparator=">" class="breadcrumb">
-    <nz-breadcrumb-item>
-      <a routerLink="/">Trang chủ</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a routerLink="/tour-feature-foreign" class="font-medium">Tour Nước Ngoài</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item class="font-medium">THƯỢNG HẢI - TÔ CHÂU - HÀNG CHÂU - BỘC VIỆN CỔ TRẤN</nz-breadcrumb-item>
-  </nz-breadcrumb>
-<!--  ====================content==========================-->
-  <div class="tab-tour-foreign-detail-main-content">
+  @if (tourDetail) {
+    <!--  =====================breadcrumb==========================-->
+    <nz-breadcrumb nzSeparator=">" class="breadcrumb">
+      <nz-breadcrumb-item>
+        <a routerLink="/">Trang chủ</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <a routerLink="/tour-feature-foreign" class="font-medium"
+          >Tour Nước Ngoài</a
+        >
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item class="font-medium italic">{{
+        tourDetail.title
+      }}</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <!--  ====================content==========================-->
+    <div class="tab-tour-foreign-detail-main-content">
       <div class="left-content">
-        <app-slide-tour-detail></app-slide-tour-detail>
-      <div class="tour-detail-title">THƯỢNG HẢI - TÔ CHÂU - HÀNG CHÂU - BỘC VIỆN CỔ TRẤN</div>
-      <div class="tour-detail-title-tabs">
-        <div class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc]">
-          <button (click)="scrollTo('diemNoiBat')">ĐIỂM NỔI BẬT</button>
-          <button (click)="scrollTo('lichTrinh')">LỊCH TRÌNH</button>
-          <button (click)="scrollTo('bangGia')">BẢNG GIÁ</button>
-          <button (click)="scrollTo('dichVu')">DỊCH VỤ BAO GỒM</button>
+        <app-slide-tour-detail
+          [listImageBanner]="dataFeaturePlace"></app-slide-tour-detail>
+        <div class="tour-detail-title">{{ tourDetail.title }}</div>
+        <div class="tour-detail-title-tabs">
+          <div
+            class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc]">
+            <button (click)="scrollTo('diemNoiBat')">ĐIỂM NỔI BẬT</button>
+            <button (click)="scrollTo('lichTrinh')">LỊCH TRÌNH</button>
+            <button (click)="scrollTo('bangGia')">BẢNG GIÁ</button>
+            <button (click)="scrollTo('dichVu')">DỊCH VỤ BAO GỒM</button>
+          </div>
+          <div class="tour-detail-title-tabs-content">
+            <!-- ===================ĐIỂM NỔI BẬT========================= -->
+            @for (data of dataFeaturePlace; track data.id) {
+              @if (dataFeaturePlace.length > 0) {
+                <div #diemNoiBat id="diem-noi-bat" class="tab">
+                  <div class="tab-title">ĐIỂM NỔI BẬT</div>
+                  <app-feature-place [highlight]="data.highlight">
+                  </app-feature-place>
+                </div>
+              }
+            }
+            <!-- ======================LỊCH TRÌNH====================== -->
+            @if (dataTourSchedule.length > 0) {
+              <div #lichTrinh id="lich-trinh" class="tab">
+                <div class="tab-title">LỊCH TRÌNH</div>
+                <app-schedule [tourDays]="dataTourSchedule"></app-schedule>
+              </div>
+            }
+            <!-- ======================BẢNG GIÁ====================== -->
+            @if (dataTourPrice.length > 0) {
+              <div #bangGia id="bang-gia" class="tab">
+                <div class="tab-title">BẢNG GIÁ</div>
+                <app-price-list
+                  [dataTourPrice]="dataTourPrice"
+                  [dataTourDiscount]="dataTourDiscount"
+                  [dataTourSurcharge]="dataTourSurcharge">
+                </app-price-list>
+              </div>
+            }
+
+            <!--============== DỊCH VỤ =================-->
+            <div #dichVu id="dich-vu" class="tab space-y-8!">
+              <!--============== DỊCH VỤ BAO GỒM =================-->
+              @for (data of dataFeaturePlace; track data.id) {
+                @if (data.nonService) {
+                  <div class="content-1">
+                    <div class="tab-title">DỊCH VỤ BAO GỒM</div>
+                    <div class="content-1">{{ data.service }}</div>
+                  </div>
+                }
+              }
+
+              <!--============== DỊCH VỤ KHÔNG BAO GỒM =================-->
+              @for (data of dataFeaturePlace; track data.id) {
+                @if (data.nonService) {
+                  <div class="content-2">
+                    <div class="tab-title">DỊCH VỤ KHÔNG BAO GỒM</div>
+                    <div class="content-2-text">{{ data.nonService }}</div>
+                  </div>
+                }
+              }
+
+              <!--============== DỊCH VỤ BAO GỒM =================-->
+              @for (data of dataFeaturePlace; track data.id) {
+                @if (data.regulation) {
+                  <div class="content-3">
+                    <div class="tab-title">ĐIỀU KIỆN & QUY ĐINH</div>
+                    <div class="content-3-text">
+                      {{ data.regulation }}
+                    </div>
+                  </div>
+                }
+              }
+
+              <!--============== DỊCH VỤ BAO GỒM =================-->
+              @for (data of dataFeaturePlace; track data.id) {
+                @if (data.note) {
+                  <div class="content-3">
+                    <div class="tab-title">GHI CHÚ</div>
+                    <div class="content-3-text">
+                      {{ data.note }}
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+
+          <!--============== CUSTOMER FEEDBACK =================-->
+          <div class="customer-feedback mb-2!">
+            <div class="customer-feedback-title">
+              KHÁCH HÀNG ĐÁNH GIÁ / REVIEW
+            </div>
+            <app-form-feedback></app-form-feedback>
+          </div>
         </div>
-        <div class="tour-detail-title-tabs-content">
-          <!-- Sections -->
-          <div #diemNoiBat id="diem-noi-bat" class="tab">
-            <div class="tab-title">ĐIỂM NỔI BẬT</div>
-            <app-feature-place></app-feature-place>
-          </div>
-
-          <div #lichTrinh id="lich-trinh" class="tab">
-            <div class="tab-title">LỊCH TRÌNH</div>
-            <app-schedule></app-schedule>
-          </div>
-
-          <div #bangGia id="bang-gia" class="tab">
-            <div class="tab-title">BẢNG GIÁ</div>
-            <app-price-list></app-price-list>
-          </div>
-
-          <div #dichVu id="dich-vu" class="tab">
-            <div class="tab-title">DỊCH VỤ BAO GỒM</div>
-            <app-service></app-service>
-          </div>
-        </div>
-      </div>
       </div>
       <div class="right-content shadow-sm rounded-xl">
-        <app-sidebar-tab-tour-foreign></app-sidebar-tab-tour-foreign>
+        <app-sidebar-tab-tour-foreign [tourDetail]="dataFeaturePlace">
+        </app-sidebar-tab-tour-foreign>
       </div>
-  </div>
+    </div>
+  }
 </section>
-
-

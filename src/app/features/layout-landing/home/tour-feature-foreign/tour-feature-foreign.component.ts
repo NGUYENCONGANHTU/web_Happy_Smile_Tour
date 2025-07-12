@@ -7,10 +7,11 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
 import { DecimalPipe, NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tour-feature-foreign',
-  imports: [FaIconComponent, DecimalPipe, NgClass],
+  imports: [FaIconComponent, DecimalPipe, NgClass, RouterLink],
   standalone: true,
   templateUrl: './tour-feature-foreign.component.html',
   styleUrl: './tour-feature-foreign.component.scss',

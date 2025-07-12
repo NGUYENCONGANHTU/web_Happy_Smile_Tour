@@ -1,39 +1,37 @@
-.sidebar-tour-foreign{
-
+.sidebar-tour-foreign {
   padding: 20px;
-  .name-tour{
-    font-weight:500;
-    font-size:  16px;
+  .name-tour {
+    font-weight: 500;
+    font-size: 16px;
   }
-  .price-tour{
-    .price-tour-label{
-      font-size:  14px;
+  .price-tour {
+    .price-tour-label {
+      font-size: 14px;
     }
-    .price-tour-value{
+    .price-tour-value {
       font-size: 24px;
       font-weight: 600;
       color: #ec1d27;
     }
   }
-  .departure-date{
+  .departure-date {
     display: flex;
     gap: 6px;
-    .icon-calendar{
-      color:  #0c9544;
+    .icon-calendar {
+      color: #0c9544;
     }
-
   }
-  .departure-location{
+  .departure-location {
     display: flex;
     gap: 6px;
-    .icon-location{
-    color: #ed1d26 !important;
+    .icon-location {
+      color: #ed1d26 !important;
+    }
   }
-  }
-  .text-center{
+  .text-center {
     margin-top: 20px;
     .btn-reserve {
-      background-color: #0c9544; /* màu xanh giống hình */
+      background-color: #0c9544;
       color: white;
       border-radius: 8px;
       padding: 6px 30px;
@@ -51,7 +49,17 @@
     }
   }
 }
-.ant-divider-horizontal{
+.ant-divider-horizontal {
   margin: 20px 0;
   text-align: center;
+}
+::ng-deep .ant-modal-header {
+  background: #0c9544 !important;
+}
+::ng-deep .ant-modal-title {
+  color: white;
+  font-weight: 500;
+}
+::ng-deep .ant-btn-primary {
+  background: #0c9544 !important;
 }

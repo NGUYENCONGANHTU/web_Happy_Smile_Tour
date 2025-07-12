@@ -7,9 +7,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-tour-feature-domestic',
-  imports: [FaIconComponent, DecimalPipe, NgClass],
+  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink],
   templateUrl: './tour-feature-domestic.component.html',
   styleUrl: './tour-feature-domestic.component.scss',
   standalone: true,

@@ -1,10 +1,10 @@
-.tab-tour-foreign-detail{
-  .breadcrumb{
+.tab-tour-foreign-detail {
+  .breadcrumb {
     background-color: #f3f0f0;
     padding: 10px 10%;
     margin-bottom: 10px;
   }
-  .tab-tour-foreign-detail-main-content{
+  .tab-tour-foreign-detail-main-content {
     display: grid;
     grid-template-columns: 3fr 1fr;
     width: 100%;
@@ -14,17 +14,18 @@
       width: 100%;
       box-sizing: border-box;
       overflow: hidden;
-      .tour-detail-title{
+      .tour-detail-title {
+        color: #ed1e27;
         font-size: 25px;
         font-weight: bold;
         margin: 20px 0;
       }
-      .tour-detail-title-tabs{
+      .tour-detail-title-tabs {
         //border: 1px solid red;
-        .tour-detail-title-tabs-title{
+        .tour-detail-title-tabs-title {
           display: flex;
           justify-content: space-between;
-          gap:10px;
+          gap: 10px;
           margin-top: 30px;
           button {
             background: none;
@@ -37,19 +38,46 @@
             }
           }
         }
-        .tour-detail-title-tabs-content{
-          .tab{
+        .tour-detail-title-tabs-content {
+          .tab {
             margin: 50px 0;
-            .tab-title{
-              font-weight:  bold;
+            .tab-title {
+              font-weight: bold;
               font-size: 14px;
               margin-bottom: 30px;
             }
           }
         }
+        .customer-feedback {
+          .customer-feedback-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 30px;
+          }
+          .form-feedback {
+            ::ng-deep .ant-card {
+              border: 1px solid #eff2f4;
+              border-radius: 10px;
+              ::ng-deep .ant-card-head {
+                border-radius: 10px 10px 0 0;
+                background-color: #eff2f4 !important;
+              }
+              .btn-add-comment {
+                padding: 0.5rem 2rem;
+                background-color: #ed1d26;
+                color: white;
+                font-weight: bold;
+                border-radius: 10px;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .customer-feedback {
       }
     }
-    .right-content{
+    .right-content {
       min-height: 350px !important;
       align-self: start;
       height: auto;
@@ -60,7 +88,8 @@
       background: white;
       z-index: 10;
     }
-    app-slide-tour-detail, swiper-container {
+    app-slide-tour-detail,
+    swiper-container {
       width: 100%;
       display: block;
     }
