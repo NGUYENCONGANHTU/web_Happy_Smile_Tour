@@ -1,168 +1,175 @@
-<swiper-container loop="true"
-                    slides-per-view="1"
-                    space-between="15"
-                    breakpoints='{
+<swiper-container
+  loop="true"
+  slides-per-view="1"
+  space-between="15"
+  breakpoints='{
                       "640": { "slidesPerView": 1 },
                       "768": { "slidesPerView": 2 },
                       "1024": { "slidesPerView": 3 },
                       "1280": { "slidesPerView": 4 }
-                    }'
-                    >
+                    }'>
   @for (data of dataFeatureTour; track $index) {
-
-    <swiper-slide class="slide">
+    <swiper-slide
+      class="slide"
+      [routerLink]="['/tab-tour-foreign-detail', data.id]"
+      >>
       <div class="tour-card">
-        <div class="ribbon">Giá tốt nhất {{$index + 1}}</div>
+        <div class="ribbon">Giá tốt nhất {{ $index + 1 }}</div>
         <img
           src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png"
-          alt="Tour" class="tour-image"/>
+          alt="Tour"
+          class="tour-image" />
 
         <div class="tour-content">
           <div class="tour-title">
-            {{data.title}}
+            {{ data.title }}
           </div>
 
           <div class="rating">
-            <span class="score">{{data.star}}</span>
-            <span class="reviews">| {{data.numberComment}} đánh giá</span>
+            <span class="score">{{ data.star }}</span>
+            <span class="reviews">| {{ data.numberComment }} đánh giá</span>
           </div>
 
           <ul class="tour-points">
-            @for ( item of  data.destination; track $index) {
-              <li>{{item}}</li>
+            @for (item of data.destination; track $index) {
+              <li>{{ item }}</li>
             }
           </ul>
 
           <div class="price">
-            <span class="old-price">{{data.originalPrice.toLocaleString()}}₫</span>
-            <span class="new-price">{{data.finalPrice.toLocaleString()}} ₫</span>
+            <span class="old-price"
+              >{{ data.originalPrice.toLocaleString() }}₫</span
+            >
+            <span class="new-price"
+              >{{ data.finalPrice.toLocaleString() }} ₫</span
+            >
           </div>
         </div>
       </div>
     </swiper-slide>
   }
-<!--    <swiper-slide class="slide">-->
-<!--      <div class="tour-card">-->
-<!--        <div class="ribbon">Giá tốt nhất 2</div>-->
-<!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
+  <!--    <swiper-slide class="slide">-->
+  <!--      <div class="tour-card">-->
+  <!--        <div class="ribbon">Giá tốt nhất 2</div>-->
+  <!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
 
-<!--        <div class="tour-content">-->
-<!--          <h3 class="tour-title">-->
-<!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
-<!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
-<!--          </h3>-->
+  <!--        <div class="tour-content">-->
+  <!--          <h3 class="tour-title">-->
+  <!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
+  <!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
+  <!--          </h3>-->
 
-<!--          <div class="rating">-->
-<!--            <span class="score">9.5</span>-->
-<!--            <span class="text">Tuyệt vời</span>-->
-<!--            <span class="reviews">| 16 đánh giá</span>-->
-<!--          </div>-->
+  <!--          <div class="rating">-->
+  <!--            <span class="score">9.5</span>-->
+  <!--            <span class="text">Tuyệt vời</span>-->
+  <!--            <span class="reviews">| 16 đánh giá</span>-->
+  <!--          </div>-->
 
-<!--          <ul class="tour-points">-->
-<!--            <li>Cao Nguyên Genting</li>-->
-<!--            <li>Tháp Đôi</li>-->
-<!--            <li>Động Batu</li>-->
-<!--            <li>Garden by the Bay</li>-->
-<!--          </ul>-->
+  <!--          <ul class="tour-points">-->
+  <!--            <li>Cao Nguyên Genting</li>-->
+  <!--            <li>Tháp Đôi</li>-->
+  <!--            <li>Động Batu</li>-->
+  <!--            <li>Garden by the Bay</li>-->
+  <!--          </ul>-->
 
-<!--          <div class="price">-->
-<!--            <span class="old-price">10.990.000 ₫</span>-->
-<!--            <span class="new-price">9.990.000 ₫</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </swiper-slide>-->
-<!--    <swiper-slide class="slide">-->
-<!--      <div class="tour-card">-->
-<!--        <div class="ribbon">Giá tốt nhất 3</div>-->
-<!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
+  <!--          <div class="price">-->
+  <!--            <span class="old-price">10.990.000 ₫</span>-->
+  <!--            <span class="new-price">9.990.000 ₫</span>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </swiper-slide>-->
+  <!--    <swiper-slide class="slide">-->
+  <!--      <div class="tour-card">-->
+  <!--        <div class="ribbon">Giá tốt nhất 3</div>-->
+  <!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
 
-<!--        <div class="tour-content">-->
-<!--          <h3 class="tour-title">-->
-<!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
-<!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
-<!--          </h3>-->
+  <!--        <div class="tour-content">-->
+  <!--          <h3 class="tour-title">-->
+  <!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
+  <!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
+  <!--          </h3>-->
 
-<!--          <div class="rating">-->
-<!--            <span class="score">9.5</span>-->
-<!--            <span class="text">Tuyệt vời</span>-->
-<!--            <span class="reviews">| 16 đánh giá</span>-->
-<!--          </div>-->
+  <!--          <div class="rating">-->
+  <!--            <span class="score">9.5</span>-->
+  <!--            <span class="text">Tuyệt vời</span>-->
+  <!--            <span class="reviews">| 16 đánh giá</span>-->
+  <!--          </div>-->
 
-<!--          <ul class="tour-points">-->
-<!--            <li>Cao Nguyên Genting</li>-->
-<!--            <li>Tháp Đôi</li>-->
-<!--            <li>Động Batu</li>-->
-<!--            <li>Garden by the Bay</li>-->
-<!--          </ul>-->
+  <!--          <ul class="tour-points">-->
+  <!--            <li>Cao Nguyên Genting</li>-->
+  <!--            <li>Tháp Đôi</li>-->
+  <!--            <li>Động Batu</li>-->
+  <!--            <li>Garden by the Bay</li>-->
+  <!--          </ul>-->
 
-<!--          <div class="price">-->
-<!--            <span class="old-price">10.990.000 ₫</span>-->
-<!--            <span class="new-price">9.990.000 ₫</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </swiper-slide>-->
-<!--    <swiper-slide class="slide">-->
-<!--      <div class="tour-card">-->
-<!--        <div class="ribbon">Giá tốt nhất 4</div>-->
-<!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
+  <!--          <div class="price">-->
+  <!--            <span class="old-price">10.990.000 ₫</span>-->
+  <!--            <span class="new-price">9.990.000 ₫</span>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </swiper-slide>-->
+  <!--    <swiper-slide class="slide">-->
+  <!--      <div class="tour-card">-->
+  <!--        <div class="ribbon">Giá tốt nhất 4</div>-->
+  <!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
 
-<!--        <div class="tour-content">-->
-<!--          <h3 class="tour-title">-->
-<!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
-<!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
-<!--          </h3>-->
+  <!--        <div class="tour-content">-->
+  <!--          <h3 class="tour-title">-->
+  <!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
+  <!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
+  <!--          </h3>-->
 
-<!--          <div class="rating">-->
-<!--            <span class="score">9.5</span>-->
-<!--            <span class="text">Tuyệt vời</span>-->
-<!--            <span class="reviews">| 16 đánh giá</span>-->
-<!--          </div>-->
+  <!--          <div class="rating">-->
+  <!--            <span class="score">9.5</span>-->
+  <!--            <span class="text">Tuyệt vời</span>-->
+  <!--            <span class="reviews">| 16 đánh giá</span>-->
+  <!--          </div>-->
 
-<!--          <ul class="tour-points">-->
-<!--            <li>Cao Nguyên Genting</li>-->
-<!--            <li>Tháp Đôi</li>-->
-<!--            <li>Động Batu</li>-->
-<!--            <li>Garden by the Bay</li>-->
-<!--          </ul>-->
+  <!--          <ul class="tour-points">-->
+  <!--            <li>Cao Nguyên Genting</li>-->
+  <!--            <li>Tháp Đôi</li>-->
+  <!--            <li>Động Batu</li>-->
+  <!--            <li>Garden by the Bay</li>-->
+  <!--          </ul>-->
 
-<!--          <div class="price">-->
-<!--            <span class="old-price">10.990.000 ₫</span>-->
-<!--            <span class="new-price">9.990.000 ₫</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </swiper-slide>-->
-<!--    <swiper-slide class="slide">-->
-<!--      <div class="tour-card">-->
-<!--        <div class="ribbon">Giá tốt nhất 5</div>-->
-<!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
+  <!--          <div class="price">-->
+  <!--            <span class="old-price">10.990.000 ₫</span>-->
+  <!--            <span class="new-price">9.990.000 ₫</span>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </swiper-slide>-->
+  <!--    <swiper-slide class="slide">-->
+  <!--      <div class="tour-card">-->
+  <!--        <div class="ribbon">Giá tốt nhất 5</div>-->
+  <!--        <img src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png" alt="Tour" class="tour-image" />-->
 
-<!--        <div class="tour-content">-->
-<!--          <h3 class="tour-title">-->
-<!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
-<!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
-<!--          </h3>-->
+  <!--        <div class="tour-content">-->
+  <!--          <h3 class="tour-title">-->
+  <!--            Tour Singapore - Malaysia 4N3Đ: <br />-->
+  <!--            Sentosa - Genting - Động Batu - Tháp Đôi Petronas-->
+  <!--          </h3>-->
 
-<!--          <div class="rating">-->
-<!--            <span class="score">9.5</span>-->
-<!--            <span class="text">Tuyệt vời</span>-->
-<!--            <span class="reviews">| 16 đánh giá</span>-->
-<!--          </div>-->
+  <!--          <div class="rating">-->
+  <!--            <span class="score">9.5</span>-->
+  <!--            <span class="text">Tuyệt vời</span>-->
+  <!--            <span class="reviews">| 16 đánh giá</span>-->
+  <!--          </div>-->
 
-<!--          <ul class="tour-points">-->
-<!--            <li>Cao Nguyên Genting</li>-->
-<!--            <li>Tháp Đôi</li>-->
-<!--            <li>Động Batu</li>-->
-<!--            <li>Garden by the Bay</li>-->
-<!--          </ul>-->
+  <!--          <ul class="tour-points">-->
+  <!--            <li>Cao Nguyên Genting</li>-->
+  <!--            <li>Tháp Đôi</li>-->
+  <!--            <li>Động Batu</li>-->
+  <!--            <li>Garden by the Bay</li>-->
+  <!--          </ul>-->
 
-<!--          <div class="price">-->
-<!--            <span class="old-price">10.990.000 ₫</span>-->
-<!--            <span class="new-price">9.990.000 ₫</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </swiper-slide>-->
+  <!--          <div class="price">-->
+  <!--            <span class="old-price">10.990.000 ₫</span>-->
+  <!--            <span class="new-price">9.990.000 ₫</span>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </swiper-slide>-->
 </swiper-container>

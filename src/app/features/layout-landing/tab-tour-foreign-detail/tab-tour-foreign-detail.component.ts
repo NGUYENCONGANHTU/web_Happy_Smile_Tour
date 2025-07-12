@@ -30,7 +30,6 @@ import { ScheduleResDTO } from './schedule/schedule-interface';
 import { ScheduleService } from './schedule/schedule.service';
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
-// import {SlideTourDetailComponent} from './slide-tour-detail/slide-tour-detail.component';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
