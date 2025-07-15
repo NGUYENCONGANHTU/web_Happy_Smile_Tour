@@ -15,10 +15,8 @@ import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component
 import { HomeConfigComponent } from './features/admin/home-config/home-config.component';
 import { ContactConfigComponent } from './features/admin/contact-config/contact-config.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
-import { ListDomesticToursComponent } from './features/admin/tour-config/domestic/pages/list-domestic-tours/list-domestic-tours.component';
-import { ListPrivateToursComponent } from './features/admin/tour-config/private/pages/list-private-tours/list-private-tours.component';
 import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
-import { ListForeignToursComponent } from './features/admin/tour-config/foreign/pages/list-foreign-tours/list-foreign-tours.component';
+import { TOUR_CONFIG_ROUTE } from './features/admin/tour-config/tour-config.routes';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -113,58 +111,7 @@ export const routes: Routes = [
           },
           {
             path: 'tour-config',
-            children: [
-              {
-                path: '',
-                redirectTo: 'domestic',
-                pathMatch: 'full',
-              },
-              {
-                path: 'domestic',
-                data: { breadcrumb: 'Cấu hình tour trong nước' },
-                children: [
-                  {
-                    path: '',
-                    redirectTo: 'list',
-                    pathMatch: 'full',
-                  },
-                  {
-                    path: 'list',
-                    component: ListDomesticToursComponent,
-                  },
-                ],
-              },
-              {
-                path: 'foreign',
-                data: { breadcrumb: 'Cấu hình tour nước ngoài' },
-                children: [
-                  {
-                    path: '',
-                    redirectTo: 'list',
-                    pathMatch: 'full',
-                  },
-                  {
-                    path: 'list',
-                    component: ListForeignToursComponent,
-                  },
-                ],
-              },
-              {
-                path: 'private',
-                data: { breadcrumb: 'Cấu hình tour cá nhân' },
-                children: [
-                  {
-                    path: '',
-                    redirectTo: 'list',
-                    pathMatch: 'full',
-                  },
-                  {
-                    path: 'list',
-                    component: ListPrivateToursComponent,
-                  },
-                ],
-              },
-            ],
+            children: TOUR_CONFIG_ROUTE,
           },
         ],
       },

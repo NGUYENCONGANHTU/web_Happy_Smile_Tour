@@ -22,8 +22,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BehaviorSubject, debounceTime, switchMap } from 'rxjs';
-import { ConsiderNotNullPipe } from '../../pipes/consider-not-null.pipe';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ConsiderNotNullPipe } from '../../pipes/consider-not-null.pipe';
 
 @Component({
   selector: 'app-table-base-component',

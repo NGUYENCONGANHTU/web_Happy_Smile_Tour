@@ -1,0 +1,129 @@
+<form [formGroup]="tourForm" nz-form [nzLayout]="'vertical'">
+  <nz-form-item>
+    <nz-form-label nzRequired>Tên tour</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['title'] | appValidationMessage">
+      <input
+        nz-input
+        formControlName="title"
+        placeholder="VD: Tour Đà Lạt 3N2Đ" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Số sao đánh giá</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['star'] | appValidationMessage">
+      <input
+        nz-input
+        type="number"
+        formControlName="star"
+        placeholder="1 - 5" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Điểm đến</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['destination'] | appValidationMessage">
+      <nz-select
+        formControlName="destination"
+        nzMode="tags"
+        nzPlaceHolder="Nhập các điểm đến"></nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Giá gốc</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['originalPrice'] | appValidationMessage">
+      <input nz-input type="number" formControlName="originalPrice" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Giảm giá</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['discount'] | appValidationMessage">
+      <input nz-input type="number" formControlName="discount" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Giá sau giảm</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['finalPrice'] | appValidationMessage">
+      <input nz-input type="number" formControlName="finalPrice" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Thời gian lưu trú</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['stayDate'] | appValidationMessage">
+      <input nz-input formControlName="stayDate" placeholder="VD: 3N2Đ" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Điểm khởi hành chính (ID)</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['locationId'] | appValidationMessage">
+      <input nz-input type="number" formControlName="locationId" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Các điểm khởi hành phụ (ID)</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="
+        tourForm.controls['startingPointIds'] | appValidationMessage
+      ">
+      <nz-select
+        formControlName="startingPointIds"
+        nzMode="tags"
+        nzPlaceHolder="Nhập ID các điểm xuất phát"></nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Nội dung nổi bật</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['highlight'] | appValidationMessage">
+      <textarea nz-input rows="2" formControlName="highlight"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Chính sách</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['regulation'] | appValidationMessage">
+      <textarea nz-input rows="2" formControlName="regulation"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Ghi chú thêm</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['note'] | appValidationMessage">
+      <textarea nz-input rows="2" formControlName="note"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['fileList'] | appValidationMessage">
+      <nz-upload
+        nzListType="picture-card"
+        [nzFileList]="fileList.value"
+        [nzBeforeUpload]="beforeUpload"
+        [nzMultiple]="true">
+        <div>
+          <i nz-icon nzType="plus"></i>
+          <div style="margin-top: 8px">Tải ảnh</div>
+        </div>
+      </nz-upload>
+    </nz-form-control>
+  </nz-form-item>
+</form>
