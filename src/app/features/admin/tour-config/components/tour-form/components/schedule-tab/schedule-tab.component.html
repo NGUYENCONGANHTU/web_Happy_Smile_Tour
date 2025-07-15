@@ -1,0 +1,106 @@
+<form [formGroup]="scheduleForm">
+  <div formArrayName="schedules">
+    @for (
+      schedule of schedules.controls;
+      track schedule;
+      let indexStep = $index;
+      let lastIndexStep = $last;
+      let firstIndexStep = $first;
+      let stepCount = $count
+    ) {
+      <nz-collapse nzExpandIconPosition="end">
+        <nz-collapse-panel
+          [nzHeader]="header"
+          [nzExtra]="schedules.enabled ? extraTpl : undefined"
+          [nzActive]="true"
+          [formGroupName]="indexStep">
+          <textarea
+            nz-input
+            rows="3"
+            formControlName="description"
+            class="w-full"></textarea>
+          <ng-template #header>
+            <input
+              nz-input
+              formControlName="title"
+              placeholder="VD: 3N2Đ"
+              (click)="$event.stopPropagation()"
+              class="w-full" />
+          </ng-template>
+          <ng-template #extraTpl>
+            <button
+              nz-button
+              nz-dropdown
+              [nzDropdownMenu]="menu"
+              nzTrigger="click"
+              (click)="$event.stopPropagation()">
+              <nz-icon nzType="ellipsis" />
+            </button>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item>
+                  <a
+                    nz-button
+                    nzType="link"
+                    (click)="$event.stopPropagation(); addSchedule(indexStep)">
+                    <nz-icon nzType="vertical-align-top" nzTheme="outline" />
+                    <span class="text-secondary">Thêm bước phía trên</span></a
+                  >
+                </li>
+                <li nz-menu-item>
+                  <a
+                    nz-button
+                    nzType="link"
+                    (click)="
+                      $event.stopPropagation(); addSchedule(indexStep + 1)
+                    ">
+                    <nz-icon nzType="vertical-align-bottom" nzTheme="outline" />
+                    <span class="text-secondary">Thêm bước phía dưới</span></a
+                  >
+                </li>
+                <li nz-menu-item>
+                  <a
+                    nz-button
+                    nzType="link"
+                    (click)="
+                      $event.stopPropagation();
+                      swapSchedules(indexStep, indexStep - 1)
+                    "
+                    [disabled]="firstIndexStep">
+                    <nz-icon nzType="arrow-up" nzTheme="outline" />
+                    <span class="text-secondary">Di chuyển lên</span></a
+                  >
+                </li>
+                <li nz-menu-item>
+                  <a
+                    nz-button
+                    nzType="link"
+                    (click)="
+                      $event.stopPropagation();
+                      swapSchedules(indexStep, indexStep + 1)
+                    "
+                    [disabled]="lastIndexStep">
+                    <nz-icon nzType="arrow-down" nzTheme="outline" />
+                    <span class="text-secondary">Di chuyển xuống</span></a
+                  >
+                </li>
+                <li nz-menu-item>
+                  <a
+                    nz-button
+                    nzType="link"
+                    (click)="
+                      $event.stopPropagation(); removeSchedule(indexStep)
+                    "
+                    [disabled]="stepCount < 2">
+                    <nz-icon nzType="delete" nzTheme="outline" />
+                    <span class="text-secondary">Xoá</span></a
+                  >
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </ng-template>
+        </nz-collapse-panel>
+      </nz-collapse>
+    }
+  </div>
+</form>

@@ -22,6 +22,7 @@ import { TourFormInfoTabComponent } from '../components/info-tab/info-tab.compon
 import { TourFormPricingTabComponent } from '../components/pricing-tab/pricing-tab.componnet';
 import { TourFormServiceTabComponent } from '../components/service-tab/service-tab.component';
 import { forkJoin } from 'rxjs';
+import { TourFormScheduleTabComponent } from '../components/schedule-tab/schedule-tab.component';
 
 @Component({
   selector: 'app-tour-form',
@@ -42,6 +43,7 @@ import { forkJoin } from 'rxjs';
     TourFormServiceTabComponent,
     TourFormServiceTabComponent,
     TourFormPricingTabComponent,
+    TourFormScheduleTabComponent,
   ],
 })
 export class TourFormComponent implements OnInit {
@@ -75,6 +77,14 @@ export class TourFormComponent implements OnInit {
     tourPrices: this.fb.array([]),
     surcharges: this.fb.array([]),
     discounts: this.fb.array([]),
+  });
+  scheduleForm: FormGroup = this.fb.group({
+    schedules: this.fb.array([
+      this.fb.group({
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+      }),
+    ]),
   });
   id?: string | number;
 
