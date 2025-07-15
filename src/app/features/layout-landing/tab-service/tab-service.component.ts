@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
@@ -10,6 +10,14 @@ import {
 } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MenuServiceResDTO, VisaProcessResDTO } from '../../../../interface';
+import { AppService } from '../../../../app.service';
+import { ActivatedRoute } from '@angular/router';
+import { TabServiceService } from './tab-service.service';
+import {
+  ContactType,
+  TourServiceReqDTO,
+} from './interface-contact-tour-service';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -27,18 +35,72 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',
 })
-export class TabServiceComponent {
+export class TabServiceComponent implements OnInit {
+  appService = inject(AppService);
+
+  serviceId = 0;
+  dataServiceDetail: MenuServiceResDTO | null = null;
+  route = inject(ActivatedRoute);
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.serviceId = Number(idParam);
+        this.getAllDataServiceById();
+      }
+    });
+    this.getAllDataServiceById();
+    this.getAllDataVisaProcess();
+  }
+  getAllDataServiceById() {
+    this.appService.getDataByIdMenuService(this.serviceId).subscribe({
+      next: (data: MenuServiceResDTO) => {
+        this.dataServiceDetail = data;
+        console.log(this.dataServiceDetail);
+      },
+      error: err => {
+        console.error('Error loading news detail:', err);
+      },
+    });
+  }
+
+  dataVisaProcess: VisaProcessResDTO[] = [];
+  getAllDataVisaProcess() {
+    this.appService.getAllDataVisaProcess().subscribe(data => {
+      this.dataVisaProcess = data;
+    });
+  }
+
   faPhoneFlip = faPhoneFlip;
   private fb = inject(FormBuilder);
   validateForm = this.fb.group({
     name: ['', [Validators.required]],
     email: [''],
     phone: ['', [Validators.required]],
-    note: [''],
+    message: [''],
   });
+
+  //
+  tourService = inject(TabServiceService);
   submitForm() {
     if (this.validateForm.valid) {
-      console.log('Dữ liệu gửi:', this.validateForm.value);
+      const body: TourServiceReqDTO = {
+        name: this.validateForm.value.name ?? '',
+        email: this.validateForm.value.email ?? '',
+        phone: this.validateForm.value.phone ?? '',
+        message: this.validateForm.value.message ?? '',
+        contactType: ContactType.VISA,
+      };
+      this.tourService.createDataTourService(body).subscribe({
+        next: res => {
+          console.log('Gửi thành công:', res);
+          this.validateForm.reset();
+        },
+        error: err => {
+          console.error('Lỗi khi gửi dữ liệu:', err);
+        },
+      });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -47,9 +109,5 @@ export class TabServiceComponent {
         }
       });
     }
-  }
-  resetForm(e: MouseEvent): void {
-    e.preventDefault();
-    this.validateForm.reset();
   }
 }
