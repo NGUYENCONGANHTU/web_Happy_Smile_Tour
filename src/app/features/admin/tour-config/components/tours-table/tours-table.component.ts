@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { TableBaseComponent } from '../../../../../shared/components/table-base/table-base.component';
-import { TourResDTO, TourType } from '../../interface';
+import { TourResDTO } from '../../interface';
 import { ColumnConfig } from '../../../../../shared/interfaces/table-base.interface';
 import { TableMetaData } from '../../../../../shared/models/table-base.model';
 import { MOCK_TOURS } from '../../consts';
@@ -24,7 +24,6 @@ import { Router } from '@angular/router';
 export class ToursTableComponent {
   router = inject(Router);
 
-  @Input({ required: true }) type!: TourType;
   @Input() data: TourResDTO[] = MOCK_TOURS;
   @Input() columns: ColumnConfig[] = [
     {
@@ -83,12 +82,13 @@ export class ToursTableComponent {
   goTo(target: string) {
     switch (target) {
       case BaseFormMode.CREATE:
-        this.router.navigate([
-          'admin',
-          'tour-config',
-          this.type.toLowerCase(),
-          'create',
-        ]);
+        this.router.navigate(['admin', 'tour-config', 'create']);
+        break;
+      case BaseFormMode.UPDATE:
+        this.router.navigate(['admin', 'tour-config', 'update']);
+        break;
+      case BaseFormMode.VIEW:
+        this.router.navigate(['admin', 'tour-config', 'view']);
         break;
       default:
     }
