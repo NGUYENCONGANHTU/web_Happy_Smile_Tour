@@ -1,7 +1,9 @@
 <div class="news-tour">
   <div class="news-left">
     @if (featureNews) {
-      <div class="feature-news">
+      <div
+        class="feature-news cursor-pointer"
+        (click)="goToDetail($event, featureNews)">
         <img
           [src]="featureNews.image"
           alt=""
@@ -13,7 +15,9 @@
     <div class="normal-news">
       <div class="normal-news-cards">
         @for (data of featureLeftNews; track data.id) {
-          <div class="normal-news-cards-item">
+          <div
+            class="normal-news-cards-item cursor-pointer"
+            (click)="goToDetail($event, data)">
             <div class="normal-news-cards-item-image">
               <img
                 [src]="data.image"
@@ -32,9 +36,9 @@
     </div>
   </div>
   <div class="news-right">
-    <div class="news-right-cards">
+    <div class="news-right-cards cursor-pointer">
       @for (data of featureRightNews; track data.id) {
-        <div class="news-right-cards-item">
+        <div class="news-right-cards-item" (click)="goToDetail($event, data)">
           <div class="news-right-cards-item-image">
             <img
               [src]="data.image"
@@ -52,105 +56,3 @@
     </div>
   </div>
 </div>
-
-<!--<div class="news-tour">-->
-<!--  <div class="news-left">-->
-<!--    <div class="feature-news">-->
-<!--      @for (data of featureNews; track data.id) {-->
-<!--        <img src="https://hanoitourist.vn/sites/default/files/2025/06/z6719992712513_fb6ff2bc595f97d1d8994230456f4f27.jpg" alt="">-->
-<!--        <div class="feature-news-title">KINH NGHIỆM ĐI DU LỊCH PHÚ QUỐC LẦN ĐẦU: NHỮNG ĐIỀU DU KHÁCH KHÔNG THỂ BỎ LỠ!</div>-->
-<!--        <div class="">06/19/2025 - 14:38</div>-->
-<!--      }-->
-<!--    </div>-->
-<!--    <div class="normal-news">-->
-<!--      <div class="normal-news-cards">-->
-<!--        @for ( data of featureLeftNews; track data.id) {-->
-<!--          <div class="normal-news-cards-item">-->
-<!--            <div class="normal-news-cards-item-image">-->
-<!--              <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--            </div>-->
-<!--            <div class="normal-news-cards-item-title">-->
-<!--              <a href="">-->
-<!--                KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div class="news-right-cards-item-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--          <div class="normal-news-cards-item">-->
-<!--            <div class="normal-news-cards-item-image">-->
-<!--              <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--            </div>-->
-<!--            <div class="normal-news-cards-item-title">-->
-<!--              <a href="">-->
-<!--                KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div class="news-right-cards-item-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--          <div class="normal-news-cards-item">-->
-<!--            <div class="normal-news-cards-item-image">-->
-<!--              <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--            </div>-->
-<!--            <div class="normal-news-cards-item-title">-->
-<!--              <a href="">-->
-<!--                KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div class="news-right-cards-item-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--        }-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="news-right">-->
-<!--    <div class="news-right-cards">-->
-<!--      @for (data of featureRightNews; track data.id) {-->
-<!--        <div class="news-right-cards-item">-->
-<!--          <div class="news-right-cards-item-image">-->
-<!--            <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--          </div>-->
-<!--          <div class="news-right-cards-item-info">-->
-<!--            <div class="news-right-cards-item-info-title">KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP</div>-->
-<!--            <div class="news-right-cards-item-info-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="news-right-cards-item">-->
-<!--          <div class="news-right-cards-item-image">-->
-<!--            <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--          </div>-->
-<!--          <div class="news-right-cards-item-info">-->
-<!--            <div class="news-right-cards-item-info-title">KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP</div>-->
-<!--            <div class="news-right-cards-item-info-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="news-right-cards-item">-->
-<!--          <div class="news-right-cards-item-image">-->
-<!--            <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--          </div>-->
-<!--          <div class="news-right-cards-item-info">-->
-<!--            <div class="news-right-cards-item-info-title">KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP</div>-->
-<!--            <div class="news-right-cards-item-info-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="news-right-cards-item">-->
-<!--          <div class="news-right-cards-item-image">-->
-<!--            <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--          </div>-->
-<!--          <div class="news-right-cards-item-info">-->
-<!--            <div class="news-right-cards-item-info-title">KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP</div>-->
-<!--            <div class="news-right-cards-item-info-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="news-right-cards-item">-->
-<!--          <div class="news-right-cards-item-image">-->
-<!--            <img src="https://hanoitourist.vn/sites/default/files/styles/large/public/2025/06/thai-13-09191539.jpg?itok=uzdpVizm" alt="">-->
-<!--          </div>-->
-<!--          <div class="news-right-cards-item-info">-->
-<!--            <div class="news-right-cards-item-info-title">KINH NGHIỆM KHÁM PHÁ THÁI LAN TỪ A-Z: BÍ KÍP</div>-->
-<!--            <div class="news-right-cards-item-info-date">06/19/2025 - 14:38</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      }-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

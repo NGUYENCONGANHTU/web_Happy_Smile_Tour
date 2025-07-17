@@ -19,6 +19,7 @@ import { ListDomesticToursComponent } from './features/admin/tour-config/domesti
 import { ListInternationalToursComponent } from './features/admin/tour-config/international/pages/list-international-tours/list-international-tours.component';
 import { ListPrivateToursComponent } from './features/admin/tour-config/private/pages/list-private-tours/list-private-tours.component';
 import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
+import { TabTravelGuideDetailComponent } from './features/layout-landing/tab-travel-guide-detail/tab-travel-guide-detail.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -57,6 +58,10 @@ export const routes: Routes = [
       {
         path: 'tab-tour-foreign-detail',
         component: TabTourForeignDetailComponent,
+      },
+      {
+        path: 'travel-guide-detail/:id',
+        component: TabTravelGuideDetailComponent,
       },
       {
         path: 'tab-service',
