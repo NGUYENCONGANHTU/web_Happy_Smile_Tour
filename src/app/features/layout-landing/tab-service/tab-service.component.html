@@ -1,95 +1,140 @@
-<section class="tab-service">
-  <div class="banner-tab-service" style="background-image: url('https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1744887444/banner/mtjajbd973gg6rboqqrj.webp');">
-    <div class="overlay"></div>
-    <div class="content !space-y-10 text-center">
-      <p class="sub-title">DỊCH VỤ TƯ VẤN</p>
-      <h1 class="title">Xuất khẩu lao động Đài Loan</h1>
-      <p class="desc font-medium">Du lịch, thăm thân, công tác</p>
-      <p class="price">chỉ từ <strong>2.500.000đ</strong></p>
-      <button class="cta-button">
-        <fa-icon [icon]="faPhoneFlip" class="phone-icon mr-2!"></fa-icon> TƯ VẤN: 0979 555 090
-      </button>
-    </div>
-  </div>
-  <div class="banner-tab-service-content">
-    <div class="content-service-contact">
-      <div class="content-service !space-y-6">
-        <div class="content-service-title">
-          Visa Úc - lăn tay 3 tiếng có visa
-        </div>
-        <div class="content-service-list">
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-
-          * Dịch vụ tư vấn visa du lịch Úc
-        </div>
-        <button class="btn-contact">TƯ VẤN NGAY</button>
+@if (dataServiceDetail) {
+  <section class="tab-service">
+    <div
+      class="banner-tab-service"
+      style="
+        background-image: url('https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1744887444/banner/mtjajbd973gg6rboqqrj.webp');
+      ">
+      <div class="overlay"></div>
+      <div class="content !space-y-10 text-center">
+        <p class="sub-title">DỊCH VỤ TƯ VẤN</p>
+        <div class="title">{{ dataServiceDetail.bannerTitle }}</div>
+        <!--        <p class="desc font-medium">Du lịch, thăm thân, công tác</p>-->
+        <!--        <p class="price">chỉ từ <strong>2.500.000đ</strong></p>-->
+        <button class="cta-button">
+          <fa-icon [icon]="faPhoneFlip" class="phone-icon mr-2!"></fa-icon> TƯ
+          VẤN: {{ dataServiceDetail.phone }}
+        </button>
       </div>
-      <div class="service-contact ">
-        <div class="service-contact-title">Để thông tin để được tư vấn miễn phí</div>
-        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="service-contact-form" nzLayout="vertical">
-          <!--     Tên-->
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" class="font-medium text-[14px]" nzRequired>Tên của bạn</nz-form-label>
-            <nz-form-control
-              [nzValidateStatus]="validateForm.controls.name"
-              nzErrorTip="Tên là bắt buộc">
-              <input nz-input  formControlName="name" placeholder="Nhập tên của bạn" class="py-2! rounded-lg!" />
-            </nz-form-control>
-          </nz-form-item>
-          <!--     Số điện thoại-->
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" class="font-medium text-[14px]" nzRequired>Số điện thoại</nz-form-label>
-            <nz-form-control
-              [nzValidateStatus]="validateForm.controls.phone"
-              nzErrorTip="Số điện thoại là bắt buộc">
-              <input nz-input type="number" formControlName="phone" placeholder="Số điện thoại" class="py-2! rounded-lg!" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <!--     Email-->
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" class="font-medium text-[16px]" nzRequired>Email</nz-form-label>
-            <nz-form-control>
-              <input nz-input type="email" formControlName="email" placeholder="Email" class="py-2! rounded-lg!" />
-            </nz-form-control>
-          </nz-form-item>
-
-
-          <!--     Ghi chú-->
-          <nz-form-item >
-            <nz-form-label [nzSpan]="24" class="font-medium text-[14px]" nzRequired>Ghi chú</nz-form-label>
-            <nz-form-control>
-              <input nz-input type="text" formControlName="note" placeholder="Ghi chú" class="py-2! rounded-lg!" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <!--     Buttons -->
-          <div class="col-span-2 text-center">
-            <button class=" !px-10 !py-2 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white" (click)="submitForm()">ĐĂNG KÍ TƯ VẤN</button>
+    </div>
+    <div class="banner-tab-service-content">
+      <div class="content-service-contact">
+        <div class="content-service !space-y-6">
+          <div class="content-service-title">
+            {{ dataServiceDetail.serviceTitle }}
           </div>
-        </form>
+          <div class="content-service-list">
+            {{ dataServiceDetail.serviceContent }}
+          </div>
+          <button class="btn-contact">TƯ VẤN NGAY</button>
+        </div>
+        <div class="service-contact">
+          <div class="service-contact-title">
+            Để thông tin để được tư vấn miễn phí
+          </div>
+          <form
+            nz-form
+            [formGroup]="validateForm"
+            (ngSubmit)="submitForm()"
+            class="service-contact-form"
+            nzLayout="vertical">
+            <!--     Tên-->
+            <nz-form-item>
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[14px]"
+                nzRequired
+                >Tên của bạn</nz-form-label
+              >
+              <nz-form-control
+                [nzValidateStatus]="validateForm.controls.name"
+                nzErrorTip="Tên là bắt buộc">
+                <input
+                  nz-input
+                  formControlName="name"
+                  placeholder="Nhập tên của bạn"
+                  class="py-2! rounded-lg!" />
+              </nz-form-control>
+            </nz-form-item>
+            <!--     Số điện thoại-->
+            <nz-form-item>
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[14px]"
+                nzRequired
+                >Số điện thoại</nz-form-label
+              >
+              <nz-form-control
+                [nzValidateStatus]="validateForm.controls.phone"
+                nzErrorTip="Số điện thoại là bắt buộc">
+                <input
+                  nz-input
+                  type="number"
+                  formControlName="phone"
+                  placeholder="Số điện thoại"
+                  class="py-2! rounded-lg!" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <!--     Email-->
+            <nz-form-item>
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[16px]"
+                nzRequired
+                >Email</nz-form-label
+              >
+              <nz-form-control>
+                <input
+                  nz-input
+                  type="email"
+                  formControlName="email"
+                  placeholder="Email"
+                  class="py-2! rounded-lg!" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <!--     Ghi chú-->
+            <nz-form-item>
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[14px]"
+                nzRequired
+                >Ghi chú</nz-form-label
+              >
+              <nz-form-control>
+                <input
+                  nz-input
+                  type="text"
+                  formControlName="message"
+                  placeholder="Ghi chú"
+                  class="py-2! rounded-lg!" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <!--     Buttons -->
+            <div class="col-span-2 text-center">
+              <button
+                class="!px-10 !py-2 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white">
+                ĐĂNG KÍ TƯ VẤN
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="workflow">
-      <div class="workflow-title text-center font-bold uppercase">Quy trình tiếp nhận và xử lý hồ sơ</div>
-      <div class="workflow-steps">
-        <div class="workflow-step">
-          <div class="step">BƯỚC 01</div>
-          <div class="step-content">Tiếp nhận thông tin, tư vấn hồ sơ và quy trình theo mục đích nhập cảnh Úc của đương đơn.</div>
+      <div class="workflow">
+        <div class="workflow-title text-center font-bold uppercase">
+          {{ dataServiceDetail.workflow }}
+        </div>
+        <div class="workflow-steps">
+          @for (data of dataVisaProcess; track data.id) {
+            <div class="workflow-step">
+              <div class="step">{{ data.title }}</div>
+              <div class="step-content">{{ data.description }}</div>
+            </div>
+          }
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+}
