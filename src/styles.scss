@@ -1,36 +1,58 @@
-@import "tailwindcss";
-body{
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  height: 100%;
-}
-*{
+@import 'tailwindcss';
+@import 'ckeditor5/ckeditor5.css';
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-img{
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  height: 100%;
+}
+
+img {
   display: inline-block;
 }
-h1,h2,h3,h4,p,ul,li,p{
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+p {
   margin-bottom: 0;
 }
-p{
+
+p {
   margin-bottom: 0;
 }
-.ant-layout-header{
+
+.ant-layout-header {
   background-color: #ffffff;
   height: 80px;
   padding: 0;
 }
-.ant-layout-content{
+
+.ant-layout-content {
   background-color: #ffffff;
 }
-.ant-layout-footer{
+
+.ant-layout-footer {
   background-color: #202020;
-  padding:3% 6%;
+  padding: 3% 6%;
 }
-.ant-dropdown-menu-item{
+
+.ant-dropdown-menu-item {
   font-size: 13px;
 }
 
-
+ckeditor.error {
+  .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
+  .ck.ck-editor__main > .ck-editor__editable {
+    border-color: #ff4d4f;
+  }
+}

@@ -1,0 +1,120 @@
+<form [formGroup]="priceForm">
+  <div class="flex gap-2 justify-between !my-2">
+    <h2>1. Giá tour theo độ tuổi</h2>
+    @if (tourPrices.enabled) {
+      <button nz-button nzType="dashed" (click)="addTourPrice()">+ Thêm</button>
+    }
+  </div>
+  <nz-table
+    [nzBordered]="true"
+    [nzData]="tourPrices.value"
+    [nzShowPagination]="false"
+    [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>Nhóm tuổi</th>
+        <th>Độ tuổi</th>
+        <th>Giá gốc (VNĐ)</th>
+        @if (tourPrices.enabled) {
+          <th nzWidth="40px"></th>
+        }
+      </tr>
+    </thead>
+    <tbody formArrayName="tourPrices">
+      @for (group of tourPrices.controls; track $index) {
+        <tr [formGroupName]="$index">
+          <td><input nz-input formControlName="name" /></td>
+          <td><input nz-input formControlName="age" /></td>
+          <td><input nz-input type="number" formControlName="price" /></td>
+          @if (tourPrices.enabled) {
+            <td>
+              <button nz-button (click)="deleteTourPrice($index)">
+                <nz-icon nzType="delete" />
+              </button>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+  <hr class="!my-5" />
+  <div class="flex gap-2 justify-between !my-2">
+    <h2>2. Phụ thu áp dụng</h2>
+    @if (tourPrices.enabled) {
+      <button nz-button nzType="dashed" (click)="addSurcharge()">+ Thêm</button>
+    }
+  </div>
+  <nz-table
+    [nzBordered]="true"
+    [nzData]="surcharges.value"
+    [nzShowPagination]="false"
+    [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>Tên phụ thu</th>
+        <th>Số tiền (VNĐ)</th>
+        <th>Áp dụng cho</th>
+        @if (tourPrices.enabled) {
+          <th nzWidth="40px"></th>
+        }
+      </tr>
+    </thead>
+    <tbody formArrayName="surcharges">
+      @for (group of surcharges.controls; track $index) {
+        <tr [formGroupName]="$index">
+          <td><input nz-input formControlName="name" /></td>
+          <td><input nz-input type="number" formControlName="price" /></td>
+          <td><input nz-input formControlName="apply" /></td>
+          @if (tourPrices.enabled) {
+            <td>
+              <button nz-button (click)="deleteSurcharge($index)">
+                <nz-icon nzType="delete" />
+              </button>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+  <hr class="!my-5" />
+  <div class="flex gap-2 justify-between !my-2">
+    <h2>3. Giảm giá áp dụng</h2>
+    @if (tourPrices.enabled) {
+      <button nz-button nzType="dashed" (click)="addDiscount()">+ Thêm</button>
+    }
+  </div>
+  <nz-table
+    [nzBordered]="true"
+    [nzData]="discounts.value"
+    [nzShowPagination]="false"
+    [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>Loại giảm giá</th>
+        <th>Mô tả</th>
+        <th>Giá trị</th>
+        <th>Điều kiện</th>
+        @if (tourPrices.enabled) {
+          <th nzWidth="40px"></th>
+        }
+      </tr>
+    </thead>
+    <tbody formArrayName="discounts">
+      @for (group of discounts.controls; track $index) {
+        <tr [formGroupName]="$index">
+          <td><input nz-input formControlName="name" /></td>
+          <td><input nz-input formControlName="description" /></td>
+          <td><input nz-input formControlName="price" /></td>
+          <td><input nz-input formControlName="condition" /></td>
+          @if (tourPrices.enabled) {
+            <td>
+              <button nz-button (click)="deleteDiscount($index)">
+                <nz-icon nzType="delete" />
+              </button>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+</form>
