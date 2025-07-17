@@ -112,6 +112,7 @@ export const routes: Routes = [
           {
             path: 'tour-config',
             children: TOUR_CONFIG_ROUTE,
+            data: { breadcrumb: 'Cấu hình tour' },
           },
         ],
       },

@@ -17,7 +17,7 @@ export interface TourResDTO {
   nonService?: string;
   regulation?: string;
   note?: string;
-  imageUrl?: string[];
+  imageUrl: string[];
 }
 
 interface LanguageResponse {
@@ -86,4 +86,55 @@ export interface TourSurchargeResDTO {
   price?: number;
   apply?: string;
   tourId: number;
+}
+
+export interface TourScheduleResDTO {
+  id: number;
+  tourScheduleId: number;
+  language: string;
+  title: string;
+  description: string;
+  tourId: number;
+}
+
+type LocationType = 'DOMESTIC' | 'INTERNATIONAL';
+
+export interface LocationResDTO {
+  id: number;
+  locationId: number;
+  language?: string;
+  name?: string;
+  locationType?: LocationType;
+}
+
+export interface TourPriceReqDTO {
+  id: number;
+  name: string;
+  age: string;
+  price: number;
+  tourId: number;
+}
+
+export interface TourDiscountReqDTO {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  condition: number;
+  tourId: number;
+}
+
+export interface TourSurchargeReqDTO {
+  id: number;
+  name: string;
+  price: number;
+  apply: string;
+  tourId: number;
+}
+
+export interface TourScheduleReqDTO {
+  id: number;
+  title: string;
+  description: string;
+  tourId: string;
 }

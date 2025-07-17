@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -12,6 +12,8 @@ import {
 } from '@angular/forms';
 import { ValidationMessagePipe } from '../../../../../../../shared/pipes/validation.pipe';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { TourConfigService } from '../../../../tour-config.service';
+import { OptionItem } from '../../../../../../../core/interfaces/base.interface';
 
 @Component({
   selector: 'app-tour-form-info-tab',
@@ -28,10 +30,27 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   ],
   standalone: true,
 })
-export class TourFormInfoTabComponent {
+export class TourFormInfoTabComponent implements OnInit {
   fb = inject(FormBuilder);
+  tourConfigService = inject(TourConfigService);
+  locationOptions: OptionItem[] = [];
 
   @Input({ required: true }) tourForm!: FormGroup;
+
+  ngOnInit(): void {
+    this.fetchLocationData();
+  }
+
+  fetchLocationData() {
+    this.tourConfigService.getLocations().subscribe({
+      next: res => {
+        this.locationOptions = res.data.map(dt => ({
+          value: dt.locationId,
+          label: dt.name ?? '',
+        }));
+      },
+    });
+  }
 
   beforeUpload = (_file: NzUploadFile, fileList: NzUploadFile[]) => {
     const oldFileList = fileList;

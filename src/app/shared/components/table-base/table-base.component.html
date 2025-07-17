@@ -2,7 +2,7 @@
   #baseTable
   [nzData]="data"
   [nzScroll]="{ x: 'auto', y: 'calc(100vh - 250px)' }"
-  [nzFrontPagination]="false"
+  [nzFrontPagination]="frontPagination"
   [nzTotal]="total"
   [nzShowTotal]="rangeTemplate"
   [(nzPageIndex)]="_page"
@@ -128,7 +128,7 @@
   </thead>
   <tbody>
     @for (item of baseTable.data; track item) {
-      <tr>
+      <tr (dblclick)="rowDBClick.emit(item)">
         @for (col of columns; track col) {
           <td>
             <ng-container

@@ -11,7 +11,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BaseFormMode } from '../../../../../../shared/interfaces/form-base.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TourConfigService } from '../../../tour-config.service';
@@ -23,10 +23,20 @@ import { TourFormPricingTabComponent } from '../components/pricing-tab/pricing-t
 import { TourFormServiceTabComponent } from '../components/service-tab/service-tab.component';
 import { forkJoin } from 'rxjs';
 import { TourFormScheduleTabComponent } from '../components/schedule-tab/schedule-tab.component';
+import { base64ToNzUploadFile } from '../../../../../../shared/utils/helpers';
+import {
+  TourDiscountReqDTO,
+  TourDiscountResDTO,
+  TourPriceReqDTO,
+  TourPriceResDTO,
+  TourSurchargeReqDTO,
+  TourSurchargeResDTO,
+} from '../../../interface';
 
 @Component({
   selector: 'app-tour-form',
   templateUrl: 'tour-form.component.html',
+  styleUrl: 'tour-form.component.scss',
   standalone: true,
   imports: [
     NzFormModule,
@@ -48,6 +58,7 @@ import { TourFormScheduleTabComponent } from '../components/schedule-tab/schedul
 })
 export class TourFormComponent implements OnInit {
   route = inject(ActivatedRoute);
+  router = inject(Router);
   fb = inject(FormBuilder);
   tourConfigService = inject(TourConfigService);
   notification = inject(NzNotificationService);
@@ -55,6 +66,9 @@ export class TourFormComponent implements OnInit {
   @Input({ required: true }) public mode!: BaseFormMode;
 
   fetching = false;
+  submittingTour = false;
+  submittingPrice = false;
+  submittingSchedule = false;
 
   tourForm: FormGroup = this.fb.group({
     title: [null, [Validators.required]],
@@ -62,7 +76,7 @@ export class TourFormComponent implements OnInit {
     destination: [[], [Validators.required]],
     originalPrice: [null, [Validators.required]],
     discount: [0, [Validators.required]],
-    finalPrice: [{ value: null, disabled: true }, [Validators.required]],
+    finalPrice: [null, [Validators.required]],
     stayDate: [null, [Validators.required]],
     locationId: [null, [Validators.required]],
     startingPointIds: [[], [Validators.required]],
@@ -89,14 +103,6 @@ export class TourFormComponent implements OnInit {
   id?: string | number;
 
   ngOnInit(): void {
-    // Auto-calculate finalPrice
-    this.tourForm.valueChanges.subscribe(val => {
-      const original = val.originalPrice || 0;
-      const discount = val.discount || 0;
-      const final = original - discount;
-      this.tourForm.get('finalPrice')?.setValue(final, { emitEvent: false });
-    });
-
     this.id = this.route.snapshot.params['id'];
     switch (this.mode) {
       case BaseFormMode.VIEW:
@@ -117,6 +123,7 @@ export class TourFormComponent implements OnInit {
       }
       forkJoin({
         tour: this.tourConfigService.getTourById(this.id),
+        tourSchedule: this.tourConfigService.getTourSchedulesByTourId(this.id),
         tourPrices: this.tourConfigService.getTourPricesByTourId(this.id),
         tourDiscounts: this.tourConfigService.getTourDiscountsByTourId(this.id),
         tourSurcharges: this.tourConfigService.getTourSurchargesByTourId(
@@ -124,7 +131,15 @@ export class TourFormComponent implements OnInit {
         ),
       }).subscribe({
         next: res => {
-          this.tourForm.patchValue(res.tour.data);
+          this.tourForm.patchValue({
+            ...res.tour.data,
+            startingPointIds: res.tour.data.startingPoints?.map(
+              point => point.id
+            ),
+          });
+          res.tour.data.imageUrl.forEach(base64 => {
+            this.fileList.push(this.fb.control(base64ToNzUploadFile(base64)));
+          });
           res.tourPrices.data.forEach(dt => {
             this.tourPrices.push(
               this.fb.group({ name: dt.name, age: dt.age, price: dt.price })
@@ -145,6 +160,17 @@ export class TourFormComponent implements OnInit {
               this.fb.group({ name: dt.name, price: dt.price, apply: dt.apply })
             );
           });
+          this.tourSchedules.clear();
+          res.tourSchedule.data.forEach(dt => {
+            this.tourSchedules.push(
+              this.fb.group({ title: dt.title, description: dt.description })
+            );
+          });
+          if (this.mode === BaseFormMode.VIEW) {
+            this.tourForm.disable();
+            this.priceForm.disable();
+            this.scheduleForm.disable();
+          }
           this.fetching = false;
         },
         error: () => {
@@ -157,9 +183,8 @@ export class TourFormComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('this.tourForm: ', this.tourForm);
-    console.log('this.priceForm: ', this.priceForm);
     if (this.tourForm.valid) {
+      this.submittingTour = true;
       const formValues = this.tourForm.getRawValue();
       const formData = new FormData();
 
@@ -172,15 +197,119 @@ export class TourFormComponent implements OnInit {
           formData.append(key, value);
         }
       }
+      if (this.mode === BaseFormMode.UPDATE) {
+        if (this.id) {
+          this.tourConfigService.updateTourById(this.id, formData).subscribe({
+            next: _res => {
+              this.submittingTour = false;
+              this.goTo(BaseFormMode.VIEW);
+            },
+            error: () => {
+              this.submittingTour = false;
+            },
+          });
+        } else {
+          this.notification.error('Lỗi', 'Không tìm thấy id tour.');
+        }
+      } else {
+        this.tourConfigService.createTour(formData).subscribe({
+          next: _res => {
+            this.submittingTour = false;
+          },
+          error: () => {
+            this.submittingTour = false;
+          },
+        });
+      }
     } else {
       this.tourForm.markAllAsTouched();
     }
 
     if (this.priceForm.valid) {
-      console.log('submitting');
+      this.submittingPrice = true;
+      const tourPrices: TourPriceReqDTO[] =
+        this.tourPrices.value.map((price: TourPriceResDTO) => ({
+          ...price,
+          tourId: this.id,
+        })) ?? [];
+      const tourDiscounts: TourDiscountReqDTO[] =
+        this.discounts.value.map((discount: TourDiscountResDTO) => ({
+          ...discount,
+          tourId: this.id,
+        })) ?? [];
+      const tourSurcharges: TourSurchargeReqDTO[] =
+        this.tourPrices.value.map((surcharges: TourSurchargeResDTO) => ({
+          ...surcharges,
+          tourId: this.id,
+        })) ?? [];
+      if (tourPrices.length) {
+        this.tourConfigService.createTourPrices(tourPrices).subscribe({
+          next: () => {
+            this.submittingPrice = false;
+          },
+          error: () => {
+            this.submittingPrice = false;
+          },
+        });
+      }
+      if (tourDiscounts.length) {
+        this.tourConfigService.createTourDiscounts(tourDiscounts).subscribe({
+          next: () => {
+            this.submittingPrice = false;
+          },
+          error: () => {
+            this.submittingPrice = false;
+          },
+        });
+      }
+      if (tourSurcharges.length) {
+        this.tourConfigService.createTourSurcharges(tourSurcharges).subscribe({
+          next: () => {
+            this.submittingPrice = false;
+          },
+          error: () => {
+            this.submittingPrice = false;
+          },
+        });
+      }
     } else {
       this.priceForm.markAllAsTouched();
     }
+
+    if (this.scheduleForm.valid) {
+      console.log(this.scheduleForm);
+    } else {
+      this.scheduleForm.markAllAsTouched();
+    }
+  }
+
+  goTo(target: string, _data?: any) {
+    switch (target) {
+      case BaseFormMode.CREATE:
+        this.router.navigate(['admin', 'tour-config', 'create']);
+        break;
+      case BaseFormMode.UPDATE:
+        this.router.navigate(['admin', 'tour-config', this.id, 'update']);
+        break;
+      case BaseFormMode.VIEW:
+        this.router.navigate(['admin', 'tour-config', this.id, 'view']);
+        break;
+      default:
+    }
+  }
+
+  get submitting(): boolean {
+    return (
+      this.submittingTour || this.submittingPrice || this.submittingSchedule
+    );
+  }
+
+  get fileList(): FormArray {
+    return this.tourForm.get('fileList') as FormArray;
+  }
+
+  get tourSchedules(): FormArray {
+    return this.scheduleForm.get('schedules') as FormArray;
   }
 
   get tourPrices(): FormArray {
@@ -192,4 +321,6 @@ export class TourFormComponent implements OnInit {
   get discounts(): FormArray {
     return this.priceForm.get('discounts') as FormArray;
   }
+
+  protected readonly BaseFormMode = BaseFormMode;
 }

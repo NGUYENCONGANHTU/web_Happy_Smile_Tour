@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { CreateTourComponent } from './pages/create-tour/create-tour.component';
 import { ListToursComponent } from './pages/list-tours/list-tours.component';
 import { ViewTourComponent } from './pages/view-tour/view-tour.component';
+import { CreateTourComponent } from './pages/create-tour/create-tour.component';
+import { UpdateTourComponent } from './pages/update-tour/update-tour.component';
 
 export const TOUR_CONFIG_ROUTE: Routes = [
   {
@@ -33,7 +34,7 @@ export const TOUR_CONFIG_ROUTE: Routes = [
       },
       {
         path: 'update',
-        component: ViewTourComponent,
+        component: UpdateTourComponent,
         data: { breadcrumb: 'Cập nhật tour' },
       },
     ],

@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
-import { ResponseBasePage } from '../interface/base.interface';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { ResponseBasePage } from '../../core/interfaces/base.interface';
 
 export function formatDate(date: string): string {
   return new Date(date).toLocaleDateString();
@@ -51,5 +52,18 @@ export function getPageData(res: ResponseBasePage<any>) {
     page: res.data.page,
     pageSize: res.data.size,
     total: res.data.totalElements,
+  };
+}
+
+export function base64ToNzUploadFile(
+  base64: string,
+  fileName = 'image.png'
+): NzUploadFile {
+  return {
+    uid: `${Date.now()}`, // unique id
+    name: fileName,
+    status: 'done', // mark as uploaded
+    url: base64, // preview directly from base64
+    thumbUrl: base64,
   };
 }

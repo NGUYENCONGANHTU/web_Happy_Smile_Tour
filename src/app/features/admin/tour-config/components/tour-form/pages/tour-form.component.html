@@ -17,5 +17,15 @@
 </nz-tabs>
 
 <ng-template #extraTemplate>
-  <button nz-button (click)="submit()">Tạo tour</button>
+  @if (mode === BaseFormMode.VIEW) {
+    <button nz-button (click)="goTo(BaseFormMode.UPDATE)">Chỉnh sửa</button>
+  } @else {
+    <button nz-button (click)="submit()">
+      @if (mode === BaseFormMode.CREATE) {
+        Tạo tour
+      } @else {
+        Cập nhật tour
+      }
+    </button>
+  }
 </ng-template>

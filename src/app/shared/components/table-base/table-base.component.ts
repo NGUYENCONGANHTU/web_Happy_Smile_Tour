@@ -50,6 +50,7 @@ export class TableBaseComponent implements OnChanges {
   @Input({ required: true }) pageSize = 0;
   @Input({ required: true }) total = 0;
   @Input() loading = false;
+  @Input() frontPagination = false;
   @Output() pageChange = new EventEmitter();
   @Output() pageSizeChange = new EventEmitter();
   @Output() filterChange = new EventEmitter<{
@@ -58,6 +59,7 @@ export class TableBaseComponent implements OnChanges {
     filter: Record<string, TableFilter>;
     data?: Record<string, any>;
   }>();
+  @Output() rowDBClick = new EventEmitter();
 
   filter: Record<string, TableFilter> = {};
 
