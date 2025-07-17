@@ -27,7 +27,10 @@
     }
   }'>
   @for (tour of dataDomesticTour; track tour) {
-    <swiper-slide class="text-black">
+    <swiper-slide
+      class="text-black cursor-pointer"
+      [routerLink]="['/tab-tour-foreign-detail', tour.id]"
+      >>
       <div class="card-item">
         <div class="card-item-image">
           <img class="" [src]="tour.imageUrl[0]" alt="" />
@@ -48,8 +51,9 @@
             <div class="card-item-info-start-day">
               <fa-icon
                 [icon]="faCalendarDays"
-                class="!text-[14px] mr-2! text-[#0d9344]"></fa-icon>
-              <span class="text-[#ef2061] font-medium">{{
+                class="!text-[14px] mr-1! text-[#0d9344]"></fa-icon>
+              <span>Hành trình:</span>
+              <span class="text-[#ef2061] font-medium ml-1!">{{
                 tour.stayDate
               }}</span>
             </div>
@@ -59,8 +63,21 @@
               <fa-icon
                 [icon]="faLocationDot"
                 class="!text-[14px] mr-1! text-[#ef1f28]"></fa-icon>
-              Từ :
-              <span class="font-bold">{{ tour.startingPoint.name }}</span>
+              <span>Từ :</span>
+              <span class="ml-2! space-x-1!">
+                @for (
+                  data of tour.startingPoints;
+                  track $index;
+                  let last = $last
+                ) {
+                  <span class="font-medium"
+                    >{{ data.name }}
+                    @if (!last) {
+                      <span>, </span>
+                    }
+                  </span>
+                }
+              </span>
             </div>
             <div class="card-item-info-price">
               Giá từ:

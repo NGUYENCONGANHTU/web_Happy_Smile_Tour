@@ -3,11 +3,9 @@
     <nz-timeline-item>
       <nz-collapse>
         <nz-collapse-panel
-          [nzHeader]="
-            'NGÀY ' + (i + 1) + ': ' + day.title + ' (' + day.meal + ')'
-          "
+          [nzHeader]="'NGÀY ' + (i + 1) + ': ' + day.title"
           [nzActive]="false">
-          <div>{{ day.detail }}</div>
+          <div>{{ day.description }}</div>
         </nz-collapse-panel>
       </nz-collapse>
     </nz-timeline-item>

@@ -8,7 +8,6 @@ import { PrivateGroupTourComponent } from './features/layout-landing/private-gro
 import { TabContactComponent } from './features/layout-landing/tab-contact/tab-contact.component';
 import { TabTourDomesticDetailComponent } from './features/layout-landing/tab-tour-domestic-detail/tab-tour-domestic-detail.component';
 import { TabTourForeignDetailComponent } from './features/layout-landing/tab-tour-foreign-detail/tab-tour-foreign-detail.component';
-import { TestComponent } from './features/layout-landing/tab-tour-foreign-detail/test/test.component';
 import { TabServiceComponent } from './features/layout-landing/tab-service/tab-service.component';
 import { LoginPageComponent } from './core/auth/pages/login-page/login-page.component';
 import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component';
@@ -57,7 +56,7 @@ export const routes: Routes = [
         component: TabTourDomesticDetailComponent,
       },
       {
-        path: 'tab-tour-foreign-detail',
+        path: 'tab-tour-foreign-detail/:id',
         component: TabTourForeignDetailComponent,
       },
       {
@@ -175,9 +174,5 @@ export const routes: Routes = [
         ],
       },
     ],
-  },
-  {
-    path: 'test',
-    component: TestComponent,
   },
 ];

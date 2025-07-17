@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
-import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 import {
   NzFormControlComponent,
   NzFormDirective,
@@ -17,7 +16,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   imports: [
     FaIconComponent,
     NzColDirective,
-    NzDatePickerComponent,
     NzFormControlComponent,
     NzFormDirective,
     NzFormItemComponent,

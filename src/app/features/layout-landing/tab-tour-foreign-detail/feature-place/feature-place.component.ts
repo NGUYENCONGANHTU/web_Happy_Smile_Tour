@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
-import {FaIconComponent} from '@fortawesome/angular-fontawesome';
-import {faCircleCheck} from '@fortawesome/free-solid-svg-icons';
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-feature-place',
-  imports: [FaIconComponent],
+  imports: [],
   templateUrl: './feature-place.component.html',
-  styleUrl: './feature-place.component.scss'
+  styleUrl: './feature-place.component.scss',
 })
 export class FeaturePlaceComponent {
-  faCircleCheck=faCircleCheck
-
+  @Input() highlight = '';
 }
