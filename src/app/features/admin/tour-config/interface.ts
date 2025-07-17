@@ -17,7 +17,7 @@ export interface TourResDTO {
   nonService?: string;
   regulation?: string;
   note?: string;
-  imageUrl: string[];
+  images: { storagePath: string }[];
 }
 
 interface LanguageResponse {

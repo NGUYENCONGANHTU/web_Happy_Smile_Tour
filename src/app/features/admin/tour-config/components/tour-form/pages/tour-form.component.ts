@@ -132,12 +132,16 @@ export class TourFormComponent implements OnInit {
         next: res => {
           this.tourForm.patchValue({
             ...res.tour.data,
+            location: res.tour.data.location?.id,
             startingPointIds: res.tour.data.startingPoints?.map(
               point => point.id
             ),
           });
-          res.tour.data.imageUrl.forEach(src => {
-            this.fileList.push(this.fb.control(parseToNzUploadFile(src)));
+          res.tour.data.images.forEach(({ storagePath }) => {
+            console.log();
+            this.fileList.push(
+              this.fb.control(parseToNzUploadFile(storagePath))
+            );
           });
           res.tourPrices.data.forEach(dt => {
             this.tourPrices.push(
@@ -223,7 +227,7 @@ export class TourFormComponent implements OnInit {
               tourId: this.id,
             })) ?? [];
           const tourSurcharges: TourSurchargeReqDTO[] =
-            this.tourPrices.value.map((surcharges: TourSurchargeResDTO) => ({
+            this.surcharges.value.map((surcharges: TourSurchargeResDTO) => ({
               ...surcharges,
               tourId: this.id,
             })) ?? [];
