@@ -38,7 +38,9 @@
       name="departure"
       class="w-full"
       nzPlaceHolder="Điểm đi">
-      <nz-option nzLabel="option" nzValue="option"></nz-option>
+      @for (data of dataStartingPointDomestic; track data.id) {
+        <nz-option [nzLabel]="data.name" [nzValue]="data.id"></nz-option>
+      }
     </nz-select>
 
     <!--============= Chọn điểm đến ===================-->
@@ -47,28 +49,11 @@
       name="destination"
       class="w-full"
       nzPlaceHolder="Điểm đến">
-      <nz-option nzLabel="option" nzValue="option"></nz-option>
+      @for (data of dataStartingPointDomestic; track data.id) {
+        <nz-option [nzLabel]="data.name" [nzValue]="data.id"></nz-option>
+      }
     </nz-select>
 
-    <!--==============================-->
-    <nz-collapse>
-      <nz-collapse-panel
-        nzHeader="CHỦ ĐỀ TOUR"
-        [nzActive]="false"
-        [nzShowArrow]="true">
-        @for (topic of topics; track topic) {
-          <div class="mb-2">
-            <label>
-              <input
-                type="checkbox"
-                [value]="topic.id"
-                (change)="onTopicChange(topic)" />
-              {{ topic.name }}
-            </label>
-          </div>
-        }
-      </nz-collapse-panel>
-    </nz-collapse>
     <!--button search-->
     <button
       class="w-full !uppercase font-medium! text-lg!"

@@ -37,7 +37,12 @@
             <div class="card-item-info-title-text">{{ tour.title }}</div>
             <div class="star">
               @for (i of [1, 2, 3, 4, 5]; track i) {
-                <fa-icon [icon]="faStar" class="text-[#e5831e]"></fa-icon>
+                <fa-icon
+                  [icon]="faStar"
+                  [ngClass]="
+                    i <= tour.star ? 'text-[#e5831e]' : 'text-gray-300'
+                  "
+                  class="text-[#e5831e]"></fa-icon>
               }
             </div>
             <div class="card-item-info-start-day">
@@ -55,7 +60,7 @@
                 [icon]="faLocationDot"
                 class="!text-[14px] mr-1! text-[#ef1f28]"></fa-icon>
               Từ :
-              <span class="font-bold">{{ tour.startingPoint }}</span>
+              <span class="font-bold">{{ tour.startingPoint.name }}</span>
             </div>
             <div class="card-item-info-price">
               Giá từ:

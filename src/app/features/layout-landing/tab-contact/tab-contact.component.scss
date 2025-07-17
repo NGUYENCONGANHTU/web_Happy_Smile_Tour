@@ -1,45 +1,44 @@
-.tab-contact{
-  .banner-contact{
+.tab-contact {
+  .banner-contact {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    .banner-contact-title{
+    .banner-contact-title {
       font-size: 60px;
       color: white;
     }
-    .banner-contact-description{
+    .banner-contact-description {
       font-size: 40px;
       color: white;
     }
   }
-  .cards-contact{
+  .cards-contact {
     padding: 3% 10%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    .cards-contact-item{
+    .cards-contact-item {
       text-align: center;
-      .cards-contact-item-image{
+      .cards-contact-item-image {
         padding: 20px 0;
-        .icon{
+        .icon {
           font-size: 40px;
           color: #ed2129;
         }
       }
-      .cards-contact-item-info-detail{
-        .cards-contact-item-info-detail-title{
-          color: black;
-          font-weight:  bold;
+      .cards-contact-item-info-detail {
+        .cards-contact-item-info-detail-title {
+          font-weight: bold;
           font-size: 18px;
           color: #545353;
         }
-        .cards-contact-item-info-detail-description{
+        .cards-contact-item-info-detail-description {
           font-size: 16px;
           color: #605f5f;
         }
-        .cards-contact-item-info-detail-number{
-          a{
+        .cards-contact-item-info-detail-number {
+          a {
             font-size: 16px;
           }
         }

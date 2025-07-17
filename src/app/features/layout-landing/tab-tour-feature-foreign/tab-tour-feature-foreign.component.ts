@@ -3,6 +3,7 @@ import { SidebarFeatureForeignComponent } from './sidebar-feature-foreign/sideba
 import { ContentFeatureForeignComponent } from './content-feature-foreign/content-feature-foreign.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { RouterLink } from '@angular/router';
+import { FeatureResDTO } from '../../../../interface';
 
 @Component({
   selector: 'app-tab-tour-feature-foreign',
@@ -17,4 +18,10 @@ import { RouterLink } from '@angular/router';
   templateUrl: './tab-tour-feature-foreign.component.html',
   styleUrl: './tab-tour-feature-foreign.component.scss',
 })
-export class TabTourFeatureForeignComponent {}
+export class TabTourFeatureForeignComponent {
+  filters: FeatureResDTO[] = [];
+
+  onFiltersChanged(newFilters: FeatureResDTO[]) {
+    this.filters = newFilters;
+  }
+}

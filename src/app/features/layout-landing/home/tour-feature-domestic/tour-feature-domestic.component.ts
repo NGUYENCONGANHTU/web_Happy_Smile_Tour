@@ -5,11 +5,11 @@ import {
   faLocationDot,
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
 @Component({
   selector: 'app-tour-feature-domestic',
-  imports: [FaIconComponent, DecimalPipe],
+  imports: [FaIconComponent, DecimalPipe, NgClass],
   templateUrl: './tour-feature-domestic.component.html',
   styleUrl: './tour-feature-domestic.component.scss',
   standalone: true,

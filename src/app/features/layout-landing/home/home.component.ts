@@ -163,6 +163,7 @@ export class HomeComponent implements OnInit {
       if (data.length) {
         this.tabsDomesticTour = data;
         this.selectedTabDomesticTour = data[0];
+        this.changeTabNameDomesticTour(data[0].name);
       }
     });
   }
