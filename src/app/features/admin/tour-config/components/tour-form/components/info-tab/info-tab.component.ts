@@ -62,6 +62,6 @@ export class TourFormInfoTabComponent implements OnInit {
   };
 
   get fileList() {
-    return this.tourForm.controls['fileList'] as FormArray;
+    return this.tourForm.controls['images'] as FormArray;
   }
 }

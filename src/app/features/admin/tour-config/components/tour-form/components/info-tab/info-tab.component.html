@@ -121,8 +121,8 @@
   <nz-form-item>
     <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
     <nz-form-control
-      [nzErrorTip]="tourForm.controls['fileList'] | appValidationMessage">
-      @if (tourForm.controls['fileList'].enabled) {
+      [nzErrorTip]="tourForm.controls['images'] | appValidationMessage">
+      @if (tourForm.controls['images'].enabled) {
         <nz-upload
           nzListType="picture-card"
           [nzFileList]="fileList.value"

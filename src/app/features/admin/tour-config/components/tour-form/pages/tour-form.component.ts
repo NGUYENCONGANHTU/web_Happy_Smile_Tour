@@ -84,7 +84,7 @@ export class TourFormComponent implements OnInit {
     nonService: [null, [Validators.required]],
     regulation: [null, [Validators.required]],
     note: [null, [Validators.required]],
-    fileList: this.fb.array([]),
+    images: this.fb.array([]),
   });
   priceForm: FormGroup = this.fb.group({
     tourPrices: this.fb.array([]),
@@ -412,7 +412,7 @@ export class TourFormComponent implements OnInit {
   }
 
   get fileList(): FormArray {
-    return this.tourForm.get('fileList') as FormArray;
+    return this.tourForm.get('images') as FormArray;
   }
 
   get tourSchedules(): FormArray {

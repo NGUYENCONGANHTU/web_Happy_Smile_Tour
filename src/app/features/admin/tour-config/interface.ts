@@ -54,7 +54,7 @@ export interface CreateTourReqDTO {
   nonService: string; // Dịch vụ không bao gồm (bắt buộc)
   regulation: string; // Chính sách hủy tour (bắt buộc)
   note: string; // Lưu ý thêm (bắt buộc)
-  imageUrl: string[]; // Danh sách ảnh (bắt buộc)
+  images: File[]; // Danh sách ảnh (bắt buộc)
 }
 
 export interface TourPriceResDTO {
