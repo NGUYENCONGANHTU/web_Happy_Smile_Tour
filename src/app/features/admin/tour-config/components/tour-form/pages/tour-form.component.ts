@@ -16,19 +16,19 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TourConfigService } from '../../../tour-config.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ValidationMessagePipe } from '../../../../../../shared/pipes/validation.pipe';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { TourFormInfoTabComponent } from '../components/info-tab/info-tab.component';
 import { TourFormPricingTabComponent } from '../components/pricing-tab/pricing-tab.componnet';
 import { TourFormServiceTabComponent } from '../components/service-tab/service-tab.component';
 import { forkJoin } from 'rxjs';
 import { TourFormScheduleTabComponent } from '../components/schedule-tab/schedule-tab.component';
-import { base64ToNzUploadFile } from '../../../../../../shared/utils/helpers';
+import { parseToNzUploadFile } from '../../../../../../shared/utils/helpers';
 import {
   TourDiscountReqDTO,
   TourDiscountResDTO,
   TourPriceReqDTO,
   TourPriceResDTO,
+  TourScheduleReqDTO,
   TourSurchargeReqDTO,
   TourSurchargeResDTO,
 } from '../../../interface';
@@ -46,7 +46,6 @@ import {
     NzSelectModule,
     NzUploadModule,
     NzIconModule,
-    ValidationMessagePipe,
     NzTabsModule,
     TourFormInfoTabComponent,
     TourFormServiceTabComponent,
@@ -137,8 +136,8 @@ export class TourFormComponent implements OnInit {
               point => point.id
             ),
           });
-          res.tour.data.imageUrl.forEach(base64 => {
-            this.fileList.push(this.fb.control(base64ToNzUploadFile(base64)));
+          res.tour.data.imageUrl.forEach(src => {
+            this.fileList.push(this.fb.control(parseToNzUploadFile(src)));
           });
           res.tourPrices.data.forEach(dt => {
             this.tourPrices.push(
@@ -183,22 +182,26 @@ export class TourFormComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.tourForm.valid) {
-      this.submittingTour = true;
-      const formValues = this.tourForm.getRawValue();
-      const formData = new FormData();
+    if (this.mode === BaseFormMode.UPDATE) {
+      if (this.id) {
+        if (
+          this.tourForm.valid &&
+          this.priceForm.valid &&
+          this.scheduleForm.valid
+        ) {
+          this.submittingTour = true;
+          const formValues = this.tourForm.getRawValue();
+          const formData = new FormData();
 
-      // Đưa các field đơn giản vào FormData
-      for (const key in formValues) {
-        const value = formValues[key];
-        if (Array.isArray(value)) {
-          value.forEach((v: any) => formData.append(key, v));
-        } else {
-          formData.append(key, value);
-        }
-      }
-      if (this.mode === BaseFormMode.UPDATE) {
-        if (this.id) {
+          // Đưa các field đơn giản vào FormData
+          for (const key in formValues) {
+            const value = formValues[key];
+            if (Array.isArray(value)) {
+              value.forEach((v: any) => formData.append(key, v));
+            } else {
+              formData.append(key, value);
+            }
+          }
           this.tourConfigService.updateTourById(this.id, formData).subscribe({
             next: _res => {
               this.submittingTour = false;
@@ -208,78 +211,182 @@ export class TourFormComponent implements OnInit {
               this.submittingTour = false;
             },
           });
+          this.submittingPrice = true;
+          const tourPrices: TourPriceReqDTO[] =
+            this.tourPrices.value.map((price: TourPriceResDTO) => ({
+              ...price,
+              tourId: this.id,
+            })) ?? [];
+          const tourDiscounts: TourDiscountReqDTO[] =
+            this.discounts.value.map((discount: TourDiscountResDTO) => ({
+              ...discount,
+              tourId: this.id,
+            })) ?? [];
+          const tourSurcharges: TourSurchargeReqDTO[] =
+            this.tourPrices.value.map((surcharges: TourSurchargeResDTO) => ({
+              ...surcharges,
+              tourId: this.id,
+            })) ?? [];
+          if (tourPrices.length) {
+            this.tourConfigService.updateTourPrices(tourPrices).subscribe({
+              next: () => {
+                this.submittingPrice = false;
+              },
+              error: () => {
+                this.submittingPrice = false;
+              },
+            });
+          }
+          if (tourDiscounts.length) {
+            this.tourConfigService
+              .updateTourDiscounts(tourDiscounts)
+              .subscribe({
+                next: () => {
+                  this.submittingPrice = false;
+                },
+                error: () => {
+                  this.submittingPrice = false;
+                },
+              });
+          }
+          if (tourSurcharges.length) {
+            this.tourConfigService
+              .updateTourSurcharges(tourSurcharges)
+              .subscribe({
+                next: () => {
+                  this.submittingPrice = false;
+                },
+                error: () => {
+                  this.submittingPrice = false;
+                },
+              });
+          }
+          this.submittingSchedule = true;
+          const tourSchedules: TourScheduleReqDTO[] =
+            this.tourSchedules.value.map((surcharges: TourSurchargeResDTO) => ({
+              ...surcharges,
+              tourId: this.id,
+            })) ?? [];
+          this.tourConfigService.updateTourSchedules(tourSchedules).subscribe({
+            next: () => {
+              this.submittingSchedule = false;
+            },
+            error: () => {
+              this.submittingSchedule = false;
+            },
+          });
         } else {
-          this.notification.error('Lỗi', 'Không tìm thấy id tour.');
+          this.tourForm.markAllAsTouched();
+          this.priceForm.markAllAsTouched();
+          this.scheduleForm.markAllAsTouched();
         }
       } else {
+        this.notification.error('Lỗi', 'Không tìm thấy id tour.');
+      }
+    } else {
+      if (this.tourForm.valid) {
+        this.submittingTour = true;
+        const formValues = this.tourForm.getRawValue();
+        const formData = new FormData();
+
+        // Đưa các field đơn giản vào FormData
+        for (const key in formValues) {
+          const value = formValues[key];
+          if (Array.isArray(value)) {
+            value.forEach((v: any) => formData.append(key, v));
+          } else {
+            formData.append(key, value);
+          }
+        }
         this.tourConfigService.createTour(formData).subscribe({
-          next: _res => {
+          next: res => {
+            if (this.priceForm.valid) {
+              this.submittingPrice = true;
+              const tourPrices: TourPriceReqDTO[] =
+                this.tourPrices.value.map((price: TourPriceResDTO) => ({
+                  ...price,
+                  tourId: res.id,
+                })) ?? [];
+              const tourDiscounts: TourDiscountReqDTO[] =
+                this.discounts.value.map((discount: TourDiscountResDTO) => ({
+                  ...discount,
+                  tourId: res.id,
+                })) ?? [];
+              const tourSurcharges: TourSurchargeReqDTO[] =
+                this.tourPrices.value.map(
+                  (surcharges: TourSurchargeResDTO) => ({
+                    ...surcharges,
+                    tourId: res.id,
+                  })
+                ) ?? [];
+              if (tourPrices.length) {
+                this.tourConfigService.createTourPrices(tourPrices).subscribe({
+                  next: () => {
+                    this.submittingPrice = false;
+                  },
+                  error: () => {
+                    this.submittingPrice = false;
+                  },
+                });
+              }
+              if (tourDiscounts.length) {
+                this.tourConfigService
+                  .createTourDiscounts(tourDiscounts)
+                  .subscribe({
+                    next: () => {
+                      this.submittingPrice = false;
+                    },
+                    error: () => {
+                      this.submittingPrice = false;
+                    },
+                  });
+              }
+              if (tourSurcharges.length) {
+                this.tourConfigService
+                  .createTourSurcharges(tourSurcharges)
+                  .subscribe({
+                    next: () => {
+                      this.submittingPrice = false;
+                    },
+                    error: () => {
+                      this.submittingPrice = false;
+                    },
+                  });
+              }
+            } else {
+              this.priceForm.markAllAsTouched();
+            }
+            if (this.scheduleForm.valid) {
+              this.submittingSchedule = true;
+              const tourSchedules: TourScheduleReqDTO[] =
+                this.tourSchedules.value.map(
+                  (surcharges: TourSurchargeResDTO) => ({
+                    ...surcharges,
+                    tourId: res.id,
+                  })
+                ) ?? [];
+              this.tourConfigService
+                .createTourSchedules(tourSchedules)
+                .subscribe({
+                  next: () => {
+                    this.submittingSchedule = false;
+                  },
+                  error: () => {
+                    this.submittingSchedule = false;
+                  },
+                });
+            } else {
+              this.scheduleForm.markAllAsTouched();
+            }
             this.submittingTour = false;
           },
           error: () => {
             this.submittingTour = false;
           },
         });
+      } else {
+        this.tourForm.markAllAsTouched();
       }
-    } else {
-      this.tourForm.markAllAsTouched();
-    }
-
-    if (this.priceForm.valid) {
-      this.submittingPrice = true;
-      const tourPrices: TourPriceReqDTO[] =
-        this.tourPrices.value.map((price: TourPriceResDTO) => ({
-          ...price,
-          tourId: this.id,
-        })) ?? [];
-      const tourDiscounts: TourDiscountReqDTO[] =
-        this.discounts.value.map((discount: TourDiscountResDTO) => ({
-          ...discount,
-          tourId: this.id,
-        })) ?? [];
-      const tourSurcharges: TourSurchargeReqDTO[] =
-        this.tourPrices.value.map((surcharges: TourSurchargeResDTO) => ({
-          ...surcharges,
-          tourId: this.id,
-        })) ?? [];
-      if (tourPrices.length) {
-        this.tourConfigService.createTourPrices(tourPrices).subscribe({
-          next: () => {
-            this.submittingPrice = false;
-          },
-          error: () => {
-            this.submittingPrice = false;
-          },
-        });
-      }
-      if (tourDiscounts.length) {
-        this.tourConfigService.createTourDiscounts(tourDiscounts).subscribe({
-          next: () => {
-            this.submittingPrice = false;
-          },
-          error: () => {
-            this.submittingPrice = false;
-          },
-        });
-      }
-      if (tourSurcharges.length) {
-        this.tourConfigService.createTourSurcharges(tourSurcharges).subscribe({
-          next: () => {
-            this.submittingPrice = false;
-          },
-          error: () => {
-            this.submittingPrice = false;
-          },
-        });
-      }
-    } else {
-      this.priceForm.markAllAsTouched();
-    }
-
-    if (this.scheduleForm.valid) {
-      console.log(this.scheduleForm);
-    } else {
-      this.scheduleForm.markAllAsTouched();
     }
   }
 
