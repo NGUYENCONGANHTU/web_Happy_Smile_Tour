@@ -22,25 +22,6 @@
           <div class="text-[20px]">
             {{ data.description }}
           </div>
-          <nz-input-group
-            [nzPrefix]="prefixTemplate"
-            class="w-[700px]! px-2! flex !mt-4 rounded-lg! shadow-custom-input bg-white focus-within:!shadow-custom-focus">
-            <ng-template #prefixTemplate>
-              <fa-icon
-                [icon]="faMagnifyingGlass"
-                class="close-menu-icon text-[20px] px-2! text-[#ccc]"></fa-icon>
-            </ng-template>
-            <input
-              type="text"
-              nz-input
-              [(ngModel)]="searchValue"
-              placeholder="disneyland shanghai"
-              class="input !w-[540px] text-[16px]!" />
-            <button
-              class="bg-[#ff5b00] px-[18px]! py-[10px]! rounded-sm text-white! cursor-pointer">
-              Khám phá
-            </button>
-          </nz-input-group>
         </div>
       </div>
     </div>
@@ -86,7 +67,9 @@
     <!--  ========== Tour trong nước ==========  -->
     <div class="domestic-tour">
       <div class="domestic-tour-slides">
-        <div class="domestic-tour-title">{{ dataHomeTitle[2]?.title }}</div>
+        @if (dataHomeTitle) {
+          <div class="domestic-tour-title">{{ dataHomeTitle[2]?.title }}</div>
+        }
         <div class="tabs-domestic-tour flex gap-4">
           @for (item of tabsDomesticTour; track item) {
             <app-tabs-domestic-tour

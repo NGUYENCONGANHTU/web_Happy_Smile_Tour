@@ -9,9 +9,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
 import { NgStyle } from '@angular/common';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureActionComponent } from './feature-action/feature-action.component';
 import { TabsForeignTourComponent } from './tabs-foreign-tour/tabs-foreign-tour.component';
 import { TabsDomesticTourComponent } from './tabs-domestic-tour/tabs-domestic-tour.component';
@@ -40,7 +38,6 @@ import {
     NzInputModule,
     FormsModule,
     NgStyle,
-    FaIconComponent,
     FeatureActionComponent,
     TabsForeignTourComponent,
     TabsDomesticTourComponent,
@@ -74,8 +71,6 @@ import {
   ],
 })
 export class HomeComponent implements OnInit {
-  faMagnifyingGlass = faMagnifyingGlass;
-  searchValue = '';
   //service
   appService = inject(AppService);
 
@@ -106,8 +101,9 @@ export class HomeComponent implements OnInit {
   /*========================== Home Banner =============================*/
   dataBannerHome: HomeBannerResDTO[] = [];
   getAllData() {
-    this.appService.getAlLData().subscribe(data => {
-      this.dataBannerHome = data;
+    this.appService.getAlLDataBannerHome().subscribe(res => {
+      console.log(res);
+      this.dataBannerHome = res.data;
     });
   }
 
@@ -115,11 +111,11 @@ export class HomeComponent implements OnInit {
   dataHomeTitle: HomeTitleResDTO[] = [];
   dataHomeImage: HomeTitleResDTO[] = [];
   getAlLDataTitle() {
-    this.appService.getAlLDataTitle().subscribe(data => {
-      this.dataHomeTitle = data;
+    this.appService.getAlLDataTitle().subscribe(res => {
+      this.dataHomeTitle = res.data;
     });
-    this.appService.getAlLDataImage().subscribe(data => {
-      this.dataHomeImage = data;
+    this.appService.getAlLDataImage().subscribe(res => {
+      this.dataHomeImage = res.data;
     });
   }
 
@@ -130,26 +126,24 @@ export class HomeComponent implements OnInit {
 
   // hàm lấy tất cả các quốc gia ở ngoài nước
   getAlLDataLocationInternational() {
-    this.appService.getAlLDataLocationInternational().subscribe(data => {
-      if (data.length) {
-        this.tabsForeignTour = data;
-        this.selectedTabForeignTour = data[0];
-        this.changeTabNameForeignTour(data[0].name);
-      }
+    this.appService.getAlLDataLocationInternational().subscribe(res => {
+      this.tabsForeignTour = res.data;
+      this.selectedTabForeignTour = res.data[0];
+      this.changeTabNameForeignTour(res.data[0].id);
     });
   }
   // hàm thay đổi tab và cũng là để gửi về serve khi mình quốc gia nào
   handleChangeForeignTour(tabName: string) {
-    this.selectedTabForeignTour = this.tabsForeignTour.find(
-      tab => tab.name === tabName
-    )!;
-    this.changeTabNameForeignTour(tabName);
+    const selectedTab = this.tabsForeignTour.find(tab => tab.name === tabName);
+    if (selectedTab) {
+      this.selectedTabForeignTour = selectedTab;
+      this.changeTabNameForeignTour(selectedTab.id);
+    }
   }
   // thay đổi tab thì lấy dữ liệu của tab đó
-  changeTabNameForeignTour(tabName: string) {
-    this.appService.changeTabForeign(tabName).subscribe(data => {
-      this.dataTourForeign = data;
-      console.log('Dữ liệu tour:', data);
+  changeTabNameForeignTour(id: number) {
+    this.appService.changeTabForeign(id).subscribe(data => {
+      this.dataTourForeign = data.content;
     });
   }
 
@@ -159,11 +153,11 @@ export class HomeComponent implements OnInit {
   selectedTabDomesticTour!: LocationResDTO;
 
   getAllDataLocationDomestic() {
-    this.appService.getAlLDataLocationDomestic().subscribe(data => {
-      if (data.length) {
-        this.tabsDomesticTour = data;
-        this.selectedTabDomesticTour = data[0];
-        this.changeTabNameDomesticTour(data[0].name);
+    this.appService.getAlLDataLocationDomestic().subscribe(res => {
+      if (res.data.length > 0) {
+        this.tabsDomesticTour = res.data;
+        this.selectedTabDomesticTour = res.data[0];
+        this.changeTabNameDomesticTour(res.data[0].id);
       }
     });
   }
@@ -172,12 +166,14 @@ export class HomeComponent implements OnInit {
     this.selectedTabDomesticTour = this.tabsDomesticTour.find(
       tab => tab.name === tabName
     )!;
-    this.changeTabNameDomesticTour(tabName);
+
+    this.changeTabNameDomesticTour(this.selectedTabDomesticTour.id);
   }
 
-  changeTabNameDomesticTour(tabName: string) {
-    this.appService.changeTabDomestic(tabName).subscribe(data => {
-      this.dataTourDomestic = data;
+  changeTabNameDomesticTour(id: number) {
+    this.appService.changeTabDomestic(id).subscribe(data => {
+      this.dataTourDomestic = data.content;
+      console.log(this.dataTourDomestic);
     });
   }
 
@@ -200,8 +196,9 @@ export class HomeComponent implements OnInit {
   dataCustomerFeedback: CommentFeedbackResDTO[] = [];
 
   getAllDataCommentFeedBack() {
-    this.appService.getAllDataCommentFeedback().subscribe(data => {
-      this.dataCustomerFeedback = data;
+    this.appService.getAllDataCommentFeedback().subscribe(res => {
+      console.log(res);
+      this.dataCustomerFeedback = res.data;
     });
   }
 }
