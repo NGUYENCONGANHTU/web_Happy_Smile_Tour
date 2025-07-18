@@ -15,6 +15,7 @@ import { AppService } from '../../../app.service';
 import { VisaServiceResDTO } from '../../../interface';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-layout-landing',
@@ -27,12 +28,15 @@ import { filter } from 'rxjs';
     FaIconComponent,
     RouterLinkActive,
     NgClass,
+    TranslatePipe,
   ],
   templateUrl: './layout-landing.component.html',
   styleUrl: './layout-landing.component.scss',
   standalone: true,
 })
 export class LayoutLandingComponent implements OnInit {
+  translate = inject(TranslateService);
+
   faCaretDown = faCaretDown;
   languages = [
     { code: 'vi', name: 'Tiếng Việt', flag: 'vn' },
@@ -49,6 +53,7 @@ export class LayoutLandingComponent implements OnInit {
 
   router = inject(Router);
   ngOnInit() {
+    this.translate.use('en');
     this.getDataVisaMenu();
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))

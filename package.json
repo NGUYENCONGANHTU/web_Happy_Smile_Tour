@@ -29,6 +29,8 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@ngx-translate/core": "^16.0.4",
+    "@ngx-translate/http-loader": "^16.0.1",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/jquery": "^3.5.32",
     "@types/slick-carousel": "^1.6.40",
