@@ -21,24 +21,9 @@
         <nz-icon class="!mr-2" nzType="phone" />
         <a [routerLink]="['/', 'admin', 'contact-config']">Cấu hình liên hệ</a>
       </li>
-      <li nz-submenu nzTitle="Cấu hình tour" nzIcon="car">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/', 'admin', 'tour-config', 'domestic']"
-              >Trong nước</a
-            >
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/', 'admin', 'tour-config', 'international']"
-              >Ngoài nước</a
-            >
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/', 'admin', 'tour-config', 'private']"
-              >Cá nhân</a
-            >
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter>
+        <nz-icon class="!mr-2" nzType="car" />
+        <a [routerLink]="['/', 'admin', 'tour-config']">Cấu hình tour</a>
       </li>
       <li nz-menu-item nzMatchRouter>
         <nz-icon class="!mr-2" nzType="customer-service" />
@@ -56,7 +41,7 @@
         <app-breadcrumb-component></app-breadcrumb-component>
       </div>
     </nz-header>
-    <nz-content class="py-4! px-8!">
+    <nz-content class="p-4!">
       <router-outlet></router-outlet>
     </nz-content>
   </nz-layout>

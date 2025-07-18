@@ -1,0 +1,170 @@
+<nz-table
+  #baseTable
+  [nzData]="data"
+  [nzScroll]="scroll"
+  [nzFrontPagination]="frontPagination"
+  [nzTotal]="total"
+  [nzShowTotal]="rangeTemplate"
+  [(nzPageIndex)]="_page"
+  [(nzPageSize)]="pageSize"
+  (nzPageIndexChange)="pageChange.emit(page)"
+  (nzPageSizeChange)="pageSizeChange.emit(pageSize)"
+  [nzLoading]="loading">
+  <thead>
+    <tr>
+      @for (col of columns; track col) {
+        <th [nzWidth]="col.width || null" nzCustomFilter>
+          <div class="flex gap-2 align-middle">
+            <div>
+              {{ col?.title }}
+            </div>
+            @if (col?.filter) {
+              <ng-container>
+                <nz-filter-trigger
+                  [(nzVisible)]="filter[col.key].visible"
+                  [nzActive]="filter[col.key].value | considerNotNullPipe"
+                  [nzDropdownMenu]="menu">
+                  @switch (filter[col.key].type) {
+                    @case (TableFilterType.DATE_RANGE) {
+                      <span nz-icon nzType="calendar" class="text-sm"></span>
+                    }
+                    @case (TableFilterType.SEARCH) {
+                      <span nz-icon nzType="search" class="text-sm"></span>
+                    }
+                    @default {
+                      <span nz-icon nzType="filter" class="text-sm"></span>
+                    }
+                  }
+                </nz-filter-trigger>
+              </ng-container>
+
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <div class="ant-table-filter-dropdown">
+                  @switch (filter[col.key].type) {
+                    @case (TableFilterType.DATE_RANGE) {
+                      <div class="p-2">
+                        <nz-range-picker
+                          [(ngModel)]="filter[col.key].value"
+                          [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
+                          (ngModelChange)="
+                            handleFilterChange(col.key, filter[col.key].value)
+                          "></nz-range-picker>
+                      </div>
+                    }
+                    @case (TableFilterType.SELECTION) {
+                      <div class="p-2">
+                        <nz-select
+                          nzMode="multiple"
+                          nzPlaceHolder="Tìm kiếm và chọn"
+                          nzAllowClear
+                          nzShowSearch
+                          [nzServerSearch]="col.filter?.optionObserve"
+                          style="min-width: 200px"
+                          [(ngModel)]="filter[col.key].value"
+                          (ngModelChange)="
+                            handleFilterChange(col.key, filter[col.key].value)
+                          "
+                          (nzOnSearch)="handleFilterSearch(col, $event)">
+                          @for (
+                            option of filter[col.key].options;
+                            track $index
+                          ) {
+                            @if (!filter[col.key].loading) {
+                              <nz-option
+                                [nzValue]="option.value"
+                                [nzLabel]="option.label"></nz-option>
+                            }
+                          }
+                          @if (filter[col.key].loading) {
+                            <nz-option nzDisabled nzCustomContent>
+                              <span
+                                nz-icon
+                                nzType="loading"
+                                class="loading-icon"></span>
+                              Loading Data...
+                            </nz-option>
+                          }
+                        </nz-select>
+                      </div>
+                    }
+                    @default {
+                      <div class="p-2">
+                        <div class="mb-2">
+                          <input
+                            type="text"
+                            nz-input
+                            placeholder="Nhập"
+                            [(ngModel)]="filter[col.key].value" />
+                        </div>
+                        <div class="flex gap-2 justify-end">
+                          <button
+                            nz-button
+                            nzSize="small"
+                            (click)="filter[col.key].value = ''">
+                            Đặt lại
+                          </button>
+                          <button
+                            nz-button
+                            nzSize="small"
+                            nzType="primary"
+                            (click)="
+                              handleFilterChange(col.key, [
+                                filter[col.key].value,
+                              ])
+                            ">
+                            Tìm kiếm
+                          </button>
+                        </div>
+                      </div>
+                    }
+                  }
+                </div>
+              </nz-dropdown-menu>
+            }
+          </div>
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of baseTable.data; track item) {
+      <tr (dblclick)="rowDBClick.emit(item)">
+        @for (col of columns; track col) {
+          <td>
+            <ng-container
+              *ngTemplateOutlet="
+                defaultCell;
+                context: { $implicit: item, col }
+              "></ng-container>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</nz-table>
+
+<ng-template #defaultCell let-item let-col="col">
+  @switch (col?.type) {
+    @case (ColumnType.DATE) {
+      {{
+        item?.[col.key]
+          ? (item[col.key] | dateTimeFormat: col?.dateFormat)
+          : '-'
+      }}
+    }
+    @case (ColumnType.TEMPLATE_REF) {
+      <ng-container
+        *ngTemplateOutlet="
+          col?.template ?? null;
+          context: { $implicit: item[col.key], item: item }
+        "></ng-container>
+    }
+    @default {
+      {{ item?.[col.key] ?? '-' }}
+    }
+  }
+</ng-template>
+
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} / {{ total }} bản ghi
+</ng-template>
