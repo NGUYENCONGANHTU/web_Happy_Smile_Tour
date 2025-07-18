@@ -8,9 +8,8 @@ describe('LayoutLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutLandingComponent]
-    })
-    .compileComponents();
+      imports: [LayoutLandingComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LayoutLandingComponent);
     component = fixture.componentInstance;

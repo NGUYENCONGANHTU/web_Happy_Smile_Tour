@@ -8,9 +8,8 @@ describe('SidebarTabTourForeignComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarTabTourForeignComponent]
-    })
-    .compileComponents();
+      imports: [SidebarTabTourForeignComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SidebarTabTourForeignComponent);
     component = fixture.componentInstance;

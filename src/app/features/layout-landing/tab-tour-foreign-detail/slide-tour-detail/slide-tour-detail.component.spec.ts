@@ -8,9 +8,8 @@ describe('SlideTourDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SlideTourDetailComponent]
-    })
-    .compileComponents();
+      imports: [SlideTourDetailComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SlideTourDetailComponent);
     component = fixture.componentInstance;

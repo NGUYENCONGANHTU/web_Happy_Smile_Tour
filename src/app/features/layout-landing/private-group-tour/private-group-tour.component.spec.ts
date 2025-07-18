@@ -8,9 +8,8 @@ describe('PrivateGroupTourComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrivateGroupTourComponent]
-    })
-    .compileComponents();
+      imports: [PrivateGroupTourComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PrivateGroupTourComponent);
     component = fixture.componentInstance;
