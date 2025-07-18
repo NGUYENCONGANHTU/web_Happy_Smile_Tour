@@ -1,14 +1,23 @@
-import {Component, inject, OnInit} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-import {NzButtonModule} from 'ng-zorro-antd/button';
-import {AppService} from '../../../../app.service';
-import {IntroducePageResDTO, IntroduceTitleResDTO} from '../../../../interface';
-import {NgStyle} from '@angular/common';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { AppService } from '../../../../app.service';
+import {
+  IntroducePageResDTO,
+  IntroduceTitleResDTO,
+} from '../../../../interface';
+import { NgStyle } from '@angular/common';
 @Component({
   selector: 'app-introduce',
-  imports: [NzButtonModule, NzCollapseModule, NzIconModule, NzCarouselModule, NgStyle],
+  imports: [
+    NzButtonModule,
+    NzCollapseModule,
+    NzIconModule,
+    NzCarouselModule,
+    NgStyle,
+  ],
   templateUrl: './introduce.component.html',
   styleUrl: './introduce.component.scss',
   styles: [
@@ -25,62 +34,55 @@ import {NgStyle} from '@angular/common';
         user-select: none !important;
         -webkit-user-drag: none;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class IntroduceComponent implements OnInit {
-
   array = [1, 2, 3, 4];
 
-  appService = inject(AppService)
+  appService = inject(AppService);
 
   ngOnInit() {
-  this.getDataBannerIntroducePage();
-  this.getAllDataHighLightIntroducePage();
-  this.getAllDataBenefitIntroducePage();
-  this.getAllDataTitleIntroducePage();
-  this.getAllDataStatisticalIntroducePage();
+    this.getDataBannerIntroducePage();
+    this.getAllDataHighLightIntroducePage();
+    this.getAllDataBenefitIntroducePage();
+    this.getAllDataTitleIntroducePage();
+    this.getAllDataStatisticalIntroducePage();
   }
 
-
   // function Banner Introduce
-  dataBannerIntroduce:IntroducePageResDTO[]=[];
-  getDataBannerIntroducePage(){
-    this.appService.getAllDataBannerIntroducePage().subscribe(data => {
-      this.dataBannerIntroduce = data;
-    })
+  dataBannerIntroduce: IntroducePageResDTO[] = [];
+  getDataBannerIntroducePage() {
+    this.appService.getAllDataBannerIntroducePage().subscribe(res => {
+      this.dataBannerIntroduce = res.data;
+    });
   }
   // function Banner Introduce
-  dataServiceIntroduce:IntroducePageResDTO[]=[];
-  getAllDataHighLightIntroducePage(){
-    this.appService.getAllDataHighLightIntroducePage().subscribe(data => {
-      this.dataServiceIntroduce = data;
-    })
+  dataServiceIntroduce: IntroducePageResDTO[] = [];
+  getAllDataHighLightIntroducePage() {
+    this.appService.getAllDataHighLightIntroducePage().subscribe(res => {
+      this.dataServiceIntroduce = res.data;
+    });
   }
   // function Banner Introduce BENEFIT
-  dataContentIntroducePage:IntroducePageResDTO[]=[];
-  getAllDataBenefitIntroducePage(){
-    this.appService.getAllDataMainIntroducePage().subscribe(data => {
-      this.dataContentIntroducePage = data;
-    })
+  dataContentIntroducePage: IntroducePageResDTO[] = [];
+  getAllDataBenefitIntroducePage() {
+    this.appService.getAllDataMainIntroducePage().subscribe(res => {
+      this.dataContentIntroducePage = res.data;
+    });
   }
-
 
   // Số liệu thống kê
-  dataTitleIntroducePage:IntroduceTitleResDTO[]=[];
-  getAllDataTitleIntroducePage(){
-    this.appService.getAllDataTitleIntroducePage().subscribe(data => {
-      this.dataTitleIntroducePage = data;
-    })
+  dataTitleIntroducePage: IntroduceTitleResDTO[] = [];
+  getAllDataTitleIntroducePage() {
+    this.appService.getAllDataTitleIntroducePage().subscribe(res => {
+      this.dataTitleIntroducePage = res.data;
+    });
   }
-  dataStatisticalIntroducePage:IntroduceTitleResDTO[]=[];
-  getAllDataStatisticalIntroducePage(){
-    this.appService.getAllDataStatisticalIntroducePage().subscribe(data => {
-      this.dataStatisticalIntroducePage = data;
-    })
+  dataStatisticalIntroducePage: IntroduceTitleResDTO[] = [];
+  getAllDataStatisticalIntroducePage() {
+    this.appService.getAllDataStatisticalIntroducePage().subscribe(res => {
+      this.dataStatisticalIntroducePage = res.data;
+    });
   }
 }
-
-
-
-
