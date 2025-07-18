@@ -321,7 +321,7 @@ export interface VisaServiceReqDTO {
   language: LanguageResDTO;
   name: string;
   bannerTitle: string;
-  image: string;
+  image: DocumentResDTO;
   phone: string;
   serviceTitle: string;
   serviceContent: string;
