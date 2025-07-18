@@ -17,14 +17,13 @@ import { RouterLink } from '@angular/router';
 })
 export class FeatureActionComponent implements OnInit {
   appService = inject(AppService);
-
   dataFeatureTour: FeatureResDTO[] = [];
   ngOnInit() {
     this.getAllData();
   }
   getAllData() {
-    this.appService.getAllDataTourFeature4().subscribe(data => {
-      this.dataFeatureTour = data;
+    this.appService.getAllDataTourFeature4().subscribe(res => {
+      this.dataFeatureTour = res.data.content;
     });
   }
 }
