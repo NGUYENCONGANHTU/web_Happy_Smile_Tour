@@ -10,7 +10,6 @@ import {
 } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MenuServiceResDTO, VisaProcessResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
 import { ActivatedRoute } from '@angular/router';
 import { TabServiceService } from './tab-service.service';
@@ -18,6 +17,7 @@ import {
   ContactType,
   TourServiceReqDTO,
 } from './interface-contact-tour-service';
+import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -39,7 +39,7 @@ export class TabServiceComponent implements OnInit {
   appService = inject(AppService);
 
   serviceId = 0;
-  dataServiceDetail: MenuServiceResDTO | null = null;
+  dataServiceDetail: VisaServiceResDTO | null = null;
   route = inject(ActivatedRoute);
 
   ngOnInit() {
@@ -55,8 +55,8 @@ export class TabServiceComponent implements OnInit {
   }
   getAllDataServiceById() {
     this.appService.getDataByIdMenuService(this.serviceId).subscribe({
-      next: (data: MenuServiceResDTO) => {
-        this.dataServiceDetail = data;
+      next: res => {
+        this.dataServiceDetail = res.data;
         console.log(this.dataServiceDetail);
       },
       error: err => {
