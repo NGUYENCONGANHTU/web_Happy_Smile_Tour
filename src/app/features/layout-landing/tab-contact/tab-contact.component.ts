@@ -33,31 +33,31 @@ export class TabContactComponent implements OnInit {
   // ================== BANNER =======================
   dataBanner: IntroducePageResDTO[] = [];
   getAllDataBanner() {
-    this.appService.getAllDataBannerContactPage().subscribe(data => {
-      this.dataBanner = data;
+    this.appService.getAllDataBannerContactPage().subscribe(res => {
+      this.dataBanner = res.data;
     });
   }
 
   // ================== PHONE =======================
   dataPhone: IntroducePageResDTO[] = [];
   getAllDataPhone() {
-    this.appService.getAllDataPhoneContactPage().subscribe(data => {
-      this.dataPhone = data;
+    this.appService.getAllDataPhoneContactPage().subscribe(res => {
+      this.dataPhone = res.data;
     });
   }
 
   // ================== ADDRESS =======================
   dataAddress: IntroducePageResDTO[] = [];
   getAllDataAddress() {
-    this.appService.getAllDataAddressContactPage().subscribe(data => {
-      this.dataAddress = data;
+    this.appService.getAllDataAddressContactPage().subscribe(res => {
+      this.dataAddress = res.data;
     });
   }
   // ================== Email =======================
   dataEmail: IntroducePageResDTO[] = [];
   getAllDataEmail() {
-    this.appService.getAllDataEmailContactPage().subscribe(data => {
-      this.dataEmail = data;
+    this.appService.getAllDataEmailContactPage().subscribe(res => {
+      this.dataEmail = res.data;
     });
   }
 }
