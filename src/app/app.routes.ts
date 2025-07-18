@@ -14,12 +14,9 @@ import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component
 import { HomeConfigComponent } from './features/admin/home-config/home-config.component';
 import { ContactConfigComponent } from './features/admin/contact-config/contact-config.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
-import { ListDomesticToursComponent } from './features/admin/tour-config/domestic/pages/list-domestic-tours/list-domestic-tours.component';
-import { ListInternationalToursComponent } from './features/admin/tour-config/international/pages/list-international-tours/list-international-tours.component';
-import { ListPrivateToursComponent } from './features/admin/tour-config/private/pages/list-private-tours/list-private-tours.component';
-import { TabTravelGuideDetailComponent } from './features/layout-landing/tab-travel-guide-detail/tab-travel-guide-detail.component';
 import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
-import { TestComponent } from './features/layout-landing/test/test.component';
+import { TabTravelGuideDetailComponent } from './features/layout-landing/tab-travel-guide-detail/tab-travel-guide-detail.component';
+import { TOUR_CONFIG_ROUTE } from './features/admin/tour-config/tour-config.routes';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -70,10 +67,6 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'test',
-    component: TestComponent,
-  },
-  {
     path: 'admin',
     children: [
       {
@@ -122,58 +115,8 @@ export const routes: Routes = [
           },
           {
             path: 'tour-config',
-            children: [
-              {
-                path: '',
-                redirectTo: 'domestic',
-                pathMatch: 'full',
-              },
-              {
-                path: 'domestic',
-                data: { breadcrumb: 'Cấu hình tour trong nước' },
-                children: [
-                  {
-                    path: '',
-                    redirectTo: 'list',
-                    pathMatch: 'full',
-                  },
-                  {
-                    path: 'list',
-                    component: ListDomesticToursComponent,
-                  },
-                ],
-              },
-              {
-                path: 'international',
-                data: { breadcrumb: 'Cấu hình tour nước ngoài' },
-                children: [
-                  {
-                    path: '',
-                    redirectTo: 'list',
-                    pathMatch: 'full',
-                  },
-                  {
-                    path: 'list',
-                    component: ListInternationalToursComponent,
-                  },
-                ],
-              },
-              {
-                path: 'private',
-                data: { breadcrumb: 'Cấu hình tour cá nhân' },
-                children: [
-                  {
-                    path: '',
-                    redirectTo: 'list',
-                    pathMatch: 'full',
-                  },
-                  {
-                    path: 'list',
-                    component: ListPrivateToursComponent,
-                  },
-                ],
-              },
-            ],
+            children: TOUR_CONFIG_ROUTE,
+            data: { breadcrumb: 'Cấu hình tour' },
           },
         ],
       },
