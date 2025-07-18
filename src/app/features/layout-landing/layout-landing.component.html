@@ -55,6 +55,7 @@
               nzTrigger="click"
               class="text-[14px]"
               [nzDropdownMenu]="menu"
+              [ngClass]="{ '!text-[#ed1d26]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
               Dịch vụ
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
@@ -63,11 +64,17 @@
               <ul
                 nz-menu
                 class="grid grid-cols-2 max-w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
-                <li nz-menu-item>Cung cấp tour quốc tế</li>
-                <li nz-menu-item>Cung cấp tour quốc tế</li>
-                <li nz-menu-item>Cung cấp tour quốc tế</li>
-                <li nz-menu-item>Cung cấp tour quốc tế</li>
-                <li nz-menu-item>Cung cấp tour quốc tế</li>
+                @for (data of dataVisaMenu; track $index) {
+                  <li
+                    nz-menu-item
+                    [routerLink]="['/tab-service', data.id]"
+                    (click)="selectService(data.id)"
+                    [ngClass]="{
+                      'active-menu-item': selectedServiceId === data.id,
+                    }">
+                    {{ data.name }}
+                  </li>
+                }
               </ul>
             </nz-dropdown-menu>
           </li>
