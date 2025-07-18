@@ -62,11 +62,11 @@
       .tour-points {
         list-style: none;
         padding-left: 0;
-        color: #00bcd4;
+        //color: #00bcd4;
         margin: 8px 0;
         li::before {
           content: '• ';
-          color: #00bcd4;
+          //color: #00bcd4;
           margin-right: 4px;
         }
       }

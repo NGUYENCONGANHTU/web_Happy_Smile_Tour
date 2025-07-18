@@ -11,8 +11,7 @@
   @for (data of dataFeatureTour; track $index) {
     <swiper-slide
       class="slide"
-      [routerLink]="['/tab-tour-foreign-detail', data.id]"
-      >>
+      [routerLink]="['/tab-tour-foreign-detail', data.id]">
       <div class="tour-card">
         <div class="ribbon">Giá tốt nhất {{ $index + 1 }}</div>
         <img
@@ -21,18 +20,27 @@
           class="tour-image" />
 
         <div class="tour-content">
-          <div class="tour-title">
+          <div class="tour-title truncate">
             {{ data.title }}
           </div>
 
           <div class="rating">
-            <span class="score">{{ data.star }}</span>
+            <div class="star flex">
+              @for (i of [1, 2, 3, 4, 5]; track i) {
+                <fa-icon
+                  [icon]="faStar"
+                  [ngClass]="
+                    i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'
+                  "
+                  class="mr-1"></fa-icon>
+              }
+            </div>
             <span class="reviews">| {{ data.numberComment }} đánh giá</span>
           </div>
 
-          <ul class="tour-points">
+          <ul class="tour-points font-medium text-[#6A6B6D]">
             @for (item of data.startingPoints; track $index) {
-              <li>{{ item }}</li>
+              <li>{{ item.name }}</li>
             }
           </ul>
 

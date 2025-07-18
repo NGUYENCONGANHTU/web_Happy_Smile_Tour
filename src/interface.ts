@@ -354,3 +354,13 @@ export interface VisaProcessResDTO {
   title: string;
   description: string;
 }
+
+/* ==================== Partner  ==================== */
+export interface PartnerReqDTO {
+  responseDocumentDTO: DocumentResDTO;
+}
+
+export interface PartnerResDTO {
+  id: number;
+  responseDocumentDTO: DocumentResDTO;
+}

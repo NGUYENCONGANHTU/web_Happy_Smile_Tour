@@ -32,7 +32,7 @@
       [routerLink]="['/tab-tour-foreign-detail', tour.id]">
       <div class="card-item">
         <div class="card-item-image">
-          <img class="" [src]="tour.imageUrl[0]" alt="" />
+          <img class="" [src]="tour.imageUrl?.[0]" alt="" />
         </div>
         <div class="card-item-info space-y-2!">
           <div class="card-item-info-title space-y-2!">

@@ -19,6 +19,8 @@ import {
   LanguageResDTO,
   LocationReqDTO,
   LocationResDTO,
+  PartnerReqDTO,
+  PartnerResDTO,
   PrivateTourReqDTO,
   PrivateTourResDTO,
   TourCommentDetailReqDTO,
@@ -58,6 +60,7 @@ export class AppService {
   apiUrl13 = environment.API_URL + '/info-trans';
   apiUrlLanguage = environment.API_URL + '/language';
   apiVisaService = environment.API_URL + '/visa-service-trans';
+  apiPartner = environment.API_URL + '/partner';
   apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
 
   /*======================== HOME BANNER ==========================*/
@@ -445,5 +448,23 @@ export class AppService {
   }
   deleteDataLanguage(id: number) {
     return this.http.delete<LanguageResDTO>(`${this.apiUrlLanguage}/${id}`);
+  }
+
+  /*============================== Visa Process ================================*/
+  createDataPartner(data: PartnerReqDTO) {
+    return this.http.post<PartnerResDTO>(this.apiPartner, data);
+  }
+  getAllDataPartner() {
+    return this.http.get<{ data: PartnerResDTO[] }>(this.apiPartner);
+  }
+  getDataByIdPartner(id: number) {
+    return this.http.get<PartnerResDTO>(`${this.apiPartner}/${id}`);
+  }
+
+  updateDataPartner(data: PartnerReqDTO, id: number) {
+    return this.http.put<PartnerResDTO>(`${this.apiPartner}/${id}`, data);
+  }
+  deleteDataPartner(id: number) {
+    return this.http.delete<PartnerResDTO>(`${this.apiPartner}/${id}`);
   }
 }
