@@ -59,8 +59,8 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   }
   dataStartingPointDomestic: LocationResDTO[] = [];
   getDataStartingPoint() {
-    this.appService.getAlLDataLocationDomestic().subscribe(data => {
-      this.dataStartingPointDomestic = data;
+    this.appService.getAlLDataLocationDomestic().subscribe(res => {
+      this.dataStartingPointDomestic = res.data;
     });
   }
 
