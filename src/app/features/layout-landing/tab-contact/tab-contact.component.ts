@@ -6,7 +6,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from '../../../../app.service';
-import { IntroducePageResDTO } from '../../../../interface';
+import { HomeBannerResDTO, IntroducePageResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 
 @Component({
@@ -31,9 +31,9 @@ export class TabContactComponent implements OnInit {
   }
 
   // ================== BANNER =======================
-  dataBanner: IntroducePageResDTO[] = [];
+  dataBanner: HomeBannerResDTO[] = [];
   getAllDataBanner() {
-    this.appService.getAllDataBannerContactPage().subscribe(res => {
+    this.appService.getAlLDataBannerContact().subscribe(res => {
       this.dataBanner = res.data;
     });
   }

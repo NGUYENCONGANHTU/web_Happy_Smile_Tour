@@ -5,6 +5,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../app.service';
 import {
+  HomeBannerResDTO,
   IntroducePageResDTO,
   IntroduceTitleResDTO,
 } from '../../../../interface';
@@ -51,9 +52,9 @@ export class IntroduceComponent implements OnInit {
   }
 
   // function Banner Introduce
-  dataBannerIntroduce: IntroducePageResDTO[] = [];
+  dataBannerIntroduce: HomeBannerResDTO[] = [];
   getDataBannerIntroducePage() {
-    this.appService.getAllDataBannerIntroducePage().subscribe(res => {
+    this.appService.getAlLDataBannerIntro().subscribe(res => {
       this.dataBannerIntroduce = res.data;
     });
   }

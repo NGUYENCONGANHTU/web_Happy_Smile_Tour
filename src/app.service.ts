@@ -73,6 +73,7 @@ export class AppService {
       this.apiUrl + `/HOME?langCode=${this.languageService.locale}`
     );
   }
+
   getAlLDataBannerIntro() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
       this.apiUrl + `/INTRO?langCode=${this.languageService.locale}`

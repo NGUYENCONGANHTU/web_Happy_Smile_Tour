@@ -1,27 +1,22 @@
 <section class="introduce">
   <!-- =======================introduce service======================= -->
   @for (data of dataBannerIntroduce; track data.id) {
-    <div
-      class="banner-introduce-service"
-      [ngStyle]="{ 'background-image': 'url(' + data.description + ')' }"
-      style="
-        width: auto;
-        height: 480px;
-        background-position: center;
-        background-size: cover;
-      ">
+    @for (image of data.documentDTOS; track image.id) {
       <div
-        class="flex flex-col justify-center items-center h-full text-white bg-black/10">
-        <!--      <div class="text-content-title !mb-5 uppercase text-4xl xl:text-5xl font-bold">-->
-        <!--        giới thiệu dịch vụ-->
-        <!--      </div>-->
-        <!--      <div class="text-content-description text-center text-2xl px-3!">-->
-        <!--        Cầu nối đầu tiên tại Việt Nam liên kết Công ty Lữ Hành và Đơn vị-->
-        <!--        tổ chức Landtour trên toàn thế giới.-->
-        <!--      </div>-->
-        <div class="">{{ data.title }}</div>
+        class="banner-introduce-service"
+        [ngStyle]="{ 'background-image': 'url(' + image.storagePath + ')' }"
+        style="
+          width: auto;
+          height: 480px;
+          background-position: center;
+          background-size: cover;
+        ">
+        <div
+          class="flex flex-col justify-center items-center h-full text-white bg-black/10">
+          <div class="">{{ data.title }}</div>
+        </div>
       </div>
-    </div>
+    }
   }
   <div class="main-content">
     <div class="why-choose-us">
