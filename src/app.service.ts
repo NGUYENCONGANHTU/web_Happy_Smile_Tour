@@ -23,6 +23,10 @@ import {
   TourCommentDetailResDTO,
   TravelGuideReqDTO,
   TravelGuideResDTO,
+  VisaProcessReqDTO,
+  VisaProcessResDTO,
+  VisaServiceReqDTO,
+  VisaServiceResDTO,
 } from './interface';
 
 @Injectable({
@@ -31,19 +35,20 @@ import {
 export class AppService {
   http = inject(HttpClient);
   // API
-  apiUrl = environment.API_URL + '/home-banner-trans';
-  apiUrl2 = environment.API_URL + '/home-title-trans';
+  apiUrl = environment.API_URL + '/banner-trans/type';
+  apiUrl2 = environment.API_URL + '/home-title-trans/all?langCode=vi';
   apiUrl3 = environment.API_URL + '/location-trans';
-  apiUrl4 = environment.API_URL + '/tour';
-  apiUrl5 = environment.API_URL + '/tour/filter?type=';
-  apiUrl6 = environment.API_URL + '/tour/filter?name=';
+  apiUrl4 = environment.API_URL + '/tour-trans/filter?';
+  apiUrl5 = environment.API_URL + '/tour-trans/filter?type=';
+  apiUrl6 = environment.API_URL + '/tour-trans/filter?name=';
   apiUrl7 = environment.API_URL + '/travel-guide';
   apiUrl8 = environment.API_URL + '/home-comment';
-  apiUrl9 = environment.API_URL + '/intro';
-  apiUrl10 = environment.API_URL + '/intro-title';
+  apiUrl9 = environment.API_URL + '/intro-trans';
+  apiUrl10 = environment.API_URL + '/intro-title-trans';
   apiUrl11 = environment.API_URL + '/group-tour-trans';
   apiUrl12 = environment.API_URL + '/tour-contact';
-  apiUrl13 = environment.API_URL + '/info';
+  apiUrl13 = environment.API_URL + '/info-trans';
+  apiVisaService = environment.API_URL + '/visa-service';
   apiUrlTourCommentDtail = environment.API_URL + '/tour-comment';
 
   /*======================== HOME BANNER ==========================*/
@@ -51,8 +56,25 @@ export class AppService {
     return this.http.post<HomeBannerResDTO>(this.apiUrl, data);
   }
 
-  getAlLData() {
-    return this.http.get<HomeBannerResDTO[]>(this.apiUrl + '/all?langCode=');
+  getAlLDataBannerHome() {
+    return this.http.get<{ data: HomeBannerResDTO[] }>(
+      this.apiUrl + '/BANNER?langCode=vi'
+    );
+  }
+  getAlLDataBannerIntro() {
+    return this.http.get<{ data: HomeBannerResDTO[] }>(
+      this.apiUrl + '/INTRO?langCode=vi'
+    );
+  }
+  getAlLDataBannerContact() {
+    return this.http.get<{ data: HomeBannerResDTO[] }>(
+      this.apiUrl + '/CONTACT?langCode=vi'
+    );
+  }
+  getAlLDataBannerService() {
+    return this.http.get<{ data: HomeBannerResDTO[] }>(
+      this.apiUrl + '/SERVICE?langCode=vi'
+    );
   }
 
   getDataById(id: number) {
@@ -72,14 +94,13 @@ export class AppService {
   }
 
   getAlLDataTitle() {
-    return this.http.get<HomeTitleResDTO[]>(
-      this.apiUrl2 + '/type/TEXT?langCode=vi'
-    );
+    return this.http.get<{ data: HomeTitleResDTO[] }>(this.apiUrl2);
   }
   getAlLDataImage() {
-    return this.http.get<HomeTitleResDTO[]>(this.apiUrl2 + '/type/IMAGE');
+    return this.http.get<{ data: HomeTitleResDTO[] }>(
+      this.apiUrl2 + '/type/IMAGE'
+    );
   }
-
   getDataById2(id: number) {
     return this.http.get<HomeTitleResDTO>(`${this.apiUrl2}/${id}`);
   }
@@ -97,12 +118,12 @@ export class AppService {
     return this.http.post<LocationResDTO>(this.apiUrl3, data);
   }
   getAlLDataLocationDomestic() {
-    return this.http.get<LocationResDTO[]>(
+    return this.http.get<{ data: LocationResDTO[] }>(
       this.apiUrl3 + '/type/DOMESTIC?langCode='
     );
   }
   getAlLDataLocationInternational() {
-    return this.http.get<LocationResDTO[]>(
+    return this.http.get<{ data: LocationResDTO[] }>(
       this.apiUrl3 + '/type/INTERNATIONAL?langCode=vi'
     );
   }
@@ -121,7 +142,7 @@ export class AppService {
   /*======================== CÁC TOUR NỔI BẬT ==========================*/
 
   getAllDataTourFeature4() {
-    return this.http.get<FeatureResDTO[]>(this.apiUrl4);
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl4);
   }
   createDataTourFeature4(data: FeatureReqDTO) {
     return this.http.post<FeatureResDTO>(this.apiUrl4, data);
@@ -140,22 +161,20 @@ export class AppService {
 
   /*======================== NẾU CÓ TAB TẤT CẢ TOUR THÌ DÙNG ==========================*/
   getDataTourForeign() {
-    return this.http.get<FeatureResDTO[]>(this.apiUrl5 + 'INTERNATIONAL');
+    return this.http.get<{ data: FeatureResDTO[] }>(
+      this.apiUrl5 + 'INTERNATIONAL'
+    );
   }
   getDataTourDomestic() {
-    return this.http.get<FeatureResDTO[]>(this.apiUrl5 + 'DOMESTIC');
+    return this.http.get<{ data: FeatureResDTO[] }>(this.apiUrl5 + 'DOMESTIC');
   }
 
   /*============================== TAB FOREIGN ================================*/
-  changeTabForeign(tabNameForeign: string) {
-    return this.http.get<FeatureResDTO[]>(
-      `${this.apiUrl6}${encodeURIComponent(tabNameForeign)}`
-    );
+  changeTabForeign(id: number) {
+    return this.http.get<{ content: FeatureResDTO[] }>(`${this.apiUrl6}${id}`);
   }
-  changeTabDomestic(tabNameDomestic: string) {
-    return this.http.get<FeatureResDTO[]>(
-      `${this.apiUrl6}${encodeURIComponent(tabNameDomestic)}`
-    );
+  changeTabDomestic(id: number) {
+    return this.http.get<{ content: FeatureResDTO[] }>(`${this.apiUrl6}${id}`);
   }
 
   /*============================== CẨM NANG DU LỊCH ================================*/
@@ -182,7 +201,7 @@ export class AppService {
     return this.http.post<CommentFeedbackResDTO>(this.apiUrl8, data);
   }
   getAllDataCommentFeedback() {
-    return this.http.get<CommentFeedbackResDTO[]>(this.apiUrl8);
+    return this.http.get<{ data: CommentFeedbackResDTO[] }>(this.apiUrl8);
   }
   getDataByIdCommentFeedback(id: number) {
     return this.http.get<CommentFeedbackResDTO>(`${this.apiUrl8}/${id}`);
@@ -200,21 +219,27 @@ export class AppService {
     return this.http.post<IntroducePageResDTO>(this.apiUrl9, data);
   }
   getAllDataBannerIntroducePage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl9 + '/type/BANNER');
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
+      this.apiUrl9 + '/type/BANNER'
+    );
   }
   getAllDataHighLightIntroducePage() {
-    return this.http.get<IntroducePageResDTO[]>(
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
       this.apiUrl9 + '/type/HIGHLIGHT'
     );
   }
   getAllDataMainIntroducePage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl9 + '/type/MAIN');
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
+      this.apiUrl9 + '/type/MAIN'
+    );
   }
   getAllDataTitleIntroducePage() {
-    return this.http.get<IntroduceTitleResDTO[]>(this.apiUrl10 + '/type/TITLE');
+    return this.http.get<{ data: IntroduceTitleResDTO[] }>(
+      this.apiUrl10 + '/type/TITLE'
+    );
   }
   getAllDataStatisticalIntroducePage() {
-    return this.http.get<IntroduceTitleResDTO[]>(
+    return this.http.get<{ data: IntroduceTitleResDTO[] }>(
       this.apiUrl10 + '/type/STATISTICAL'
     );
   }
@@ -233,7 +258,7 @@ export class AppService {
     return this.http.post<PrivateTourResDTO>(this.apiUrl11, data);
   }
   getAllDataPrivateTour() {
-    return this.http.get<PrivateTourResDTO[]>(
+    return this.http.get<{ data: PrivateTourResDTO[] }>(
       this.apiUrl11 + '/all?langCode=en'
     );
   }
@@ -277,18 +302,24 @@ export class AppService {
     return this.http.post<IntroducePageResDTO>(this.apiUrl13, data);
   }
   getAllDataBannerContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl13 + '/type/BANNER');
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
+      this.apiUrl13 + '/type/BANNER'
+    );
   }
   getAllDataAddressContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
       this.apiUrl13 + '/type/ADDRESS'
     );
   }
   getAllDataPhoneContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl13 + '/type/PHONE');
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
+      this.apiUrl13 + '/type/PHONE'
+    );
   }
   getAllDataEmailContactPage() {
-    return this.http.get<IntroducePageResDTO[]>(this.apiUrl13 + '/type/EMAIL');
+    return this.http.get<{ data: IntroducePageResDTO[] }>(
+      this.apiUrl13 + '/type/EMAIL'
+    );
   }
   getAllDataFooterContactPage() {
     return this.http.get<IntroduceTitleResDTO[]>(
@@ -333,5 +364,46 @@ export class AppService {
     return this.http.delete<TourCommentDetailResDTO>(
       `${this.apiUrlTourCommentDtail}/${id}`
     );
+  }
+
+  /*============================== MENU SERVICE ================================*/
+  createDataMenuService(data: VisaServiceReqDTO) {
+    return this.http.post<VisaServiceResDTO>(this.apiVisaService, data);
+  }
+  getAllDataMenuService() {
+    return this.http.get<{ data: VisaServiceResDTO[] }>(this.apiVisaService);
+  }
+  getDataByIdMenuService(id: number) {
+    return this.http.get<{ data: VisaServiceResDTO }>(
+      `${this.apiVisaService}/${id}`
+    );
+  }
+
+  updateDataMenuService(data: VisaServiceReqDTO, id: number) {
+    return this.http.put<VisaServiceResDTO>(
+      `${this.apiVisaService}/${id}`,
+      data
+    );
+  }
+  deleteDataMenuService(id: number) {
+    return this.http.delete<VisaServiceResDTO>(`${this.apiVisaService}/${id}`);
+  }
+
+  /*============================== Visa Process ================================*/
+  createDataVisaProcess(data: VisaProcessReqDTO) {
+    return this.http.post<VisaProcessResDTO>(this.apiUrl8, data);
+  }
+  getAllDataVisaProcess() {
+    return this.http.get<VisaProcessResDTO[]>(this.apiUrl8);
+  }
+  getDataByIdVisaProcess(id: number) {
+    return this.http.get<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
+  }
+
+  updateDataVisaProcess(data: VisaProcessReqDTO, id: number) {
+    return this.http.put<VisaProcessResDTO>(`${this.apiUrl8}/${id}`, data);
+  }
+  deleteDataVisaProcess(id: number) {
+    return this.http.delete<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
   }
 }
