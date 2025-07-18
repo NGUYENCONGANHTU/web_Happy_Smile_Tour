@@ -98,8 +98,8 @@ export class TabTourForeignDetailComponent implements OnInit {
   appService = inject(AppService);
   dataFeaturePlace: FeatureResDTO[] = [];
   getAllDataFeature() {
-    this.appService.getAllDataTourFeature4().subscribe(data => {
-      this.dataFeaturePlace = data;
+    this.appService.getAllDataTourFeature4().subscribe(res => {
+      this.dataFeaturePlace = res.data.content;
     });
   }
   tourId = 0;
