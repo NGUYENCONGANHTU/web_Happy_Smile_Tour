@@ -8,9 +8,8 @@ describe('ContentFeatureForeignComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContentFeatureForeignComponent]
-    })
-    .compileComponents();
+      imports: [ContentFeatureForeignComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ContentFeatureForeignComponent);
     component = fixture.componentInstance;

@@ -8,9 +8,8 @@ describe('TabTourDomesticDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TabTourDomesticDetailComponent]
-    })
-    .compileComponents();
+      imports: [TabTourDomesticDetailComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TabTourDomesticDetailComponent);
     component = fixture.componentInstance;

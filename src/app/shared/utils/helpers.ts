@@ -55,15 +55,15 @@ export function getPageData(res: ResponseBasePage<any>) {
   };
 }
 
-export function base64ToNzUploadFile(
-  base64: string,
+export function parseToNzUploadFile(
+  src: string,
   fileName = 'image.png'
 ): NzUploadFile {
   return {
-    uid: `${Date.now()}`, // unique id
+    uid: `${Date.now()}`,
     name: fileName,
-    status: 'done', // mark as uploaded
-    url: base64, // preview directly from base64
-    thumbUrl: base64,
+    status: 'done',
+    url: src,
+    thumbUrl: src,
   };
 }

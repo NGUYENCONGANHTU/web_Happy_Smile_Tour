@@ -20,7 +20,7 @@
   @if (mode === BaseFormMode.VIEW) {
     <button nz-button (click)="goTo(BaseFormMode.UPDATE)">Chỉnh sửa</button>
   } @else {
-    <button nz-button (click)="submit()">
+    <button nz-button (click)="submit()" [disabled]="tourForm.invalid">
       @if (mode === BaseFormMode.CREATE) {
         Tạo tour
       } @else {

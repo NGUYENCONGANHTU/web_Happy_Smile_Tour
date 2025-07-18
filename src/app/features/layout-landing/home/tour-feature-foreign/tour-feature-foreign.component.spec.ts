@@ -8,9 +8,8 @@ describe('TourFeatureForeignComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TourFeatureForeignComponent]
-    })
-    .compileComponents();
+      imports: [TourFeatureForeignComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TourFeatureForeignComponent);
     component = fixture.componentInstance;

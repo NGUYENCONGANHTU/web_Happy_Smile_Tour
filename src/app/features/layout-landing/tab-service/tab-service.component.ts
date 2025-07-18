@@ -67,8 +67,8 @@ export class TabServiceComponent implements OnInit {
 
   dataVisaProcess: VisaProcessResDTO[] = [];
   getAllDataVisaProcess() {
-    this.appService.getAllDataVisaProcess().subscribe(data => {
-      this.dataVisaProcess = data;
+    this.appService.getAllDataVisaProcess().subscribe(res => {
+      this.dataVisaProcess = res?.data ?? [];
     });
   }
 

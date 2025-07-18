@@ -1,7 +1,7 @@
-.feature-action{
+.feature-action {
   margin: 50px 0 50px 0;
-  .slide-cards{
-    .slide-cards-title{
+  .slide-cards {
+    .slide-cards-title {
       font-size: 24px;
       color: #ed1d26;
       font-weight: bold;
@@ -9,61 +9,61 @@
     }
   }
 }
-.foreign-tour{
-  .foreign-tour-slides{
-    display: flex;
-    align-items: center;
-    gap: 50px;
+.foreign-tour {
+  .foreign-tour-slides {
+    //display: flex;
+    //align-items: center;
+    //gap: 50px;
     margin-bottom: 20px;
-    .foreign-tour-title{
+    .foreign-tour-title {
       font-size: 24px;
       color: #ed1d26;
       font-weight: bold;
     }
-    .tabs-foreign-tour{
+    .tabs-foreign-tour {
     }
   }
 }
 
-.domestic-tour{
+.domestic-tour {
   padding: 20px 0;
-  .domestic-tour-slides{
-    display: flex;
-    align-items: center;
-    gap: 50px;
+  .domestic-tour-slides {
+    //display: flex;
+    //align-items: center;
+    //gap: 50px;
     margin: 30px 0;
-    .domestic-tour-title{
+    .domestic-tour-title {
       font-size: 24px;
       color: #ed1d26;
       font-weight: bold;
     }
-    .tabs-domestic-tour{
+    .tabs-domestic-tour {
       display: flex;
       gap: 14px;
     }
   }
 }
 
-.travel-handbook{
+.travel-handbook {
   padding: 20px 0;
-  .travel-handbook-title{
+  .travel-handbook-title {
     font-size: 24px;
     color: #ed1d26;
     font-weight: bold;
     margin-bottom: 25px;
   }
 }
-.customer-feedback{
-  .customer-feedback-title{
+.customer-feedback {
+  .customer-feedback-title {
     font-size: 24px;
     color: #ed1d26;
     font-weight: bold;
     margin: 30px 0;
   }
 }
-.feature-customer{
+.feature-customer {
   margin: 40px 0;
-  .feature-customer-title{
+  .feature-customer-title {
     font-size: 24px;
     color: #ed1d26;
     font-weight: bold;

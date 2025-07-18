@@ -6,8 +6,8 @@
     <nz-breadcrumb-item class="font-bold"> Tour nước ngoài </nz-breadcrumb-item>
   </nz-breadcrumb>
   <!--=============================================================-->
-  <div class="tab-tour-feature-foreign-main">
-    <div class="sidebar-feature-foreign p-6!">
+  <div class="tab-tour-feature-foreign-main flex flex-col lg:flex-row gap-6">
+    <div class="sidebar-feature-foreign p-6! w-full sm:w-1/3 lg:w-1/4">
       <app-sidebar-feature-foreign
         (filtersChanged)="
           onFiltersChanged($event)

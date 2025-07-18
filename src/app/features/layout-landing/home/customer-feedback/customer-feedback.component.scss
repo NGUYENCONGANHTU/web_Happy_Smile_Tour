@@ -1,4 +1,4 @@
-swiper-container{
+swiper-container {
   position: relative;
 
   swiper-slide {
@@ -7,40 +7,40 @@ swiper-container{
     border: 2px solid #eeebeb; // Thêm dòng này
     background-color: #fff;
     border-radius: 8px; // tùy chọn làm đẹp
-  .customer-feedback-card-item{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding:0 15px;
-    .customer-feedback-card-item-info{
-      display: grid;
-      grid-template-columns: 1fr 3fr;
+    .customer-feedback-card-item {
+      display: flex;
+      flex-direction: column;
       gap: 15px;
-      .customer-feedback-card-item-info-image{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        img{
-          width: 100%;
+      padding: 0 15px;
+      .customer-feedback-card-item-info {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 15px;
+        .customer-feedback-card-item-info-image {
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
-          height: 100%;
-          object-fit: cover;
-          background-size: cover;
-          background-position: center;
+          img {
+            width: 100%;
+            border-radius: 50%;
+            height: 100%;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+          }
         }
-      }
 
-      .customer-feedback-card-item-info-title{
-        .customer-feedback-card-item-info-title-name{
-          font-weight: bold;
-          color:#04509b;
-          font-size: 16px;
-        }
-        .customer-feedback-card-item-info-title-role{
-          color: #a2a1a1;
+        .customer-feedback-card-item-info-title {
+          .customer-feedback-card-item-info-title-name {
+            font-weight: bold;
+            color: #04509b;
+            font-size: 16px;
+          }
+          .customer-feedback-card-item-info-title-role {
+            color: #a2a1a1;
           }
         }
       }
-  }
+    }
   }
 }

@@ -3,31 +3,38 @@
     <nz-breadcrumb-item>
       <a routerLink="/">Trang chủ</a>
     </nz-breadcrumb-item>
-    <nz-breadcrumb-item class="font-bold">
-      Tour đoàn riêng
-    </nz-breadcrumb-item>
+    <nz-breadcrumb-item class="font-bold"> Tour đoàn riêng </nz-breadcrumb-item>
   </nz-breadcrumb>
-<!--  =====================================================-->
+  <!--  =====================================================-->
   <div class="section-private-group-tour">
-    @for ( data of dataPrivateTour; track data.id) {
-
-    <div class="private-group-tour-title">
-      {{data.title}}
-    </div>
-    <div class="private-group-tour-content">
-      {{data.description}}
-    </div>
+    @for (data of dataPrivateTour; track data.id) {
+      <div class="private-group-tour-title">
+        {{ data.title }}
+      </div>
+      <div class="private-group-tour-content">
+        {{ data.description }}
+      </div>
     }
     <div class="private-group-tour-contact">
-      <div class="private-group-tour-contact-title">Hãy liên hệ với chúng tôi</div>
-      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="private-group-tour-contact-form">
+      <div class="private-group-tour-contact-title">
+        Hãy liên hệ với chúng tôi
+      </div>
+      <form
+        nz-form
+        [formGroup]="validateForm"
+        (ngSubmit)="submitForm()"
+        class="private-group-tour-contact-form md:grid md:grid-cols-2 md:!px-[10%] xl:!px-[20%] gap-2">
         <!--     Tên-->
         <nz-form-item>
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.name"
             [nzHasFeedback]="true"
             nzErrorTip="Tên của bạn là bắt buộc">
-              <input nz-input type="text" formControlName="name" placeholder="Tên của bạn" />
+            <input
+              nz-input
+              type="text"
+              formControlName="name"
+              placeholder="Tên của bạn" />
           </nz-form-control>
         </nz-form-item>
         <!--     Số điện thoại-->
@@ -36,51 +43,81 @@
             [nzValidateStatus]="validateForm.controls.phone"
             [nzHasFeedback]="true"
             nzErrorTip="Số điện thoại là bắt buộc">
-            <input nz-input formControlName="phone" placeholder="Số điện thoại" />
+            <input
+              nz-input
+              formControlName="phone"
+              placeholder="Số điện thoại" />
           </nz-form-control>
         </nz-form-item>
         <!--    Email-->
         <nz-form-item>
           <nz-form-control>
-            <input nz-input type="email" formControlName="email"  placeholder="Email" />
+            <input
+              nz-input
+              type="email"
+              formControlName="email"
+              placeholder="Email" />
           </nz-form-control>
         </nz-form-item>
 
         <!--      Công ty-->
         <nz-form-item>
           <nz-form-control>
-            <input nz-input type="text" formControlName="company" placeholder="Công ty" />
+            <input
+              nz-input
+              type="text"
+              formControlName="company"
+              placeholder="Công ty" />
           </nz-form-control>
         </nz-form-item>
 
         <!--      Số người-->
         <nz-form-item>
           <nz-form-control>
-            <input nz-input type="text" formControlName="number_of_people" placeholder="Số người" />
+            <input
+              nz-input
+              type="text"
+              formControlName="number_of_people"
+              placeholder="Số người" />
           </nz-form-control>
         </nz-form-item>
         <!--      Thời gian dự kiến-->
         <nz-form-item>
-          <nz-form-control >
-            <nz-date-picker formControlName="expected_date" nzPlaceHolder="Thời gian dự kiến" class="w-full"></nz-date-picker>
+          <nz-form-control>
+            <nz-date-picker
+              formControlName="expected_date"
+              nzPlaceHolder="Thời gian dự kiến"
+              class="w-full"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
         <!--      Ngân sách dự kiến-->
         <nz-form-item>
           <nz-form-control>
-            <input nz-input type="text" formControlName="budget" placeholder="Ngân sách dự kiến" />
+            <input
+              nz-input
+              type="text"
+              formControlName="budget"
+              placeholder="Ngân sách dự kiến" />
           </nz-form-control>
         </nz-form-item>
         <!--     Địa điểm mong muốn-->
         <nz-form-item>
           <nz-form-control>
-            <input nz-input type="text" formControlName="location" placeholder="Địa điểm mong muốn" />
+            <input
+              nz-input
+              type="text"
+              formControlName="location"
+              placeholder="Địa điểm mong muốn" />
           </nz-form-control>
         </nz-form-item>
         <!--     Ghi chú-->
         <nz-form-item class="full-width">
           <nz-form-control>
-            <textarea rows="6" formControlName="message" nz-input placeholder="Ghi chú"></textarea>
+            <textarea
+              rows="6"
+              formControlName="message"
+              nz-input
+              placeholder="Ghi chú"></textarea>
           </nz-form-control>
         </nz-form-item>
         <div class="text-right! col-span-2 space-x-4!">

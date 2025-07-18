@@ -8,9 +8,8 @@ describe('SidebarFeatureForeignComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarFeatureForeignComponent]
-    })
-    .compileComponents();
+      imports: [SidebarFeatureForeignComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SidebarFeatureForeignComponent);
     component = fixture.componentInstance;

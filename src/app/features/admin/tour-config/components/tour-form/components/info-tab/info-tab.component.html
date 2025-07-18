@@ -98,7 +98,7 @@
     <nz-form-label nzRequired>Nội dung nổi bật</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['highlight'] | appValidationMessage">
-      <textarea nz-input rows="2" formControlName="highlight"></textarea>
+      <textarea nz-input rows="5" formControlName="highlight"></textarea>
     </nz-form-control>
   </nz-form-item>
 
@@ -106,7 +106,7 @@
     <nz-form-label nzRequired>Chính sách</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['regulation'] | appValidationMessage">
-      <textarea nz-input rows="2" formControlName="regulation"></textarea>
+      <textarea nz-input rows="3" formControlName="regulation"></textarea>
     </nz-form-control>
   </nz-form-item>
 
@@ -114,15 +114,15 @@
     <nz-form-label nzRequired>Ghi chú thêm</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['note'] | appValidationMessage">
-      <textarea nz-input rows="2" formControlName="note"></textarea>
+      <textarea nz-input rows="3" formControlName="note"></textarea>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
     <nz-form-control
-      [nzErrorTip]="tourForm.controls['fileList'] | appValidationMessage">
-      @if (tourForm.controls['fileList'].enabled) {
+      [nzErrorTip]="tourForm.controls['images'] | appValidationMessage">
+      @if (tourForm.controls['images'].enabled) {
         <nz-upload
           nzListType="picture-card"
           [nzFileList]="fileList.value"
@@ -136,7 +136,7 @@
       } @else {
         <div class="flex gap-2">
           @for (image of fileList.value; track $index) {
-            <div class="w-[100px] h-[100px] border">
+            <div class="w-[100px] h-[100px]">
               <img
                 width="auto"
                 height="auto"

@@ -1,46 +1,46 @@
-::ng-deep .ant-slider-track{
+::ng-deep .ant-slider-track {
   height: 10px !important;
   background-color: #0b9444 !important;
 }
-::ng-deep .ant-slider-handle{
+::ng-deep .ant-slider-handle {
   border: 3px solid #0b9444 !important;
-  padding:7px;
-  &:hover{
+  padding: 7px;
+  &:hover {
     border: 3px solid #0b9444 !important;
     outline: #0b9444;
   }
 }
-::ng-deep .ant-slider-rail{
+::ng-deep .ant-slider-rail {
   height: 10px !important;
 }
-::ng-deep .ant-btn-primary{
+::ng-deep .ant-btn-primary {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px !important;
   padding: 20px 0 !important;
   background-color: #04509b !important;
-  border:none !important;
+  border: none !important;
 }
-::ng-deep .ant-collapse-content > .ant-collapse-content-box{
+::ng-deep .ant-collapse-content > .ant-collapse-content-box {
   font-size: 16px;
-  .ng-star-inserted{
+  .ng-star-inserted {
     margin-top: 8px;
   }
 }
 
-.router-tour{
-  .router-tour-title{
+.router-tour {
+  .router-tour-title {
     font-size: 18px;
     margin-bottom: 25px;
     font-weight: bold;
   }
-  .routes-tab-tours{
+  .routes-tab-tours {
     display: flex;
     justify-content: center;
-    align-items:  center;
+    align-items: center;
     gap: 20px;
-    .routes-tab-tours-item{
+    .routes-tab-tours-item {
       padding: 10px;
       font-weight: bold;
       cursor: pointer;

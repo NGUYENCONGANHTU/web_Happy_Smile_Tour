@@ -8,9 +8,8 @@ describe('TabTourForeignDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TabTourForeignDetailComponent]
-    })
-    .compileComponents();
+      imports: [TabTourForeignDetailComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TabTourForeignDetailComponent);
     component = fixture.componentInstance;

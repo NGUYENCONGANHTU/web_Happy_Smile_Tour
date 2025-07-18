@@ -27,7 +27,7 @@
     </div>
   }
 
-  <div class="!px-[10%]">
+  <div class="!px-5 md:!px-[10%]">
     <!--  ========== Hoạt động nổi bật ==========    -->
     <div class="feature-action">
       <div class="slide-cards">
@@ -38,10 +38,12 @@
 
     <!-- ========== Tour nước ngoài  ==========  -->
     <div class="foreign-tour">
-      <div class="foreign-tour-slides gap-10">
-        <div class="foreign-tour-title">{{ dataHomeTitle[1]?.title }}</div>
+      <div class="foreign-tour-slides flex flex-wrap">
+        <div class="foreign-tour-title !mr-10">
+          {{ dataHomeTitle[1]?.title }}
+        </div>
 
-        <div class="tabs-foreign-tour flex gap-4">
+        <div class="tabs-foreign-tour flex gap-4 flex-wrap">
           @for (item of tabsForeignTour; track item) {
             <app-tabs-foreign-tour
               [tab]="item.name"
@@ -66,11 +68,13 @@
 
     <!--  ========== Tour trong nước ==========  -->
     <div class="domestic-tour">
-      <div class="domestic-tour-slides">
+      <div class="domestic-tour-slides flex flex-wrap">
         @if (dataHomeTitle) {
-          <div class="domestic-tour-title">{{ dataHomeTitle[2]?.title }}</div>
+          <div class="domestic-tour-title !mr-10">
+            {{ dataHomeTitle[2]?.title }}
+          </div>
         }
-        <div class="tabs-domestic-tour flex gap-4">
+        <div class="tabs-domestic-tour flex gap-4 flex-wrap">
           @for (item of tabsDomesticTour; track item) {
             <app-tabs-domestic-tour
               [tab]="item.name"
