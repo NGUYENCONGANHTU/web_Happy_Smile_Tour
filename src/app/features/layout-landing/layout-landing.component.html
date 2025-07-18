@@ -1,42 +1,61 @@
 <div class="min-h-screen flex flex-col">
-  <header>
-    <div class="container-header">
+  <header class="bg-white shadow-md">
+    <div class="container-header flex items-center justify-between p-4">
       <div class="logo">
         <a href="/">
           <img
             src="https://happysmilesvietnam.com/client_/images/logo.webp"
-            width="w-full"
-            alt="" />
+            class="w-full"
+            alt="Logo" />
         </a>
       </div>
-      <nav>
-        <ul class="menu-items">
+
+      <div class="md:hidden">
+        <button (click)="toggleMenu()" class="text-gray-800 focus:outline-none">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav
+        [ngClass]="{ block: isMenuOpen, hidden: !isMenuOpen }"
+        class="absolute top-16 left-0 w-full bg-white shadow-md md:shadow-none md:static md:w-auto md:flex">
+        <ul
+          class="menu-items flex flex-col md:flex-row md:items-center md:space-x-4 p-4 md:p-0">
           <li>
             <a
               [routerLink]="['/introduce']"
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-[14px]">
-              Giới thiệu
+              class="block py-2 text-[14px]">
+              {{ 'nav.introduce' | translate }}
             </a>
           </li>
-          <!--=========Tour trong nước=========-->
           <li>
             <a
               [routerLink]="['/tour-feature-domestic']"
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-[14px]">
+              class="block py-2 text-[14px]">
               Tour trong nước
             </a>
           </li>
-          <!--==========Tour nước ngoài=========-->
           <li>
             <a
               [routerLink]="['/tour-feature-foreign']"
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-[14px]">
+              class="block py-2 text-[14px]">
               Tour nước ngoài
             </a>
           </li>
@@ -45,7 +64,7 @@
               [routerLink]="['/private-group-tour']"
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-[14px]">
+              class="block py-2 text-[14px]">
               Tour đoàn riêng
             </a>
           </li>
@@ -53,7 +72,7 @@
             <a
               nz-dropdown
               nzTrigger="click"
-              class="text-[14px]"
+              class="block py-2 text-[14px]"
               [nzDropdownMenu]="menu"
               [ngClass]="{ '!text-[#ed1d26]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
@@ -83,12 +102,11 @@
               [routerLink]="['/contact-page']"
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-[14px]">
+              class="block py-2 text-[14px]">
               Liên hệ
             </a>
           </li>
-          <li></li>
-          <li>
+          <li class="mt-4 md:mt-0">
             <a
               nz-dropdown
               nzTrigger="click"
@@ -123,13 +141,12 @@
       </nav>
     </div>
   </header>
-
   <main class="flex-1">
     <router-outlet></router-outlet>
   </main>
 
   <footer>
-    <div class="footer">
+    <div class="footer !p-5 lg:flex lg:gap-20 justify-center">
       <div class="travel-footer">
         <div class="travel-footer-logo">
           <a href="">

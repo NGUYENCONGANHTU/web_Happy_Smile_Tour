@@ -1,57 +1,72 @@
 <section class="introduce">
   <!-- =======================introduce service======================= -->
-  @for ( data of dataBannerIntroduce; track data.id) {
-  <div class="banner-introduce-service" [ngStyle]="{'background-image': 'url(' + data.description + ')'}" style="width: auto; height: 480px; background-position: center; background-size: cover;">
-    <div class="flex flex-col justify-center items-center h-full text-white bg-black/10">
-<!--      <div class="text-content-title !mb-5 uppercase text-4xl xl:text-5xl font-bold">-->
-<!--        giới thiệu dịch vụ-->
-<!--      </div>-->
-<!--      <div class="text-content-description text-center text-2xl px-3!">-->
-<!--        Cầu nối đầu tiên tại Việt Nam liên kết Công ty Lữ Hành và Đơn vị-->
-<!--        tổ chức Landtour trên toàn thế giới.-->
-<!--      </div>-->
-      <div class="">{{data.title}}</div>
+  @for (data of dataBannerIntroduce; track data.id) {
+    <div
+      class="banner-introduce-service"
+      [ngStyle]="{ 'background-image': 'url(' + data.description + ')' }"
+      style="
+        width: auto;
+        height: 480px;
+        background-position: center;
+        background-size: cover;
+      ">
+      <div
+        class="flex flex-col justify-center items-center h-full text-white bg-black/10">
+        <!--      <div class="text-content-title !mb-5 uppercase text-4xl xl:text-5xl font-bold">-->
+        <!--        giới thiệu dịch vụ-->
+        <!--      </div>-->
+        <!--      <div class="text-content-description text-center text-2xl px-3!">-->
+        <!--        Cầu nối đầu tiên tại Việt Nam liên kết Công ty Lữ Hành và Đơn vị-->
+        <!--        tổ chức Landtour trên toàn thế giới.-->
+        <!--      </div>-->
+        <div class="">{{ data.title }}</div>
+      </div>
     </div>
-  </div>
   }
   <div class="main-content">
-  <div class="why-choose-us">
-    <div class="why-choose-us-title">{{dataTitleIntroducePage[0]?.title}}</div>
-    <div class="why-choose-us-items grid grid-cols-4 gap-5">
-      @for ( data of dataServiceIntroduce; track data.id) {
-      <div class="item">
-        <div class="icon">
-          <img [src]="data.title" width="80px" alt="">
-        </div>
-        <div class="content">
-         {{data.description}}
-        </div>
+    <div class="why-choose-us">
+      <div class="why-choose-us-title">
+        {{ dataTitleIntroducePage[0]?.title }}
       </div>
-      }
+      <div
+        class="why-choose-us-items grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        @for (data of dataServiceIntroduce; track data.id) {
+          <div class="item">
+            <div class="icon">
+              <img [src]="data.title" width="80px" alt="" />
+            </div>
+            <div class="content">
+              {{ data.description }}
+            </div>
+          </div>
+        }
+      </div>
     </div>
-  </div>
-  <!--  ======================= service-text-intro ======================= -->
-  <div class="service-introduce ">
-    @for ( data of dataContentIntroducePage; track data.id) {
-      <div class="quote-heading !text-center relative text-[#4d4c4c] inline-block text-[33px] font-bold leading-tight">
-        {{data.title}}
-      </div>
-      <div class="service-introduce-cotent">
-        {{data.description}}
-      </div>
-    }
-    </div>
-  <!--  ======================= partners ======================= -->
-  <div class="partners">
-    <div class="partners-title">{{dataTitleIntroducePage[1]?.title}}</div>
-    <div class="partners-cards !mt-10">
-      @for ( data of dataStatisticalIntroducePage; track data.id) {
-        <div class="item">
-          <div class="">{{data.title}}</div>
+    <!--  ======================= service-text-intro ======================= -->
+    <div class="service-introduce">
+      @for (data of dataContentIntroducePage; track data.id) {
+        <div
+          class="quote-heading !text-center relative text-[#4d4c4c] inline-block text-[33px] font-bold leading-tight">
+          {{ data.title }}
+        </div>
+        <div class="service-introduce-cotent">
+          {{ data.description }}
         </div>
       }
     </div>
-  </div>
+    <!--  ======================= partners ======================= -->
+    <div class="partners">
+      <div class="partners-title">{{ dataTitleIntroducePage[1]?.title }}</div>
+      <div
+        class="partners-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 !mt-10">
+        @for (data of dataStatisticalIntroducePage; track data.id) {
+          <div class="item">
+            <div class="text-xl font-semibold text-blue-700">
+              {{ data.title }}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
   </div>
 </section>
-

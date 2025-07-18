@@ -45,6 +45,7 @@ export class LayoutLandingComponent implements OnInit {
   ];
 
   isServiceActive = false;
+  isMenuOpen = false;
 
   selectedServiceId: number | null = null;
   selectService(id: number) {
@@ -67,5 +68,8 @@ export class LayoutLandingComponent implements OnInit {
     this.appService.getAllDataMenuService().subscribe(res => {
       this.dataVisaMenu = res.data;
     });
+  }
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

@@ -28,6 +28,7 @@ import {
   VisaServiceReqDTO,
   VisaServiceResDTO,
 } from './interface';
+import { ResponseBaseList } from './app/core/interfaces/base.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -394,7 +395,7 @@ export class AppService {
     return this.http.post<VisaProcessResDTO>(this.apiUrl8, data);
   }
   getAllDataVisaProcess() {
-    return this.http.get<VisaProcessResDTO[]>(this.apiUrl8);
+    return this.http.get<ResponseBaseList<VisaProcessResDTO>>(this.apiUrl8);
   }
   getDataByIdVisaProcess(id: number) {
     return this.http.get<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
