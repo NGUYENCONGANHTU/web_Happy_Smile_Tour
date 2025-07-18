@@ -34,8 +34,8 @@ export class ContentFeatureForeignComponent implements OnChanges {
         this.tours = data;
       });
     } else {
-      this.appService.getDataTourForeign().subscribe(data => {
-        this.tours = data;
+      this.appService.getDataTourForeign().subscribe(res => {
+        this.tours = res.data;
       });
     }
   }

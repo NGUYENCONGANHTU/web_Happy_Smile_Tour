@@ -33,8 +33,8 @@ export class ContentFeatureDomesticComponent implements OnChanges {
         this.tours = data;
       });
     } else {
-      this.appService.getDataTourDomestic().subscribe(data => {
-        this.tours = data;
+      this.appService.getDataTourDomestic().subscribe(res => {
+        this.tours = res.data;
       });
     }
   }
