@@ -1,0 +1,46 @@
+<div class="">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-card nzTitle="Đánh giá của bạn">
+      <!--   Đánh giá star   -->
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="'Vui lòng chọn đánh giá'">
+          <nz-rate formControlName="star"></nz-rate>
+
+          @if (validateForm.value.star) {
+            <span class="text-[20px] ml-2!">/</span>
+            <span class="ant-rate-text !text-[20px] font-bold">
+              {{ tooltips[validateForm.value.star - 1] }}
+            </span>
+            <fa-icon
+              [icon]="faStar"
+              class="text-[#fadb14]! !text-[20px]"></fa-icon>
+          }
+        </nz-form-control>
+      </nz-form-item>
+      <!--   Nhập tên khách hàng   -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Tên là bắt buộc">
+          <input
+            nz-input
+            formControlName="name"
+            placeholder="Nhập tên của bạn"
+            class="py-2! rounded-lg!" />
+        </nz-form-control>
+      </nz-form-item>
+      <!--   Đánh giá star   -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Tên là bắt buộc">
+          <textarea
+            nz-input
+            [nzAutosize]="{ minRows: 5, maxRows: 8 }"
+            formControlName="content"
+            placeholder="Nhập đánh giá của bạn"
+            class="py-2! rounded-lg!">
+          </textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-divider></nz-divider>
+      <button nz-button nzType="primary">Gửi đánh giá</button>
+    </nz-card>
+  </form>
+</div>
