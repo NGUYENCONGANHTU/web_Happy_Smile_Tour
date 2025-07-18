@@ -2,10 +2,11 @@ import { Component, inject, Input } from '@angular/core';
 import { TravelGuideResDTO } from '../../../../../interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-travel-handbook',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './travel-handbook.component.html',
   standalone: true,
   styleUrl: './travel-handbook.component.scss',

@@ -9,7 +9,7 @@
           alt=""
           class="w-full h-full object-cover bg-center bg-cover" />
         <div class="feature-news-title">{{ featureNews.title }}</div>
-        <div class="">06/19/2025 - 14:38</div>
+        <div class="">{{ featureNews.modifiedDate | date }}</div>
       </div>
     }
     <div class="normal-news">
@@ -29,7 +29,9 @@
                 {{ data.title }}
               </a>
             </div>
-            <div class="news-right-cards-item-date">06/19/2025 - 14:38</div>
+            <div class="news-right-cards-item-date">
+              {{ data.modifiedDate | date }}
+            </div>
           </div>
         }
       </div>
@@ -48,7 +50,7 @@
           <div class="news-right-cards-item-info">
             <div class="news-right-cards-item-info-title">{{ data.title }}</div>
             <div class="news-right-cards-item-info-date">
-              06/19/2025 - 14:38
+              {{ data.modifiedDate | date }}
             </div>
           </div>
         </div>
