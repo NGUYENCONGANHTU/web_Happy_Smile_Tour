@@ -1,0 +1,85 @@
+<div class="">
+  <!--  ========================BẢNG GIÁ TOUR============================  -->
+  @if (dataTourPrice) {
+    <div class="">
+      <div class="font-bold mb-8!">BẢNG GIẢM GIÁ</div>
+      <nz-table
+        #basicTable
+        [nzData]="[dataTourPrice]"
+        [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th>Nhóm tuổi</th>
+            <th>Độ tuổi</th>
+            <th>Giá gốc</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (data of dataTourPrice; track $index) {
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.age }}</td>
+              <td>{{ data.price | number }} VNĐ</td>
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  }
+  <!--  ======================== BẢNG GIẢM GIÁ ============================  -->
+  @if (dataTourDiscount) {
+    <div class="">
+      <div class="font-bold mb-8!">BẢNG GIẢM GIÁ</div>
+      <nz-table
+        #basicTable
+        [nzData]="[dataTourDiscount]"
+        [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th>Loại giảm giá</th>
+            <th>Mô tả</th>
+            <th>Giá trị giảm</th>
+            <th>Điều kiện</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (data of dataTourDiscount; track $index) {
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.description }}</td>
+              <td>{{ data.price | number }} VNĐ</td>
+              <td>{{ data.condition }}</td>
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  }
+  <!--  ======================== BẢNG PHỤ THU ============================  -->
+  @if (dataTourSurcharge) {
+    <div class="">
+      <div class="font-bold mb-8!">BẢNG PHỤ THU</div>
+      <nz-table
+        #basicTable
+        [nzData]="[dataTourSurcharge]"
+        [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th>Tên phụ thu</th>
+            <th>Số tiền</th>
+            <th>Áp dụng cho</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (data of dataTourSurcharge; track data) {
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.price | number }} VNĐ</td>
+              <td>{{ data.apply }}</td>
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  }
+</div>
