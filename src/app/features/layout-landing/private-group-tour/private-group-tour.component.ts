@@ -1,12 +1,15 @@
-import {Component, inject, OnInit} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
-import {RouterLink} from '@angular/router';
-import {AppService} from '../../../../app.service';
-import {ContactPrivateTourReqDTO, PrivateTourResDTO} from '../../../../interface';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { RouterLink } from '@angular/router';
+import { AppService } from '../../../../app.service';
+import {
+  ContactPrivateTourReqDTO,
+  PrivateTourResDTO,
+} from '../../../../interface';
 @Component({
   selector: 'app-private-group-tour',
   imports: [
@@ -18,27 +21,22 @@ import {ContactPrivateTourReqDTO, PrivateTourResDTO} from '../../../../interface
     ReactiveFormsModule,
   ],
   templateUrl: './private-group-tour.component.html',
-  styleUrl: './private-group-tour.component.scss'
+  styleUrl: './private-group-tour.component.scss',
 })
 export class PrivateGroupTourComponent implements OnInit {
-  appService = inject(AppService)
+  appService = inject(AppService);
 
   ngOnInit() {
     this.getAllDataPrivateTour();
   }
 
   //
-  dataPrivateTour:PrivateTourResDTO[]=[];
-  getAllDataPrivateTour(){
-    this.appService.getAllDataPrivateTour().subscribe(data => {
-      this.dataPrivateTour = data;
-    })
+  dataPrivateTour: PrivateTourResDTO[] = [];
+  getAllDataPrivateTour() {
+    this.appService.getAllDataPrivateTour().subscribe(res => {
+      this.dataPrivateTour = res.data;
+    });
   }
-
-
-
-
-
 
   private fb = inject(FormBuilder);
   validateForm = this.fb.group({
@@ -50,7 +48,7 @@ export class PrivateGroupTourComponent implements OnInit {
     expected_date: [null],
     budget: [''],
     location: [''],
-    message: ['']
+    message: [''],
   });
   submitForm() {
     if (this.validateForm.valid) {
@@ -66,19 +64,19 @@ export class PrivateGroupTourComponent implements OnInit {
         expected_date: rawForm.expected_date ?? '',
         budget: rawForm.budget ?? '',
         location: rawForm.location ?? '',
-        message: rawForm.message ?? ''
+        message: rawForm.message ?? '',
       };
 
       this.appService.createDataContactPrivateTour(payload).subscribe({
-        next: (response) => {
+        next: response => {
           console.log('Gửi thành công:', response);
           alert('Gửi thành công!');
           this.validateForm.reset();
         },
-        error: (err) => {
+        error: err => {
           console.error('Lỗi khi gửi form:', err);
           alert('Gửi thất bại. Vui lòng thử lại!');
-        }
+        },
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -90,10 +88,8 @@ export class PrivateGroupTourComponent implements OnInit {
     }
   }
 
-
   resetForm(e: MouseEvent): void {
     e.preventDefault();
     this.validateForm.reset();
   }
-
 }
