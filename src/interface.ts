@@ -94,11 +94,13 @@ export interface CommentResDTO {
 /* ==================== Địa điểm ==================== */
 export interface LocationReqDTO {
   name: string;
+  locationId: number;
   type: LocationType;
 }
 export interface LocationResDTO {
   id: number;
   name: string;
+  locationId: number;
   type: LocationType;
 }
 export enum LocationType {

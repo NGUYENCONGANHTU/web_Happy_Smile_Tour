@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit {
     this.appService.getAlLDataLocationInternational().subscribe(res => {
       this.tabsForeignTour = res.data;
       this.selectedTabForeignTour = res.data[0];
-      this.changeTabNameForeignTour(res.data[0].id);
+      this.changeTabNameForeignTour(res.data[0].locationId);
     });
   }
   // hàm thay đổi tab và cũng là để gửi về serve khi mình quốc gia nào
@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
     const selectedTab = this.tabsForeignTour.find(tab => tab.name === tabName);
     if (selectedTab) {
       this.selectedTabForeignTour = selectedTab;
-      this.changeTabNameForeignTour(selectedTab.id);
+      this.changeTabNameForeignTour(selectedTab.locationId);
     }
   }
   // thay đổi tab thì lấy dữ liệu của tab đó
@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
       if (res.data.length > 0) {
         this.tabsDomesticTour = res.data;
         this.selectedTabDomesticTour = res.data[0];
-        this.changeTabNameDomesticTour(res.data[0].id);
+        this.changeTabNameDomesticTour(res.data[0].locationId);
       }
     });
   }
@@ -167,7 +167,7 @@ export class HomeComponent implements OnInit {
       tab => tab.name === tabName
     )!;
 
-    this.changeTabNameDomesticTour(this.selectedTabDomesticTour.id);
+    this.changeTabNameDomesticTour(this.selectedTabDomesticTour.locationId);
   }
 
   changeTabNameDomesticTour(id: number) {
@@ -183,12 +183,10 @@ export class HomeComponent implements OnInit {
   featureRightNews: TravelGuideResDTO[] = [];
 
   getAllDataNews() {
-    this.appService.getAllDataTravelGuide().subscribe(data => {
-      if (data.length > 0) {
-        this.featureNews = data[0];
-        this.featureLeftNews = data.slice(1, 4);
-        this.featureRightNews = data.slice(4, 10);
-      }
+    this.appService.getAllDataTravelGuide().subscribe(res => {
+      this.featureNews = res.data[0];
+      this.featureLeftNews = res.data.slice(1, 4);
+      this.featureRightNews = res.data.slice(4, 10);
     });
   }
 

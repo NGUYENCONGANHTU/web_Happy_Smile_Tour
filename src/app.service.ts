@@ -49,7 +49,7 @@ export class AppService {
   apiUrl4 = environment.API_URL + '/tour-trans/filter?';
   apiUrl5 = environment.API_URL + '/tour-trans/filter?type=';
   apiUrl6 = environment.API_URL + '/tour-trans/filter?locationId=';
-  apiUrl7 = environment.API_URL + '/travel-guide';
+  apiUrl7 = environment.API_URL + '/travel-guide-trans';
   apiUrl8 = environment.API_URL + '/home-comment';
   apiUrl9 = environment.API_URL + '/intro-trans';
   apiUrl10 = environment.API_URL + '/intro-title-trans';
@@ -57,7 +57,7 @@ export class AppService {
   apiUrl12 = environment.API_URL + '/tour-contact';
   apiUrl13 = environment.API_URL + '/info-trans';
   apiUrlLanguage = environment.API_URL + '/language';
-  apiVisaService = environment.API_URL + '/visa-service';
+  apiVisaService = environment.API_URL + '/visa-service-trans';
   apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
 
   /*======================== HOME BANNER ==========================*/
@@ -201,7 +201,9 @@ export class AppService {
     return this.http.post<TravelGuideResDTO>(this.apiUrl7, data);
   }
   getAllDataTravelGuide() {
-    return this.http.get<TravelGuideResDTO[]>(this.apiUrl7);
+    return this.http.get<ResponseBaseList<TravelGuideResDTO>>(
+      `${this.apiUrl7}/all?langCode=${this.languageService.locale}`
+    );
   }
   getDataByIdTravelGuide(id: number) {
     return this.http.get<TravelGuideResDTO>(`${this.apiUrl7}/${id}`);
@@ -389,7 +391,9 @@ export class AppService {
     return this.http.post<VisaServiceResDTO>(this.apiVisaService, data);
   }
   getAllDataMenuService() {
-    return this.http.get<{ data: VisaServiceResDTO[] }>(this.apiVisaService);
+    return this.http.get<{ data: VisaServiceResDTO[] }>(
+      this.apiVisaService + `/all?langCode=${this.languageService.locale}`
+    );
   }
   getDataByIdMenuService(id: number) {
     return this.http.get<{ data: VisaServiceResDTO }>(
