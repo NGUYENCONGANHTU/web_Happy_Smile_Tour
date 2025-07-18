@@ -14,17 +14,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
-import { ScheduleService } from '../tab-tour-foreign-detail/schedule/schedule.service';
-import { TourPriceListService } from '../tab-tour-foreign-detail/price-list/tour-price-list.service';
-import { ScheduleResDTO } from '../tab-tour-foreign-detail/schedule/schedule-interface';
-import {
-  TourDiscountResDTO,
-  TourPriceResDTO,
-  TourSurchargeResDTO,
-} from '../tab-tour-foreign-detail/price-list/interface-tour-price';
 import { FormFeedbackDomesticComponent } from './form-feedback-domestic/form-feedback-domestic.component';
 import { SidebarTourDomesticComponent } from './sidebar-tour-domestic/sidebar-tour-domestic.component';
 import { PriceListDomesticComponent } from './price-list-domestic/price-list-domestic.component';

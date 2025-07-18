@@ -18,7 +18,7 @@
     <div class="tab-tour-foreign-detail-main-content">
       <div class="left-content">
         <app-slide-tour-domestic-detail
-          [listImageBanner]="dataFeaturePlace"></app-slide-tour-domestic-detail>
+          [listImageBanner]="tourDetail"></app-slide-tour-domestic-detail>
         <div class="tour-detail-title">{{ tourDetail.title }}</div>
         <div class="tour-detail-title-tabs">
           <div
@@ -30,34 +30,29 @@
           </div>
           <div class="tour-detail-title-tabs-content">
             <!-- ===================ĐIỂM NỔI BẬT========================= -->
-            @for (data of dataFeaturePlace; track data.id) {
-              @if (dataFeaturePlace.length > 0) {
-                <div #diemNoiBat id="diem-noi-bat" class="tab">
-                  <div class="tab-title">ĐIỂM NỔI BẬT</div>
-                  <app-feature-place-domestic [highlight]="data.highlight">
-                  </app-feature-place-domestic>
-                </div>
-              }
+            @if (tourDetail.highlight) {
+              <div #diemNoiBat id="diem-noi-bat" class="tab">
+                <div class="tab-title">ĐIỂM NỔI BẬT</div>
+                <app-feature-place-domestic [highlight]="tourDetail.highlight">
+                </app-feature-place-domestic>
+              </div>
             }
             <!-- ======================LỊCH TRÌNH====================== -->
-            @if (dataTourSchedule.length > 0) {
+            @if (tourDetail.tourSchedules) {
               <div #lichTrinh id="lich-trinh" class="tab">
                 <div class="tab-title">LỊCH TRÌNH</div>
                 <app-schedule-domestic
-                  [tourDays]="dataTourSchedule"></app-schedule-domestic>
+                  [tourDays]="tourDetail.tourSchedules"></app-schedule-domestic>
               </div>
             }
             <!-- ======================BẢNG GIÁ====================== -->
-            @if (dataTourPrice.length > 0) {
-              <div #bangGia id="bang-gia" class="tab">
-                <div class="tab-title">BẢNG GIÁ</div>
-                <app-price-list-domestic
-                  [dataTourPrice]="dataTourPrice"
-                  [dataTourDiscount]="dataTourDiscount"
-                  [dataTourSurcharge]="dataTourSurcharge">
-                </app-price-list-domestic>
-              </div>
-            }
+            <div #bangGia id="bang-gia" class="tab">
+              <app-price-list-domestic
+                [dataTourPrice]="tourDetail.tourPrices"
+                [dataTourDiscount]="tourDetail.tourDiscounts"
+                [dataTourSurcharge]="tourDetail.tourSurcharges">
+              </app-price-list-domestic>
+            </div>
 
             <!--============== DỊCH VỤ =================-->
             <div #dichVu id="dich-vu" class="tab space-y-8!">
@@ -117,7 +112,7 @@
         </div>
       </div>
       <div class="right-content shadow-sm rounded-xl">
-        <app-sidebar-tour-domestic [tourDetail]="dataFeaturePlace">
+        <app-sidebar-tour-domestic [tourDetail]="tourDetail">
         </app-sidebar-tour-domestic>
       </div>
     </div>
