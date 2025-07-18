@@ -30,13 +30,18 @@ import {
   VisaServiceReqDTO,
   VisaServiceResDTO,
 } from './interface';
-import { ResponseBaseList } from './app/core/interfaces/base.interface';
+import {
+  ResponseBaseList,
+  ResponseBasePage,
+} from './app/core/interfaces/base.interface';
+import { LanguageService } from './app/shared/services/language.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
   http = inject(HttpClient);
+  languageService = inject(LanguageService);
   // API
   apiUrl = environment.API_URL + '/banner-trans/type';
   apiUrl2 = environment.API_URL + '/home-title-trans';
@@ -62,23 +67,23 @@ export class AppService {
 
   getAlLDataBannerHome() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
-      this.apiUrl + '/HOME?langCode=vi'
+      this.apiUrl + `/HOME?langCode=${this.languageService.locale}`
     );
   }
   getAlLDataBannerIntro() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
-      this.apiUrl + '/INTRO?langCode=vi'
+      this.apiUrl + `/INTRO?langCode=${this.languageService.locale}`
     );
   }
 
   getAlLDataBannerContact() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
-      this.apiUrl + '/CONTACT?langCode=vi'
+      this.apiUrl + `/CONTACT?langCode=${this.languageService.locale}`
     );
   }
   getAlLDataBannerService() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
-      this.apiUrl + '/SERVICE?langCode=vi'
+      this.apiUrl + `/SERVICE?langCode=${this.languageService.locale}`
     );
   }
 
@@ -100,7 +105,7 @@ export class AppService {
 
   getAlLDataTitle() {
     return this.http.get<{ data: HomeTitleResDTO[] }>(
-      this.apiUrl2 + '/all?langCode=${language}'
+      this.apiUrl2 + `/all?langCode=${this.languageService.locale}`
     );
   }
   getAlLDataImage() {
@@ -126,12 +131,13 @@ export class AppService {
   }
   getAlLDataLocationDomestic() {
     return this.http.get<{ data: LocationResDTO[] }>(
-      this.apiUrl3 + '/type/DOMESTIC?langCode='
+      this.apiUrl3 + `/type/DOMESTIC?langCode=${this.languageService.locale}`
     );
   }
   getAlLDataLocationInternational() {
     return this.http.get<{ data: LocationResDTO[] }>(
-      this.apiUrl3 + '/type/INTERNATIONAL?langCode=vi'
+      this.apiUrl3 +
+        `/type/INTERNATIONAL?langCode=${this.languageService.locale}`
     );
   }
 
@@ -179,13 +185,13 @@ export class AppService {
   /*============================== TAB FOREIGN ================================*/
 
   changeTabForeign(id: number) {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
-      `${this.apiUrl6}${id}&langCode=`
+    return this.http.get<ResponseBasePage<FeatureResDTO>>(
+      `${this.apiUrl6}${id}&langCode=${this.languageService.locale}`
     );
   }
   changeTabDomestic(id: number) {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
-      `${this.apiUrl6}${id}&langCode=`
+    return this.http.get<ResponseBasePage<FeatureResDTO>>(
+      `${this.apiUrl6}${id}&langCode=${this.languageService.locale}`
     );
   }
 
@@ -271,7 +277,7 @@ export class AppService {
   }
   getAllDataPrivateTour() {
     return this.http.get<{ data: PrivateTourResDTO[] }>(
-      this.apiUrl11 + '/all?langCode=en'
+      this.apiUrl11 + `/all?langCode=${this.languageService.locale}`
     );
   }
   getAllDataVisaPrivateTour() {

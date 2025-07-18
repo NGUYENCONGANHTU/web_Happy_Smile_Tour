@@ -143,7 +143,7 @@ export class HomeComponent implements OnInit {
   // thay đổi tab thì lấy dữ liệu của tab đó
   changeTabNameForeignTour(id: number) {
     this.appService.changeTabForeign(id).subscribe(res => {
-      this.dataTourForeign = res.data.content;
+      this.dataTourForeign = res.data.content ?? [];
     });
   }
 
@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit {
 
   changeTabNameDomesticTour(id: number) {
     this.appService.changeTabDomestic(id).subscribe(res => {
-      this.dataTourDomestic = res.data.content;
+      this.dataTourDomestic = res.data.content ?? [];
       console.log(this.dataTourDomestic);
     });
   }

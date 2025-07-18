@@ -113,7 +113,10 @@
               [nzDropdownMenu]="language"
               class="flex items-center"
               [nzPlacement]="'bottomRight'">
-              <img src="https://flagcdn.com/w40/vn.png" width="20" alt="" />
+              <img
+                [src]="'https://flagcdn.com/w40/' + selectedLang.flag + '.png'"
+                width="20"
+                alt="" />
               <fa-icon
                 [icon]="faCaretDown"
                 class="close-menu-icon !ml-2"></fa-icon>
@@ -123,7 +126,7 @@
                 nz-menu
                 class="grid grid-cols-3 max-w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
                 @for (lang of languages; track lang) {
-                  <li nz-menu-item>
+                  <li nz-menu-item (click)="handleChangeLanguage(lang)">
                     <div
                       class="flex items-center justify-between w-full gap-2 text-[12px]">
                       <img
@@ -147,7 +150,7 @@
 
   <footer>
     <div class="footer !p-5 lg:flex lg:gap-20 justify-center">
-      <div class="travel-footer">
+      <div class="travel-footer lg:w-2/5">
         <div class="travel-footer-logo">
           <a href="">
             <img
@@ -167,7 +170,7 @@
             alt="" />
         </div>
       </div>
-      <div class="travel-footer-contact">
+      <div class="travel-footer-contact lg:w-2/5">
         <div class="travel-footer-contact-title">
           <h1>Liên Hệ Happy Smile Viet Nam</h1>
         </div>
