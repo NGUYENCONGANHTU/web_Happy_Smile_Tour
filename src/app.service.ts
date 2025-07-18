@@ -30,7 +30,10 @@ import {
   VisaServiceReqDTO,
   VisaServiceResDTO,
 } from './interface';
-import { ResponseBaseList } from './app/core/interfaces/base.interface';
+import {
+  ResponseBaseList,
+  ResponseBasePage,
+} from './app/core/interfaces/base.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -179,12 +182,12 @@ export class AppService {
   /*============================== TAB FOREIGN ================================*/
 
   changeTabForeign(id: number) {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+    return this.http.get<ResponseBasePage<FeatureResDTO>>(
       `${this.apiUrl6}${id}&langCode=`
     );
   }
   changeTabDomestic(id: number) {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+    return this.http.get<ResponseBasePage<FeatureResDTO>>(
       `${this.apiUrl6}${id}&langCode=`
     );
   }
