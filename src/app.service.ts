@@ -15,6 +15,8 @@ import {
   IntroducePageReqDTO,
   IntroducePageResDTO,
   IntroduceTitleResDTO,
+  LanguageReqDTO,
+  LanguageResDTO,
   LocationReqDTO,
   LocationResDTO,
   PrivateTourReqDTO,
@@ -36,11 +38,11 @@ export class AppService {
   http = inject(HttpClient);
   // API
   apiUrl = environment.API_URL + '/banner-trans/type';
-  apiUrl2 = environment.API_URL + '/home-title-trans/all?langCode=vi';
+  apiUrl2 = environment.API_URL + '/home-title-trans';
   apiUrl3 = environment.API_URL + '/location-trans';
   apiUrl4 = environment.API_URL + '/tour-trans/filter?';
   apiUrl5 = environment.API_URL + '/tour-trans/filter?type=';
-  apiUrl6 = environment.API_URL + '/tour-trans/filter?name=';
+  apiUrl6 = environment.API_URL + '/tour-trans/filter?locationId=';
   apiUrl7 = environment.API_URL + '/travel-guide';
   apiUrl8 = environment.API_URL + '/home-comment';
   apiUrl9 = environment.API_URL + '/intro-trans';
@@ -48,8 +50,9 @@ export class AppService {
   apiUrl11 = environment.API_URL + '/group-tour-trans';
   apiUrl12 = environment.API_URL + '/tour-contact';
   apiUrl13 = environment.API_URL + '/info-trans';
+  apiUrlLanguage = environment.API_URL + '/language';
   apiVisaService = environment.API_URL + '/visa-service';
-  apiUrlTourCommentDtail = environment.API_URL + '/tour-comment';
+  apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
 
   /*======================== HOME BANNER ==========================*/
   createData(data: HomeBannerReqDTO) {
@@ -58,7 +61,7 @@ export class AppService {
 
   getAlLDataBannerHome() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
-      this.apiUrl + '/BANNER?langCode=vi'
+      this.apiUrl + '/HOME?langCode=vi'
     );
   }
   getAlLDataBannerIntro() {
@@ -66,6 +69,7 @@ export class AppService {
       this.apiUrl + '/INTRO?langCode=vi'
     );
   }
+
   getAlLDataBannerContact() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
       this.apiUrl + '/CONTACT?langCode=vi'
@@ -94,7 +98,9 @@ export class AppService {
   }
 
   getAlLDataTitle() {
-    return this.http.get<{ data: HomeTitleResDTO[] }>(this.apiUrl2);
+    return this.http.get<{ data: HomeTitleResDTO[] }>(
+      this.apiUrl2 + '/all?langCode=${language}'
+    );
   }
   getAlLDataImage() {
     return this.http.get<{ data: HomeTitleResDTO[] }>(
@@ -170,11 +176,16 @@ export class AppService {
   }
 
   /*============================== TAB FOREIGN ================================*/
+
   changeTabForeign(id: number) {
-    return this.http.get<{ content: FeatureResDTO[] }>(`${this.apiUrl6}${id}`);
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      `${this.apiUrl6}${id}&langCode=`
+    );
   }
   changeTabDomestic(id: number) {
-    return this.http.get<{ content: FeatureResDTO[] }>(`${this.apiUrl6}${id}`);
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      `${this.apiUrl6}${id}&langCode=`
+    );
   }
 
   /*============================== CẨM NANG DU LỊCH ================================*/
@@ -339,30 +350,30 @@ export class AppService {
   /*============================== TOUR COMMENT DETAIL ================================*/
   createDataCommentFeedbackDetail(data: TourCommentDetailReqDTO) {
     return this.http.post<TourCommentDetailResDTO>(
-      this.apiUrlTourCommentDtail,
+      this.apiUrlTourCommentDetail,
       data
     );
   }
   getAllDataCommentFeedbackDetail() {
     return this.http.get<TourCommentDetailResDTO[]>(
-      this.apiUrlTourCommentDtail
+      this.apiUrlTourCommentDetail
     );
   }
   getDataByIdCommentFeedbackDetail(id: number) {
     return this.http.get<TourCommentDetailResDTO>(
-      `${this.apiUrlTourCommentDtail}/${id}`
+      `${this.apiUrlTourCommentDetail}/${id}`
     );
   }
 
   updateDataCommentFeedbackDetail(data: TourCommentDetailReqDTO, id: number) {
     return this.http.put<TourCommentDetailResDTO>(
-      `${this.apiUrlTourCommentDtail}/${id}`,
+      `${this.apiUrlTourCommentDetail}/${id}`,
       data
     );
   }
   deleteDataCommentFeedbackDetail(id: number) {
     return this.http.delete<TourCommentDetailResDTO>(
-      `${this.apiUrlTourCommentDtail}/${id}`
+      `${this.apiUrlTourCommentDetail}/${id}`
     );
   }
 
@@ -405,5 +416,23 @@ export class AppService {
   }
   deleteDataVisaProcess(id: number) {
     return this.http.delete<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
+  }
+
+  /*============================== Visa Process ================================*/
+  createDataLanguage(data: LanguageReqDTO) {
+    return this.http.post<LanguageResDTO>(this.apiUrlLanguage, data);
+  }
+  getAllDataLanguage() {
+    return this.http.get<{ data: LanguageResDTO[] }>(this.apiUrlLanguage);
+  }
+  getDataByIdLanguage(id: number) {
+    return this.http.get<LanguageResDTO>(`${this.apiUrlLanguage}/${id}`);
+  }
+
+  updateDataLanguage(data: LanguageReqDTO, id: number) {
+    return this.http.put<LanguageResDTO>(`${this.apiUrlLanguage}/${id}`, data);
+  }
+  deleteDataLanguage(id: number) {
+    return this.http.delete<LanguageResDTO>(`${this.apiUrlLanguage}/${id}`);
   }
 }
