@@ -22,6 +22,7 @@ import { PriceListDomesticComponent } from './price-list-domestic/price-list-dom
 import { ScheduleDomesticComponent } from './schedule-domestic/schedule-domestic.component';
 import { FeaturePlaceDomesticComponent } from './feature-place-domestic/feature-place-domestic.component';
 import { SlideTourDomesticDetailComponent } from './slide-tour-domestic-detail/slide-tour-domestic-detail.component';
+import { TourPriceListService } from '../tab-tour-foreign-detail/price-list/tour-price-list.service';
 
 @Component({
   selector: 'app-tab-tour-domestic-detail',
@@ -79,10 +80,6 @@ export class TabTourDomesticDetailComponent implements OnInit {
   route = inject(ActivatedRoute);
   ngOnInit() {
     this.getIdParam();
-    this.getAllDataDiscount();
-    this.getAllDataPrice();
-    this.getAllDataSurcharge();
-    this.getAllDataSchedule();
     this.getAllDataFeature();
   }
 
@@ -91,7 +88,7 @@ export class TabTourDomesticDetailComponent implements OnInit {
   dataFeaturePlace: FeatureResDTO[] = [];
   getAllDataFeature() {
     this.appService.getAllDataTourFeature4().subscribe(data => {
-      this.dataFeaturePlace = data;
+      this.dataFeaturePlace = data.data.content;
     });
   }
   tourId = 0;
@@ -108,38 +105,6 @@ export class TabTourDomesticDetailComponent implements OnInit {
         this.tourId = Number(idParam);
         this.getDataByIdTourDetail();
       }
-    });
-  }
-
-  /* ================================= LỊCH TRÌNH ======================================== */
-  tourSchedule = inject(ScheduleService);
-  dataTourSchedule: ScheduleResDTO[] = [];
-  getAllDataSchedule() {
-    this.tourSchedule.getAlLDataTourSchedule().subscribe(data => {
-      this.dataTourSchedule = data;
-    });
-  }
-
-  /* ================================= BẢNG GIÁ ======================================== */
-  //
-  dataTourDiscount: TourDiscountResDTO[] = [];
-  getAllDataDiscount() {
-    this.tourServiceList.getAlLDataTourDiscount().subscribe(data => {
-      this.dataTourDiscount = data;
-    });
-  }
-  // Bảng giá
-  dataTourPrice: TourPriceResDTO[] = [];
-  getAllDataPrice() {
-    this.tourServiceList.getAlLDataTourPrice().subscribe(data => {
-      this.dataTourPrice = data;
-    });
-  }
-  // Phụ giá
-  dataTourSurcharge: TourSurchargeResDTO[] = [];
-  getAllDataSurcharge() {
-    this.tourServiceList.getAlLDataTourSurcharge().subscribe(data => {
-      this.dataTourSurcharge = data;
     });
   }
 }
