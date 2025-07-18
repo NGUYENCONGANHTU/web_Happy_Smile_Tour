@@ -11,8 +11,7 @@
   @for (data of dataFeatureTour; track $index) {
     <swiper-slide
       class="slide"
-      [routerLink]="['/tab-tour-foreign-detail', data.id]"
-      >>
+      [routerLink]="['/tab-tour-foreign-detail', data.id]">
       <div class="tour-card">
         <div class="ribbon">Giá tốt nhất {{ $index + 1 }}</div>
         <img
