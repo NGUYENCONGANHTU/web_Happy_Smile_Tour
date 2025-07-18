@@ -1,5 +1,46 @@
 {
   "nav": {
-    "introduce": "Introduce"
+    "Giới thiệu": "About Us",
+    "Tour trong nước": "Domestic Tours",
+    "Tour nước ngoài": "International Tours",
+    "Tour đoàn riêng": "Private Tours",
+    "Dịch vụ": "Services",
+    "Liên hệ": "Contact"
+  },
+  "home-page": {
+    "Giá tốt nhất": "Best Price",
+    "Đánh giá": "Reviews",
+    "Khách hàng": "Customers",
+    "Hành trình": "Itinerary",
+    "Từ": "From",
+    "Giá từ": "Price From",
+    "Chưa có dữ liệu tour": "No tour data available"
+  },
+  "tour": {
+    "Tìm chuyến đi phù hợp với bạn tại đây!": "Find the perfect trip for you here!",
+    "Trong nước": "Domestic",
+    "Trang chủ": "Home",
+    "Nước ngoài": "International",
+    "Tour nước ngoài": "International Tours",
+    "Tour trong nước": "Domestic Tours",
+    "Ngân sách bạn có": "Your Budget",
+    "Chọn địa điểm": "Choose Destination",
+    "Điểm đi": "Departure",
+    "Điểm đến": "Destination",
+    "Tìm Tour": "Find Tour"
+  },
+  "private-tour": {
+    "Hãy liên hệ với chúng tôi": "Please contact us",
+    "Tên của bạn": "Your Name",
+    "Số điện thoại": "Phone Number",
+    "Email": "Email",
+    "Công ty": "Company",
+    "Ngân sách dự kiến": "Expected Budget",
+    "Địa điểm mong muốn": "Desired Destination",
+    "Ghi chú": "Notes",
+    "Gửi": "Send",
+    "Hủy bỏ": "Cancel",
+    "Trang chủ": "Home",
+    "Tour đoàn riêng": "Private Tours"
   }
 }

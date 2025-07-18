@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "Giới thiệu": "Giới thiệu",
+    "Tour trong nước": "Tour trong nước",
+    "Tour nước ngoài": "Tour nước ngoài",
+    "Tour đoàn riêng": "Tour đoàn riêng",
+    "Dịch vụ": "Dịch vụ",
+    "Liên hệ": "Liên hệ"
+  },
+  "home-page": {
+    "Giá tốt nhất" : "Giá tốt nhất",
+    "Đánh giá" : "Đánh giá",
+    "Khách hàng" : "Khách hàng",
+    "Hành trình" : "Hành trình",
+    "Từ" : "Từ",
+    "Giá từ" : "Giá từ",
+    "Chưa có dữ liệu tour" : "Chưa có dữ liệu tour"
+  },
+  "tour": {
+    "Tìm chuyến đi phù hợp với bạn tại đây!": "Tìm chuyến đi phù hợp với bạn tại đây!",
+    "Trong nước" : "Trong nước",
+    "Trang chủ" : "Trang chủ",
+    "Nước ngoài" : "Nước Ngoài",
+    "Tour nước ngoài" : "Tour nước ngoài",
+    "Tour trong nước" : "Tour trong nước",
+    "Ngân sách bạn có" : "Ngân sách bạn có",
+    "Chọn địa điểm" : "Chọn địa điểm",
+    "Điểm đi" : "Điểm đi",
+    "Điểm đến" : "Điểm đến",
+    "Tìm Tour" : "Tìm Tour"
+  },
+  "private-tour": {
+    "Hãy liên hệ với chúng tôi" : "Hãy liên hệ với chúng tôi",
+    "Tên của bạn" : "Tên của bạn",
+    "Số điện thoại" : "Số điện thoại",
+    "Email" : "Email",
+    "Công ty" : "Công ty",
+    "Ngân sách dự kiến" : "Ngân sách dự kiến",
+    "Địa điểm mong muốn" : "Địa điểm mong muốn",
+    "Ghi chú" : "Ghi chú",
+    "Gửi" : "Gửi",
+    "Hủy bỏ" : "Hủy bỏ",
+    "Trang chủ": "Trang chủ",
+    "Tour đoàn riêng": "Tour đoàn riêng",
+  }
+}
