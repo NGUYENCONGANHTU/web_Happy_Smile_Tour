@@ -1,15 +1,53 @@
 /* ====================  Biểu ngữ trang chủ ==================== */
+import { ScheduleResDTO } from './app/features/layout-landing/tab-tour-foreign-detail/schedule/schedule-interface';
+import {
+  TourDiscountResDTO,
+  TourPriceResDTO,
+  TourSurchargeResDTO,
+} from './app/features/layout-landing/tab-tour-foreign-detail/price-list/interface-tour-price';
+
 export interface HomeBannerReqDTO {
+  homeBannerId: number;
+  language: LanguageResDTO;
   title: string;
   description: string;
-  imageUrl: string[];
+  bannerType: BannerType;
+  documentDTOS: DocumentResDTO[];
 }
 export interface HomeBannerResDTO {
   id: number;
+  homeBannerId: number;
+  language: LanguageResDTO;
   title: string;
   description: string;
-  imageUrl: string[];
+  bannerType: BannerType;
+  documentDTOS: DocumentResDTO[];
 }
+export enum BannerType {
+  HOME = 'HOME',
+  INTRO = 'INTRO',
+  CONTACT = 'CONTACT',
+  SERVICE = 'SERVICE',
+}
+
+// ==================== UPLOAD ẢNH ======================
+export interface DocumentReqDTO {
+  id: number;
+  fileName: string;
+  fileType: string;
+  documentType: string;
+  fileSize: number;
+  storagePath: string;
+}
+export interface DocumentResDTO {
+  id: number;
+  fileName: string;
+  fileType: string;
+  documentType: string;
+  fileSize: number;
+  storagePath: string;
+}
+
 /* ====================  Các tiêu đề của Trang chủ ==================== */
 export interface HomeTitleReqDTO {
   title: string;
@@ -73,7 +111,6 @@ export interface FeatureReqDTO {
   title: string;
   star: number;
   numberComment: number;
-  destination: string[];
   originalPrice: number;
   discount: number;
   finalPrice: number;
@@ -86,13 +123,17 @@ export interface FeatureReqDTO {
   regulation: string;
   note: string;
   imageUrl: string[];
+  tourSchedules: ScheduleResDTO[];
+  tourPrices: TourPriceResDTO[];
+  tourSurcharges: TourSurchargeResDTO[];
+  tourDiscounts: TourDiscountResDTO[];
+  tourComments: TourCommentDetailResDTO[];
 }
 export interface FeatureResDTO {
   id: number;
   title: string;
   star: number;
   numberComment: number;
-  destination: string[];
   originalPrice: number;
   discount: number;
   finalPrice: number;
@@ -105,6 +146,11 @@ export interface FeatureResDTO {
   regulation: string;
   note: string;
   imageUrl: string[];
+  tourSchedules: ScheduleResDTO[];
+  tourPrices: TourPriceResDTO[];
+  tourSurcharges: TourSurchargeResDTO[];
+  tourDiscounts: TourDiscountResDTO[];
+  tourComments: TourCommentDetailResDTO[];
 }
 /* ==================== Tour nước ngoài ==================== */
 /* ==================== CẨM NANG TIN TỨC ==================== */
@@ -266,4 +312,43 @@ export interface TourScheduleResDTO {
   title: string;
   description: string;
   tourId: number;
+}
+/* ==================== Menu Dịch Vụ  ==================== */
+export interface VisaServiceReqDTO {
+  visaServiceId: number;
+  language: LanguageResDTO;
+  name: string;
+  bannerTitle: string;
+  image: string;
+  phone: string;
+  serviceTitle: string;
+  serviceContent: string;
+  workflow: string;
+}
+
+export interface VisaServiceResDTO {
+  id: number;
+  visaServiceId: number;
+  language: LanguageResDTO;
+  name: string;
+  bannerTitle: string;
+  image: string;
+  phone: string;
+  serviceTitle: string;
+  serviceContent: string;
+  workflow: string;
+}
+
+/* ==================== Menu Dịch Vụ ( nội dung quy trình )  ==================== */
+export interface VisaProcessReqDTO {
+  visaServiceId: number;
+  title: string;
+  description: string;
+}
+
+export interface VisaProcessResDTO {
+  id: number;
+  visaServiceId: number;
+  title: string;
+  description: string;
 }
