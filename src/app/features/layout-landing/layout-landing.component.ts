@@ -16,6 +16,13 @@ import { VisaServiceResDTO } from '../../../interface';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../shared/services/language.service';
+
+interface ILang {
+  code: string;
+  name: string;
+  flag: string;
+}
 
 @Component({
   selector: 'app-layout-landing',
@@ -36,13 +43,15 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 })
 export class LayoutLandingComponent implements OnInit {
   translate = inject(TranslateService);
+  languageService = inject(LanguageService);
 
   faCaretDown = faCaretDown;
-  languages = [
+  languages: ILang[] = [
     { code: 'vi', name: 'Tiếng Việt', flag: 'vn' },
     { code: 'en', name: 'English', flag: 'gb' },
     { code: 'cn', name: '中文', flag: 'cn' },
   ];
+  selectedLang!: ILang;
 
   isServiceActive = false;
   isMenuOpen = false;
@@ -54,7 +63,10 @@ export class LayoutLandingComponent implements OnInit {
 
   router = inject(Router);
   ngOnInit() {
-    this.translate.use('en');
+    this.selectedLang = this.languages.find(
+      lang => lang.code === (localStorage.getItem('lang') ?? 'vi')
+    ) as ILang;
+    this.translate.use(this.languageService.locale);
     this.getDataVisaMenu();
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -71,5 +83,11 @@ export class LayoutLandingComponent implements OnInit {
   }
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  handleChangeLanguage(lang: ILang) {
+    this.selectedLang = lang;
+    this.languageService.setLanguage(lang.code);
+    location.reload();
   }
 }
