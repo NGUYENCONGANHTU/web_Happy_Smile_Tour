@@ -7,13 +7,13 @@
   </nz-breadcrumb>
   <!--=============================================================-->
   <div class="tab-tour-feature-foreign-main flex flex-col lg:flex-row gap-6">
-    <div class="sidebar-feature-foreign p-6! w-full sm:w-1/3 lg:w-1/4">
+    <div class="sidebar-feature-foreign p-6! w-full lg:w-1/4">
       <app-sidebar-feature-foreign
         (filtersChanged)="
           onFiltersChanged($event)
         "></app-sidebar-feature-foreign>
     </div>
-    <div class="content-feature-foreign">
+    <div class="content-feature-foreign w-full lg:w-3/4">
       <app-content-feature-foreign
         [filterParams]="filters"></app-content-feature-foreign>
     </div>
