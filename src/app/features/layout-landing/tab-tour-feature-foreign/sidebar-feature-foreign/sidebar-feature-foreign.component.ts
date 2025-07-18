@@ -51,7 +51,6 @@ export class SidebarFeatureForeignComponent implements OnInit {
       departure: this.departure,
       destination: this.destination,
     };
-    console.log('Form data:', formData);
     this.filtersChanged.emit(formData);
   }
 
@@ -60,8 +59,8 @@ export class SidebarFeatureForeignComponent implements OnInit {
   }
   dataStartingPointDomestic: LocationResDTO[] = [];
   getDataStartingPoint() {
-    this.appService.getAlLDataLocationInternational().subscribe(data => {
-      this.dataStartingPointDomestic = data;
+    this.appService.getAlLDataLocationInternational().subscribe(res => {
+      this.dataStartingPointDomestic = res.data;
     });
   }
 
