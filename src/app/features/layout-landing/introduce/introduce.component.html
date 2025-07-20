@@ -1,10 +1,12 @@
 <section class="introduce">
-  <!-- =======================introduce service======================= -->
+  <!-- ======================= Banner giới thiệu ======================= -->
   @for (data of dataBannerIntroduce; track data.id) {
     @for (image of data.documentDTOS; track image.id) {
       <div
         class="banner-introduce-service"
-        [ngStyle]="{ 'background-image': 'url(' + image.storagePath + ')' }"
+        [ngStyle]="{
+          'background-image': 'url(' + formatImage(image.storagePath) + ')',
+        }"
         style="
           width: auto;
           height: 480px;
@@ -13,31 +15,36 @@
         ">
         <div
           class="flex flex-col justify-center items-center h-full text-white bg-black/10">
-          <div class="">{{ data.title }}</div>
+          <div class="text-[45px] font-bold">{{ data.title }}</div>
         </div>
       </div>
     }
   }
+  <!-- ======================= Nội dung dưới Banner ======================= -->
   <div class="main-content">
     <div class="why-choose-us">
       <div class="why-choose-us-title">
         {{ dataTitleIntroducePage[0]?.title }}
       </div>
+      <!-- ======================= Các dịch vụ  ======================= -->
       <div
         class="why-choose-us-items grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         @for (data of dataServiceIntroduce; track data.id) {
           <div class="item">
             <div class="icon">
-              <img [src]="data.title" width="80px" alt="" />
+              <img
+                [src]="formatImage(data.responseDocumentDTO.storagePath)"
+                width="80px"
+                alt="" />
             </div>
             <div class="content">
-              {{ data.description }}
+              {{ data.title }}
             </div>
           </div>
         }
       </div>
     </div>
-    <!--  ======================= service-text-intro ======================= -->
+    <!--  ======================= Văn bản giới thiệu ======================= -->
     <div class="service-introduce">
       @for (data of dataContentIntroducePage; track data.id) {
         <div
@@ -49,7 +56,7 @@
         </div>
       }
     </div>
-    <!--  ======================= partners ======================= -->
+    <!--  ======================= Số liệu thống kế ======================= -->
     <div class="partners">
       <div class="partners-title">{{ dataTitleIntroducePage[1]?.title }}</div>
       <div

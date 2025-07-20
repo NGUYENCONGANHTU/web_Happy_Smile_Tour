@@ -37,6 +37,10 @@ import {
   ResponseBasePage,
 } from './app/core/interfaces/base.interface';
 import { LanguageService } from './app/shared/services/language.service';
+import {
+  AdvertiseReqDTO,
+  AdvertiseResDTO,
+} from './app/features/layout-landing/introduce/interface-introduce';
 
 @Injectable({
   providedIn: 'root',
@@ -49,8 +53,7 @@ export class AppService {
   apiUrl2 = environment.API_URL + '/home-title-trans';
   apiUrl3 = environment.API_URL + '/location-trans';
   apiUrl4 = environment.API_URL + '/tour-trans/filter?';
-  apiUrl5 = environment.API_URL + '/tour-trans/filter?type=';
-  apiUrl6 = environment.API_URL + '/tour-trans/filter?locationId=';
+  apiUrl5 = environment.API_URL + '/tour-trans';
   apiUrl7 = environment.API_URL + '/travel-guide-trans';
   apiUrl8 = environment.API_URL + '/home-comment';
   apiUrl9 = environment.API_URL + '/intro-trans';
@@ -60,7 +63,9 @@ export class AppService {
   apiUrl13 = environment.API_URL + '/info-trans';
   apiUrlLanguage = environment.API_URL + '/language';
   apiVisaService = environment.API_URL + '/visa-service-trans';
+  apiAdvertise = environment.API_URL + '/advertise';
   apiPartner = environment.API_URL + '/partner';
+  apiVisaProcess = environment.API_URL + '/visa-process-trans';
   apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
 
   /*======================== HOME BANNER ==========================*/
@@ -166,7 +171,9 @@ export class AppService {
   }
 
   getDataTourFeatureById4(id: number) {
-    return this.http.get<FeatureResDTO>(`${this.apiUrl4}/${id}`);
+    return this.http.get<{ data: FeatureResDTO }>(
+      `${this.apiUrl5 + '/service'}/${id}`
+    );
   }
 
   updateDataTourFeature4(data: FeatureReqDTO, id: number) {
@@ -178,24 +185,26 @@ export class AppService {
 
   /*======================== NẾU CÓ TAB TẤT CẢ TOUR THÌ DÙNG ==========================*/
   getDataTourForeign() {
-    return this.http.get<{ data: FeatureResDTO[] }>(
-      this.apiUrl5 + 'INTERNATIONAL'
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      this.apiUrl4 + 'type=INTERNATIONAL'
     );
   }
   getDataTourDomestic() {
-    return this.http.get<{ data: FeatureResDTO[] }>(this.apiUrl5 + 'DOMESTIC');
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      this.apiUrl4 + 'type=DOMESTIC'
+    );
   }
 
   /*============================== TAB FOREIGN ================================*/
 
   changeTabForeign(id: number) {
     return this.http.get<ResponseBasePage<FeatureResDTO>>(
-      `${this.apiUrl6}${id}&langCode=${this.languageService.locale}`
+      `${this.apiUrl4 + 'locationId='}${id}&langCode=${this.languageService.locale}`
     );
   }
   changeTabDomestic(id: number) {
     return this.http.get<ResponseBasePage<FeatureResDTO>>(
-      `${this.apiUrl6}${id}&langCode=${this.languageService.locale}`
+      `${this.apiUrl4 + 'locationId='}${id}&langCode=${this.languageService.locale}`
     );
   }
 
@@ -210,7 +219,9 @@ export class AppService {
     );
   }
   getDataByIdTravelGuide(id: number) {
-    return this.http.get<TravelGuideResDTO>(`${this.apiUrl7}/${id}`);
+    return this.http.get<{ data: TravelGuideResDTO }>(
+      `${this.apiUrl7}/service/${id}?langCode=${this.languageService.locale}`
+    );
   }
 
   updateDataTravelGuide(data: TravelGuideReqDTO, id: number) {
@@ -247,14 +258,27 @@ export class AppService {
       this.apiUrl9 + '/type/BANNER'
     );
   }
-  getAllDataHighLightIntroducePage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl9 + '/type/HIGHLIGHT'
+  /*================= DỊCH VỤ NỔI BẬT ( INTRODUCE-PAGE ) =====================*/
+  createDataAdvertise(data: AdvertiseReqDTO) {
+    return this.http.post<AdvertiseResDTO>(this.apiAdvertise, data);
+  }
+  getAllDataAdvertise() {
+    return this.http.get<{ data: AdvertiseResDTO[] }>(this.apiAdvertise);
+  }
+  updateDataAdvertise(data: CommentFeedbackReqDTO, id: number) {
+    return this.http.put<CommentFeedbackResDTO>(
+      `${this.apiAdvertise}/${id}`,
+      data
+    );
+  }
+  deleteDataAdvertise(id: number) {
+    return this.http.delete<CommentFeedbackResDTO>(
+      `${this.apiAdvertise}/${id}`
     );
   }
   getAllDataMainIntroducePage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl9 + '/type/MAIN'
+      `${this.apiUrl9}/all?langCode=${this.languageService.locale}`
     );
   }
   getAllDataTitleIntroducePage() {
@@ -327,22 +351,22 @@ export class AppService {
   }
   getAllDataBannerContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/BANNER'
+      this.apiUrl13 + `/type/BANNER?langCode=${this.languageService.locale}`
     );
   }
   getAllDataAddressContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/ADDRESS'
+      this.apiUrl13 + `/type/ADDRESS?langCode=${this.languageService.locale}`
     );
   }
   getAllDataPhoneContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/PHONE'
+      this.apiUrl13 + `/type/PHONE?langCode=${this.languageService.locale}`
     );
   }
   getAllDataEmailContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/EMAIL'
+      this.apiUrl13 + `/type/EMAIL?langCode=${this.languageService.locale}`
     );
   }
   getAllDataFooterContactPage() {
@@ -401,7 +425,7 @@ export class AppService {
   }
   getDataByIdMenuService(id: number) {
     return this.http.get<{ data: VisaServiceResDTO }>(
-      `${this.apiVisaService}/${id}`
+      `${this.apiVisaService + '/service'}/${id}?langCode=${this.languageService.locale}`
     );
   }
 
@@ -417,20 +441,25 @@ export class AppService {
 
   /*============================== Visa Process ================================*/
   createDataVisaProcess(data: VisaProcessReqDTO) {
-    return this.http.post<VisaProcessResDTO>(this.apiUrl8, data);
+    return this.http.post<VisaProcessResDTO>(this.apiVisaProcess, data);
   }
   getAllDataVisaProcess() {
-    return this.http.get<ResponseBaseList<VisaProcessResDTO>>(this.apiUrl8);
+    return this.http.get<ResponseBaseList<VisaProcessResDTO>>(
+      this.apiVisaProcess
+    );
   }
   getDataByIdVisaProcess(id: number) {
-    return this.http.get<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
+    return this.http.get<VisaProcessResDTO>(`${this.apiVisaProcess}/${id}`);
   }
 
   updateDataVisaProcess(data: VisaProcessReqDTO, id: number) {
-    return this.http.put<VisaProcessResDTO>(`${this.apiUrl8}/${id}`, data);
+    return this.http.put<VisaProcessResDTO>(
+      `${this.apiVisaProcess}/${id}`,
+      data
+    );
   }
   deleteDataVisaProcess(id: number) {
-    return this.http.delete<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
+    return this.http.delete<VisaProcessResDTO>(`${this.apiVisaProcess}/${id}`);
   }
 
   /*============================== Visa Process ================================*/

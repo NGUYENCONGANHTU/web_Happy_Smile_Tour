@@ -10,6 +10,8 @@ import {
   IntroduceTitleResDTO,
 } from '../../../../interface';
 import { NgStyle } from '@angular/common';
+import { AdvertiseResDTO } from './interface-introduce';
+import { sanitizeUrl } from '../../../shared/utils/helpers';
 @Component({
   selector: 'app-introduce',
   imports: [
@@ -50,6 +52,7 @@ export class IntroduceComponent implements OnInit {
     this.getAllDataTitleIntroducePage();
     this.getAllDataStatisticalIntroducePage();
   }
+  formatImage = sanitizeUrl;
 
   // function Banner Introduce
   dataBannerIntroduce: HomeBannerResDTO[] = [];
@@ -59,9 +62,9 @@ export class IntroduceComponent implements OnInit {
     });
   }
   // function Banner Introduce
-  dataServiceIntroduce: IntroducePageResDTO[] = [];
+  dataServiceIntroduce: AdvertiseResDTO[] = [];
   getAllDataHighLightIntroducePage() {
-    this.appService.getAllDataHighLightIntroducePage().subscribe(res => {
+    this.appService.getAllDataAdvertise().subscribe(res => {
       this.dataServiceIntroduce = res.data;
     });
   }

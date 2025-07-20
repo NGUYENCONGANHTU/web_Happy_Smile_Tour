@@ -55,12 +55,19 @@ export class SidebarFeatureForeignComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDataStartingPoint();
+    this.getDataStartingPointDomestic();
+    this.getDataStartingPointForeign();
   }
   dataStartingPointDomestic: LocationResDTO[] = [];
-  getDataStartingPoint() {
-    this.appService.getAlLDataLocationInternational().subscribe(res => {
+  getDataStartingPointDomestic() {
+    this.appService.getAlLDataLocationDomestic().subscribe(res => {
       this.dataStartingPointDomestic = res.data;
+    });
+  }
+  dataStartingPointForeign: LocationResDTO[] = [];
+  getDataStartingPointForeign() {
+    this.appService.getAlLDataLocationInternational().subscribe(res => {
+      this.dataStartingPointForeign = res.data;
     });
   }
 

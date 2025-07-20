@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { FeatureResDTO } from '../../../../../interface';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 @Component({
   selector: 'app-slide-tour-detail',
   imports: [NzCarouselModule],
@@ -26,4 +27,5 @@ import { FeatureResDTO } from '../../../../../interface';
 })
 export class SlideTourDetailComponent {
   @Input() listImageBanner: FeatureResDTO[] = [];
+  formatImage = sanitizeUrl;
 }

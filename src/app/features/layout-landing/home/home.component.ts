@@ -25,8 +25,11 @@ import {
   HomeBannerResDTO,
   HomeTitleResDTO,
   LocationResDTO,
+  PartnerResDTO,
   TravelGuideResDTO,
 } from '../../../../interface';
+import { BANNER_WEB } from '../../../shared/constants/global.constant';
+import { sanitizeUrl } from '../../../shared/utils/helpers';
 
 @Component({
   selector: 'app-home',
@@ -74,20 +77,7 @@ export class HomeComponent implements OnInit {
   //service
   appService = inject(AppService);
 
-  array = [
-    {
-      image:
-        'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,w_2560/v1744887444/banner/mtjajbd973gg6rboqqrj.webp',
-    },
-    {
-      image:
-        'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1747363626/banner/rgj9gn9qqaflkyibv2ir.webp',
-    },
-    {
-      image:
-        'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1744887428/banner/aikggh0fo0dglcieygli.webp',
-    },
-  ];
+  array = BANNER_WEB;
 
   ngOnInit() {
     this.getAllData();
@@ -96,26 +86,24 @@ export class HomeComponent implements OnInit {
     this.getAllDataLocationDomestic();
     this.getAllDataNews();
     this.getAllDataCommentFeedBack();
+    this.getAllDataPartner();
   }
+  // Hàm biến đổi url từ BE trả về
+  sanitizeUrl = sanitizeUrl;
 
   /*========================== Home Banner =============================*/
   dataBannerHome: HomeBannerResDTO[] = [];
   getAllData() {
     this.appService.getAlLDataBannerHome().subscribe(res => {
-      console.log(res);
       this.dataBannerHome = res.data;
     });
   }
 
-  /*========================== Home Title =============================*/
+  /*========================== TIÊU ĐỀ TRANG CHỦ =============================*/
   dataHomeTitle: HomeTitleResDTO[] = [];
-  dataHomeImage: HomeTitleResDTO[] = [];
   getAlLDataTitle() {
     this.appService.getAlLDataTitle().subscribe(res => {
       this.dataHomeTitle = res.data;
-    });
-    this.appService.getAlLDataImage().subscribe(res => {
-      this.dataHomeImage = res.data;
     });
   }
 
@@ -173,7 +161,6 @@ export class HomeComponent implements OnInit {
   changeTabNameDomesticTour(id: number) {
     this.appService.changeTabDomestic(id).subscribe(res => {
       this.dataTourDomestic = res.data.content ?? [];
-      console.log(this.dataTourDomestic);
     });
   }
 
@@ -190,13 +177,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  /*========================== COMMENT FEEDBACK =============================*/
+  /*========================== KHÁCH HÀNG NÓI GÌ VỀ CHÚNG TÔI =============================*/
   dataCustomerFeedback: CommentFeedbackResDTO[] = [];
 
   getAllDataCommentFeedBack() {
     this.appService.getAllDataCommentFeedback().subscribe(res => {
-      console.log(res);
       this.dataCustomerFeedback = res.data;
+    });
+  }
+  /* ========================== KHÁCH HÀNG NỔI BẬT ============================= */
+  dataPartner: PartnerResDTO[] = [];
+  getAllDataPartner() {
+    this.appService.getAllDataPartner().subscribe(res => {
+      this.dataPartner = res.data;
     });
   }
 }

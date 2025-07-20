@@ -1,19 +1,32 @@
 <section>
   @for (data of dataBannerHome; track data.id) {
     <div class="relative h-[480px] overflow-hidden">
-      <!-- Carousel background only -->
       <nz-carousel nzAutoPlay class="absolute inset-0 z-0" [nzDots]="false">
-        @for (image of array; track $index) {
+        @for (image of data.documentDTOS; track $index) {
           <div
             nz-carousel-content
             [ngStyle]="{
-              'background-image': 'url(' + image.image + ')',
+              'background-image': 'url(' + sanitizeUrl(image.storagePath) + ')',
               'background-position': 'center',
               'background-size': 'cover',
               height: '100%',
             }"></div>
         }
       </nz-carousel>
+
+      <!--      <nz-carousel nzAutoPlay class="absolute inset-0 z-0" [nzDots]="false">-->
+      <!--        @for (image of array; track $index) {-->
+      <!--          <div-->
+      <!--            nz-carousel-content-->
+      <!--            [ngStyle]="{-->
+      <!--              'background-image': 'url(' + image.image + ')',-->
+      <!--              'background-position': 'center',-->
+      <!--              'background-size': 'cover',-->
+      <!--              height: '100%',-->
+      <!--            }"></div>-->
+      <!--        }-->
+      <!--      </nz-carousel>-->
+
       <!-- Fixed content above carousel -->
       <div
         class="absolute inset-0 z-10 flex justify-center items-center text-white">
@@ -38,11 +51,12 @@
 
     <!-- ========== Tour nước ngoài  ==========  -->
     <div class="foreign-tour">
-      <div class="foreign-tour-slides flex flex-wrap">
+      <div class="foreign-tour-slides flex items-center flex-wrap">
+        <!-- Tiêu đề tour nước ngoài -->
         <div class="foreign-tour-title !mr-10">
           {{ dataHomeTitle[1]?.title }}
         </div>
-
+        <!-- Button tab tour nước ngoài -->
         <div class="tabs-foreign-tour flex gap-4 flex-wrap">
           @for (item of tabsForeignTour; track item) {
             <app-tabs-foreign-tour
@@ -53,6 +67,7 @@
           }
         </div>
       </div>
+      <!-- Nội dung của từng button tab tour nước ngoài -->
       @if (selectedTabForeignTour && dataTourForeign?.length) {
         <div class="app-tour-feature-foreign">
           @if (selectedTabForeignTour && dataTourForeign?.length === 0) {
@@ -118,7 +133,7 @@
     <div class="feature-customer">
       <div class="feature-customer-title">{{ dataHomeTitle[5]?.title }}</div>
       <app-feature-customer
-        [dataCustomerFeature]="dataHomeImage"></app-feature-customer>
+        [dataCustomerFeature]="dataPartner"></app-feature-customer>
     </div>
   </div>
 </section>

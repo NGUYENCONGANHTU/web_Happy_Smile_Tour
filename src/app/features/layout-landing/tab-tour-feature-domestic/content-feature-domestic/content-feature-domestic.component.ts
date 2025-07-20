@@ -8,11 +8,12 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
 import { FilterTourService } from '../filter-tour.service';
-import { NgClass } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-content-feature-domestic',
-  imports: [FaIconComponent, NgClass],
+  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',
 })
@@ -34,7 +35,7 @@ export class ContentFeatureDomesticComponent implements OnChanges {
       });
     } else {
       this.appService.getDataTourDomestic().subscribe(res => {
-        this.tours = res.data;
+        this.tours = res.data.content;
       });
     }
   }

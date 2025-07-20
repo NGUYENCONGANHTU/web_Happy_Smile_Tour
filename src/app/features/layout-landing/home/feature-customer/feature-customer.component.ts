@@ -1,5 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { HomeTitleResDTO } from '../../../../../interface';
+import { PartnerResDTO } from '../../../../../interface';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 
 @Component({
   selector: 'app-feature-customer',
@@ -10,5 +11,6 @@ import { HomeTitleResDTO } from '../../../../../interface';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FeatureCustomerComponent {
-  @Input() dataCustomerFeature: HomeTitleResDTO[] = [];
+  @Input() dataCustomerFeature: PartnerResDTO[] = [];
+  formatImage = sanitizeUrl;
 }

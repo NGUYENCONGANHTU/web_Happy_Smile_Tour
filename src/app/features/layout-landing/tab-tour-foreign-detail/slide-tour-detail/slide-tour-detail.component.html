@@ -2,7 +2,10 @@
   @for (index of listImageBanner; track $index) {
     @for (data of index.imageUrl; track $index) {
       <div nz-carousel-content>
-        <img [src]="data" alt="" class="w-full h-full object-cover" />
+        <img
+          [src]="formatImage(data.storagePath)"
+          alt=""
+          class="w-full h-full object-cover" />
       </div>
     }
   }

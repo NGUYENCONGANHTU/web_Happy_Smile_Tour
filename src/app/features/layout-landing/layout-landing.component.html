@@ -87,7 +87,7 @@
                 @for (data of dataVisaMenu; track $index) {
                   <li
                     nz-menu-item
-                    [routerLink]="['/tab-service', data.id]"
+                    [routerLink]="['/tab-service', data.visaServiceId]"
                     (click)="selectService(data.id)"
                     [ngClass]="{
                       'active-menu-item': selectedServiceId === data.id,

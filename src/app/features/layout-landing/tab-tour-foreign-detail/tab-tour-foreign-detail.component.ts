@@ -105,8 +105,8 @@ export class TabTourForeignDetailComponent implements OnInit {
   tourId = 0;
   tourDetail: FeatureResDTO | null = null;
   getDataByIdTourDetail() {
-    this.appService.getDataTourFeatureById4(this.tourId).subscribe(data => {
-      this.tourDetail = data;
+    this.appService.getDataTourFeatureById4(this.tourId).subscribe(res => {
+      this.tourDetail = res.data;
     });
   }
   getIdParam() {

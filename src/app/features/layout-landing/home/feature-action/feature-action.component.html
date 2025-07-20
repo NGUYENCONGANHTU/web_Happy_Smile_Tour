@@ -11,16 +11,19 @@
   @for (data of dataFeatureTour; track $index) {
     <swiper-slide
       class="slide"
-      [routerLink]="['/tab-tour-foreign-detail', data.id]">
-      <div class="tour-card">
-        <div class="ribbon">Giá tốt nhất {{ $index + 1 }}</div>
+      [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
+      <div class="tour-card cursor-pointer">
+        <div class="ribbon !bg-[#ff5722]">Giá tốt nhất {{ $index + 1 }}</div>
         <img
-          src="https://igotravel.vn/wwwroot/resources/upload/tong-hop-cac-hinh-thuc-du-lich-pho-bien-nhat-tai-viet-nam.png"
+          [src]="
+            formatImage(
+              data.imageUrl?.[0]?.storagePath || 'assets/images/default.jpg'
+            )
+          "
           alt="Tour"
           class="tour-image" />
-
         <div class="tour-content">
-          <div class="tour-title truncate">
+          <div class="tour-title truncate text-gray-900">
             {{ data.title }}
           </div>
 
@@ -35,22 +38,45 @@
                   class="mr-1"></fa-icon>
               }
             </div>
-            <span class="reviews">| {{ data.numberComment }} đánh giá</span>
+            <span class="reviews !mx-2"
+              >| {{ data.numberComment | number }} đánh giá</span
+            >
           </div>
-
-          <ul class="tour-points font-medium text-[#6A6B6D]">
-            @for (item of data.startingPoints; track $index) {
-              <li>{{ item.name }}</li>
-            }
-          </ul>
-
-          <div class="price">
-            <span class="old-price"
-              >{{ data.originalPrice.toLocaleString() }}₫</span
-            >
-            <span class="new-price"
-              >{{ data.finalPrice.toLocaleString() }} ₫</span
-            >
+          <div class="">
+            <span class="font-medium !text-[#3A3A3C]">Hành trình:</span>
+            <span class="ml-1! !text-[#e7000b] font-medium">{{
+              data.stayDate
+            }}</span>
+          </div>
+          <div class="tour-points text-[#6A6B6D] truncate">
+            <span class="!mr-[4px] font-medium !text-[#3A3A3C]">Từ:</span>
+            <ul class="truncate">
+              @for (
+                item of data.startingPoints;
+                track $index;
+                let last = $last
+              ) {
+                <li class="inline !text-gray-500">
+                  {{ item.name }}
+                  @if (!last) {
+                    <span class="!mr-[4px]">,</span>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+          <div class="">
+            <div class="text-end !text-[#3A3A3C] text-[14px] font-medium">
+              Giá chỉ từ:
+            </div>
+            <div class="price truncate">
+              <span class="old-price !text-gray-400"
+                >{{ data.originalPrice | number }} VNĐ</span
+              >
+              <span class="new-price !text-red-600"
+                >{{ data.finalPrice | number }} VNĐ</span
+              >
+            </div>
           </div>
         </div>
       </div>

@@ -19,11 +19,11 @@ export class FilterTourService {
     max?: number;
   }): Observable<FeatureResDTO[]> {
     let params = new HttpParams();
-    if (filters.destination) {
-      params = params.set('startingPointId', filters.destination);
-    }
     if (filters.departure) {
-      params = params.set('locationId', filters.departure);
+      params = params.set('startingPointId', filters.departure);
+    }
+    if (filters.destination) {
+      params = params.set('locationId', filters.destination);
     }
     if (filters.min !== undefined) {
       params = params.set('min', filters.min.toString());
@@ -34,8 +34,6 @@ export class FilterTourService {
 
     return this.http
       .get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl, { params })
-      .pipe(
-        map(res => res.data.content) // Chỉ lấy mảng content
-      );
+      .pipe(map(res => res.data.content));
   }
 }

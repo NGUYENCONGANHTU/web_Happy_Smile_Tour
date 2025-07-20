@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { ResponseBasePage } from '../../core/interfaces/base.interface';
+import { environment } from '../../../environment';
 
 export function formatDate(date: string): string {
   return new Date(date).toLocaleDateString();
@@ -66,4 +67,18 @@ export function parseToNzUploadFile(
     url: src,
     thumbUrl: src,
   };
+}
+
+export function sanitizeUrl(path: string): string {
+  if (!path || typeof path !== 'string') return '';
+
+  // Chuyển \\ hoặc \ sang /
+  const cleaned = path.replace(/\\/g, '/').trim();
+
+  // Nếu đường dẫn không bắt đầu bằng "/", thêm vào
+  const normalized = cleaned.startsWith('/') ? cleaned : '/' + cleaned;
+
+  // Ghép với domain nếu cần (có thể lấy từ env)
+  const baseUrl = environment.API_URL;
+  return baseUrl + normalized;
 }

@@ -14,7 +14,6 @@
       position: absolute;
       top: 10px;
       left: 0;
-      background: #d32f2f;
       color: #fff;
       padding: 4px 12px;
       font-size: 14px;
@@ -33,7 +32,6 @@
       .tour-title {
         font-size: 16px;
         font-weight: bold;
-        color: #0d47a1;
         margin-bottom: 12px;
       }
       .rating {
@@ -61,30 +59,21 @@
       }
       .tour-points {
         list-style: none;
-        padding-left: 0;
-        //color: #00bcd4;
+        display: flex;
         margin: 8px 0;
-        li::before {
-          content: '• ';
-          //color: #00bcd4;
-          margin-right: 4px;
-        }
       }
       .price {
         display: flex;
         justify-content: flex-end;
         align-items: baseline;
         gap: 8px;
-        margin-top: 10px;
         .old-price {
           text-decoration: line-through;
-          color: #888;
           font-size: 14px;
         }
         .new-price {
-          color: #ec1d23;
           font-weight: bold;
-          font-size: 20px;
+          font-size: 18px;
         }
       }
     }

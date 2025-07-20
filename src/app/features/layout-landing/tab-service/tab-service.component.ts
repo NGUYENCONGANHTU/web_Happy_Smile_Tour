@@ -18,6 +18,7 @@ import {
   TourServiceReqDTO,
 } from './interface-contact-tour-service';
 import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
+import { NgStyle } from '@angular/common';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -31,6 +32,7 @@ import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
     NzRowDirective,
     ReactiveFormsModule,
     NzFormLabelComponent,
+    NgStyle,
   ],
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',
@@ -57,7 +59,6 @@ export class TabServiceComponent implements OnInit {
     this.appService.getDataByIdMenuService(this.serviceId).subscribe({
       next: res => {
         this.dataServiceDetail = res.data;
-        console.log(this.dataServiceDetail);
       },
       error: err => {
         console.error('Error loading news detail:', err);

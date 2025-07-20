@@ -4,19 +4,16 @@ swiper-container {
   margin-left: auto;
   margin-right: auto;
   swiper-slide {
+    padding: 10px;
     .card-item {
       box-shadow:
-        rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        rgba(0, 0, 0, 0.02) 0 1px 3px 0,
+        rgba(27, 31, 35, 0.15) 0 0 0 1px;
       border-radius: 8px;
       display: grid;
+      padding: 10px;
       grid-template-columns: 1fr;
       gap: 15px;
-      .card-item-image {
-        img {
-          width: 100%;
-        }
-      }
     }
   }
 }
@@ -27,40 +24,11 @@ swiper-container {
       padding: 1px;
       .card-item {
         box-shadow:
-          rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-          rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+          rgba(0, 0, 0, 0.02) 0 1px 3px 0,
+          rgba(27, 31, 35, 0.15) 0 0 0 1px;
         border-radius: 8px;
         padding: 10px;
-        grid-template-columns: 200px 1fr;
-        .card-item-image {
-          img {
-            width: 100%;
-            border-radius: 4px;
-          }
-        }
-        .card-item-info {
-          .card-item-info-title {
-            color: black;
-            .card-item-info-title-text {
-              font-size: 16px;
-              font-weight: bold;
-            }
-            .card-item-info-start-day {
-              font-size: 14px;
-            }
-          }
-          .card-item-info-detail {
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-            .card-item-info-price {
-              text-align: right;
-              .price {
-                color: #ef2061;
-              }
-            }
-          }
-        }
+        grid-template-columns: 1fr 2fr;
       }
     }
   }

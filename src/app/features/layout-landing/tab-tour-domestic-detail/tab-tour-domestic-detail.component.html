@@ -57,47 +57,39 @@
             <!--============== DỊCH VỤ =================-->
             <div #dichVu id="dich-vu" class="tab space-y-8!">
               <!--============== DỊCH VỤ BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.nonService) {
-                  <div class="content-1">
-                    <div class="tab-title">DỊCH VỤ BAO GỒM</div>
-                    <div class="content-1">{{ data.service }}</div>
-                  </div>
-                }
+              @if (tourDetail.nonService) {
+                <div class="content-1">
+                  <div class="tab-title">DỊCH VỤ BAO GỒM</div>
+                  <div class="content-1">{{ tourDetail.service }}</div>
+                </div>
               }
 
               <!--============== DỊCH VỤ KHÔNG BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.nonService) {
-                  <div class="content-2">
-                    <div class="tab-title">DỊCH VỤ KHÔNG BAO GỒM</div>
-                    <div class="content-2-text">{{ data.nonService }}</div>
-                  </div>
-                }
+              @if (tourDetail.nonService) {
+                <div class="content-2">
+                  <div class="tab-title">DỊCH VỤ KHÔNG BAO GỒM</div>
+                  <div class="content-2-text">{{ tourDetail.nonService }}</div>
+                </div>
               }
 
               <!--============== DỊCH VỤ BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.regulation) {
-                  <div class="content-3">
-                    <div class="tab-title">ĐIỀU KIỆN & QUY ĐINH</div>
-                    <div class="content-3-text">
-                      {{ data.regulation }}
-                    </div>
+              @if (tourDetail.regulation) {
+                <div class="content-3">
+                  <div class="tab-title">ĐIỀU KIỆN & QUY ĐINH</div>
+                  <div class="content-3-text">
+                    {{ tourDetail.regulation }}
                   </div>
-                }
+                </div>
               }
 
               <!--============== DỊCH VỤ BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.note) {
-                  <div class="content-3">
-                    <div class="tab-title">GHI CHÚ</div>
-                    <div class="content-3-text">
-                      {{ data.note }}
-                    </div>
+              @if (tourDetail.note) {
+                <div class="content-3">
+                  <div class="tab-title">GHI CHÚ</div>
+                  <div class="content-3-text">
+                    {{ tourDetail.note }}
                   </div>
-                }
+                </div>
               }
             </div>
           </div>

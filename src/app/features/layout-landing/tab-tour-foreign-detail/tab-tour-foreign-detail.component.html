@@ -7,7 +7,7 @@
       </nz-breadcrumb-item>
       <nz-breadcrumb-item>
         <a routerLink="/tour-feature-foreign" class="font-medium"
-          >Tour Nước Ngoài</a
+          >Tour du lịch</a
         >
       </nz-breadcrumb-item>
       <nz-breadcrumb-item class="font-medium italic">{{
@@ -30,30 +30,29 @@
           </div>
           <div class="tour-detail-title-tabs-content">
             <!-- ===================ĐIỂM NỔI BẬT========================= -->
-            @for (data of dataFeaturePlace; track data.id) {
-              @if (dataFeaturePlace.length > 0) {
-                <div #diemNoiBat id="diem-noi-bat" class="tab">
-                  <div class="tab-title">ĐIỂM NỔI BẬT</div>
-                  <app-feature-place [highlight]="data.highlight">
-                  </app-feature-place>
-                </div>
-              }
+            @if (tourDetail.highlight) {
+              <div #diemNoiBat id="diem-noi-bat" class="tab">
+                <div class="tab-title">ĐIỂM NỔI BẬT</div>
+                <app-feature-place [highlight]="tourDetail.highlight">
+                </app-feature-place>
+              </div>
             }
             <!-- ======================LỊCH TRÌNH====================== -->
-            @if (dataTourSchedule.length > 0) {
+            @if (tourDetail.tourSchedules) {
               <div #lichTrinh id="lich-trinh" class="tab">
                 <div class="tab-title">LỊCH TRÌNH</div>
-                <app-schedule [tourDays]="dataTourSchedule"></app-schedule>
+                <app-schedule
+                  [tourDays]="tourDetail.tourSchedules"></app-schedule>
               </div>
             }
             <!-- ======================BẢNG GIÁ====================== -->
-            @if (dataTourPrice.length > 0) {
+            @if (tourDetail) {
               <div #bangGia id="bang-gia" class="tab">
                 <div class="tab-title">BẢNG GIÁ</div>
                 <app-price-list
-                  [dataTourPrice]="dataTourPrice"
-                  [dataTourDiscount]="dataTourDiscount"
-                  [dataTourSurcharge]="dataTourSurcharge">
+                  [dataTourPrice]="tourDetail.tourPrices"
+                  [dataTourDiscount]="tourDetail.tourDiscounts"
+                  [dataTourSurcharge]="tourDetail.tourSurcharges">
                 </app-price-list>
               </div>
             }
@@ -61,62 +60,54 @@
             <!--============== DỊCH VỤ =================-->
             <div #dichVu id="dich-vu" class="tab space-y-8!">
               <!--============== DỊCH VỤ BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.nonService) {
-                  <div class="content-1">
-                    <div class="tab-title">DỊCH VỤ BAO GỒM</div>
-                    <div class="content-1">{{ data.service }}</div>
-                  </div>
-                }
+              @if (tourDetail.nonService) {
+                <div class="content-1">
+                  <div class="tab-title">DỊCH VỤ BAO GỒM</div>
+                  <div class="content-1">{{ tourDetail.service }}</div>
+                </div>
               }
 
               <!--============== DỊCH VỤ KHÔNG BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.nonService) {
-                  <div class="content-2">
-                    <div class="tab-title">DỊCH VỤ KHÔNG BAO GỒM</div>
-                    <div class="content-2-text">{{ data.nonService }}</div>
-                  </div>
-                }
+              @if (tourDetail?.nonService) {
+                <div class="content-2">
+                  <div class="tab-title">DỊCH VỤ KHÔNG BAO GỒM</div>
+                  <div class="content-2-text">{{ tourDetail.nonService }}</div>
+                </div>
               }
 
               <!--============== DỊCH VỤ BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.regulation) {
-                  <div class="content-3">
-                    <div class="tab-title">ĐIỀU KIỆN & QUY ĐINH</div>
-                    <div class="content-3-text">
-                      {{ data.regulation }}
-                    </div>
+              @if (tourDetail.regulation) {
+                <div class="content-3">
+                  <div class="tab-title uppercase">điều kiện & quy định</div>
+                  <div class="content-3-text">
+                    {{ tourDetail.regulation }}
                   </div>
-                }
+                </div>
               }
 
               <!--============== DỊCH VỤ BAO GỒM =================-->
-              @for (data of dataFeaturePlace; track data.id) {
-                @if (data.note) {
-                  <div class="content-3">
-                    <div class="tab-title">GHI CHÚ</div>
-                    <div class="content-3-text">
-                      {{ data.note }}
-                    </div>
+              @if (tourDetail.note) {
+                <div class="content-3">
+                  <div class="tab-title uppercase">ghi chú</div>
+                  <div class="content-3-text">
+                    {{ tourDetail.note }}
                   </div>
-                }
+                </div>
               }
             </div>
           </div>
 
           <!--============== CUSTOMER FEEDBACK =================-->
           <div class="customer-feedback mb-2!">
-            <div class="customer-feedback-title">
-              KHÁCH HÀNG ĐÁNH GIÁ / REVIEW
+            <div class="customer-feedback-title uppercase">
+              khác hàng đánh giá / preview
             </div>
             <app-form-feedback></app-form-feedback>
           </div>
         </div>
       </div>
       <div class="right-content shadow-sm rounded-xl">
-        <app-sidebar-tab-tour-foreign [tourDetail]="dataFeaturePlace">
+        <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
         </app-sidebar-tab-tour-foreign>
       </div>
     </div>

@@ -1,51 +1,63 @@
 <div class="cards-content-feature-domestic">
   @for (data of tours; track data.id) {
-    <div class="card-content-feature-domestic-item">
+    <div
+      class="card-content-feature-domestic-item cursor-pointer"
+      [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="card-content-feature-domestic-item-image">
         <img
           src="https://hanoitourist.vn/sites/default/files/2025/02/w2-1715749810964.jpg"
           alt="" />
       </div>
-      <div class="card-content-feature-domestic-item-info !space-y-2">
-        <div class="card-content-feature-domestic-item-info-title">
-          <div class="">{{ data.title }}</div>
-        </div>
-        <div class="star flex">
-          @for (i of [1, 2, 3, 4, 5]; track i) {
-            <fa-icon
-              [icon]="faStar"
-              [ngClass]="i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'"
-              class="mr-1"></fa-icon>
-          }
-        </div>
-        <!--===== Ngày đi ======-->
-        <div class="departureDate">
-          <fa-icon [icon]="faCalendarDays" class="close-menu-icon"></fa-icon>
-          Ngày đi: <span class="font-bold">3 ngày 2 đêm</span>
-        </div>
-        <!--===== Địa điểm đi ======-->
-        <div class="place-price">
-          <div class="place">
-            <fa-icon [icon]="faLocationDot" class="close-menu-icon"></fa-icon>
-            Từ:<span class="font-bold"> Hà Nội</span>
-          </div>
-          <div class="price">
-            Giá từ:
-            <br />
-            <span class="text-[18px] font-bold price text-[#ef2061]">{{
-              data.finalPrice
-            }}</span>
+      <div class="truncate !space-y-[10px]">
+        <div class="font-bold truncate text-[16px]">{{ data.title }}</div>
+        <div class="feedback">
+          <div class="flex items-center !space-x-2">
+            <div class="star flex">
+              @for (i of [1, 2, 3, 4, 5]; track i) {
+                <fa-icon
+                  [icon]="faStar"
+                  [ngClass]="
+                    i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'
+                  "
+                  class="mr-1"></fa-icon>
+              }
+            </div>
+            <span class="text-[#888]">|</span>
+            <div class="">{{ data.numberComment }} đánh giá</div>
           </div>
         </div>
-        <div class="routes">
-          <div class="feature-routes">
-            <a href="">
-              Điểm nổi bật
-              <fa-icon [icon]="faAngleRight" class="close-menu-icon"></fa-icon>
-            </a>
+        <div class="!space-x-2 !text-[14px]">
+          <span class="!text-[#3A3A3C] font-medium">Hành trình:</span>
+          <span class="!text-[#e7000b] font-medium">{{ data.stayDate }}</span>
+        </div>
+        <div class="flex items-start !text-[14px]">
+          <span class="!text-[#3A3A3C] font-medium">Từ:</span>
+          <ul class="flex items-center truncate !ml-1">
+            @for (
+              item of data.startingPoints;
+              track item.id;
+              let last = $last
+            ) {
+              <li class="inline !text-gray-500">
+                {{ item.name }}
+                @if (!last) {
+                  <span class="!mr-1">,</span>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="price text-end">
+          <div class="!pr-2 !text-[#3A3A3C] text-[16px] font-medium">
+            Giá chỉ từ:
           </div>
-          <div class="btn-detail">
-            <button class="font-medium!">XEM CHI TIẾT</button>
+          <div class="!space-x-2">
+            <span class="line-through font-medium !text-gray-400 !text-[14px]"
+              >{{ data.originalPrice | number }} VNĐ</span
+            >
+            <span class="font-bold !text-[18px] !text-red-600"
+              >{{ data.finalPrice | number }} VNĐ</span
+            >
           </div>
         </div>
       </div>

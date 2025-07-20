@@ -62,23 +62,10 @@ export enum HomeTitleType {
   TEXT = 'TEXT',
   IMAGE = 'IMAGE',
 }
-/* ==================== Cẩm nang du lịch ==================== */
-export interface TravelGuideReqDTO {
-  title: string;
-  image: string;
-  description: string;
-  content: string;
-}
-export interface TravelGuideResDTO {
-  id: number;
-  title: string;
-  homeTitleType: string;
-  content: string;
-}
 /* ==================== Bình luận ==================== */
 export interface CommentReqDTO {
   title: string;
-  image: string;
+  image: DocumentResDTO;
   description: string;
   content: string;
   star: number;
@@ -86,7 +73,7 @@ export interface CommentReqDTO {
 export interface CommentResDTO {
   id: number;
   title: string;
-  image: string;
+  image: DocumentResDTO;
   description: string;
   content: string;
   star: number;
@@ -124,7 +111,7 @@ export interface FeatureReqDTO {
   nonService: string;
   regulation: string;
   note: string;
-  imageUrl: string[];
+  imageUrl: DocumentResDTO[];
   tourSchedules: ScheduleResDTO[];
   tourPrices: TourPriceResDTO[];
   tourSurcharges: TourSurchargeResDTO[];
@@ -133,6 +120,7 @@ export interface FeatureReqDTO {
 }
 export interface FeatureResDTO {
   id: number;
+  tourId: number;
   title: string;
   star: number;
   numberComment: number;
@@ -147,25 +135,27 @@ export interface FeatureResDTO {
   nonService: string;
   regulation: string;
   note: string;
-  imageUrl: string[];
+  imageUrl: DocumentResDTO[];
   tourSchedules: ScheduleResDTO[];
   tourPrices: TourPriceResDTO[];
   tourSurcharges: TourSurchargeResDTO[];
   tourDiscounts: TourDiscountResDTO[];
   tourComments: TourCommentDetailResDTO[];
 }
-/* ==================== Tour nước ngoài ==================== */
+//
 /* ==================== CẨM NANG TIN TỨC ==================== */
 export interface TravelGuideReqDTO {
   title: string;
   content: string;
-  image: string;
+  image: DocumentResDTO;
 }
 export interface TravelGuideResDTO {
   id: number;
+  travelGuideId: number;
   title: string;
   content: string;
-  image: string;
+  image: DocumentResDTO;
+  modifiedDate: Date;
 }
 /* ==================== COMMENT TOUR ==================== */
 export interface CommentFeedbackReqDTO {
@@ -173,7 +163,7 @@ export interface CommentFeedbackReqDTO {
   description: string;
   content: string;
   start: number;
-  image: string;
+  image: DocumentResDTO;
 }
 export interface CommentFeedbackResDTO {
   id: number;
@@ -181,7 +171,7 @@ export interface CommentFeedbackResDTO {
   description: string;
   content: string;
   start: number;
-  image: string;
+  image: DocumentResDTO;
 }
 /* ====================  PAGE GIỚI THIỆU  ==================== */
 export interface IntroducePageReqDTO {
@@ -318,7 +308,7 @@ export interface TourScheduleResDTO {
 /* ==================== Menu Dịch Vụ  ==================== */
 export interface VisaServiceReqDTO {
   visaServiceId: number;
-  language: LanguageResDTO;
+
   name: string;
   bannerTitle: string;
   image: DocumentResDTO;
@@ -331,10 +321,9 @@ export interface VisaServiceReqDTO {
 export interface VisaServiceResDTO {
   id: number;
   visaServiceId: number;
-  language: LanguageResDTO;
   name: string;
   bannerTitle: string;
-  image: string;
+  image: DocumentResDTO;
   phone: string;
   serviceTitle: string;
   serviceContent: string;
