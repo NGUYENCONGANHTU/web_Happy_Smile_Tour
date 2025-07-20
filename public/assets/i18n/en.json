@@ -1,5 +1,11 @@
 {
-  "nav": {
-    "introduce": "Introduce"
+  "menu": {
+    "about": "About Us",
+    "domestic_tours": "Domestic Tours",
+    "international_tours": "International Tours",
+    "private_group_tours": "Private Group Tours",
+    "services": "Services",
+    "contact": "Contact",
+    "language": "English"
   }
 }

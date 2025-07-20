@@ -1,0 +1,50 @@
+{
+  "menu": {
+    "about": "Giới thiệu",
+    "domestic_tours": "Tour trong nước",
+    "international_tours": "Tour nước ngoài",
+    "private_group_tours": "Tour đoàn riêng",
+    "services": "Dịch vụ",
+    "contact": "Liên hệ",
+    "language": "Tiếng Việt"
+  },
+  "feedback": {
+    "customer": "Khách hàng"
+  },
+  "domestic_tour": {
+    "title": "Tìm chuyến đi phù hợp với bạn tại đây!",
+    "tabs": {
+      "domestic": "Trong nước",
+      "international": "Nước ngoài"
+    },
+    "budget": "Ngân sách bạn có",
+    "location": "Chọn địa điểm",
+    "departure": "Điểm đi",
+    "destination": "Điểm đến",
+    "find_tour": "TÌM TOUR"
+  },
+  "tour_card": {
+    "rating": "đánh giá",
+    "itinerary": "Hành trình",
+    "from": "Từ",
+    "price_from": "Giá chỉ từ"
+  },
+  "breadcrumb": {
+    "home": "Trang chủ",
+    "private_group_tours": "Tour đoàn riêng"
+  },
+  "tab_service": {
+    "title": "Dịch vụ tư vấn",
+    "consulting": "Tư vấn",
+    "instruction": "Để thông tin để được tư vấn miễn phí",
+    "name": "Tên của bạn",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "note": "Ghi chú",
+    "consult_now": "Tư vấn ngay",
+    "register_consulting": "Đăng kí tư vấn",
+    "enter_name": "Nhập tên của bạn",
+    "name_required": "Tên là bắt buộc",
+    "phone_required": "Số điện thoại là bắt buộc"
+  }
+}
