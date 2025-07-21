@@ -11,10 +11,11 @@
 }
 .foreign-tour {
   .foreign-tour-slides {
-    //display: flex;
-    //align-items: center;
-    //gap: 50px;
-    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 50px;
+    margin: 30px 0;
     .foreign-tour-title {
       font-size: 24px;
       color: #ed1d26;

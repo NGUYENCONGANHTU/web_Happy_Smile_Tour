@@ -12,6 +12,7 @@ import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 @Component({
   selector: 'app-tour-feature-domestic',
   imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
@@ -27,7 +28,7 @@ export class TourFeatureDomesticComponent implements OnInit {
   ngOnInit() {
     this.translate.use(this.languageService.locale);
   }
-
+  formatImage = sanitizeUrl;
   @Input() selectedTabDomesticTour!: LocationResDTO;
   @Input() dataDomesticTour: FeatureResDTO[] = [];
 }

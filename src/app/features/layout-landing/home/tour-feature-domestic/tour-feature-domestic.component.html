@@ -32,7 +32,10 @@
       [routerLink]="['/tab-tour-foreign-detail', tour.tourId]">
       <div class="card-item">
         <div class="picture">
-          <img class="" [src]="tour.images?.[0]?.storagePath || ''" alt="" />
+          <img
+            class="h-[130px] w-[190px] object-cover bg-center bg-cover"
+            [src]="formatImage(tour.images?.[0]?.storagePath || '')"
+            alt="" />
         </div>
         <div class="picture truncate !space-y-[8px]">
           <div class="truncate font-bold uppercase">{{ tour.title }}</div>
