@@ -26,11 +26,7 @@
         <fa-icon [icon]="faLocationDot" class="icon-location"></fa-icon>
         <span>{{ 'tour_card.from' | translate }}:</span>
         <ul class=" ">
-          @for (
-            data of tourDetail.startingPoints;
-            track $index;
-            let last = $last
-          ) {
+          @for (data of tourDetail.startingPoints; track $index) {
             <li class="font-medium">- {{ data.name }}</li>
           }
         </ul>

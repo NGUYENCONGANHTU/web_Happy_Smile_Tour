@@ -29,7 +29,7 @@
   @for (tour of dataDomesticTour; track tour) {
     <swiper-slide
       class="text-black cursor-pointer"
-      [routerLink]="['/tab-tour-foreign-detail', tour.id]">
+      [routerLink]="['/tab-tour-foreign-detail', tour.tourId]">
       <div class="card-item">
         <div class="picture">
           <img class="" [src]="tour.images?.[0]?.storagePath || ''" alt="" />

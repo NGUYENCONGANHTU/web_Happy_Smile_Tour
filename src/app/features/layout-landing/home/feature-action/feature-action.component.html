@@ -20,7 +20,7 @@
         <img
           [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="Tour"
-          class="tour-image" />
+          class="tour-image !h-[200px] object-cover bg-center bg-cover" />
         <div class="tour-content">
           <div class="tour-title truncate text-gray-900">
             {{ data.title }}

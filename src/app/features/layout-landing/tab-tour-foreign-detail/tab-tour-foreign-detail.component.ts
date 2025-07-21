@@ -20,13 +20,8 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormFeedbackComponent } from './form-feedback/form-feedback.component';
-import { TourPriceListService } from './price-list/tour-price-list.service';
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
-import {
-  NzTableCellDirective,
-  NzThMeasureDirective,
-} from 'ng-zorro-antd/table';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -47,8 +42,6 @@ import { TranslatePipe } from '@ngx-translate/core';
     NzBreadCrumbModule,
     RouterLink,
     FormFeedbackComponent,
-    NzTableCellDirective,
-    NzThMeasureDirective,
     TranslatePipe,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
@@ -84,7 +77,6 @@ export class TabTourForeignDetailComponent implements OnInit {
     }
   }
 
-  tourServiceList = inject(TourPriceListService);
   route = inject(ActivatedRoute);
   ngOnInit() {
     this.getIdParam();
