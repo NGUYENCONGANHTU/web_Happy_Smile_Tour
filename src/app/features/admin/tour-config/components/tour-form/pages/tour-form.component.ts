@@ -138,7 +138,6 @@ export class TourFormComponent implements OnInit {
             ),
           });
           res.tour.data.images.forEach(({ storagePath }) => {
-            console.log();
             this.fileList.push(
               this.fb.control(parseToNzUploadFile(storagePath))
             );

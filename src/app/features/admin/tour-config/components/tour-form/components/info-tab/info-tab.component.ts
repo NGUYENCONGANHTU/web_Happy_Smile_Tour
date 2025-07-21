@@ -14,6 +14,7 @@ import { ValidationMessagePipe } from '../../../../../../../shared/pipes/validat
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TourConfigService } from '../../../../tour-config.service';
 import { OptionItem } from '../../../../../../../core/interfaces/base.interface';
+import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 
 @Component({
   selector: 'app-tour-form-info-tab',
@@ -36,6 +37,7 @@ export class TourFormInfoTabComponent implements OnInit {
   locationOptions: OptionItem[] = [];
 
   @Input({ required: true }) tourForm!: FormGroup;
+  @Input({ required: true }) mode!: BaseFormMode;
 
   ngOnInit(): void {
     this.fetchLocationData();
@@ -64,4 +66,6 @@ export class TourFormInfoTabComponent implements OnInit {
   get fileList() {
     return this.tourForm.controls['images'] as FormArray;
   }
+
+  protected readonly BaseFormMode = BaseFormMode;
 }
