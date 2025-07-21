@@ -1,5 +1,6 @@
 {
   "menu": {
+    "home": "Trang chủ",
     "about": "Giới thiệu",
     "domestic_tours": "Tour trong nước",
     "international_tours": "Tour nước ngoài",
@@ -13,10 +14,8 @@
   },
   "domestic_tour": {
     "title": "Tìm chuyến đi phù hợp với bạn tại đây!",
-    "tabs": {
-      "domestic": "Trong nước",
-      "international": "Nước ngoài"
-    },
+    "tab_domestic": "Trong nước",
+    "tab_foreign": "Nước ngoài",
     "budget": "Ngân sách bạn có",
     "location": "Chọn địa điểm",
     "departure": "Điểm đi",
@@ -24,7 +23,8 @@
     "find_tour": "TÌM TOUR"
   },
   "tour_card": {
-    "rating": "đánh giá",
+    "best_sale" : "Giá tốt nhất",
+    "rating": " lượt đánh giá",
     "itinerary": "Hành trình",
     "from": "Từ",
     "price_from": "Giá chỉ từ"
@@ -34,6 +34,7 @@
     "private_group_tours": "Tour đoàn riêng"
   },
   "tab_service": {
+    "company" : "Công ty",
     "title": "Dịch vụ tư vấn",
     "consulting": "Tư vấn",
     "instruction": "Để thông tin để được tư vấn miễn phí",
@@ -41,10 +42,22 @@
     "phone": "Số điện thoại",
     "email": "Email",
     "note": "Ghi chú",
-    "consult_now": "Tư vấn ngay",
+    "consult_now": "TƯ VẤN",
     "register_consulting": "Đăng kí tư vấn",
     "enter_name": "Nhập tên của bạn",
     "name_required": "Tên là bắt buộc",
     "phone_required": "Số điện thoại là bắt buộc"
+  },
+  "private_tour": {
+    "people_count": "Số người",
+    "estimated_time": "Thời gian dự kiến",
+    "estimated_budget": "Ngân sách dự kiến",
+    "desired_destination": "Địa điểm mong muốn",
+    "note": "Ghi chú",
+    "contact_us":"Hãy liên hệ với chúng tôi",
+    "name_required": "Tên của bạn là bắt buộc",
+    "phone_required": "Số điện thoại của bạn là bắt buộc",
+    "cancel": "Hủy bỏ",
+    "submit": "Gửi"
   }
 }

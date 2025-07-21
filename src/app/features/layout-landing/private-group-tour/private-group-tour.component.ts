@@ -10,6 +10,8 @@ import {
   ContactPrivateTourReqDTO,
   PrivateTourResDTO,
 } from '../../../../interface';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../shared/services/language.service';
 @Component({
   selector: 'app-private-group-tour',
   imports: [
@@ -19,22 +21,29 @@ import {
     NzInputModule,
     NzDatePickerModule,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   templateUrl: './private-group-tour.component.html',
   styleUrl: './private-group-tour.component.scss',
 })
 export class PrivateGroupTourComponent implements OnInit {
   appService = inject(AppService);
+  translate = inject(TranslateService);
+  languageService = inject(LanguageService);
 
   ngOnInit() {
+    this.translate.use(this.languageService.locale);
     this.getAllDataPrivateTour();
   }
 
-  //
   dataPrivateTour: PrivateTourResDTO[] = [];
   getAllDataPrivateTour() {
     this.appService.getAllDataPrivateTour().subscribe(res => {
-      this.dataPrivateTour = res.data;
+      if (res?.data) {
+        this.dataPrivateTour = res.data;
+      } else {
+        this.dataPrivateTour = [];
+      }
     });
   }
 

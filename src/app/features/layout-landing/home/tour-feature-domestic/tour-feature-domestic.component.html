@@ -32,8 +32,7 @@
       [routerLink]="['/tab-tour-foreign-detail', tour.id]">
       <div class="card-item">
         <div class="picture">
-          <img class="" [src]="tour.imageUrl?.[0]" alt="" />
-          <!--          <img class="" src="https://hanoitourist.vn/sites/default/files/2025/01/%C4%90%E1%BA%A3o%20Nami.jpg" alt="" />-->
+          <img class="" [src]="tour.images?.[0]?.storagePath || ''" alt="" />
         </div>
         <div class="picture truncate !space-y-[8px]">
           <div class="truncate font-bold uppercase">{{ tour.title }}</div>
@@ -50,15 +49,22 @@
                 }
               </div>
               <span class="text-[#888]">|</span>
-              <div class="">{{ tour.numberComment }} đánh giá</div>
+              <div class="">
+                {{ tour.numberComment }}
+                {{ 'tour_card.rating' | translate }}
+              </div>
             </div>
           </div>
           <div class="!space-x-2">
-            <span class="!text-[#3A3A3C] font-medium">Hành trình:</span>
+            <span class="!text-[#3A3A3C] font-medium">
+              {{ 'tour_card.itinerary' | translate }}:
+            </span>
             <span class="!text-[#e7000b] font-medium">{{ tour.stayDate }}</span>
           </div>
           <div class="flex items-start">
-            <span class="!text-[#3A3A3C] font-medium">Từ:</span>
+            <span class="!text-[#3A3A3C] font-medium">
+              {{ 'tour_card.from' | translate }}:
+            </span>
             <ul class="flex items-center truncate !ml-1">
               @for (
                 data of tour.startingPoints;
@@ -76,7 +82,7 @@
           </div>
           <div class="price">
             <div class="text-end !pr-2 !text-[#3A3A3C] text-[16px] font-medium">
-              Giá chỉ từ:
+              {{ 'tour_card.price_from' | translate }}:
             </div>
             <div class="text-end !space-x-2">
               <span class="line-through font-medium !text-gray-400 !text-[14px]"

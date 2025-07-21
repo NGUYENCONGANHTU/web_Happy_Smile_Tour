@@ -14,19 +14,6 @@
         }
       </nz-carousel>
 
-      <!--      <nz-carousel nzAutoPlay class="absolute inset-0 z-0" [nzDots]="false">-->
-      <!--        @for (image of array; track $index) {-->
-      <!--          <div-->
-      <!--            nz-carousel-content-->
-      <!--            [ngStyle]="{-->
-      <!--              'background-image': 'url(' + image.image + ')',-->
-      <!--              'background-position': 'center',-->
-      <!--              'background-size': 'cover',-->
-      <!--              height: '100%',-->
-      <!--            }"></div>-->
-      <!--        }-->
-      <!--      </nz-carousel>-->
-
       <!-- Fixed content above carousel -->
       <div
         class="absolute inset-0 z-10 flex justify-center items-center text-white">
@@ -124,16 +111,20 @@
     </div>
 
     <!--========== Khách hàng nói gì về chúng tôi ==========-->
-    <div class="customer-feedback">
-      <div class="customer-feedback-title">{{ dataHomeTitle[4]?.title }}</div>
-      <app-customer-feedback
-        [dataCustomerFeedback]="dataCustomerFeedback"></app-customer-feedback>
-    </div>
+    @if (dataCustomerFeedback) {
+      <div class="customer-feedback">
+        <div class="customer-feedback-title">{{ dataHomeTitle[4]?.title }}</div>
+        <app-customer-feedback [dataCustomerFeedback]="dataCustomerFeedback">
+        </app-customer-feedback>
+      </div>
+    }
     <!--========== Khách hàng tiêu biểu ==========-->
-    <div class="feature-customer">
-      <div class="feature-customer-title">{{ dataHomeTitle[5]?.title }}</div>
-      <app-feature-customer
-        [dataCustomerFeature]="dataPartner"></app-feature-customer>
-    </div>
+    @if (dataPartner) {
+      <div class="feature-customer">
+        <div class="feature-customer-title">{{ dataHomeTitle[5]?.title }}</div>
+        <app-feature-customer
+          [dataCustomerFeature]="dataPartner"></app-feature-customer>
+      </div>
+    }
   </div>
 </section>

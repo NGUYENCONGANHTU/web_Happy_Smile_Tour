@@ -13,11 +13,11 @@
                     }'>
   @for (data of dataCustomerFeature; track $index) {
     <swiper-slide
-      class="slide border object-cover bg-center bg-cover text-center p-5! rounded-lg border-[#D3D3D3]">
+      class="slide border text-center p-5! rounded-lg border-[#D3D3D3] h-[160px]">
       <img
         [src]="formatImage(data.responseDocumentDTO.storagePath)"
         alt=""
-        class="h-[70px] object-cover bg-center bg-cover" />
+        class="h-full w-full object-cover bg-center bg-cover" />
     </swiper-slide>
   }
 </swiper-container>

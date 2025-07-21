@@ -8,6 +8,7 @@ import {
 import { AppService } from '../../../../app.service';
 import { HomeBannerResDTO, IntroducePageResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
+import { sanitizeUrl } from '../../../shared/utils/helpers';
 
 @Component({
   selector: 'app-tab-contact',
@@ -23,6 +24,8 @@ export class TabContactComponent implements OnInit {
 
   appService = inject(AppService);
 
+  formateImage = sanitizeUrl;
+
   ngOnInit() {
     this.getAllDataBanner();
     this.getAllDataPhone();
@@ -34,7 +37,11 @@ export class TabContactComponent implements OnInit {
   dataBanner: HomeBannerResDTO[] = [];
   getAllDataBanner() {
     this.appService.getAlLDataBannerContact().subscribe(res => {
-      this.dataBanner = res.data;
+      if (res?.data) {
+        this.dataBanner = res.data;
+      } else {
+        this.dataBanner = [];
+      }
     });
   }
 
@@ -42,7 +49,11 @@ export class TabContactComponent implements OnInit {
   dataPhone: IntroducePageResDTO[] = [];
   getAllDataPhone() {
     this.appService.getAllDataPhoneContactPage().subscribe(res => {
-      this.dataPhone = res.data;
+      if (res?.data) {
+        this.dataPhone = res.data;
+      } else {
+        this.dataPhone = [];
+      }
     });
   }
 
@@ -50,14 +61,22 @@ export class TabContactComponent implements OnInit {
   dataAddress: IntroducePageResDTO[] = [];
   getAllDataAddress() {
     this.appService.getAllDataAddressContactPage().subscribe(res => {
-      this.dataAddress = res.data;
+      if (res?.data) {
+        this.dataAddress = res.data;
+      } else {
+        this.dataAddress = [];
+      }
     });
   }
   // ================== Email =======================
   dataEmail: IntroducePageResDTO[] = [];
   getAllDataEmail() {
     this.appService.getAllDataEmailContactPage().subscribe(res => {
-      this.dataEmail = res.data;
+      if (res?.data) {
+        this.dataEmail = res.data;
+      } else {
+        this.dataEmail = [];
+      }
     });
   }
 }

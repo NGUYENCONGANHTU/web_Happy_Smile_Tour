@@ -11,17 +11,22 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../../shared/services/language.service';
 @Component({
   selector: 'app-feature-action',
   standalone: true,
-  imports: [RouterLink, FaIconComponent, NgClass, DecimalPipe],
+  imports: [RouterLink, FaIconComponent, NgClass, DecimalPipe, TranslatePipe],
   templateUrl: './feature-action.component.html',
   styleUrl: './feature-action.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FeatureActionComponent implements OnInit {
+  translate = inject(TranslateService);
+  languageService = inject(LanguageService);
   appService = inject(AppService);
   ngOnInit() {
+    this.translate.use(this.languageService.locale);
     this.getAllData();
   }
 
@@ -30,8 +35,11 @@ export class FeatureActionComponent implements OnInit {
   dataFeatureTour: FeatureResDTO[] = [];
   getAllData() {
     this.appService.getAllDataTourFeature4().subscribe(res => {
-      this.dataFeatureTour = res.data.content;
+      if (res?.data?.content) {
+        this.dataFeatureTour = res.data.content;
+      } else {
+        this.dataFeatureTour = [];
+      }
     });
   }
 }
-// ảnh thì tôi muốn lấy ảnh trong object đầu tiên trả về

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
+  private _locale = 'vi';
+
   constructor() {
     this._locale = localStorage.getItem('lang') ?? 'vi';
   }
@@ -14,6 +16,4 @@ export class LanguageService {
     localStorage.setItem('lang', lang);
     this._locale = lang;
   }
-
-  private _locale = 'vi';
 }

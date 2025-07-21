@@ -1,57 +1,3 @@
-<!--<div class="cards-content-feature-domestic">-->
-<!--  @for (data of tours; track data.id) {-->
-<!--    <div class="card-content-feature-domestic-item">-->
-<!--      <div class="card-content-feature-domestic-item-image">-->
-<!--        <img-->
-<!--          src="https://hanoitourist.vn/sites/default/files/2025/02/w2-1715749810964.jpg"-->
-<!--          alt="" />-->
-<!--      </div>-->
-<!--      <div class="card-content-feature-domestic-item-info !space-y-2">-->
-<!--        <div class="card-content-feature-domestic-item-info-title !truncate">-->
-<!--          <div class="!runcate">{{ data.title }}</div>-->
-<!--        </div>-->
-<!--        <div class="star flex">-->
-<!--          @for (i of [1, 2, 3, 4, 5]; track i) {-->
-<!--            <fa-icon-->
-<!--              [icon]="faStar"-->
-<!--              [ngClass]="i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'"-->
-<!--              class="mr-1"></fa-icon>-->
-<!--          }-->
-<!--        </div>-->
-<!--        &lt;!&ndash;===== Ngày đi ======&ndash;&gt;-->
-<!--        <div class="departureDate">-->
-<!--          <fa-icon [icon]="faCalendarDays" class="close-menu-icon"></fa-icon>-->
-<!--          Ngày đi: <span class="font-bold">3 ngày 2 đêm</span>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;===== Địa điểm đi ======&ndash;&gt;-->
-<!--        <div class="place-price">-->
-<!--          <div class="place">-->
-<!--            <fa-icon [icon]="faLocationDot" class="close-menu-icon"></fa-icon>-->
-<!--            Từ:<span class="font-bold"> Hà Nội</span>-->
-<!--          </div>-->
-<!--          <div class="price">-->
-<!--            Giá từ:-->
-<!--            <br />-->
-<!--            <span class="text-[18px] font-bold price text-[#ef2061]">{{-->
-<!--              data.finalPrice-->
-<!--            }}</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="routes">-->
-<!--          <div class="feature-routes">-->
-<!--            <a href="">-->
-<!--              Điểm nổi bật-->
-<!--              <fa-icon [icon]="faAngleRight" class="close-menu-icon"></fa-icon>-->
-<!--            </a>-->
-<!--          </div>-->
-<!--          <div class="btn-detail">-->
-<!--            <button class="font-medium!">XEM CHI TIẾT</button>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  }-->
-<!--</div>-->
 <div class="cards-content-feature-domestic">
   @for (data of tours; track data.id) {
     <div
@@ -59,7 +5,8 @@
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="card-content-feature-domestic-item-image">
         <img
-          src="https://hanoitourist.vn/sites/default/files/2025/02/w2-1715749810964.jpg"
+          class=""
+          [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="" />
       </div>
       <div class="truncate !space-y-[10px]">
@@ -77,15 +24,22 @@
               }
             </div>
             <span class="text-[#888]">|</span>
-            <div class="">{{ data.numberComment }} đánh giá</div>
+            <div class="">
+              {{ data.numberComment | number }}
+              {{ 'tour_card.rating' | translate }}
+            </div>
           </div>
         </div>
         <div class="!space-x-2 !text-[14px]">
-          <span class="!text-[#3A3A3C] font-medium">Hành trình:</span>
+          <span class="!text-[#3A3A3C] font-medium">
+            {{ 'tour_card.itinerary' | translate }}:
+          </span>
           <span class="!text-[#e7000b] font-medium">{{ data.stayDate }}</span>
         </div>
         <div class="flex items-start !text-[14px]">
-          <span class="!text-[#3A3A3C] font-medium">Từ:</span>
+          <span class="!text-[#3A3A3C] font-medium">
+            {{ 'tour_card.from' | translate }}:
+          </span>
           <ul class="flex items-center truncate !ml-1">
             @for (
               item of data.startingPoints;
@@ -103,7 +57,7 @@
         </div>
         <div class="price text-end">
           <div class="!pr-2 !text-[#3A3A3C] text-[16px] font-medium">
-            Giá chỉ từ:
+            {{ 'tour_card.price_from' | translate }}:
           </div>
           <div class="!space-x-2">
             <span class="line-through font-medium !text-gray-400 !text-[14px]"

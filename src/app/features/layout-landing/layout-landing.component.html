@@ -38,8 +38,7 @@
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              <!-- {{ 'nav.introduce' | translate }} -->
-              Giới thiệu
+              {{ 'menu.about' | translate }}
             </a>
           </li>
           <li>
@@ -48,7 +47,7 @@
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              Tour trong nước
+              {{ 'menu.domestic_tours' | translate }}
             </a>
           </li>
           <li>
@@ -57,7 +56,7 @@
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              Tour nước ngoài
+              {{ 'menu.international_tours' | translate }}
             </a>
           </li>
           <li>
@@ -66,7 +65,7 @@
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              Tour đoàn riêng
+              {{ 'menu.private_group_tours' | translate }}
             </a>
           </li>
           <li>
@@ -77,13 +76,13 @@
               [nzDropdownMenu]="menu"
               [ngClass]="{ '!text-[#ed1d26]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
-              Dịch vụ
+              {{ 'menu.services' | translate }}
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul
                 nz-menu
-                class="grid grid-cols-2 max-w-[600px] rounded-md! mt-[17px]! p-2! gap-2">
+                class="grid grid-cols-2 max-w-[600px] rounded-md! !mt-5px md:mt-[10px]! p-2! gap-2">
                 @for (data of dataVisaMenu; track $index) {
                   <li
                     nz-menu-item
@@ -104,7 +103,7 @@
               routerLinkActive="!text-[#ed1d26]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              Liên hệ
+              {{ 'menu.contact' | translate }}
             </a>
           </li>
           <li class="mt-4 md:mt-0">
@@ -113,7 +112,7 @@
               nzTrigger="click"
               [nzDropdownMenu]="language"
               class="flex items-center"
-              [nzPlacement]="'bottomRight'">
+              [nzPlacement]="'bottomCenter'">
               <img
                 [src]="'https://flagcdn.com/w40/' + selectedLang.flag + '.png'"
                 width="20"
@@ -125,7 +124,7 @@
             <nz-dropdown-menu #language="nzDropdownMenu">
               <ul
                 nz-menu
-                class="grid grid-cols-3 max-w-[600px] rounded-md! mt-[15px]! p-2! gap-2">
+                class="grid grid-cols-3 max-w-[600px] rounded-md! !mt-5px md:mt-[10px]! p-2! gap-2">
                 @for (lang of languages; track lang) {
                   <li nz-menu-item (click)="handleChangeLanguage(lang)">
                     <div

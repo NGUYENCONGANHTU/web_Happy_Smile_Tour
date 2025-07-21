@@ -1,5 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { CommentFeedbackResDTO } from '../../../../../interface';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 
 @Component({
   selector: 'app-customer-feedback',
@@ -11,4 +12,5 @@ import { CommentFeedbackResDTO } from '../../../../../interface';
 })
 export class CustomerFeedbackComponent {
   @Input() dataCustomerFeedback: CommentFeedbackResDTO[] = [];
+  formatImage = sanitizeUrl;
 }

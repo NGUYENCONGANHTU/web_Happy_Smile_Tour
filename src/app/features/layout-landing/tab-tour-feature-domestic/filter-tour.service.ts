@@ -10,7 +10,7 @@ import { FeatureResDTO } from '../../../../interface';
 export class FilterTourService {
   http = inject(HttpClient);
 
-  apiUrl = environment.API_URL + '/tour-trans/filter?';
+  apiUrl = environment.API_URL + '/tour-trans/filter?langCode=';
 
   getTours(filters: {
     destination?: string;

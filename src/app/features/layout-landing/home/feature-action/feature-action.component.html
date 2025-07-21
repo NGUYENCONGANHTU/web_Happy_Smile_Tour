@@ -13,13 +13,12 @@
       class="slide"
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="tour-card cursor-pointer">
-        <div class="ribbon !bg-[#ff5722]">Giá tốt nhất {{ $index + 1 }}</div>
+        <div class="ribbon !bg-[#ff5722]">
+          {{ 'tour_card.best_sale' | translate }}
+          {{ $index + 1 }}
+        </div>
         <img
-          [src]="
-            formatImage(
-              data.imageUrl?.[0]?.storagePath || 'assets/images/default.jpg'
-            )
-          "
+          [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="Tour"
           class="tour-image" />
         <div class="tour-content">
@@ -39,17 +38,22 @@
               }
             </div>
             <span class="reviews !mx-2"
-              >| {{ data.numberComment | number }} đánh giá</span
-            >
+              >| {{ data.numberComment | number }}
+              {{ 'tour_card.rating' | translate }}
+            </span>
           </div>
           <div class="">
-            <span class="font-medium !text-[#3A3A3C]">Hành trình:</span>
+            <span class="font-medium !text-[#3A3A3C]"
+              >{{ 'tour_card.itinerary' | translate }}:</span
+            >
             <span class="ml-1! !text-[#e7000b] font-medium">{{
               data.stayDate
             }}</span>
           </div>
           <div class="tour-points text-[#6A6B6D] truncate">
-            <span class="!mr-[4px] font-medium !text-[#3A3A3C]">Từ:</span>
+            <span class="!mr-[4px] font-medium !text-[#3A3A3C]"
+              >{{ 'tour_card.from' | translate }}:</span
+            >
             <ul class="truncate">
               @for (
                 item of data.startingPoints;
@@ -67,7 +71,7 @@
           </div>
           <div class="">
             <div class="text-end !text-[#3A3A3C] text-[14px] font-medium">
-              Giá chỉ từ:
+              {{ 'tour_card.price_from' | translate }}:
             </div>
             <div class="price truncate">
               <span class="old-price !text-gray-400"

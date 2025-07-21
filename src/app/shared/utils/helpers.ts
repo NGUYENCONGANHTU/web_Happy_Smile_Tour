@@ -1,7 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { ResponseBasePage } from '../../core/interfaces/base.interface';
-import { environment } from '../../../environment';
 
 export function formatDate(date: string): string {
   return new Date(date).toLocaleDateString();
@@ -79,6 +78,6 @@ export function sanitizeUrl(path: string): string {
   const normalized = cleaned.startsWith('/') ? cleaned : '/' + cleaned;
 
   // Ghép với domain nếu cần (có thể lấy từ env)
-  const baseUrl = environment.API_URL;
-  return baseUrl + normalized;
+  // const baseUrl = environment.API_URL;
+  return '/images/tmp' + normalized;
 }

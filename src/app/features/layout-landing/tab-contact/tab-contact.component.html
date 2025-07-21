@@ -4,12 +4,14 @@
       <div
         class="banner-contact"
         [ngStyle]="{
-          'background-image': 'url(' + image?.storagePath + ')',
+          'background-image': 'url(' + formateImage(image.storagePath) + ')',
           height: '480px',
           'background-position': 'center',
           'background-size': 'cover',
         }">
-        <div class="banner-contact-title">{{ data.title }}</div>
+        <div class="banner-contact-title text-[50px] font-bold">
+          {{ data.title }}
+        </div>
       </div>
     }
   }

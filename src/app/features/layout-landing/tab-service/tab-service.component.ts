@@ -19,6 +19,9 @@ import {
 } from './interface-contact-tour-service';
 import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
+import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../shared/services/language.service';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -33,18 +36,23 @@ import { NgStyle } from '@angular/common';
     ReactiveFormsModule,
     NzFormLabelComponent,
     NgStyle,
+    TranslatePipe,
   ],
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',
 })
 export class TabServiceComponent implements OnInit {
   appService = inject(AppService);
+  translate = inject(TranslateService);
+  languageService = inject(LanguageService);
+  formatImage = sanitizeUrl;
 
   serviceId = 0;
   dataServiceDetail: VisaServiceResDTO | null = null;
   route = inject(ActivatedRoute);
 
   ngOnInit() {
+    this.translate.use(this.languageService.locale);
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
@@ -111,4 +119,6 @@ export class TabServiceComponent implements OnInit {
       });
     }
   }
+
+  protected readonly formateImage = sanitizeUrl;
 }

@@ -131,7 +131,11 @@ export class HomeComponent implements OnInit {
   // thay đổi tab thì lấy dữ liệu của tab đó
   changeTabNameForeignTour(id: number) {
     this.appService.changeTabForeign(id).subscribe(res => {
-      this.dataTourForeign = res.data.content ?? [];
+      if (res?.data) {
+        this.dataTourForeign = res?.data?.content;
+      } else {
+        this.dataTourForeign = [];
+      }
     });
   }
 
@@ -171,9 +175,11 @@ export class HomeComponent implements OnInit {
 
   getAllDataNews() {
     this.appService.getAllDataTravelGuide().subscribe(res => {
-      this.featureNews = res.data[0];
-      this.featureLeftNews = res.data.slice(1, 4);
-      this.featureRightNews = res.data.slice(4, 10);
+      if (res?.data) {
+        this.featureNews = res.data[0];
+        this.featureLeftNews = res.data.slice(1, 4);
+        this.featureRightNews = res.data.slice(4, 10);
+      }
     });
   }
 
@@ -182,14 +188,23 @@ export class HomeComponent implements OnInit {
 
   getAllDataCommentFeedBack() {
     this.appService.getAllDataCommentFeedback().subscribe(res => {
-      this.dataCustomerFeedback = res.data;
+      if (res?.data) {
+        this.dataCustomerFeedback = res.data;
+      } else {
+        this.dataCustomerFeedback = [];
+      }
     });
   }
   /* ========================== KHÁCH HÀNG NỔI BẬT ============================= */
   dataPartner: PartnerResDTO[] = [];
   getAllDataPartner() {
     this.appService.getAllDataPartner().subscribe(res => {
-      this.dataPartner = res.data;
+      if (res?.data) {
+        this.dataPartner = res.data;
+      } else {
+        this.dataPartner = [];
+        console.warn('Dữ liệu không có hoặc trả về null');
+      }
     });
   }
 }

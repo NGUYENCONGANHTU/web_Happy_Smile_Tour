@@ -58,21 +58,33 @@ export class IntroduceComponent implements OnInit {
   dataBannerIntroduce: HomeBannerResDTO[] = [];
   getDataBannerIntroducePage() {
     this.appService.getAlLDataBannerIntro().subscribe(res => {
-      this.dataBannerIntroduce = res.data;
+      if (res?.data) {
+        this.dataBannerIntroduce = res.data;
+      } else {
+        this.dataBannerIntroduce = [];
+      }
     });
   }
   // function Banner Introduce
   dataServiceIntroduce: AdvertiseResDTO[] = [];
   getAllDataHighLightIntroducePage() {
     this.appService.getAllDataAdvertise().subscribe(res => {
-      this.dataServiceIntroduce = res.data;
+      if (res?.data) {
+        this.dataServiceIntroduce = res.data;
+      } else {
+        this.dataServiceIntroduce = [];
+      }
     });
   }
   // function Banner Introduce BENEFIT
   dataContentIntroducePage: IntroducePageResDTO[] = [];
   getAllDataBenefitIntroducePage() {
     this.appService.getAllDataMainIntroducePage().subscribe(res => {
-      this.dataContentIntroducePage = res.data;
+      if (res?.data) {
+        this.dataContentIntroducePage = res.data;
+      } else {
+        this.dataContentIntroducePage = [];
+      }
     });
   }
 
@@ -80,13 +92,21 @@ export class IntroduceComponent implements OnInit {
   dataTitleIntroducePage: IntroduceTitleResDTO[] = [];
   getAllDataTitleIntroducePage() {
     this.appService.getAllDataTitleIntroducePage().subscribe(res => {
-      this.dataTitleIntroducePage = res.data;
+      if (res?.data) {
+        this.dataTitleIntroducePage = res.data;
+      } else {
+        this.dataTitleIntroducePage = [];
+      }
     });
   }
   dataStatisticalIntroducePage: IntroduceTitleResDTO[] = [];
   getAllDataStatisticalIntroducePage() {
     this.appService.getAllDataStatisticalIntroducePage().subscribe(res => {
-      this.dataStatisticalIntroducePage = res.data;
+      if (res?.data) {
+        this.dataStatisticalIntroducePage = res.data;
+      } else {
+        this.dataStatisticalIntroducePage = [];
+      }
     });
   }
 }

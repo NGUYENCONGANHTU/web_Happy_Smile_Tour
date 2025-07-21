@@ -11,9 +11,11 @@ import { FilterTourService } from '../filter-tour.service';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 @Component({
   selector: 'app-content-feature-domestic',
-  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink],
+  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',
 })
@@ -22,7 +24,7 @@ export class ContentFeatureDomesticComponent implements OnChanges {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
   faAngleRight = faAngleRight;
-
+  formatImage = sanitizeUrl;
   @Input() filterParams: any;
   tours: FeatureResDTO[] = [];
 

@@ -111,7 +111,7 @@ export interface FeatureReqDTO {
   nonService: string;
   regulation: string;
   note: string;
-  imageUrl: DocumentResDTO[];
+  images: DocumentResDTO[];
   tourSchedules: ScheduleResDTO[];
   tourPrices: TourPriceResDTO[];
   tourSurcharges: TourSurchargeResDTO[];
@@ -135,7 +135,7 @@ export interface FeatureResDTO {
   nonService: string;
   regulation: string;
   note: string;
-  imageUrl: DocumentResDTO[];
+  images: DocumentResDTO[];
   tourSchedules: ScheduleResDTO[];
   tourPrices: TourPriceResDTO[];
   tourSurcharges: TourSurchargeResDTO[];
@@ -308,7 +308,6 @@ export interface TourScheduleResDTO {
 /* ==================== Menu Dịch Vụ  ==================== */
 export interface VisaServiceReqDTO {
   visaServiceId: number;
-
   name: string;
   bannerTitle: string;
   image: DocumentResDTO;
