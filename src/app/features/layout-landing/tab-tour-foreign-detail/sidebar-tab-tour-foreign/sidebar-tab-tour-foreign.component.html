@@ -6,7 +6,9 @@
       </div>
       <div class="price-tour space-y-1!">
         @if (tourDetail.finalPrice) {
-          <div class="price-tour-label">Giá chỉ từ:</div>
+          <div class="price-tour-label">
+            {{ 'tour_card.price_from' | translate }}:
+          </div>
           <div class="price-tour-value !font-bold">
             {{ tourDetail.finalPrice | number }} VNĐ
           </div>
@@ -17,12 +19,12 @@
     <div class="space-y-2!">
       <div class="departure-date">
         <fa-icon [icon]="faCalendarDays" class="icon-calendar"></fa-icon>
-        <span>Hành trình:</span>
+        <span>{{ 'tour_card.itinerary' | translate }}:</span>
         <div class="date font-medium">{{ tourDetail.stayDate }}</div>
       </div>
       <div class="departure-location">
         <fa-icon [icon]="faLocationDot" class="icon-location"></fa-icon>
-        <span>Từ:</span>
+        <span>{{ 'tour_card.from' | translate }}:</span>
         <ul class=" ">
           @for (
             data of tourDetail.startingPoints;
@@ -36,37 +38,41 @@
     </div>
     <div class="text-center">
       <button class="btn-reserve" (click)="showModal()">
-        <div class="btn-title">ĐẶT GIỮ CHỖ NGAY</div>
-        <div class="btn-subtitle">Đặt ngay chưa cần thanh toán</div>
+        <div class="btn-title">{{ 'tour_detail.booking' | translate }}</div>
+        <div class="btn-subtitle">
+          {{ 'tour_detail.not_yet_pay' | translate }}
+        </div>
       </button>
       <form nz-form [formGroup]="validateForm" (ngSubmit)="handleCancel()">
         <nz-modal
           class="!rounded-xl"
           [nzWidth]="800"
           [(nzVisible)]="isVisible"
-          nzCancelText="Hủy bỏ"
-          nzTitle="Thông tin liên lạc"
-          nzOkText="Gửi"
+          nzCancelText="{{ 'tour_detail.cancel' | translate }}"
+          nzTitle="{{ 'tour_detail.info_contact' | translate }}"
+          nzOkText="{{ 'tour_detail.submit' | translate }}"
           (nzOnCancel)="handleCancel()"
           (nzOnOk)="handleOk()">
           <ng-container *nzModalContent>
             <div class="grid grid-cols-2 gap-2">
               <nz-form-item>
-                <nz-form-control nzErrorTip="Tên là bắt buộc">
+                <nz-form-control
+                  nzErrorTip="{{ 'private_tour.name_required' | translate }}">
                   <input
                     class="!rounded-lg py-2! px-4!"
                     nz-input
-                    placeholder="Họ và tên"
+                    placeholder="{{ 'tour_detail.full_name' | translate }}"
                     formControlName="name" />
                 </nz-form-control>
               </nz-form-item>
 
               <nz-form-item>
-                <nz-form-control nzErrorTip="Số điện thoại là bắt buộc">
+                <nz-form-control
+                  nzErrorTip="{{ 'private_tour.phone_required' | translate }}">
                   <input
                     nz-input
                     class="!rounded-lg py-2! px-4!"
-                    placeholder="Số điện thoại"
+                    placeholder="{{ 'tab_service.phone' | translate }}"
                     formControlName="phone" />
                 </nz-form-control>
               </nz-form-item>
@@ -86,7 +92,7 @@
                   <input
                     nz-input
                     class="!rounded-lg py-2! px-4!"
-                    placeholder="Địa chỉ"
+                    placeholder="{{ 'tour_detail.address' | translate }}"
                     formControlName="message" />
                 </nz-form-control>
               </nz-form-item>

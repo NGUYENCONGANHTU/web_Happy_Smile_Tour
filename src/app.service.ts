@@ -164,16 +164,18 @@ export class AppService {
   /*======================== CÁC TOUR NỔI BẬT ==========================*/
 
   getAllDataTourFeature4() {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl4);
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      this.apiUrl4 + `langCode=${this.languageService.locale}`
+    );
   }
   createDataTourFeature4(data: FeatureReqDTO) {
     return this.http.post<FeatureResDTO>(this.apiUrl4, data);
   }
 
   getDataTourFeatureById4(id: number) {
-    return this.http.get<{ data: FeatureResDTO }>(
-      `${this.apiUrl5 + '/service'}/${id}`
-    );
+    const lang = this.languageService.locale;
+    const url = `${this.apiUrl5}/service/${id}?langCode=${lang}`;
+    return this.http.get<{ data: FeatureResDTO }>(url);
   }
 
   updateDataTourFeature4(data: FeatureReqDTO, id: number) {
@@ -282,15 +284,16 @@ export class AppService {
     );
   }
   getAllDataTitleIntroducePage() {
-    return this.http.get<{ data: IntroduceTitleResDTO[] }>(
-      this.apiUrl10 + '/type/TITLE'
-    );
+    const lang = this.languageService.locale;
+    const url = `${this.apiUrl10}/type/TITLE?langCode=${lang}`;
+    return this.http.get<{ data: IntroduceTitleResDTO[] }>(url);
   }
   getAllDataStatisticalIntroducePage() {
-    return this.http.get<{ data: IntroduceTitleResDTO[] }>(
-      this.apiUrl10 + '/type/STATISTICAL'
-    );
+    const lang = this.languageService.locale;
+    const url = `${this.apiUrl10}/type/STATISTICAL?langCode=${lang}`;
+    return this.http.get<{ data: IntroduceTitleResDTO[] }>(url);
   }
+
   getDataByIdIntroducePage(id: number) {
     return this.http.get<IntroducePageResDTO>(`${this.apiUrl9}/${id}`);
   }

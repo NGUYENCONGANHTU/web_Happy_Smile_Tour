@@ -1,9 +1,10 @@
 <div class="">
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <nz-card nzTitle="Đánh giá của bạn">
+    <nz-card nzTitle=" {{ 'tour_detail.your_feedback' | translate }}">
       <!--   Đánh giá star   -->
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="'Vui lòng chọn đánh giá'">
+        <nz-form-control
+          [nzErrorTip]="'tour_detail.please_feedback' | translate">
           <nz-rate formControlName="star"></nz-rate>
 
           @if (validateForm.value.star) {
@@ -19,28 +20,35 @@
       </nz-form-item>
       <!--   Nhập tên khách hàng   -->
       <nz-form-item>
-        <nz-form-control nzErrorTip="Tên là bắt buộc">
+        <nz-form-control nzErrorTip="">
           <input
             nz-input
             formControlName="name"
-            placeholder="Nhập tên của bạn"
+            placeholder="{{ 'tab_service.enter_name' | translate }}"
             class="py-2! rounded-lg!" />
         </nz-form-control>
       </nz-form-item>
       <!--   Đánh giá star   -->
       <nz-form-item>
-        <nz-form-control nzErrorTip="Tên là bắt buộc">
+        <nz-form-control
+          nzErrorTip="{{
+            'tour_detail.please_enter_content_feedback' | translate
+          }}">
           <textarea
             nz-input
             [nzAutosize]="{ minRows: 5, maxRows: 8 }"
             formControlName="content"
-            placeholder="Nhập đánh giá của bạn"
+            placeholder="{{
+              'tour_detail.please_enter_content_feedback' | translate
+            }}"
             class="py-2! rounded-lg!">
           </textarea>
         </nz-form-control>
       </nz-form-item>
       <nz-divider></nz-divider>
-      <button nz-button nzType="primary">Gửi đánh giá</button>
+      <button nz-button nzType="primary">
+        {{ 'tour_detail.submit_feedback' | translate }}
+      </button>
     </nz-card>
   </form>
 </div>

@@ -59,5 +59,42 @@
     "phone_required": "Số điện thoại của bạn là bắt buộc",
     "cancel": "Hủy bỏ",
     "submit": "Gửi"
+  },
+  "tour_detail": {
+    "your_feedback" : "Đánh giá của bạn",
+    "please_feedback": "Vui lòng chọn đánh giá",
+    "please_enter_content_feedback": "Vui lòng nhập nội dung đánh giá",
+    "submit_feedback": "Gửi đánh giá",
+    "group_age": "Nhóm tuổi",
+    "age": "Độ tuổi",
+    "original_price": "Giá gốc",
+    "table_discount": "Bảng giảm giá",
+    "type_discount": "Loại giảm giá",
+    "description": "Mô tả",
+    "value_discount": "Giá trị giảm",
+    "if_else": "Điều kiện",
+    "table_surcharge": "Bảng phụ thu",
+    "name_surcharge": "Tên phụ thu",
+    "price_surcharge": "Số tiền",
+    "apply_for": "Áp dụng cho",
+    "day": "NGÀY",
+    "feature_place": "ĐIỂM NỔI BẬT",
+    "schedule": "LỊCH TRÌNH",
+    "table": "BẢNG GIÁ",
+    "service_content": "DỊCH VỤ BAO GỒM",
+    "non_service_content": "DỊCH VỤ KHÔNG BAO GỒM",
+    "note": "GHI CHÚ",
+    "t_c": "ĐIỀU KIỆN VÀ QUY ĐỊNH",
+    "customer_preview": "KHÁCH HÀNG ĐÁNH GIÁ ",
+    "booking" : "ĐẶT VÀ GIỮ CHỖ NGAY",
+    "not_yet_pay" : "Đặt ngay chưa cần thanh toán",
+    "tour": "Chuyến du lịch",
+
+
+    "cancel": "Hủy bỏ",
+    "info_contact": "Thông tin liên lạc",
+    "submit": "Gửi",
+    "full_name": "Họ và tên",
+    "address" : "Địa chỉ"
   }
 }

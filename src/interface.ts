@@ -163,7 +163,7 @@ export interface CommentFeedbackReqDTO {
   description: string;
   content: string;
   start: number;
-  image: DocumentResDTO;
+  responseDocumentDTO: DocumentResDTO;
 }
 export interface CommentFeedbackResDTO {
   id: number;
@@ -171,7 +171,7 @@ export interface CommentFeedbackResDTO {
   description: string;
   content: string;
   start: number;
-  image: DocumentResDTO;
+  responseDocumentDTO: DocumentResDTO;
 }
 /* ====================  PAGE GIỚI THIỆU  ==================== */
 export interface IntroducePageReqDTO {

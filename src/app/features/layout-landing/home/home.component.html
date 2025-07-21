@@ -38,11 +38,13 @@
 
     <!-- ========== Tour nước ngoài  ==========  -->
     <div class="foreign-tour">
-      <div class="foreign-tour-slides flex items-center flex-wrap">
-        <!-- Tiêu đề tour nước ngoài -->
-        <div class="foreign-tour-title !mr-10">
-          {{ dataHomeTitle[1]?.title }}
-        </div>
+      <div class="foreign-tour-slides">
+        @if (dataHomeTitle) {
+          <!-- Tiêu đề tour nước ngoài -->
+          <div class="foreign-tour-title !mr-10">
+            {{ dataHomeTitle[1]?.title }}
+          </div>
+        }
         <!-- Button tab tour nước ngoài -->
         <div class="tabs-foreign-tour flex gap-4 flex-wrap">
           @for (item of tabsForeignTour; track item) {
@@ -70,7 +72,7 @@
 
     <!--  ========== Tour trong nước ==========  -->
     <div class="domestic-tour">
-      <div class="domestic-tour-slides flex flex-wrap">
+      <div class="domestic-tour-slides">
         @if (dataHomeTitle) {
           <div class="domestic-tour-title !mr-10">
             {{ dataHomeTitle[2]?.title }}

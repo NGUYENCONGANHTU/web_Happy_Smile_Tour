@@ -64,3 +64,8 @@
     }
   }
 }
+@media (max-width: 1024px) {
+  .news-tour {
+    grid-template-columns: 1fr;
+  }
+}

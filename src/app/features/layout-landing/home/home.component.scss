@@ -28,9 +28,10 @@
 .domestic-tour {
   padding: 20px 0;
   .domestic-tour-slides {
-    //display: flex;
-    //align-items: center;
-    //gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 50px;
     margin: 30px 0;
     .domestic-tour-title {
       font-size: 24px;

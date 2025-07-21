@@ -26,6 +26,6 @@ import { sanitizeUrl } from '../../../../shared/utils/helpers';
   ],
 })
 export class SlideTourDetailComponent {
-  @Input() listImageBanner: FeatureResDTO[] = [];
+  @Input() listImageBanner: FeatureResDTO | null = null;
   formatImage = sanitizeUrl;
 }

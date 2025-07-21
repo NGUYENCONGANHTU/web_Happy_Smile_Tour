@@ -34,7 +34,7 @@
       background-color: #0c9544;
       color: white;
       border-radius: 8px;
-      padding: 6px 30px;
+      padding: 6px 20px;
       cursor: pointer;
       text-align: center;
       display: inline-block;
@@ -54,12 +54,16 @@
   text-align: center;
 }
 ::ng-deep .ant-modal-header {
-  background: #0c9544 !important;
+  background: #2f7a33 !important;
 }
 ::ng-deep .ant-modal-title {
   color: white;
   font-weight: 500;
 }
 ::ng-deep .ant-btn-primary {
-  background: #0c9544 !important;
+  background: #28a745 !important;
+  border: none;
+}
+::ng-deep .ant-modal-close-x {
+  color: #e0e0e0;
 }

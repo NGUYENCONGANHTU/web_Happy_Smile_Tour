@@ -17,6 +17,7 @@ import {
   TourServiceReqDTO,
 } from '../../tab-service/interface-contact-tour-service';
 import { TabServiceService } from '../../tab-service/tab-service.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -28,6 +29,7 @@ import { TabServiceService } from '../../tab-service/tab-service.service';
     NzModalModule,
     NzButtonModule,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   templateUrl: './sidebar-tab-tour-foreign.component.html',
   styleUrl: './sidebar-tab-tour-foreign.component.scss',

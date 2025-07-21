@@ -3,12 +3,12 @@
     <!--  =====================breadcrumb==========================-->
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/">Trang chủ</a>
+        <a routerLink="/">{{ 'menu.home' | translate }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item>
-        <a routerLink="/tour-feature-foreign" class="font-medium"
-          >Tour du lịch</a
-        >
+        <a routerLink="/tour-feature-foreign" class="font-medium">{{
+          'tour_detail.tour' | translate
+        }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item class="font-medium italic">{{
         tourDetail.title
@@ -18,21 +18,31 @@
     <div class="tab-tour-foreign-detail-main-content">
       <div class="left-content">
         <app-slide-tour-detail
-          [listImageBanner]="dataFeaturePlace"></app-slide-tour-detail>
+          [listImageBanner]="tourDetail"></app-slide-tour-detail>
         <div class="tour-detail-title">{{ tourDetail.title }}</div>
         <div class="tour-detail-title-tabs">
           <div
             class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc]">
-            <button (click)="scrollTo('diemNoiBat')">ĐIỂM NỔI BẬT</button>
-            <button (click)="scrollTo('lichTrinh')">LỊCH TRÌNH</button>
-            <button (click)="scrollTo('bangGia')">BẢNG GIÁ</button>
-            <button (click)="scrollTo('dichVu')">DỊCH VỤ BAO GỒM</button>
+            <button (click)="scrollTo('diemNoiBat')">
+              {{ 'tour_detail.feature_place' | translate }}
+            </button>
+            <button (click)="scrollTo('lichTrinh')">
+              {{ 'tour_detail.schedule' | translate }}
+            </button>
+            <button (click)="scrollTo('bangGia')">
+              {{ 'tour_detail.table' | translate }}
+            </button>
+            <button (click)="scrollTo('dichVu')">
+              {{ 'tour_detail.service_content' | translate }}
+            </button>
           </div>
           <div class="tour-detail-title-tabs-content">
             <!-- ===================ĐIỂM NỔI BẬT========================= -->
             @if (tourDetail.highlight) {
               <div #diemNoiBat id="diem-noi-bat" class="tab">
-                <div class="tab-title">ĐIỂM NỔI BẬT</div>
+                <div class="tab-title">
+                  {{ 'tour_detail.feature_place' | translate }}
+                </div>
                 <app-feature-place [highlight]="tourDetail.highlight">
                 </app-feature-place>
               </div>
@@ -40,7 +50,9 @@
             <!-- ======================LỊCH TRÌNH====================== -->
             @if (tourDetail.tourSchedules) {
               <div #lichTrinh id="lich-trinh" class="tab">
-                <div class="tab-title">LỊCH TRÌNH</div>
+                <div class="tab-title !uppercase">
+                  {{ 'tour_detail.schedule' | translate }}
+                </div>
                 <app-schedule
                   [tourDays]="tourDetail.tourSchedules"></app-schedule>
               </div>
@@ -48,7 +60,9 @@
             <!-- ======================BẢNG GIÁ====================== -->
             @if (tourDetail) {
               <div #bangGia id="bang-gia" class="tab">
-                <div class="tab-title">BẢNG GIÁ</div>
+                <div class="tab-title !uppercase">
+                  {{ 'tour_detail.table' | translate }}
+                </div>
                 <app-price-list
                   [dataTourPrice]="tourDetail.tourPrices"
                   [dataTourDiscount]="tourDetail.tourDiscounts"
@@ -62,7 +76,9 @@
               <!--============== DỊCH VỤ BAO GỒM =================-->
               @if (tourDetail.nonService) {
                 <div class="content-1">
-                  <div class="tab-title">DỊCH VỤ BAO GỒM</div>
+                  <div class="tab-title !uppercase">
+                    {{ 'tour_detail.service_content' | translate }}
+                  </div>
                   <div class="content-1">{{ tourDetail.service }}</div>
                 </div>
               }
@@ -70,7 +86,9 @@
               <!--============== DỊCH VỤ KHÔNG BAO GỒM =================-->
               @if (tourDetail?.nonService) {
                 <div class="content-2">
-                  <div class="tab-title">DỊCH VỤ KHÔNG BAO GỒM</div>
+                  <div class="tab-title !uppercase">
+                    {{ 'tour_detail.non_service_content' | translate }}
+                  </div>
                   <div class="content-2-text">{{ tourDetail.nonService }}</div>
                 </div>
               }
@@ -78,7 +96,9 @@
               <!--============== DỊCH VỤ BAO GỒM =================-->
               @if (tourDetail.regulation) {
                 <div class="content-3">
-                  <div class="tab-title uppercase">điều kiện & quy định</div>
+                  <div class="tab-title !uppercase">
+                    {{ 'tour_detail.t_c' | translate }}
+                  </div>
                   <div class="content-3-text">
                     {{ tourDetail.regulation }}
                   </div>
@@ -88,7 +108,9 @@
               <!--============== DỊCH VỤ BAO GỒM =================-->
               @if (tourDetail.note) {
                 <div class="content-3">
-                  <div class="tab-title uppercase">ghi chú</div>
+                  <div class="tab-title !uppercase">
+                    {{ 'tour_detail.note' | translate }}
+                  </div>
                   <div class="content-3-text">
                     {{ tourDetail.note }}
                   </div>
@@ -100,7 +122,7 @@
           <!--============== CUSTOMER FEEDBACK =================-->
           <div class="customer-feedback mb-2!">
             <div class="customer-feedback-title uppercase">
-              khác hàng đánh giá / preview
+              {{ 'tour_detail.customer_preview' | translate }}
             </div>
             <app-form-feedback></app-form-feedback>
           </div>

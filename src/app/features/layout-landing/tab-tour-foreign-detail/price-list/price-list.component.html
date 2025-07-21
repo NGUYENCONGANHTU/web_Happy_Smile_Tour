@@ -7,9 +7,9 @@
       [nzFrontPagination]="false">
       <thead>
         <tr>
-          <th>Nhóm tuổi</th>
-          <th>Độ tuổi</th>
-          <th>Giá gốc</th>
+          <th>{{ 'tour_detail.group_age' | translate }}</th>
+          <th>{{ 'tour_detail.age' | translate }}</th>
+          <th>{{ 'tour_detail.original_price' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -25,17 +25,19 @@
   </div>
   <!--  ======================== BẢNG GIẢM GIÁ ============================  -->
   <div class="">
-    <div class="font-bold mb-8!">BẢNG GIẢM GIÁ</div>
+    <div class="font-bold mb-8! !uppercase">
+      {{ 'tour_detail.table_discount' | translate }}
+    </div>
     <nz-table
       #basicTable
       [nzData]="[dataTourDiscount]"
       [nzFrontPagination]="false">
       <thead>
         <tr>
-          <th>Loại giảm giá</th>
-          <th>Mô tả</th>
-          <th>Giá trị giảm</th>
-          <th>Điều kiện</th>
+          <th>{{ 'tour_detail.type_discount' | translate }}</th>
+          <th>{{ 'tour_detail.description' | translate }}</th>
+          <th>{{ 'tour_detail.value_discount' | translate }}</th>
+          <th>{{ 'tour_detail.if_else' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -52,16 +54,18 @@
   </div>
   <!--  ======================== BẢNG PHỤ THU ============================  -->
   <div class="">
-    <div class="font-bold mb-8!">BẢNG PHỤ THU</div>
+    <div class="font-bold mb-8! !uppercase">
+      {{ 'tour_detail.table_surcharge' | translate }}
+    </div>
     <nz-table
       #basicTable
       [nzData]="[dataTourSurcharge]"
       [nzFrontPagination]="false">
       <thead>
         <tr>
-          <th>Tên phụ thu</th>
-          <th>Số tiền</th>
-          <th>Áp dụng cho</th>
+          <th>{{ 'tour_detail.name_surcharge' | translate }}</th>
+          <th>{{ 'tour_detail.price_surcharge' | translate }}</th>
+          <th>{{ 'tour_detail.apply_for' | translate }}</th>
         </tr>
       </thead>
       <tbody>
