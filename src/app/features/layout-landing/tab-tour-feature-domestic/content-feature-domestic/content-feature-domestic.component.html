@@ -5,7 +5,7 @@
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="card-content-feature-domestic-item-image">
         <img
-          class=""
+          class="h-[160px] w-[250px] object-cover bg-center bg-cover"
           [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="" />
       </div>
@@ -18,14 +18,14 @@
                 <fa-icon
                   [icon]="faStar"
                   [ngClass]="
-                    i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'
+                    i <= data.averageRate ? 'text-[#e5831e]' : 'text-gray-300'
                   "
                   class="mr-1"></fa-icon>
               }
             </div>
             <span class="text-[#888]">|</span>
             <div class="">
-              {{ data.numberComment | number }}
+              {{ data.totalReviews | number }}
               {{ 'tour_card.rating' | translate }}
             </div>
           </div>

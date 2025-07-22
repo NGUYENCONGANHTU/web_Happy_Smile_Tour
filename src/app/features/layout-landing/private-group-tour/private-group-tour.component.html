@@ -30,6 +30,10 @@
         class="private-group-tour-contact-form md:grid md:grid-cols-2 md:!px-[10%] xl:!px-[20%] gap-2">
         <!--     Tên-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'tab_service.name' | translate }}
+            <span class="text-red-500 !mx-2">*</span>
+          </nz-form-label>
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.name"
             [nzHasFeedback]="true"
@@ -43,6 +47,10 @@
         </nz-form-item>
         <!--     Số điện thoại-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'tab_service.phone' | translate }}
+            <span class="text-red-500 !mx-2">*</span>
+          </nz-form-label>
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.phone"
             [nzHasFeedback]="true"
@@ -55,6 +63,9 @@
         </nz-form-item>
         <!--    Email-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            Email:
+          </nz-form-label>
           <nz-form-control>
             <input
               nz-input
@@ -65,6 +76,9 @@
         </nz-form-item>
         <!--      Công ty-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'tab_service.company' | translate }}:
+          </nz-form-label>
           <nz-form-control>
             <input
               nz-input
@@ -76,6 +90,9 @@
 
         <!--      Số người-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'private_tour.people_count' | translate }}:
+          </nz-form-label>
           <nz-form-control>
             <input
               nz-input
@@ -86,6 +103,9 @@
         </nz-form-item>
         <!--      Thời gian dự kiến-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'private_tour.estimated_time' | translate }}:
+          </nz-form-label>
           <nz-form-control>
             <nz-date-picker
               formControlName="expected_date"
@@ -95,6 +115,9 @@
         </nz-form-item>
         <!--      Ngân sách dự kiến-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'private_tour.estimated_budget' | translate }}:
+          </nz-form-label>
           <nz-form-control>
             <input
               nz-input
@@ -103,8 +126,12 @@
               placeholder="{{ 'private_tour.estimated_budget' | translate }}" />
           </nz-form-control>
         </nz-form-item>
+
         <!--     Địa điểm mong muốn-->
         <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'private_tour.desired_destination' | translate }}:
+          </nz-form-label>
           <nz-form-control>
             <input
               nz-input
@@ -117,6 +144,9 @@
         </nz-form-item>
         <!--     Ghi chú-->
         <nz-form-item class="full-width">
+          <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+            {{ 'private_tour.note' | translate }}:
+          </nz-form-label>
           <nz-form-control>
             <textarea
               rows="6"
@@ -126,7 +156,9 @@
           </nz-form-control>
         </nz-form-item>
         <div class="text-right! col-span-2 space-x-4!">
-          <button class="btn-reset" (click)="resetForm($event)">
+          <button
+            class="btn-reset border border-gray-300 text-gray-800 hover:bg-gray-100 font-medium py-2 px-4 rounded-md"
+            (click)="resetForm($event)">
             {{ 'private_tour.cancel' | translate }}
           </button>
           <button class="btn-submit">

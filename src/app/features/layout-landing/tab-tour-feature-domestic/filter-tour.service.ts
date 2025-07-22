@@ -3,14 +3,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environment';
 import { Observable, map } from 'rxjs';
 import { FeatureResDTO } from '../../../../interface';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilterTourService {
   http = inject(HttpClient);
-
-  apiUrl = environment.API_URL + '/tour-trans/filter?langCode=';
+  languageService = inject(LanguageService);
+  apiUrl = environment.API_URL + '/tour-trans/filter';
 
   getTours(filters: {
     destination?: string;
@@ -31,7 +32,7 @@ export class FilterTourService {
     if (filters.max !== undefined) {
       params = params.set('max', filters.max.toString());
     }
-
+    params = params.set('langCode', this.languageService.locale);
     return this.http
       .get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl, { params })
       .pipe(map(res => res.data.content));

@@ -15,12 +15,17 @@
           <div class="title !text-sm md:!text-[30px] lg:!text-[60px] !px-15">
             {{ dataServiceDetail.bannerTitle }}
           </div>
-          <button class="cta-button">
+          <button
+            class="cta-button !text-[20px] hover:outline hover:outline-red-500 hover:outline-2">
             <fa-icon
               [icon]="faPhoneFlip"
               class="phone-icon mr-2! tracking-wide"></fa-icon>
-            {{ 'tab_service.consulting' | translate }}:
-            {{ dataServiceDetail.phone }}
+            <span>
+              {{ 'tab_service.consulting' | translate }}:
+              <span class="text-red-500 tracking-wider">
+                {{ dataServiceDetail.phone }}
+              </span>
+            </span>
           </button>
         </div>
       </div>
@@ -34,9 +39,6 @@
           <div class="content-service-list">
             {{ dataServiceDetail.serviceContent }}
           </div>
-          <button class="btn-contact uppercase">
-            {{ 'tab_service.consult_now' | translate }}
-          </button>
         </div>
         <div class="service-contact !w-full lg:!w-2/5">
           <div class="service-contact-title">
@@ -50,11 +52,9 @@
             nzLayout="vertical">
             <!--     Tên-->
             <nz-form-item>
-              <nz-form-label
-                [nzSpan]="24"
-                class="font-medium text-[14px]"
-                nzRequired
-                >{{ 'tab_service.name' | translate }}:</nz-form-label
+              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]"
+                >{{ 'tab_service.name' | translate
+                }}<span class="text-red-500 !mx-2">*</span>:</nz-form-label
               >
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.name"
@@ -68,11 +68,9 @@
             </nz-form-item>
             <!--     Số điện thoại-->
             <nz-form-item>
-              <nz-form-label
-                [nzSpan]="24"
-                class="font-medium text-[14px]"
-                nzRequired
-                >{{ 'tab_service.phone' | translate }}:</nz-form-label
+              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]"
+                >{{ 'tab_service.phone' | translate
+                }}<span class="text-red-500 !mx-2">*</span>:</nz-form-label
               >
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.phone"
@@ -119,7 +117,7 @@
             <!--     Buttons -->
             <div class="col-span-2 text-center">
               <button
-                class="!px-10 !py-2 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white !uppercase">
+                class="!px-12 !py-3 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white !uppercase">
                 {{ 'tab_service.register_consulting' | translate }}
               </button>
             </div>
@@ -131,7 +129,7 @@
           {{ dataServiceDetail.workflow }}
         </div>
         <div class="workflow-steps">
-          @for (data of dataVisaProcess; track data.id) {
+          @for (data of dataServiceDetail.visaProcesses; track data.id) {
             <div class="workflow-step">
               <div class="step">{{ data.title }}</div>
               <div class="step-content">{{ data.description }}</div>

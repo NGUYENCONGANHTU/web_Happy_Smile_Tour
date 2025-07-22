@@ -30,6 +30,7 @@
         //display: grid;
         //grid-template-columns: 1fr 1fr;
         //gap: 10px;
+
         input,
         textarea,
         .ant-picker {
@@ -40,7 +41,7 @@
           grid-column: span 2;
         }
         .btn-submit {
-          background: #099544;
+          background: #dc2626;
           padding: 10px 50px;
           border-radius: 6px;
           color: white;
@@ -48,7 +49,6 @@
           cursor: pointer;
         }
         .btn-reset {
-          border: 2px solid #ea8b91;
           padding: 9px 40px;
           border-radius: 6px;
           color: black;

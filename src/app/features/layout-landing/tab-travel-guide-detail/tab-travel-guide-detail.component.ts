@@ -8,6 +8,7 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-tab-travel-guide-detail',
   imports: [
@@ -15,6 +16,7 @@ import { TravelGuideResDTO } from '../../../../interface';
     NzBreadCrumbItemComponent,
     RouterLink,
     FaIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './tab-travel-guide-detail.component.html',
   styleUrl: './tab-travel-guide-detail.component.scss',

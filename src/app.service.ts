@@ -1,9 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from './environment';
 import {
   CommentFeedbackReqDTO,
   CommentFeedbackResDTO,
+  ContactPageReqDTO,
+  ContactPageResDTO,
   ContactPrivateTourReqDTO,
   ContactPrivateTourResDTO,
   FeatureReqDTO,
@@ -12,9 +14,6 @@ import {
   HomeBannerResDTO,
   HomeTitleReqDTO,
   HomeTitleResDTO,
-  IntroducePageReqDTO,
-  IntroducePageResDTO,
-  IntroduceTitleResDTO,
   LanguageReqDTO,
   LanguageResDTO,
   LocationReqDTO,
@@ -38,8 +37,8 @@ import {
 } from './app/core/interfaces/base.interface';
 import { LanguageService } from './app/shared/services/language.service';
 import {
-  AdvertiseReqDTO,
-  AdvertiseResDTO,
+  IntroducePageReqDTO,
+  IntroducePageResDTO,
 } from './app/features/layout-landing/introduce/interface-introduce';
 
 @Injectable({
@@ -63,7 +62,6 @@ export class AppService {
   apiUrl13 = environment.API_URL + '/info-trans';
   apiUrlLanguage = environment.API_URL + '/language';
   apiVisaService = environment.API_URL + '/visa-service-trans';
-  apiAdvertise = environment.API_URL + '/advertise';
   apiPartner = environment.API_URL + '/partner';
   apiVisaProcess = environment.API_URL + '/visa-process-trans';
   apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
@@ -187,14 +185,22 @@ export class AppService {
 
   /*======================== NẾU CÓ TAB TẤT CẢ TOUR THÌ DÙNG ==========================*/
   getDataTourForeign() {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
-      this.apiUrl4 + 'type=INTERNATIONAL'
-    );
+    const params = new HttpParams()
+      .set('type', 'INTERNATIONAL')
+      .set('langCode', this.languageService.locale);
+
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl4, {
+      params,
+    });
   }
   getDataTourDomestic() {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
-      this.apiUrl4 + 'type=DOMESTIC'
-    );
+    const params = new HttpParams()
+      .set('type', 'DOMESTIC')
+      .set('langCode', this.languageService.locale);
+
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl4, {
+      params,
+    });
   }
 
   /*============================== TAB FOREIGN ================================*/
@@ -260,49 +266,6 @@ export class AppService {
       this.apiUrl9 + '/type/BANNER'
     );
   }
-  /*================= DỊCH VỤ NỔI BẬT ( INTRODUCE-PAGE ) =====================*/
-  createDataAdvertise(data: AdvertiseReqDTO) {
-    return this.http.post<AdvertiseResDTO>(this.apiAdvertise, data);
-  }
-  getAllDataAdvertise() {
-    return this.http.get<{ data: AdvertiseResDTO[] }>(this.apiAdvertise);
-  }
-  updateDataAdvertise(data: CommentFeedbackReqDTO, id: number) {
-    return this.http.put<CommentFeedbackResDTO>(
-      `${this.apiAdvertise}/${id}`,
-      data
-    );
-  }
-  deleteDataAdvertise(id: number) {
-    return this.http.delete<CommentFeedbackResDTO>(
-      `${this.apiAdvertise}/${id}`
-    );
-  }
-  getAllDataMainIntroducePage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
-      `${this.apiUrl9}/all?langCode=${this.languageService.locale}`
-    );
-  }
-  getAllDataTitleIntroducePage() {
-    const lang = this.languageService.locale;
-    const url = `${this.apiUrl10}/type/TITLE?langCode=${lang}`;
-    return this.http.get<{ data: IntroduceTitleResDTO[] }>(url);
-  }
-  getAllDataStatisticalIntroducePage() {
-    const lang = this.languageService.locale;
-    const url = `${this.apiUrl10}/type/STATISTICAL?langCode=${lang}`;
-    return this.http.get<{ data: IntroduceTitleResDTO[] }>(url);
-  }
-
-  getDataByIdIntroducePage(id: number) {
-    return this.http.get<IntroducePageResDTO>(`${this.apiUrl9}/${id}`);
-  }
-  updateDataIntroducePage(data: IntroducePageReqDTO, id: number) {
-    return this.http.put<IntroducePageResDTO>(`${this.apiUrl9}/${id}`, data);
-  }
-  deleteDataIntroducePage(id: number) {
-    return this.http.delete<IntroducePageResDTO>(`${this.apiUrl9}/${id}`);
-  }
 
   /*============================== TOUR ĐOÀN RIÊNG ================================*/
   createDataPrivateTour(data: PrivateTourReqDTO) {
@@ -349,42 +312,37 @@ export class AppService {
   }
 
   /*============================== PAGE LIÊN HỆ ================================*/
-  createDataContactPage(data: IntroducePageReqDTO) {
-    return this.http.post<IntroducePageResDTO>(this.apiUrl13, data);
+  createDataContactPage(data: ContactPageReqDTO) {
+    return this.http.post<ContactPageResDTO>(this.apiUrl13, data);
   }
   getAllDataBannerContactPage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
+    return this.http.get<{ data: ContactPageResDTO[] }>(
       this.apiUrl13 + `/type/BANNER?langCode=${this.languageService.locale}`
     );
   }
   getAllDataAddressContactPage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
+    return this.http.get<{ data: ContactPageResDTO[] }>(
       this.apiUrl13 + `/type/ADDRESS?langCode=${this.languageService.locale}`
     );
   }
   getAllDataPhoneContactPage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
+    return this.http.get<{ data: ContactPageResDTO[] }>(
       this.apiUrl13 + `/type/PHONE?langCode=${this.languageService.locale}`
     );
   }
   getAllDataEmailContactPage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
+    return this.http.get<{ data: ContactPageResDTO[] }>(
       this.apiUrl13 + `/type/EMAIL?langCode=${this.languageService.locale}`
     );
   }
-  getAllDataFooterContactPage() {
-    return this.http.get<IntroduceTitleResDTO[]>(
-      this.apiUrl13 + '/type/FOOTER'
-    );
-  }
   getDataByIdContactPage(id: number) {
-    return this.http.get<IntroducePageResDTO>(`${this.apiUrl13}/${id}`);
+    return this.http.get<ContactPageResDTO>(`${this.apiUrl13}/${id}`);
   }
-  updateDataContactPage(data: IntroducePageReqDTO, id: number) {
-    return this.http.put<IntroducePageResDTO>(`${this.apiUrl13}/${id}`, data);
+  updateDataContactPage(data: ContactPageReqDTO, id: number) {
+    return this.http.put<ContactPageResDTO>(`${this.apiUrl13}/${id}`, data);
   }
   deleteDataContactPage(id: number) {
-    return this.http.delete<IntroducePageResDTO>(`${this.apiUrl13}/${id}`);
+    return this.http.delete<ContactPageResDTO>(`${this.apiUrl13}/${id}`);
   }
 
   /*============================== TOUR COMMENT DETAIL ================================*/

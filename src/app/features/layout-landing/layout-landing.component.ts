@@ -49,7 +49,6 @@ export class LayoutLandingComponent implements OnInit {
   languages: ILang[] = [
     { code: 'vi', name: 'Tiếng Việt', flag: 'vn' },
     { code: 'en', name: 'English', flag: 'gb' },
-    { code: 'cn', name: '中文', flag: 'cn' },
   ];
   selectedLang!: ILang;
 

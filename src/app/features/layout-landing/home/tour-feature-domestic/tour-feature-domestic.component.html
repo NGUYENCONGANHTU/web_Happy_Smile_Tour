@@ -1,7 +1,7 @@
 <swiper-container
   class="mySwiper"
-  pagination="true"
-  pagination-clickable="true"
+  pagination="false"
+  pagination-clickable="false"
   space-between="30"
   slides-per-view="1"
   grid='{
@@ -46,14 +46,14 @@
                   <fa-icon
                     [icon]="faStar"
                     [ngClass]="
-                      i <= tour.star ? 'text-[#e5831e]' : 'text-gray-300'
+                      i <= tour.averageRate ? 'text-[#e5831e]' : 'text-gray-300'
                     "
                     class="mr-1"></fa-icon>
                 }
               </div>
               <span class="text-[#888]">|</span>
-              <div class="">
-                {{ tour.numberComment }}
+              <div class="text-[#888]">
+                {{ tour.totalReviews }}
                 {{ 'tour_card.rating' | translate }}
               </div>
             </div>

@@ -1,4 +1,5 @@
 .tab-tour-foreign-detail {
+  position: relative;
   .breadcrumb {
     background-color: #f3f0f0;
     padding: 10px 10%;
@@ -21,8 +22,11 @@
         margin: 20px 0;
       }
       .tour-detail-title-tabs {
-        //border: 1px solid red;
         .tour-detail-title-tabs-title {
+          position: sticky;
+          top: 60px; /* nếu header bạn cao 60px */
+          background-color: white;
+          z-index: 999;
           display: flex;
           justify-content: space-between;
           gap: 10px;
@@ -34,7 +38,7 @@
             font-weight: bold;
             transition: color 0.3s;
             &:hover {
-              color: #007bff;
+              color: #ed1e27;
             }
           }
         }

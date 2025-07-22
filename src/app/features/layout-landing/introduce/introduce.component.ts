@@ -4,14 +4,15 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../app.service';
-import {
-  HomeBannerResDTO,
-  IntroducePageResDTO,
-  IntroduceTitleResDTO,
-} from '../../../../interface';
+import { HomeBannerResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
-import { AdvertiseResDTO } from './interface-introduce';
+import {
+  AdvertiseResDTO,
+  IntroducePageResDTO,
+  IntroduceTitlePageResDTO,
+} from './interface-introduce';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { IntroduceService } from './introduce.service';
 @Component({
   selector: 'app-introduce',
   imports: [
@@ -42,19 +43,18 @@ import { sanitizeUrl } from '../../../shared/utils/helpers';
 })
 export class IntroduceComponent implements OnInit {
   array = [1, 2, 3, 4];
+  formatImage = sanitizeUrl;
 
   appService = inject(AppService);
 
   ngOnInit() {
     this.getDataBannerIntroducePage();
     this.getAllDataHighLightIntroducePage();
-    this.getAllDataBenefitIntroducePage();
-    this.getAllDataTitleIntroducePage();
-    this.getAllDataStatisticalIntroducePage();
+    this.getDataTitleIntro();
+    this.getDataIntroPage();
+    this.getDataStatistical();
   }
-  formatImage = sanitizeUrl;
-
-  // function Banner Introduce
+  // banner Gioi thieu
   dataBannerIntroduce: HomeBannerResDTO[] = [];
   getDataBannerIntroducePage() {
     this.appService.getAlLDataBannerIntro().subscribe(res => {
@@ -65,47 +65,40 @@ export class IntroduceComponent implements OnInit {
       }
     });
   }
+  // lấy tiêu đề của trang giới thiệu
+  introService = inject(IntroduceService);
+  dataTitleIntro: IntroduceTitlePageResDTO[] = [];
+  getDataTitleIntro() {
+    this.introService.getAllDataIntroduceTitle().subscribe(dataIntro => {
+      this.dataTitleIntro = dataIntro.data;
+    });
+  }
+
+  // văn bản giới thiệu
+  dataIntroPage: IntroducePageResDTO[] = [];
+  getDataIntroPage() {
+    this.introService.getAllDataIntroduceMain().subscribe(dataIntroPage => {
+      this.dataIntroPage = dataIntroPage.data;
+    });
+  }
+  // số liệu thống kê
+  dataStatistical: IntroducePageResDTO[] = [];
+  getDataStatistical() {
+    this.introService
+      .getAllDataIntroduceStatistical()
+      .subscribe(dataStatistical => {
+        this.dataStatistical = dataStatistical.data;
+      });
+  }
+
   // function Banner Introduce
   dataServiceIntroduce: AdvertiseResDTO[] = [];
   getAllDataHighLightIntroducePage() {
-    this.appService.getAllDataAdvertise().subscribe(res => {
+    this.introService.getAllDataAdvertise().subscribe(res => {
       if (res?.data) {
         this.dataServiceIntroduce = res.data;
       } else {
         this.dataServiceIntroduce = [];
-      }
-    });
-  }
-  // function Banner Introduce BENEFIT
-  dataContentIntroducePage: IntroducePageResDTO[] = [];
-  getAllDataBenefitIntroducePage() {
-    this.appService.getAllDataMainIntroducePage().subscribe(res => {
-      if (res?.data) {
-        this.dataContentIntroducePage = res.data;
-      } else {
-        this.dataContentIntroducePage = [];
-      }
-    });
-  }
-
-  // Số liệu thống kê
-  dataTitleIntroducePage: IntroduceTitleResDTO[] = [];
-  getAllDataTitleIntroducePage() {
-    this.appService.getAllDataTitleIntroducePage().subscribe(res => {
-      if (res?.data) {
-        this.dataTitleIntroducePage = res.data;
-      } else {
-        this.dataTitleIntroducePage = [];
-      }
-    });
-  }
-  dataStatisticalIntroducePage: IntroduceTitleResDTO[] = [];
-  getAllDataStatisticalIntroducePage() {
-    this.appService.getAllDataStatisticalIntroducePage().subscribe(res => {
-      if (res?.data) {
-        this.dataStatisticalIntroducePage = res.data;
-      } else {
-        this.dataStatisticalIntroducePage = [];
       }
     });
   }
