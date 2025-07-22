@@ -9,6 +9,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 @Component({
   selector: 'app-tour-form-pricing-tab',
@@ -21,12 +23,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzButtonModule,
     NzTableModule,
     NzIconModule,
+    NzFormModule,
   ],
 })
 export class TourFormPricingTabComponent {
   fb = inject(FormBuilder);
 
   @Input({ required: true }) priceForm!: FormGroup;
+  @Input({ required: true }) mode!: BaseFormMode;
 
   get tourPrices(): FormArray {
     return this.priceForm.get('tourPrices') as FormArray;
@@ -63,4 +67,6 @@ export class TourFormPricingTabComponent {
   deleteDiscount(index: number) {
     this.discounts.removeAt(index);
   }
+
+  protected readonly BaseFormMode = BaseFormMode;
 }

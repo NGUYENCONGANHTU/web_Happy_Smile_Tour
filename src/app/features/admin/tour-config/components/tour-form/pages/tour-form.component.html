@@ -1,14 +1,18 @@
 <nz-tabs [nzTabBarExtraContent]="extraTemplate">
   <nz-tab nzTitle="Thông tin">
-    <app-tour-form-info-tab [tourForm]="tourForm"></app-tour-form-info-tab>
+    <app-tour-form-info-tab
+      [tourForm]="tourForm"
+      [mode]="mode"></app-tour-form-info-tab>
   </nz-tab>
   <nz-tab nzTitle="Lịch trình">
     <app-tour-form-schedule-tab
-      [scheduleForm]="scheduleForm"></app-tour-form-schedule-tab>
+      [scheduleForm]="scheduleForm"
+      [mode]="mode"></app-tour-form-schedule-tab>
   </nz-tab>
   <nz-tab nzTitle="Bảng giá">
     <app-tour-form-pricing-tab
-      [priceForm]="priceForm"></app-tour-form-pricing-tab>
+      [priceForm]="priceForm"
+      [mode]="mode"></app-tour-form-pricing-tab>
   </nz-tab>
   <nz-tab nzTitle="Dịch vụ">
     <app-tour-form-service-tab

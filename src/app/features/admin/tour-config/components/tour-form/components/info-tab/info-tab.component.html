@@ -1,4 +1,8 @@
-<form [formGroup]="tourForm" nz-form [nzLayout]="'vertical'">
+<form
+  [formGroup]="tourForm"
+  nz-form
+  [nzLayout]="'vertical'"
+  [class]="mode === BaseFormMode.VIEW ? 'view-mode underline ' : ''">
   <nz-form-item>
     <nz-form-label nzRequired>Tên tour</nz-form-label>
     <nz-form-control

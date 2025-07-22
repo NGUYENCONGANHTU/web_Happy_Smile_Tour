@@ -9,11 +9,11 @@ import {
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { ValidationMessagePipe } from '../../../../../../../shared/pipes/validation.pipe';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 
 @Component({
   selector: 'app-tour-form-schedule-tab',
@@ -24,7 +24,6 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     ReactiveFormsModule,
     NzFormModule,
     NzInputModule,
-    ValidationMessagePipe,
     NzDividerModule,
     NzButtonModule,
     NzIconModule,
@@ -35,6 +34,7 @@ export class TourFormScheduleTabComponent {
   fb = inject(FormBuilder);
 
   @Input({ required: true }) scheduleForm!: FormGroup;
+  @Input({ required: true }) mode!: BaseFormMode;
 
   createItem(): FormGroup {
     return this.fb.group({
@@ -74,4 +74,6 @@ export class TourFormScheduleTabComponent {
   get schedules(): FormArray {
     return this.scheduleForm.get('schedules') as FormArray;
   }
+
+  protected readonly BaseFormMode = BaseFormMode;
 }

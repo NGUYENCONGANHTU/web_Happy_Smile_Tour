@@ -1,4 +1,7 @@
-<form [formGroup]="priceForm">
+<form
+  [formGroup]="priceForm"
+  nz-form
+  [class]="mode === BaseFormMode.VIEW ? 'view-mode' : ''">
   <div class="flex gap-2 justify-between !my-2">
     <h2>1. Giá tour theo độ tuổi</h2>
     @if (tourPrices.enabled) {

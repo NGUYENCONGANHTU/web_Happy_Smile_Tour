@@ -22,6 +22,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormFeedbackComponent } from './form-feedback/form-feedback.component';
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
+import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
+import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -42,6 +44,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     NzBreadCrumbModule,
     RouterLink,
     FormFeedbackComponent,
+    ReviewSummaryComponent,
+    ReviewListComponent,
     TranslatePipe,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',

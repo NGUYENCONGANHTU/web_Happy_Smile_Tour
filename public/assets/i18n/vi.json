@@ -1,4 +1,10 @@
 {
+  "base": {
+    "time": {
+      "ago": "Trước",
+      "just_now": "Vừa xong"
+    }
+  },
   "menu": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
@@ -90,6 +96,10 @@
     "not_yet_pay" : "Đặt ngay chưa cần thanh toán",
     "tour": "Chuyến du lịch",
 
+    "reviews": "Đánh giá",
+    "stars": "Sao",
+    "filter_reviews_by": "Lọc đánh giá theo",
+    "all": "Tất cả",
 
     "cancel": "Hủy bỏ",
     "info_contact": "Thông tin liên lạc",

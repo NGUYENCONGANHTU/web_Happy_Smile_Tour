@@ -5,6 +5,7 @@ import {
   TourPriceResDTO,
   TourSurchargeResDTO,
 } from './app/features/layout-landing/tab-tour-foreign-detail/price-list/interface-tour-price';
+import { IRating } from './app/shared/components/review-summary/review-summary.component';
 
 export interface HomeBannerReqDTO {
   homeBannerId: number;
@@ -150,6 +151,9 @@ export interface RatingReqDTO {
   star: number;
   percent: number;
   count: number;
+  averageRate?: number;
+  ratingList?: IRating[];
+  totalReviews?: number;
 }
 export interface RatingResDTO {
   id: number;
@@ -279,13 +283,13 @@ export interface TourCommentDetailReqDTO {
 }
 export interface TourCommentDetailResDTO {
   id: number;
-  name: string;
-  rate: number;
-  tags: string[];
-  content: string;
-  imageUrl: string;
-  time: Date;
   tourId: number;
+  name?: string;
+  rate?: number;
+  time?: string;
+  tags?: string[];
+  content?: string;
+  imageUrl?: string;
 }
 /* ==================== LANGUAGE  ==================== */
 export interface LanguageReqDTO {
