@@ -9,7 +9,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   selector: 'app-review-summary',
   templateUrl: './review-summary.component.html',
   standalone: true,
-  imports: [NzRateModule, NzProgressModule, NzButtonModule, FormsModule, NzIconModule],
+  imports: [
+    NzRateModule,
+    NzProgressModule,
+    NzButtonModule,
+    FormsModule,
+    NzIconModule,
+  ],
 })
 export class ReviewSummaryComponent {
   @Input() averageRate = 4.9;
