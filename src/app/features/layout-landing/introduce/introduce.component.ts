@@ -5,10 +5,13 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../app.service';
 import {
+  HomeBannerResDTO,
   IntroducePageResDTO,
   IntroduceTitleResDTO,
 } from '../../../../interface';
 import { NgStyle } from '@angular/common';
+import { AdvertiseResDTO } from './interface-introduce';
+import { sanitizeUrl } from '../../../shared/utils/helpers';
 @Component({
   selector: 'app-introduce',
   imports: [
@@ -49,26 +52,39 @@ export class IntroduceComponent implements OnInit {
     this.getAllDataTitleIntroducePage();
     this.getAllDataStatisticalIntroducePage();
   }
+  formatImage = sanitizeUrl;
 
   // function Banner Introduce
-  dataBannerIntroduce: IntroducePageResDTO[] = [];
+  dataBannerIntroduce: HomeBannerResDTO[] = [];
   getDataBannerIntroducePage() {
-    this.appService.getAllDataBannerIntroducePage().subscribe(res => {
-      this.dataBannerIntroduce = res.data;
+    this.appService.getAlLDataBannerIntro().subscribe(res => {
+      if (res?.data) {
+        this.dataBannerIntroduce = res.data;
+      } else {
+        this.dataBannerIntroduce = [];
+      }
     });
   }
   // function Banner Introduce
-  dataServiceIntroduce: IntroducePageResDTO[] = [];
+  dataServiceIntroduce: AdvertiseResDTO[] = [];
   getAllDataHighLightIntroducePage() {
-    this.appService.getAllDataHighLightIntroducePage().subscribe(res => {
-      this.dataServiceIntroduce = res.data;
+    this.appService.getAllDataAdvertise().subscribe(res => {
+      if (res?.data) {
+        this.dataServiceIntroduce = res.data;
+      } else {
+        this.dataServiceIntroduce = [];
+      }
     });
   }
   // function Banner Introduce BENEFIT
   dataContentIntroducePage: IntroducePageResDTO[] = [];
   getAllDataBenefitIntroducePage() {
     this.appService.getAllDataMainIntroducePage().subscribe(res => {
-      this.dataContentIntroducePage = res.data;
+      if (res?.data) {
+        this.dataContentIntroducePage = res.data;
+      } else {
+        this.dataContentIntroducePage = [];
+      }
     });
   }
 
@@ -76,13 +92,21 @@ export class IntroduceComponent implements OnInit {
   dataTitleIntroducePage: IntroduceTitleResDTO[] = [];
   getAllDataTitleIntroducePage() {
     this.appService.getAllDataTitleIntroducePage().subscribe(res => {
-      this.dataTitleIntroducePage = res.data;
+      if (res?.data) {
+        this.dataTitleIntroducePage = res.data;
+      } else {
+        this.dataTitleIntroducePage = [];
+      }
     });
   }
   dataStatisticalIntroducePage: IntroduceTitleResDTO[] = [];
   getAllDataStatisticalIntroducePage() {
     this.appService.getAllDataStatisticalIntroducePage().subscribe(res => {
-      this.dataStatisticalIntroducePage = res.data;
+      if (res?.data) {
+        this.dataStatisticalIntroducePage = res.data;
+      } else {
+        this.dataStatisticalIntroducePage = [];
+      }
     });
   }
 }

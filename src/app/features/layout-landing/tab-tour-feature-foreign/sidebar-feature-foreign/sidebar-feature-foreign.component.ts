@@ -9,6 +9,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../../app.service';
 import { LocationResDTO } from '../../../../../interface';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sidebar-feature-foreign',
   standalone: true,
@@ -23,6 +24,7 @@ import { LocationResDTO } from '../../../../../interface';
     RouterLinkActive,
     RouterLink,
     DecimalPipe,
+    TranslatePipe,
   ],
   templateUrl: './sidebar-feature-foreign.component.html',
   styleUrl: './sidebar-feature-foreign.component.scss',
@@ -55,22 +57,29 @@ export class SidebarFeatureForeignComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDataStartingPoint();
+    this.getDataStartingPointDomestic();
+    this.getDataStartingPointForeign();
   }
   dataStartingPointDomestic: LocationResDTO[] = [];
-  getDataStartingPoint() {
-    this.appService.getAlLDataLocationInternational().subscribe(res => {
+  getDataStartingPointDomestic() {
+    this.appService.getAlLDataLocationDomestic().subscribe(res => {
       this.dataStartingPointDomestic = res.data;
+    });
+  }
+  dataStartingPointForeign: LocationResDTO[] = [];
+  getDataStartingPointForeign() {
+    this.appService.getAlLDataLocationInternational().subscribe(res => {
+      this.dataStartingPointForeign = res.data;
     });
   }
 
   tabs = [
     {
-      tabName: 'Trong nước',
+      tabName: 'domestic_tour.tab_domestic',
       href: '/tour-feature-domestic',
     },
     {
-      tabName: 'Nước ngoài',
+      tabName: 'domestic_tour.tab_foreign',
       href: '/tour-feature-foreign',
     },
   ];

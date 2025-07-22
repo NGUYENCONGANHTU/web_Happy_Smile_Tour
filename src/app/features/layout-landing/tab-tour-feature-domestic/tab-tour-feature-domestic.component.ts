@@ -4,6 +4,7 @@ import { SidebarFeatureDomesticComponent } from './sidebar-feature-domestic/side
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { RouterLink } from '@angular/router';
 import { FeatureResDTO } from '../../../../interface';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab-tour-feature-domestic',
@@ -12,6 +13,7 @@ import { FeatureResDTO } from '../../../../interface';
     SidebarFeatureDomesticComponent,
     NzBreadCrumbModule,
     RouterLink,
+    TranslatePipe,
   ],
   templateUrl: './tab-tour-feature-domestic.component.html',
   styleUrl: './tab-tour-feature-domestic.component.scss',

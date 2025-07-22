@@ -2,20 +2,25 @@
   <section class="tab-service">
     <div
       class="banner-tab-service"
-      style="
-        background-image: url('https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1744887444/banner/mtjajbd973gg6rboqqrj.webp');
-      ">
+      [ngStyle]="{
+        'background-image': dataServiceDetail.image?.storagePath
+          ? 'url(' + formatImage(dataServiceDetail.image.storagePath) + ')'
+          : 'none',
+      }">
       <div class="overlay w-full h-full flex flex-col justify-center">
         <div class="content !space-y-10 text-center">
-          <p class="sub-title lg:!text-[14px]">DỊCH VỤ TƯ VẤN</p>
-          <div class="title !text-sm md:!text-[30px] lg:!text-[60px]">
+          <p class="sub-title lg:!text-[20px] uppercase">
+            {{ 'tab_service.title' | translate }}
+          </p>
+          <div class="title !text-sm md:!text-[30px] lg:!text-[60px] !px-15">
             {{ dataServiceDetail.bannerTitle }}
           </div>
-          <!--        <p class="desc font-medium">Du lịch, thăm thân, công tác</p>-->
-          <!--        <p class="price">chỉ từ <strong>2.500.000đ</strong></p>-->
           <button class="cta-button">
-            <fa-icon [icon]="faPhoneFlip" class="phone-icon mr-2!"></fa-icon> TƯ
-            VẤN: {{ dataServiceDetail.phone }}
+            <fa-icon
+              [icon]="faPhoneFlip"
+              class="phone-icon mr-2! tracking-wide"></fa-icon>
+            {{ 'tab_service.consulting' | translate }}:
+            {{ dataServiceDetail.phone }}
           </button>
         </div>
       </div>
@@ -29,11 +34,13 @@
           <div class="content-service-list">
             {{ dataServiceDetail.serviceContent }}
           </div>
-          <button class="btn-contact">TƯ VẤN NGAY</button>
+          <button class="btn-contact uppercase">
+            {{ 'tab_service.consult_now' | translate }}
+          </button>
         </div>
         <div class="service-contact !w-full lg:!w-2/5">
           <div class="service-contact-title">
-            Để thông tin để được tư vấn miễn phí
+            {{ 'tab_service.instruction' | translate }}
           </div>
           <form
             nz-form
@@ -47,15 +54,15 @@
                 [nzSpan]="24"
                 class="font-medium text-[14px]"
                 nzRequired
-                >Tên của bạn</nz-form-label
+                >{{ 'tab_service.name' | translate }}:</nz-form-label
               >
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.name"
-                nzErrorTip="Tên là bắt buộc">
+                nzErrorTip="{{ 'tab_service.name_required' | translate }}">
                 <input
                   nz-input
                   formControlName="name"
-                  placeholder="Nhập tên của bạn"
+                  placeholder="{{ 'tab_service.enter_name' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </nz-form-item>
@@ -65,27 +72,24 @@
                 [nzSpan]="24"
                 class="font-medium text-[14px]"
                 nzRequired
-                >Số điện thoại</nz-form-label
+                >{{ 'tab_service.phone' | translate }}:</nz-form-label
               >
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.phone"
-                nzErrorTip="Số điện thoại là bắt buộc">
+                nzErrorTip="{{ 'tab_service.phone_required' | translate }}">
                 <input
                   nz-input
                   type="number"
                   formControlName="phone"
-                  placeholder="Số điện thoại"
+                  placeholder="{{ 'tab_service.phone' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </nz-form-item>
 
             <!--     Email-->
             <nz-form-item>
-              <nz-form-label
-                [nzSpan]="24"
-                class="font-medium text-[16px]"
-                nzRequired
-                >Email</nz-form-label
+              <nz-form-label [nzSpan]="24" class="font-medium text-[16px]"
+                >Email:</nz-form-label
               >
               <nz-form-control>
                 <input
@@ -99,18 +103,15 @@
 
             <!--     Ghi chú-->
             <nz-form-item>
-              <nz-form-label
-                [nzSpan]="24"
-                class="font-medium text-[14px]"
-                nzRequired
-                >Ghi chú</nz-form-label
-              >
+              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]">
+                {{ 'tab_service.note' | translate }}:
+              </nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
                   type="text"
                   formControlName="message"
-                  placeholder="Ghi chú"
+                  placeholder="{{ 'tab_service.note' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </nz-form-item>
@@ -118,8 +119,8 @@
             <!--     Buttons -->
             <div class="col-span-2 text-center">
               <button
-                class="!px-10 !py-2 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white">
-                ĐĂNG KÍ TƯ VẤN
+                class="!px-10 !py-2 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white !uppercase">
+                {{ 'tab_service.register_consulting' | translate }}
               </button>
             </div>
           </form>

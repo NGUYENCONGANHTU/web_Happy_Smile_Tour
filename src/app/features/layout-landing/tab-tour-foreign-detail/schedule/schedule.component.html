@@ -3,7 +3,14 @@
     <nz-timeline-item>
       <nz-collapse>
         <nz-collapse-panel
-          [nzHeader]="'NGÀY ' + (i + 1) + ': ' + day.title"
+          [nzHeader]="
+            ' ' +
+            ('tour_detail.day' | translate) +
+            ' ' +
+            (i + 1) +
+            ': ' +
+            day.title
+          "
           [nzActive]="false">
           <div>{{ day.description }}</div>
         </nz-collapse-panel>

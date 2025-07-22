@@ -1,5 +1,99 @@
 {
-  "nav": {
-    "introduce": "Introduce"
+  "menu": {
+    "home": "Home",
+    "about": "About Us",
+    "domestic_tours": "Domestic Tours",
+    "international_tours": "International Tours",
+    "private_group_tours": "Private Group Tours",
+    "services": "Services",
+    "contact": "Contact",
+    "language": "English"
+  },
+  "feedback": {
+    "customer": "Customer"
+  },
+  "domestic_tour": {
+    "title": "Find the perfect trip for you here!",
+    "tab_domestic": "Domestic",
+    "tab_foreign": "International",
+    "budget": "Your available budget",
+    "location": "Choose location",
+    "departure": "Departure",
+    "destination": "Destination",
+    "find_tour": "FIND TOUR"
+  },
+  "tour_card": {
+    "best_sale" : "Best Price",
+    "rating": "reviews",
+    "itinerary": "Itinerary",
+    "from": "From",
+    "price_from": "Only from"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "private_group_tours": "Private Group Tours"
+  },
+  "tab_service": {
+    "company" : "Company",
+    "title": "Consulting Service",
+    "consulting": "Consulting",
+    "instruction": "Leave your information to get free consultation",
+    "name": "Your Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "note": "Note",
+    "consult_now": "CONSULT NOW",
+    "register_consulting": "Register for Consultation",
+    "enter_name": "Enter your name",
+    "name_required": "Name is required",
+    "phone_required": "Phone number is required"
+  },
+  "private_tour": {
+    "people_count": "Number of people",
+    "estimated_time": "Estimated date",
+    "estimated_budget": "Estimated budget",
+    "desired_destination": "Desired destination",
+    "note": "Notes",
+    "contact_us":"Contact Us",
+    "name_required": "Your name is required",
+    "phone_required": "Your phone number is required",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "tour_detail": {
+    "your_feedback": "Your Feedback",
+    "please_feedback": "Please select a rating",
+    "please_enter_content_feedback": "Please enter your review content",
+    "submit_feedback": "Submit Review",
+    "group_age": "Age Group",
+    "age": "Age",
+    "original_price": "Original Price",
+    "table_discount": "Discount Table",
+    "type_discount": "Discount Type",
+    "description": "Description",
+    "value_discount": "Discount Value",
+    "if_else": "Conditions",
+    "table_surcharge": "Surcharge Table",
+    "name_surcharge": "Surcharge Name",
+    "price_surcharge": "Amount",
+    "apply_for": "Applicable To",
+    "day": "DAY",
+    "feature_place": "HIGHLIGHTS",
+    "schedule": "ITINERARY",
+    "table": "PRICING TABLE",
+    "service_content": "INCLUDED SERVICES",
+    "non_service_content": "EXCLUDED SERVICES",
+    "note": "NOTES",
+    "t_c": "TERMS & CONDITIONS",
+    "customer_preview": "CUSTOMER REVIEWS",
+    "booking": "BOOK AND RESERVE NOW",
+    "not_yet_pay": "Book now, no payment required yet",
+    "tour": "Tour",
+
+    "cancel": "Cancel",
+    "info_contact": "Contact Information",
+    "submit": "Submit",
+    "full_name": "Full Name",
+    "address": "Address"
   }
 }

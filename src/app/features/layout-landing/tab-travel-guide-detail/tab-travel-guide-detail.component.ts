@@ -35,8 +35,8 @@ export class TabTravelGuideDetailComponent implements OnInit {
     });
   }
   getContentTravelGuide() {
-    this.appService.getDataByIdTravelGuide(this.newsId).subscribe(data => {
-      this.dataContentTravelGuide = data;
+    this.appService.getDataByIdTravelGuide(this.newsId).subscribe(res => {
+      this.dataContentTravelGuide = res.data;
     });
   }
 }

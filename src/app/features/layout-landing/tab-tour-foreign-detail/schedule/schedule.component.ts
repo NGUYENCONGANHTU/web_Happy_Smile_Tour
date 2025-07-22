@@ -10,6 +10,7 @@ import {
 } from 'ng-zorro-antd/collapse';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ScheduleResDTO } from './schedule-interface';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-schedule',
   imports: [
@@ -18,6 +19,7 @@ import { ScheduleResDTO } from './schedule-interface';
     NzCollapseComponent,
     NzCollapsePanelComponent,
     NzIconModule,
+    TranslatePipe,
   ],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.scss',

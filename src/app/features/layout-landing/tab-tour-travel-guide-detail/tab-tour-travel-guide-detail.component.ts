@@ -9,7 +9,6 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-tab-tour-travel-guide-detail',
@@ -18,7 +17,6 @@ import { NgIf } from '@angular/common';
     NzBreadCrumbItemComponent,
     RouterLink,
     FaIconComponent,
-    NgIf,
   ],
   templateUrl: './tab-tour-travel-guide-detail.component.html',
   styleUrl: './tab-tour-travel-guide-detail.component.scss',
@@ -41,8 +39,8 @@ export class TabTourTravelGuideDetailComponent implements OnInit {
   dataContentTravelGuide: TravelGuideResDTO | null = null;
   getContentTravelGuideDetail() {
     this.appService.getDataByIdTravelGuide(this.newsId).subscribe({
-      next: data => {
-        this.dataContentTravelGuide = data;
+      next: res => {
+        this.dataContentTravelGuide = res.data;
       },
       error: err => {
         console.error('Error loading news detail:', err);

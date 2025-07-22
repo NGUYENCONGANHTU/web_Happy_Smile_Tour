@@ -1,9 +1,13 @@
 <section class="private-group-tour">
   <nz-breadcrumb nzSeparator=">" class="breadcrumb">
     <nz-breadcrumb-item>
-      <a routerLink="/">Trang chủ</a>
+      <a routerLink="/">
+        {{ 'menu.home' | translate }}
+      </a>
     </nz-breadcrumb-item>
-    <nz-breadcrumb-item class="font-bold"> Tour đoàn riêng </nz-breadcrumb-item>
+    <nz-breadcrumb-item class="font-bold">
+      {{ 'menu.private_group_tours' | translate }}
+    </nz-breadcrumb-item>
   </nz-breadcrumb>
   <!--  =====================================================-->
   <div class="section-private-group-tour">
@@ -17,7 +21,7 @@
     }
     <div class="private-group-tour-contact">
       <div class="private-group-tour-contact-title">
-        Hãy liên hệ với chúng tôi
+        {{ 'private_tour.contact_us' | translate }}
       </div>
       <form
         nz-form
@@ -29,12 +33,12 @@
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.name"
             [nzHasFeedback]="true"
-            nzErrorTip="Tên của bạn là bắt buộc">
+            nzErrorTip="{{ 'private_tour.name_required' | translate }}">
             <input
               nz-input
               type="text"
               formControlName="name"
-              placeholder="Tên của bạn" />
+              placeholder="{{ 'tab_service.name' | translate }}" />
           </nz-form-control>
         </nz-form-item>
         <!--     Số điện thoại-->
@@ -42,11 +46,11 @@
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.phone"
             [nzHasFeedback]="true"
-            nzErrorTip="Số điện thoại là bắt buộc">
+            nzErrorTip="{{ 'tab_service.phone_required' | translate }}">
             <input
               nz-input
               formControlName="phone"
-              placeholder="Số điện thoại" />
+              placeholder="{{ 'tab_service.phone' | translate }}" />
           </nz-form-control>
         </nz-form-item>
         <!--    Email-->
@@ -59,7 +63,6 @@
               placeholder="Email" />
           </nz-form-control>
         </nz-form-item>
-
         <!--      Công ty-->
         <nz-form-item>
           <nz-form-control>
@@ -67,7 +70,7 @@
               nz-input
               type="text"
               formControlName="company"
-              placeholder="Công ty" />
+              placeholder="{{ 'tab_service.company' | translate }}" />
           </nz-form-control>
         </nz-form-item>
 
@@ -78,7 +81,7 @@
               nz-input
               type="text"
               formControlName="number_of_people"
-              placeholder="Số người" />
+              placeholder="{{ 'private_tour.people_count' | translate }}" />
           </nz-form-control>
         </nz-form-item>
         <!--      Thời gian dự kiến-->
@@ -86,7 +89,7 @@
           <nz-form-control>
             <nz-date-picker
               formControlName="expected_date"
-              nzPlaceHolder="Thời gian dự kiến"
+              nzPlaceHolder="{{ 'private_tour.estimated_time' | translate }}"
               class="w-full"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
@@ -97,7 +100,7 @@
               nz-input
               type="text"
               formControlName="budget"
-              placeholder="Ngân sách dự kiến" />
+              placeholder="{{ 'private_tour.estimated_budget' | translate }}" />
           </nz-form-control>
         </nz-form-item>
         <!--     Địa điểm mong muốn-->
@@ -107,7 +110,9 @@
               nz-input
               type="text"
               formControlName="location"
-              placeholder="Địa điểm mong muốn" />
+              placeholder="{{
+                'private_tour.desired_destination' | translate
+              }}" />
           </nz-form-control>
         </nz-form-item>
         <!--     Ghi chú-->
@@ -117,12 +122,16 @@
               rows="6"
               formControlName="message"
               nz-input
-              placeholder="Ghi chú"></textarea>
+              placeholder="{{ 'private_tour.note' | translate }}"></textarea>
           </nz-form-control>
         </nz-form-item>
         <div class="text-right! col-span-2 space-x-4!">
-          <button class="btn-submit">Gửi</button>
-          <button class="btn-reset" (click)="resetForm($event)">Hủy bỏ</button>
+          <button class="btn-reset" (click)="resetForm($event)">
+            {{ 'private_tour.cancel' | translate }}
+          </button>
+          <button class="btn-submit">
+            {{ 'private_tour.submit' | translate }}
+          </button>
         </div>
       </form>
     </div>

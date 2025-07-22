@@ -20,18 +20,11 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormFeedbackComponent } from './form-feedback/form-feedback.component';
-import { TourPriceListService } from './price-list/tour-price-list.service';
-import {
-  TourDiscountResDTO,
-  TourPriceResDTO,
-  TourSurchargeResDTO,
-} from './price-list/interface-tour-price';
-import { ScheduleResDTO } from './schedule/schedule-interface';
-import { ScheduleService } from './schedule/schedule.service';
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
 import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -53,6 +46,7 @@ import { ReviewListComponent } from '../../../shared/components/review-list/revi
     FormFeedbackComponent,
     ReviewSummaryComponent,
     ReviewListComponent,
+    TranslatePipe,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',
@@ -87,14 +81,9 @@ export class TabTourForeignDetailComponent implements OnInit {
     }
   }
 
-  tourServiceList = inject(TourPriceListService);
   route = inject(ActivatedRoute);
   ngOnInit() {
     this.getIdParam();
-    this.getAllDataDiscount();
-    this.getAllDataPrice();
-    this.getAllDataSurcharge();
-    this.getAllDataSchedule();
     this.getAllDataFeature();
   }
 
@@ -109,8 +98,8 @@ export class TabTourForeignDetailComponent implements OnInit {
   tourId = 0;
   tourDetail: FeatureResDTO | null = null;
   getDataByIdTourDetail() {
-    this.appService.getDataTourFeatureById4(this.tourId).subscribe(data => {
-      this.tourDetail = data;
+    this.appService.getDataTourFeatureById4(this.tourId).subscribe(res => {
+      this.tourDetail = res.data;
     });
   }
   getIdParam() {
@@ -120,38 +109,6 @@ export class TabTourForeignDetailComponent implements OnInit {
         this.tourId = Number(idParam);
         this.getDataByIdTourDetail();
       }
-    });
-  }
-
-  /* ================================= LỊCH TRÌNH ======================================== */
-  tourSchedule = inject(ScheduleService);
-  dataTourSchedule: ScheduleResDTO[] = [];
-  getAllDataSchedule() {
-    this.tourSchedule.getAlLDataTourSchedule().subscribe(data => {
-      this.dataTourSchedule = data;
-    });
-  }
-
-  /* ================================= BẢNG GIÁ ======================================== */
-  //
-  dataTourDiscount: TourDiscountResDTO[] = [];
-  getAllDataDiscount() {
-    this.tourServiceList.getAlLDataTourDiscount().subscribe(data => {
-      this.dataTourDiscount = data;
-    });
-  }
-  // Bảng giá
-  dataTourPrice: TourPriceResDTO[] = [];
-  getAllDataPrice() {
-    this.tourServiceList.getAlLDataTourPrice().subscribe(data => {
-      this.dataTourPrice = data;
-    });
-  }
-  // Phụ giá
-  dataTourSurcharge: TourSurchargeResDTO[] = [];
-  getAllDataSurcharge() {
-    this.tourServiceList.getAlLDataTourSurcharge().subscribe(data => {
-      this.dataTourSurcharge = data;
     });
   }
 }

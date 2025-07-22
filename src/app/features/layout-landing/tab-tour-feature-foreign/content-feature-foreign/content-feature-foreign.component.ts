@@ -1,28 +1,22 @@
 import { Component, inject, Input, OnChanges } from '@angular/core';
-import {
-  faStar,
-  faCalendarDays,
-  faLocationDot,
-  faAngleRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
 import { FilterTourService } from '../../tab-tour-feature-domestic/filter-tour.service';
-import { NgClass } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 @Component({
   selector: 'app-content-feature-foreign',
   standalone: true,
-  imports: [FaIconComponent, NgClass],
+  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
   templateUrl: './content-feature-foreign.component.html',
   styleUrl: './content-feature-foreign.component.scss',
 })
 export class ContentFeatureForeignComponent implements OnChanges {
   faStar = faStar;
-  faCalendarDays = faCalendarDays;
-  faLocationDot = faLocationDot;
-  faAngleRight = faAngleRight;
-
   @Input() filterParams: any;
   tours: FeatureResDTO[] = [];
 
@@ -35,8 +29,10 @@ export class ContentFeatureForeignComponent implements OnChanges {
       });
     } else {
       this.appService.getDataTourForeign().subscribe(res => {
-        this.tours = res.data;
+        this.tours = res.data.content;
       });
     }
   }
+
+  protected readonly formatImage = sanitizeUrl;
 }

@@ -6,10 +6,11 @@ import {
   TourSurchargeResDTO,
 } from './interface-tour-price';
 import { DecimalPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-price-list',
-  imports: [NzTableModule, DecimalPipe],
+  imports: [NzTableModule, DecimalPipe, TranslatePipe],
   templateUrl: './price-list.component.html',
   styleUrl: './price-list.component.scss',
 })

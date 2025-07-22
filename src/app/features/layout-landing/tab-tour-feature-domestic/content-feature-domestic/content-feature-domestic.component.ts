@@ -8,11 +8,14 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
 import { FilterTourService } from '../filter-tour.service';
-import { NgClass } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { sanitizeUrl } from '../../../../shared/utils/helpers';
 @Component({
   selector: 'app-content-feature-domestic',
-  imports: [FaIconComponent, NgClass],
+  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',
 })
@@ -21,7 +24,7 @@ export class ContentFeatureDomesticComponent implements OnChanges {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
   faAngleRight = faAngleRight;
-
+  formatImage = sanitizeUrl;
   @Input() filterParams: any;
   tours: FeatureResDTO[] = [];
 
@@ -34,7 +37,7 @@ export class ContentFeatureDomesticComponent implements OnChanges {
       });
     } else {
       this.appService.getDataTourDomestic().subscribe(res => {
-        this.tours = res.data;
+        this.tours = res.data.content;
       });
     }
   }

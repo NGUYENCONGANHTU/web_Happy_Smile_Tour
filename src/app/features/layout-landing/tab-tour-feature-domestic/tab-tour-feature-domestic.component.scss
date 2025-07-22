@@ -6,11 +6,11 @@
   }
   .tab-tour-feature-domestic-main {
     padding: 0 10%;
-    //display: grid;
-    //grid-template-columns: 1fr 2fr;
-    //gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
     .sidebar-feature-domestic {
-      min-height: 600px !important;
+      min-height: 500px !important;
       align-self: start;
       height: auto;
       background-color: #fafafa;
@@ -21,6 +21,22 @@
       transition: all 0.3s ease;
     }
     .content-feature-domestic {
+    }
+  }
+}
+@media screen and (min-width: 1025px) {
+  .tab-tour-feature-domestic {
+    .breadcrumb {
+    }
+    .tab-tour-feature-domestic-main {
+      padding: 0 10%;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      .sidebar-feature-domestic {
+      }
+      .content-feature-domestic {
+      }
     }
   }
 }

@@ -1,8 +1,11 @@
 <nz-carousel nzAutoPlay [nzDots]="true" nzEffect="fade" [nzEnableSwipe]="true">
-  @for (index of listImageBanner; track $index) {
-    @for (data of index.imageUrl; track $index) {
+  @if (listImageBanner) {
+    @for (data of listImageBanner.images; track data.id) {
       <div nz-carousel-content>
-        <img [src]="data" alt="" class="w-full h-full object-cover" />
+        <img
+          [src]="formatImage(data.storagePath)"
+          alt=""
+          class="w-full h-full object-cover" />
       </div>
     }
   }

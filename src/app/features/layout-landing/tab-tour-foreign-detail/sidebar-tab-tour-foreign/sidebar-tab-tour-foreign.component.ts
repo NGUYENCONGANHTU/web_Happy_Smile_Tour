@@ -12,6 +12,12 @@ import { DecimalPipe } from '@angular/common';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  ContactType,
+  TourServiceReqDTO,
+} from '../../tab-service/interface-contact-tour-service';
+import { TabServiceService } from '../../tab-service/tab-service.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -23,6 +29,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
     NzModalModule,
     NzButtonModule,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   templateUrl: './sidebar-tab-tour-foreign.component.html',
   styleUrl: './sidebar-tab-tour-foreign.component.scss',
@@ -30,19 +37,32 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class SidebarTabTourForeignComponent {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
-  @Input() tourDetail: FeatureResDTO[] = [];
+  @Input() tourDetail: FeatureResDTO | null = null;
 
   isVisible = false;
 
   showModal(): void {
     this.isVisible = true;
   }
-
+  tourService = inject(TabServiceService);
   handleOk(): void {
     if (this.validateForm.valid) {
-      this.isVisible = false;
-
-      console.log('submit', this.validateForm.value);
+      const body: TourServiceReqDTO = {
+        name: this.validateForm.value.name ?? '',
+        email: this.validateForm.value.email ?? '',
+        phone: this.validateForm.value.phone ?? '',
+        message: this.validateForm.value.message ?? '',
+        contactType: ContactType.TOUR,
+      };
+      this.tourService.createDataTourService(body).subscribe({
+        next: res => {
+          console.log('Gửi thành công:', res);
+          this.validateForm.reset();
+        },
+        error: err => {
+          console.error('Lỗi khi gửi dữ liệu:', err);
+        },
+      });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -55,15 +75,14 @@ export class SidebarTabTourForeignComponent {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 
   private fb = inject(FormBuilder);
   validateForm = this.fb.group({
     name: this.fb.control('', [Validators.required]),
-    email: this.fb.control('', [Validators.required]),
+    email: this.fb.control(''),
     phone: this.fb.control('', [Validators.required]),
-    note: this.fb.control('', [Validators.required]),
+    message: this.fb.control(''),
   });
 }

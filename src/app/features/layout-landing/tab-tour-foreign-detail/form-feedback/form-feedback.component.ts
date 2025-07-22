@@ -14,6 +14,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { faCalendarDays, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../../app.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-form-feedback',
   imports: [
@@ -30,6 +31,7 @@ import { AppService } from '../../../../../app.service';
     NzDividerComponent,
     NzAutosizeDirective,
     FaIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './form-feedback.component.html',
   styleUrl: './form-feedback.component.scss',

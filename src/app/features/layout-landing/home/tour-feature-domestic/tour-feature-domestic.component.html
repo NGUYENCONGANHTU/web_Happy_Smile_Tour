@@ -29,61 +29,70 @@
   @for (tour of dataDomesticTour; track tour) {
     <swiper-slide
       class="text-black cursor-pointer"
-      [routerLink]="['/tab-tour-foreign-detail', tour.id]"
-      >>
+      [routerLink]="['/tab-tour-foreign-detail', tour.tourId]">
       <div class="card-item">
-        <div class="card-item-image">
-          <img class="" [src]="tour.imageUrl[0]" alt="" />
+        <div class="picture">
+          <img
+            class="h-[130px] w-[190px] object-cover bg-center bg-cover"
+            [src]="formatImage(tour.images?.[0]?.storagePath || '')"
+            alt="" />
         </div>
-        <div class="card-item-info space-y-2!">
-          <div class="card-item-info-title space-y-2!">
-            <div class="card-item-info-title-text">{{ tour.title }}</div>
-            <div class="star">
-              @for (i of [1, 2, 3, 4, 5]; track i) {
-                <fa-icon
-                  [icon]="faStar"
-                  [ngClass]="
-                    i <= tour.star ? 'text-[#e5831e]' : 'text-gray-300'
-                  "
-                  class="text-[#e5831e]"></fa-icon>
-              }
-            </div>
-            <div class="card-item-info-start-day">
-              <fa-icon
-                [icon]="faCalendarDays"
-                class="!text-[14px] mr-1! text-[#0d9344]"></fa-icon>
-              <span>Hành trình:</span>
-              <span class="text-[#ef2061] font-medium ml-1!">{{
-                tour.stayDate
-              }}</span>
+        <div class="picture truncate !space-y-[8px]">
+          <div class="truncate font-bold uppercase">{{ tour.title }}</div>
+          <div class="feedback">
+            <div class="flex items-center !space-x-2">
+              <div class="star flex">
+                @for (i of [1, 2, 3, 4, 5]; track i) {
+                  <fa-icon
+                    [icon]="faStar"
+                    [ngClass]="
+                      i <= tour.star ? 'text-[#e5831e]' : 'text-gray-300'
+                    "
+                    class="mr-1"></fa-icon>
+                }
+              </div>
+              <span class="text-[#888]">|</span>
+              <div class="">
+                {{ tour.numberComment }}
+                {{ 'tour_card.rating' | translate }}
+              </div>
             </div>
           </div>
-          <div class="card-item-info-detail">
-            <div class="card-item-info-place">
-              <fa-icon
-                [icon]="faLocationDot"
-                class="!text-[14px] mr-1! text-[#ef1f28]"></fa-icon>
-              <span>Từ :</span>
-              <span class="ml-2! space-x-1!">
-                @for (
-                  data of tour.startingPoints;
-                  track $index;
-                  let last = $last
-                ) {
-                  <span class="font-medium"
-                    >{{ data.name }}
-                    @if (!last) {
-                      <span>, </span>
-                    }
-                  </span>
-                }
-              </span>
+          <div class="!space-x-2">
+            <span class="!text-[#3A3A3C] font-medium">
+              {{ 'tour_card.itinerary' | translate }}:
+            </span>
+            <span class="!text-[#e7000b] font-medium">{{ tour.stayDate }}</span>
+          </div>
+          <div class="flex items-start">
+            <span class="!text-[#3A3A3C] font-medium">
+              {{ 'tour_card.from' | translate }}:
+            </span>
+            <ul class="flex items-center truncate !ml-1">
+              @for (
+                data of tour.startingPoints;
+                track data.id;
+                let last = $last
+              ) {
+                <li class="inline !text-gray-500">
+                  {{ data.name }}
+                  @if (!last) {
+                    <span class="!mr-1">,</span>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+          <div class="price">
+            <div class="text-end !pr-2 !text-[#3A3A3C] text-[16px] font-medium">
+              {{ 'tour_card.price_from' | translate }}:
             </div>
-            <div class="card-item-info-price">
-              Giá từ:
-              <br />
-              <span class="text-[16px] font-bold price"
-                >{{ tour.finalPrice | number }}đ</span
+            <div class="text-end !space-x-2">
+              <span class="line-through font-medium !text-gray-400 !text-[14px]"
+                >{{ tour.originalPrice | number }} VNĐ</span
+              >
+              <span class="font-bold !text-[18px] !text-red-600"
+                >{{ tour.finalPrice | number }} VNĐ</span
               >
             </div>
           </div>

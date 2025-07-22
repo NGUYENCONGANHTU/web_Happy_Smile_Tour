@@ -19,6 +19,8 @@ import {
   LanguageResDTO,
   LocationReqDTO,
   LocationResDTO,
+  PartnerReqDTO,
+  PartnerResDTO,
   PrivateTourReqDTO,
   PrivateTourResDTO,
   TourCommentDetailReqDTO,
@@ -35,6 +37,10 @@ import {
   ResponseBasePage,
 } from './app/core/interfaces/base.interface';
 import { LanguageService } from './app/shared/services/language.service';
+import {
+  AdvertiseReqDTO,
+  AdvertiseResDTO,
+} from './app/features/layout-landing/introduce/interface-introduce';
 
 @Injectable({
   providedIn: 'root',
@@ -47,9 +53,8 @@ export class AppService {
   apiUrl2 = environment.API_URL + '/home-title-trans';
   apiUrl3 = environment.API_URL + '/location-trans';
   apiUrl4 = environment.API_URL + '/tour-trans/filter?';
-  apiUrl5 = environment.API_URL + '/tour-trans/filter?type=';
-  apiUrl6 = environment.API_URL + '/tour-trans/filter?locationId=';
-  apiUrl7 = environment.API_URL + '/travel-guide';
+  apiUrl5 = environment.API_URL + '/tour-trans';
+  apiUrl7 = environment.API_URL + '/travel-guide-trans';
   apiUrl8 = environment.API_URL + '/home-comment';
   apiUrl9 = environment.API_URL + '/intro-trans';
   apiUrl10 = environment.API_URL + '/intro-title-trans';
@@ -57,7 +62,10 @@ export class AppService {
   apiUrl12 = environment.API_URL + '/tour-contact';
   apiUrl13 = environment.API_URL + '/info-trans';
   apiUrlLanguage = environment.API_URL + '/language';
-  apiVisaService = environment.API_URL + '/visa-service';
+  apiVisaService = environment.API_URL + '/visa-service-trans';
+  apiAdvertise = environment.API_URL + '/advertise';
+  apiPartner = environment.API_URL + '/partner';
+  apiVisaProcess = environment.API_URL + '/visa-process-trans';
   apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
 
   /*======================== HOME BANNER ==========================*/
@@ -70,6 +78,7 @@ export class AppService {
       this.apiUrl + `/HOME?langCode=${this.languageService.locale}`
     );
   }
+
   getAlLDataBannerIntro() {
     return this.http.get<{ data: HomeBannerResDTO[] }>(
       this.apiUrl + `/INTRO?langCode=${this.languageService.locale}`
@@ -155,14 +164,18 @@ export class AppService {
   /*======================== CÁC TOUR NỔI BẬT ==========================*/
 
   getAllDataTourFeature4() {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl4);
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      this.apiUrl4 + `langCode=${this.languageService.locale}`
+    );
   }
   createDataTourFeature4(data: FeatureReqDTO) {
     return this.http.post<FeatureResDTO>(this.apiUrl4, data);
   }
 
   getDataTourFeatureById4(id: number) {
-    return this.http.get<FeatureResDTO>(`${this.apiUrl4}/${id}`);
+    const lang = this.languageService.locale;
+    const url = `${this.apiUrl5}/service/${id}?langCode=${lang}`;
+    return this.http.get<{ data: FeatureResDTO }>(url);
   }
 
   updateDataTourFeature4(data: FeatureReqDTO, id: number) {
@@ -174,24 +187,26 @@ export class AppService {
 
   /*======================== NẾU CÓ TAB TẤT CẢ TOUR THÌ DÙNG ==========================*/
   getDataTourForeign() {
-    return this.http.get<{ data: FeatureResDTO[] }>(
-      this.apiUrl5 + 'INTERNATIONAL'
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      this.apiUrl4 + 'type=INTERNATIONAL'
     );
   }
   getDataTourDomestic() {
-    return this.http.get<{ data: FeatureResDTO[] }>(this.apiUrl5 + 'DOMESTIC');
+    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
+      this.apiUrl4 + 'type=DOMESTIC'
+    );
   }
 
   /*============================== TAB FOREIGN ================================*/
 
   changeTabForeign(id: number) {
     return this.http.get<ResponseBasePage<FeatureResDTO>>(
-      `${this.apiUrl6}${id}&langCode=${this.languageService.locale}`
+      `${this.apiUrl4 + 'locationId='}${id}&langCode=${this.languageService.locale}`
     );
   }
   changeTabDomestic(id: number) {
     return this.http.get<ResponseBasePage<FeatureResDTO>>(
-      `${this.apiUrl6}${id}&langCode=${this.languageService.locale}`
+      `${this.apiUrl4 + 'locationId='}${id}&langCode=${this.languageService.locale}`
     );
   }
 
@@ -201,10 +216,14 @@ export class AppService {
     return this.http.post<TravelGuideResDTO>(this.apiUrl7, data);
   }
   getAllDataTravelGuide() {
-    return this.http.get<TravelGuideResDTO[]>(this.apiUrl7);
+    return this.http.get<ResponseBaseList<TravelGuideResDTO>>(
+      `${this.apiUrl7}/all?langCode=${this.languageService.locale}`
+    );
   }
   getDataByIdTravelGuide(id: number) {
-    return this.http.get<TravelGuideResDTO>(`${this.apiUrl7}/${id}`);
+    return this.http.get<{ data: TravelGuideResDTO }>(
+      `${this.apiUrl7}/service/${id}?langCode=${this.languageService.locale}`
+    );
   }
 
   updateDataTravelGuide(data: TravelGuideReqDTO, id: number) {
@@ -241,26 +260,40 @@ export class AppService {
       this.apiUrl9 + '/type/BANNER'
     );
   }
-  getAllDataHighLightIntroducePage() {
-    return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl9 + '/type/HIGHLIGHT'
+  /*================= DỊCH VỤ NỔI BẬT ( INTRODUCE-PAGE ) =====================*/
+  createDataAdvertise(data: AdvertiseReqDTO) {
+    return this.http.post<AdvertiseResDTO>(this.apiAdvertise, data);
+  }
+  getAllDataAdvertise() {
+    return this.http.get<{ data: AdvertiseResDTO[] }>(this.apiAdvertise);
+  }
+  updateDataAdvertise(data: CommentFeedbackReqDTO, id: number) {
+    return this.http.put<CommentFeedbackResDTO>(
+      `${this.apiAdvertise}/${id}`,
+      data
+    );
+  }
+  deleteDataAdvertise(id: number) {
+    return this.http.delete<CommentFeedbackResDTO>(
+      `${this.apiAdvertise}/${id}`
     );
   }
   getAllDataMainIntroducePage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl9 + '/type/MAIN'
+      `${this.apiUrl9}/all?langCode=${this.languageService.locale}`
     );
   }
   getAllDataTitleIntroducePage() {
-    return this.http.get<{ data: IntroduceTitleResDTO[] }>(
-      this.apiUrl10 + '/type/TITLE'
-    );
+    const lang = this.languageService.locale;
+    const url = `${this.apiUrl10}/type/TITLE?langCode=${lang}`;
+    return this.http.get<{ data: IntroduceTitleResDTO[] }>(url);
   }
   getAllDataStatisticalIntroducePage() {
-    return this.http.get<{ data: IntroduceTitleResDTO[] }>(
-      this.apiUrl10 + '/type/STATISTICAL'
-    );
+    const lang = this.languageService.locale;
+    const url = `${this.apiUrl10}/type/STATISTICAL?langCode=${lang}`;
+    return this.http.get<{ data: IntroduceTitleResDTO[] }>(url);
   }
+
   getDataByIdIntroducePage(id: number) {
     return this.http.get<IntroducePageResDTO>(`${this.apiUrl9}/${id}`);
   }
@@ -321,22 +354,22 @@ export class AppService {
   }
   getAllDataBannerContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/BANNER'
+      this.apiUrl13 + `/type/BANNER?langCode=${this.languageService.locale}`
     );
   }
   getAllDataAddressContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/ADDRESS'
+      this.apiUrl13 + `/type/ADDRESS?langCode=${this.languageService.locale}`
     );
   }
   getAllDataPhoneContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/PHONE'
+      this.apiUrl13 + `/type/PHONE?langCode=${this.languageService.locale}`
     );
   }
   getAllDataEmailContactPage() {
     return this.http.get<{ data: IntroducePageResDTO[] }>(
-      this.apiUrl13 + '/type/EMAIL'
+      this.apiUrl13 + `/type/EMAIL?langCode=${this.languageService.locale}`
     );
   }
   getAllDataFooterContactPage() {
@@ -389,11 +422,13 @@ export class AppService {
     return this.http.post<VisaServiceResDTO>(this.apiVisaService, data);
   }
   getAllDataMenuService() {
-    return this.http.get<{ data: VisaServiceResDTO[] }>(this.apiVisaService);
+    return this.http.get<{ data: VisaServiceResDTO[] }>(
+      this.apiVisaService + `/all?langCode=${this.languageService.locale}`
+    );
   }
   getDataByIdMenuService(id: number) {
     return this.http.get<{ data: VisaServiceResDTO }>(
-      `${this.apiVisaService}/${id}`
+      `${this.apiVisaService + '/service'}/${id}?langCode=${this.languageService.locale}`
     );
   }
 
@@ -409,20 +444,25 @@ export class AppService {
 
   /*============================== Visa Process ================================*/
   createDataVisaProcess(data: VisaProcessReqDTO) {
-    return this.http.post<VisaProcessResDTO>(this.apiUrl8, data);
+    return this.http.post<VisaProcessResDTO>(this.apiVisaProcess, data);
   }
   getAllDataVisaProcess() {
-    return this.http.get<ResponseBaseList<VisaProcessResDTO>>(this.apiUrl8);
+    return this.http.get<ResponseBaseList<VisaProcessResDTO>>(
+      this.apiVisaProcess
+    );
   }
   getDataByIdVisaProcess(id: number) {
-    return this.http.get<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
+    return this.http.get<VisaProcessResDTO>(`${this.apiVisaProcess}/${id}`);
   }
 
   updateDataVisaProcess(data: VisaProcessReqDTO, id: number) {
-    return this.http.put<VisaProcessResDTO>(`${this.apiUrl8}/${id}`, data);
+    return this.http.put<VisaProcessResDTO>(
+      `${this.apiVisaProcess}/${id}`,
+      data
+    );
   }
   deleteDataVisaProcess(id: number) {
-    return this.http.delete<VisaProcessResDTO>(`${this.apiUrl8}/${id}`);
+    return this.http.delete<VisaProcessResDTO>(`${this.apiVisaProcess}/${id}`);
   }
 
   /*============================== Visa Process ================================*/
@@ -441,5 +481,23 @@ export class AppService {
   }
   deleteDataLanguage(id: number) {
     return this.http.delete<LanguageResDTO>(`${this.apiUrlLanguage}/${id}`);
+  }
+
+  /*============================== Visa Process ================================*/
+  createDataPartner(data: PartnerReqDTO) {
+    return this.http.post<PartnerResDTO>(this.apiPartner, data);
+  }
+  getAllDataPartner() {
+    return this.http.get<{ data: PartnerResDTO[] }>(this.apiPartner);
+  }
+  getDataByIdPartner(id: number) {
+    return this.http.get<PartnerResDTO>(`${this.apiPartner}/${id}`);
+  }
+
+  updateDataPartner(data: PartnerReqDTO, id: number) {
+    return this.http.put<PartnerResDTO>(`${this.apiPartner}/${id}`, data);
+  }
+  deleteDataPartner(id: number) {
+    return this.http.delete<PartnerResDTO>(`${this.apiPartner}/${id}`);
   }
 }

@@ -32,11 +32,9 @@
           }
           .normal-news-cards-item-title {
             margin: 5px 0;
-            a {
-              color: black !important;
-              font-weight: bold;
-              font-size: 14px;
-            }
+            color: black !important;
+            font-weight: bold;
+            font-size: 14px;
           }
         }
       }
@@ -64,5 +62,10 @@
         }
       }
     }
+  }
+}
+@media (max-width: 1024px) {
+  .news-tour {
+    grid-template-columns: 1fr;
   }
 }

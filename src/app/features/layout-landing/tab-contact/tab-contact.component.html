@@ -1,17 +1,19 @@
 <section class="tab-contact">
   @for (data of dataBanner; track data.id) {
-    <div
-      class="banner-contact"
-      [ngStyle]="{
-        'background-image': data.description
-          ? 'url(' + data.description + ')'
-          : 'none',
-        height: '480px',
-        'background-position': 'center',
-        'background-size': 'cover',
-      }">
-      <div class="banner-contact-title">{{ data.title }}</div>
-    </div>
+    @for (image of data.documentDTOS; track image.id) {
+      <div
+        class="banner-contact"
+        [ngStyle]="{
+          'background-image': 'url(' + formateImage(image.storagePath) + ')',
+          height: '480px',
+          'background-position': 'center',
+          'background-size': 'cover',
+        }">
+        <div class="banner-contact-title text-[50px] font-bold">
+          {{ data.title }}
+        </div>
+      </div>
+    }
   }
   <div
     class="cards-contact flex gap-10 justify-center flex-wrap lg:flex-nowrap">

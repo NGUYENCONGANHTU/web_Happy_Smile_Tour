@@ -1,19 +1,21 @@
 <section class="tab-tour-feature-foreign">
   <nz-breadcrumb nzSeparator=">" class="breadcrumb">
     <nz-breadcrumb-item>
-      <a routerLink="/">Trang chủ</a>
+      <a routerLink="/">{{ 'menu.home' | translate }}</a>
     </nz-breadcrumb-item>
-    <nz-breadcrumb-item class="font-bold"> Tour nước ngoài </nz-breadcrumb-item>
+    <nz-breadcrumb-item class="font-bold">
+      {{ 'menu.international_tours' | translate }}
+    </nz-breadcrumb-item>
   </nz-breadcrumb>
   <!--=============================================================-->
-  <div class="tab-tour-feature-foreign-main flex flex-col lg:flex-row gap-6">
-    <div class="sidebar-feature-foreign p-6! w-full lg:w-1/4">
+  <div class="tab-tour-feature-foreign-main">
+    <div class="sidebar-feature-foreign p-6!">
       <app-sidebar-feature-foreign
         (filtersChanged)="
           onFiltersChanged($event)
         "></app-sidebar-feature-foreign>
     </div>
-    <div class="content-feature-foreign w-full lg:w-3/4">
+    <div class="content-feature-foreign">
       <app-content-feature-foreign
         [filterParams]="filters"></app-content-feature-foreign>
     </div>

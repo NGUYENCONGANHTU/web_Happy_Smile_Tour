@@ -9,6 +9,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { LocationResDTO } from '../../../../../interface';
 import { AppService } from '../../../../../app.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sidebar-feature-domestic',
   imports: [
@@ -22,6 +23,7 @@ import { AppService } from '../../../../../app.service';
     RouterLinkActive,
     RouterLink,
     DecimalPipe,
+    TranslatePipe,
   ],
   templateUrl: './sidebar-feature-domestic.component.html',
   styleUrl: './sidebar-feature-domestic.component.scss',
@@ -66,11 +68,11 @@ export class SidebarFeatureDomesticComponent implements OnInit {
 
   tabs = [
     {
-      tabName: 'Trong nước',
+      tabName: 'domestic_tour.tab_domestic',
       href: '/tour-feature-domestic',
     },
     {
-      tabName: 'Nước ngoài',
+      tabName: 'domestic_tour.tab_foreign',
       href: '/tour-feature-foreign',
     },
   ];
