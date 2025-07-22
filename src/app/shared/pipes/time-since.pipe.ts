@@ -1,12 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 import moment from 'moment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Pipe({
   name: 'timeSince',
   standalone: true,
 })
 export class TimeSincePipe implements PipeTransform {
-  transform(value: Date | string | number, format = 'DD/MM/YYYY'): string {
+  translateService = inject(TranslateService);
+
+  transform(value?: Date | string | number, format = 'DD/MM/YYYY'): string {
     if (!value) return '';
 
     let dateMoment: moment.Moment;
@@ -23,7 +26,7 @@ export class TimeSincePipe implements PipeTransform {
     const date = dateMoment.startOf('day');
 
     const seconds = now.diff(date, 'seconds');
-    if (seconds < 0) return 'Vừa xong';
+    if (seconds < 0) return this.translateService.instant('base.time.just_now');
 
     // nếu lâu hơn 1 tháng (30 ngày) thì trả về full date
     const oneMonthInSeconds = 2592000; // 30 ngày
@@ -43,10 +46,10 @@ export class TimeSincePipe implements PipeTransform {
     for (const key in intervals) {
       const interval = Math.floor(seconds / intervals[key]);
       if (interval >= 1) {
-        return `${interval} ${key} trước`;
+        return `${interval} ${key} ${this.translateService.instant('base.time.ago').toLowerCase()}`;
       }
     }
 
-    return 'Vừa xong';
+    return this.translateService.instant('base.time.just_now');
   }
 }

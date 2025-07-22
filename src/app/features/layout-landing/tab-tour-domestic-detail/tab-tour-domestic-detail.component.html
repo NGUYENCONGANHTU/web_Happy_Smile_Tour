@@ -99,9 +99,9 @@
             <div class="customer-feedback-title">
               KHÁCH HÀNG ĐÁNH GIÁ / REVIEW
             </div>
-            <app-review-summary></app-review-summary>
+            <app-review-summary [averageRate]="tourDetail?.averageRate ?? 5" [totalReviews]="tourDetail?.totalReviews ?? 0" [ratingList]="tourDetail?.ratingList ?? []"></app-review-summary>
             <app-form-feedback-domestic></app-form-feedback-domestic>
-            <app-review-list></app-review-list>
+            <app-review-list [reviews]="tourDetail.tourComments ?? []"></app-review-list>
           </div>
         </div>
       </div>

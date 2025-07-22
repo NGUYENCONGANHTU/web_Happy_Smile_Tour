@@ -124,9 +124,9 @@
             <div class="customer-feedback-title uppercase">
               {{ 'tour_detail.customer_preview' | translate }}
             </div>
-            <app-review-summary></app-review-summary>
+            <app-review-summary [averageRate]="tourDetail?.averageRate ?? 5" [totalReviews]="tourDetail?.totalReviews ?? 0" [ratingList]="tourDetail?.ratingList ?? []"></app-review-summary>
             <app-form-feedback></app-form-feedback>
-            <app-review-list></app-review-list>
+            <app-review-list [reviews]="tourDetail.tourComments ?? []"></app-review-list>
           </div>
         </div>
       </div>

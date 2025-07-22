@@ -1,4 +1,10 @@
 {
+  "base": {
+    "time": {
+      "ago": "Ago",
+      "just_now": "Just now"
+    }
+  },
   "menu": {
     "home": "Home",
     "about": "About Us",
@@ -89,6 +95,11 @@
     "booking": "BOOK AND RESERVE NOW",
     "not_yet_pay": "Book now, no payment required yet",
     "tour": "Tour",
+
+    "reviews": "Reviews",
+    "stars": "Stars",
+    "filter_reviews_by": "Filter reviews by",
+    "all": "All",
 
     "cancel": "Cancel",
     "info_contact": "Contact Information",

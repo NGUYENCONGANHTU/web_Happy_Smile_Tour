@@ -1,6 +1,6 @@
 <div class="review-list bg-white rounded shadow !p-4 !mt-6">
   <div class="flex gap-2 !mb-5">
-    <h1 class="w-[140px]">Lọc đánh giá theo</h1>
+    <h1 class="w-[140px]">{{'tour_detail.filter_reviews_by' | translate}}</h1>
     <div class="flex gap-1 items-center mb-4 flex-wrap">
       @for(f of filters; track $index) {
         <button
@@ -20,16 +20,13 @@
       <div class="flex items-start gap-5">
         <!-- Avatar -->
         <div class="flex gap-2 items-center">
-          <nz-avatar class="mr-3" [nzText]="review.name.charAt(0).toUpperCase()" [nzSize]="40"></nz-avatar>
+          <nz-avatar class="mr-3" [nzText]="review.name?.charAt(0)?.toUpperCase()" [nzSrc]="review.imageUrl" [nzSize]="40"></nz-avatar>
           <div class="font-semibold text-gray-800 w-[160px]">{{ review.name }}</div>
         </div>
 
         <!-- Content -->
         <div>
-          <div class="flex gap-2 items-center">
-            <nz-rate [ngModel]="review.rate" [nzDisabled]="true"></nz-rate>
-            <div class="text-green-500 font-medium !mt-1">Tuyệt vời</div>
-          </div>
+          <nz-rate [ngModel]="review.rate" [nzDisabled]="true"></nz-rate>
           <!-- Tags -->
           <div class="!mt-1 flex gap-1 flex-wrap">
             @for(tag of review.tags; track $index) {
@@ -42,7 +39,7 @@
           <div class="!mt-2 text-gray-700">
             {{ review.content }}
           </div>
-          <div class="text-gray-400 text-sm !mt-2">{{ review.time | timeSince: 'DD/MM/YYYY' }}</div>
+          <div class="text-gray-400 text-sm !mt-2">{{ review?.time | timeSince: 'DD/MM/YYYY' }}</div>
         </div>
       </div>
     </div>
