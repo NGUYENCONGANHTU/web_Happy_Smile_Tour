@@ -24,6 +24,7 @@ import { FeaturePlaceDomesticComponent } from './feature-place-domestic/feature-
 import { SlideTourDomesticDetailComponent } from './slide-tour-domestic-detail/slide-tour-domestic-detail.component';
 import { TourPriceListService } from '../tab-tour-foreign-detail/price-list/tour-price-list.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
+import {ReviewListComponent} from '../../../shared/components/review-list/review-list.component';
 
 @Component({
   selector: 'app-tab-tour-domestic-detail',
@@ -44,6 +45,7 @@ import { ReviewSummaryComponent } from '../../../shared/components/review-summar
     FeaturePlaceDomesticComponent,
     SlideTourDomesticDetailComponent,
     ReviewSummaryComponent,
+    ReviewListComponent,
   ],
   templateUrl: './tab-tour-domestic-detail.component.html',
   styleUrl: './tab-tour-domestic-detail.component.scss',

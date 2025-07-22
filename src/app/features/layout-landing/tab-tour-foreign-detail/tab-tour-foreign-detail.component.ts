@@ -31,6 +31,7 @@ import { ScheduleService } from './schedule/schedule.service';
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
+import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -51,6 +52,7 @@ import { ReviewSummaryComponent } from '../../../shared/components/review-summar
     RouterLink,
     FormFeedbackComponent,
     ReviewSummaryComponent,
+    ReviewListComponent,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',

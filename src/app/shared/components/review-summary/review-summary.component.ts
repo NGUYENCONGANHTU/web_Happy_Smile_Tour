@@ -5,6 +5,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule } from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
+export interface IRating {
+  star: number;
+  percent: number;
+  count: number;
+}
+
 @Component({
   selector: 'app-review-summary',
   templateUrl: './review-summary.component.html',
@@ -17,10 +23,11 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzIconModule,
   ],
 })
+
 export class ReviewSummaryComponent {
   @Input() averageRate = 4.9;
   @Input() totalReviews = 60;
-  @Input() ratingList = [
+  @Input() ratingList: IRating[] = [
     { star: 5, percent: 93, count: 56 },
     { star: 4, percent: 7, count: 4 },
     { star: 3, percent: 0, count: 0 },
