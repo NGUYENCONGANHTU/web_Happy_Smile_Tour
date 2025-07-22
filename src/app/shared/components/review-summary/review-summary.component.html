@@ -1,0 +1,30 @@
+<div class="review-summary !p-4 bg-white rounded shadow">
+  <div class="flex items-center">
+    <div class="text-center !mr-6">
+      <div class="text-5xl font-bold text-yellow-500">{{averageRate}}<span class="text-2xl">/5</span></div>
+      <nz-rate [ngModel]="averageRate" [nzAllowHalf]="true" [nzDisabled]="true"></nz-rate>
+      <div class="text-gray-500 !mt-1">{{totalReviews}} lượt đánh giá</div>
+      <button nz-button nzType="primary" class="!mt-3">Viết đánh giá</button>
+    </div>
+
+    <div class="flex-1">
+      @for(item of ratingList; track $index) {
+        <div class="flex items-center !mb-2 gap-2">
+          <span class="flex items-center w-8 text-gray-700">
+            {{ item.star }}
+            <span nz-icon nzType="star" nzTheme="fill" class="!ml-1 !text-yellow-500"></span>
+          </span>
+          <nz-progress
+            [nzPercent]="item.percent"
+            [nzStrokeColor]="item.star===5 ? '#fadb14':'#d9d9d9'"
+            [nzShowInfo]="false"
+            nzStrokeLinecap="round"
+            nzSize="small"
+            class="flex-1 mx-2">
+          </nz-progress>
+          <span class="w-25 text-gray-700">{{item.count}} đánh giá</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

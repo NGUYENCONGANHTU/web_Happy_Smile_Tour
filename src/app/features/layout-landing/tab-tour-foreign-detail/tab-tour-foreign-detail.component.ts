@@ -30,6 +30,7 @@ import { ScheduleResDTO } from './schedule/schedule-interface';
 import { ScheduleService } from './schedule/schedule.service';
 import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
+import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -49,6 +50,7 @@ import { AppService } from '../../../../app.service';
     NzBreadCrumbModule,
     RouterLink,
     FormFeedbackComponent,
+    ReviewSummaryComponent,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',
