@@ -15,7 +15,7 @@
       }}</nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
-    <div class="tab-tour-foreign-detail-main-content">
+    <div class="tab-tour-foreign-detail-main-content flex-wrap lg:flex-nowrap">
       <div class="left-content">
         <app-slide-tour-detail
           [listImageBanner]="tourDetail"></app-slide-tour-detail>
@@ -144,7 +144,7 @@
           </div>
         </div>
       </div>
-      <div class="right-content !hidden lg:!block shadow-sm rounded-xl">
+      <div class="right-content shadow-sm rounded-xl !mb-5">
         <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
         </app-sidebar-tab-tour-foreign>
       </div>
