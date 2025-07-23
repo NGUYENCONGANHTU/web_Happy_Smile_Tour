@@ -18,8 +18,8 @@
     <div
       class="tab-tour-foreign-detail-main-content grid grid-cols-1 lg:[grid-template-columns:3fr_1fr] gap-x-4">
       <div class="left-content">
-        <app-slide-tour-detail
-          [listImageBanner]="tourDetail"></app-slide-tour-detail>
+        <app-slide-tour-detail [listImageBanner]="tourDetail">
+        </app-slide-tour-detail>
         <div class="tour-detail-title">{{ tourDetail.title }}</div>
         <div class="tour-detail-title-tabs">
           <div
@@ -143,13 +143,13 @@
               [averageRate]="tourDetail?.averageRate ?? 5"
               [totalReviews]="tourDetail?.totalReviews ?? 0"
               [ratingList]="tourDetail?.ratingList ?? []"></app-review-summary>
-            <app-form-feedback></app-form-feedback>
+            <app-form-feedback [tourDetail]="tourDetail"></app-form-feedback>
             <app-review-list
               [reviews]="tourDetail.tourComments ?? []"></app-review-list>
           </div>
         </div>
       </div>
-      <div class="right-content shadow-sm rounded-xl !mb-5">
+      <div class="right-content shadow-sm rounded-md !mb-5">
         <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
         </app-sidebar-tab-tour-foreign>
       </div>

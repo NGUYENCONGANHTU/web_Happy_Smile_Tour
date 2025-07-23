@@ -8,9 +8,6 @@
   .logo {
     width: 120px;
   }
-  //.menu-trigger{
-  //  display: block
-  //}
   nav {
     margin-top: 20px;
     .menu-items {
@@ -42,10 +39,6 @@
 /* =========== Footer =========== */
 .footer {
   background: #dcdcdc;
-  //display: grid;
-  //grid-template-columns: 1fr 3fr;
-  //gap: 30px;
-  //padding: 4% 20%;
   box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
   .travel-footer {
     .travel-footer-description {
@@ -77,13 +70,25 @@
   color: #1890ff;
   font-weight: bold;
 }
+
+/* Media query for screens smaller than 1146px */
+//@media (max-width: 1145px) {
+//  nav {
+//    display: none; /* Ẩn nav khi màn hình nhỏ */
+//  }
+//
+//  .menu-trigger {
+//    display: block; /* Hiển thị menu trigger */
+//  }
+//}
+//
+///* Media query for screens larger than or equal to 1146px */
 //@media (min-width: 1146px) {
-//  .container-header{
-//    .menu-trigger{
-//      display: none;
-//    }
-//    nav{
-//      display: block;
-//    }
+//  nav {
+//    display: block; /* Hiển thị nav khi màn hình lớn */
+//  }
+//
+//  .menu-trigger {
+//    display: none; /* Ẩn menu trigger */
 //  }
 //}

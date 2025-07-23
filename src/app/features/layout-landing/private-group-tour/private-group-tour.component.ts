@@ -12,6 +12,7 @@ import {
 } from '../../../../interface';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-private-group-tour',
   imports: [
@@ -30,6 +31,7 @@ export class PrivateGroupTourComponent implements OnInit {
   appService = inject(AppService);
   translate = inject(TranslateService);
   languageService = inject(LanguageService);
+  message = inject(NzMessageService);
 
   ngOnInit() {
     this.translate.use(this.languageService.locale);
@@ -77,14 +79,12 @@ export class PrivateGroupTourComponent implements OnInit {
       };
 
       this.appService.createDataContactPrivateTour(payload).subscribe({
-        next: response => {
-          console.log('Gửi thành công:', response);
-          alert('Gửi thành công!');
+        next: () => {
+          this.message.success('Gửi thông tin thành công!');
           this.validateForm.reset();
         },
-        error: err => {
-          console.error('Lỗi khi gửi form:', err);
-          alert('Gửi thất bại. Vui lòng thử lại!');
+        error: () => {
+          this.message.error('Gửi thất bại. Vui lòng thử lại!');
         },
       });
     } else {

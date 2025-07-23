@@ -15,7 +15,8 @@
   </div>
   @for (review of filteredReviews; track $index) {
     <div class="border-b border-gray-200 !pb-4 !mb-4 last:border-none">
-      <div class="flex items-start gap-5 grid grid-cols-1 md:grid-cols-2">
+      <div
+        class="flex items-start gap-5 grid grid-cols-1 md:grid-cols-[1fr_3fr]">
         <!-- Avatar -->
         <div class="flex gap-2 items-center">
           <nz-avatar

@@ -18,6 +18,7 @@ import {
 } from '../../tab-service/interface-contact-tour-service';
 import { TabServiceService } from '../../tab-service/tab-service.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -37,6 +38,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SidebarTabTourForeignComponent {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
+  message = inject(NzMessageService);
   @Input() tourDetail: FeatureResDTO | null = null;
 
   isVisible = false;
@@ -55,12 +57,13 @@ export class SidebarTabTourForeignComponent {
         contactType: ContactType.TOUR,
       };
       this.tourService.createDataTourService(body).subscribe({
-        next: res => {
-          console.log('Gửi thành công:', res);
+        next: () => {
+          this.message.success('Gửi thành công!');
           this.validateForm.reset();
+          this.isVisible = false;
         },
-        error: err => {
-          console.error('Lỗi khi gửi dữ liệu:', err);
+        error: () => {
+          this.message.error('Lỗi gửi thông tin!');
         },
       });
     } else {

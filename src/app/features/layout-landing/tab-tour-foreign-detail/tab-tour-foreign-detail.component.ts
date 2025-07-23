@@ -65,7 +65,7 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.onWindowScroll();
-    }, 0);
+    }, 1000);
   }
 
   @HostListener('window:scroll', ['$event'])

@@ -272,14 +272,15 @@ export enum ContactPage {
 }
 
 /* ==================== ĐÁNH GIÁ CHI TIẾT TOUR  ==================== */
+
 export interface TourCommentDetailReqDTO {
-  name: string;
-  rate: number;
-  tags: string[];
-  content: string;
-  imageUrl: string;
-  time: Date;
-  tourId: number;
+  name?: string;
+  rate?: number;
+  content?: string;
+  tags?: string[];
+  imageUrl?: string;
+  time?: Date;
+  tourId?: number;
 }
 export interface TourCommentDetailResDTO {
   id: number;

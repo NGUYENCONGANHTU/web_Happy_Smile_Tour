@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
   NzFormControlComponent,
   NzFormDirective,
@@ -11,10 +11,15 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzDividerComponent } from 'ng-zorro-antd/divider';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { faCalendarDays, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../../app.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import {
+  FeatureResDTO,
+  TourCommentDetailReqDTO,
+} from '../../../../../interface';
 @Component({
   selector: 'app-form-feedback',
   imports: [
@@ -37,37 +42,41 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './form-feedback.component.scss',
 })
 export class FormFeedbackComponent {
+  @Input() tourDetail: FeatureResDTO | null = null;
   appService = inject(AppService);
+  message = inject(NzMessageService);
   faStar = faStar;
   private fb = inject(FormBuilder);
   tooltips: string[] = ['1', '2', '3', '4', '5'];
   validateForm = this.fb.group({
     name: [''],
     content: ['', [Validators.required]],
-    star: [5],
+    rate: [5],
   });
+
   submitForm() {
     if (this.validateForm.valid) {
       console.log('Dữ liệu gửi:', this.validateForm.value);
-      // const rawForm = this.validateForm.value;
-      //
-      // // Tạo object đúng kiểu ContactPrivateTourReqDTO
-      // const payload: TourCommentDetailReqDTO = {
-      //   name: rawForm.name ?? '',
-      //   content: rawForm.content ?? '',
-      //   star: rawForm.star ?? 5,
-      //
-      // };
-      // this.appService.createDataCommentFeedbackDetail(payload).subscribe({
-      //   next: (response) => {
-      //     console.log('Gửi thành công:', response);
-      //     this.validateForm.reset();
-      //   },
-      //   error: (err) => {
-      //     console.error('Lỗi khi gửi form:', err);
-      //     alert('Gửi thất bại. Vui lòng thử lại!');
-      //   }
-      // });
+      const rawForm = this.validateForm.value;
+
+      // Tạo object đúng kiểu ContactPrivateTourReqDTO
+      const payload: TourCommentDetailReqDTO = {
+        name: rawForm.name ?? '',
+        content: rawForm.content ?? '',
+        rate: rawForm.rate ?? 5,
+        tourId: this.tourDetail?.tourId ?? 0,
+      };
+      this.appService.createDataCommentFeedbackDetail(payload).subscribe({
+        next: () => {
+          this.message.success(
+            'Đánh giá của bạn đã được tiếp nhận, cảm ơn bạn vì sự đóng góp!!'
+          );
+          this.validateForm.reset();
+        },
+        error: () => {
+          this.message.error('Có lỗi xảy ra!!!');
+        },
+      });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -77,6 +86,4 @@ export class FormFeedbackComponent {
       });
     }
   }
-
-  protected readonly faCalendarDays = faCalendarDays;
 }
