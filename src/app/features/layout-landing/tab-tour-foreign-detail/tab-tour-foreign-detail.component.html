@@ -15,14 +15,14 @@
       }}</nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
-    <div class="tab-tour-foreign-detail-main-content">
+    <div class="tab-tour-foreign-detail-main-content flex-wrap lg:flex-nowrap">
       <div class="left-content">
         <app-slide-tour-detail
           [listImageBanner]="tourDetail"></app-slide-tour-detail>
         <div class="tour-detail-title">{{ tourDetail.title }}</div>
         <div class="tour-detail-title-tabs">
           <div
-            class="tour-detail-title-tabs-title shadow-sm px-2! rounded-md border-b-1 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
+            class="tour-detail-title-tabs-title !hidden md:!flex rounded-md border-b-1 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
             <button
               (click)="scrollTo('diemNoiBat')"
               [class]="
@@ -144,7 +144,7 @@
           </div>
         </div>
       </div>
-      <div class="right-content !hidden lg:!block shadow-sm rounded-xl">
+      <div class="right-content shadow-sm rounded-xl !mb-5">
         <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
         </app-sidebar-tab-tour-foreign>
       </div>
