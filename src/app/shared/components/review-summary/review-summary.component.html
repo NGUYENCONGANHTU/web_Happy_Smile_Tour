@@ -5,6 +5,7 @@
         {{ averageRate }}<span class="text-2xl">/5</span>
       </div>
       <nz-rate
+        class="!text-yellow-500"
         [ngModel]="averageRate"
         [nzAllowHalf]="true"
         [nzDisabled]="true"></nz-rate>
@@ -27,7 +28,7 @@
           </span>
           <nz-progress
             [nzPercent]="item.percent"
-            [nzStrokeColor]="item.star === 5 ? '#fadb14' : '#d9d9d9'"
+            [nzStrokeColor]="item.star === 5 ? '#f0b100' : '#f0b100'"
             [nzShowInfo]="false"
             nzStrokeLinecap="round"
             nzSize="small"

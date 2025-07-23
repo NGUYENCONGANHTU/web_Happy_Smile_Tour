@@ -14,7 +14,7 @@
           background-size: cover;
         ">
         <div
-          class="flex flex-col justify-center items-center h-full text-white bg-black/10">
+          class="flex flex-col justify-center items-center text-center h-full text-white bg-black/10">
           <div class="text-[45px] font-bold">{{ data.title }}</div>
         </div>
       </div>
@@ -62,10 +62,10 @@
         class="partners-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 !mt-10">
         @for (data of dataStatistical; track data.id) {
           <div class="item">
-            <div class="text-xl font-semibold text-blue-700">
+            <div class="text-4xl font-semibold text-[#ef1f28]">
               {{ data.title }}
             </div>
-            <div class="">
+            <div class="mt-5! text-[#6f6f6f] text-md font-bold">
               {{ data.description }}
             </div>
           </div>
