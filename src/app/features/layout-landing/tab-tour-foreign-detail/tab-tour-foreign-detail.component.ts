@@ -1,7 +1,9 @@
 import {
+  AfterViewInit,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  HostListener,
   inject,
   OnInit,
   ViewChild,
@@ -10,7 +12,6 @@ import { FeaturePlaceComponent } from './feature-place/feature-place.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { SidebarTabTourForeignComponent } from './sidebar-tab-tour-foreign/sidebar-tab-tour-foreign.component';
-import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -25,6 +26,7 @@ import { AppService } from '../../../../app.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
 import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -40,23 +42,63 @@ import { TranslatePipe } from '@ngx-translate/core';
     ScheduleComponent,
     PriceListComponent,
     SidebarTabTourForeignComponent,
-    SlideTourDetailComponent,
     NzBreadCrumbModule,
     RouterLink,
     FormFeedbackComponent,
     ReviewSummaryComponent,
     ReviewListComponent,
     TranslatePipe,
+    SlideTourDetailComponent,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TabTourForeignDetailComponent implements OnInit {
+export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   @ViewChild('diemNoiBat') diemNoiBatSection!: ElementRef;
   @ViewChild('lichTrinh') lichTrinhSection!: ElementRef;
   @ViewChild('bangGia') bangGiaSection!: ElementRef;
   @ViewChild('dichVu') dichVuSection!: ElementRef;
+
+  activeSection = 'section1';
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.onWindowScroll();
+    }, 0);
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollPosition =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const offset = 100;
+
+    let currentActiveSection: string | null = null;
+    [
+      this.diemNoiBatSection,
+      this.lichTrinhSection,
+      this.bangGiaSection,
+      this.dichVuSection,
+    ].forEach((sectionRef: ElementRef) => {
+      const sectionElement: HTMLElement = sectionRef?.nativeElement; // Get the native DOM element
+      const rect = sectionElement.getBoundingClientRect();
+      const sectionTop = rect.top + scrollPosition;
+      const sectionBottom = rect.bottom + scrollPosition;
+      if (
+        scrollPosition + offset >= sectionTop &&
+        scrollPosition + offset < sectionBottom
+      ) {
+        currentActiveSection = sectionElement.id;
+      }
+    });
+    if (currentActiveSection && this.activeSection !== currentActiveSection) {
+      this.activeSection = currentActiveSection;
+    }
+  }
 
   scrollTo(section: string) {
     switch (section) {

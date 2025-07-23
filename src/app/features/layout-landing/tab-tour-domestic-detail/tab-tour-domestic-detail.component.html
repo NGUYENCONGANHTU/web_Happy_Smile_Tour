@@ -23,10 +23,28 @@
         <div class="tour-detail-title-tabs">
           <div
             class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc]">
-            <button (click)="scrollTo('diemNoiBat')">ĐIỂM NỔI BẬT</button>
-            <button (click)="scrollTo('lichTrinh')">LỊCH TRÌNH</button>
-            <button (click)="scrollTo('bangGia')">BẢNG GIÁ</button>
-            <button (click)="scrollTo('dichVu')">DỊCH VỤ BAO GỒM</button>
+            <button
+              (click)="scrollTo('diemNoiBat')"
+              [class]="
+                activeSection === 'diem-noi-bat' ? '!text-green-700' : ''
+              ">
+              {{ 'tour_detail.feature_place' | translate }}
+            </button>
+            <button
+              (click)="scrollTo('lichTrinh')"
+              [class]="activeSection === 'lich-trinh' ? '!text-green-700' : ''">
+              {{ 'tour_detail.schedule' | translate }}
+            </button>
+            <button
+              (click)="scrollTo('bangGia')"
+              [class]="activeSection === 'bang-gia' ? '!text-green-700' : ''">
+              {{ 'tour_detail.table' | translate }}
+            </button>
+            <button
+              (click)="scrollTo('dichVu')"
+              [class]="activeSection === 'dich-vu' ? '!text-green-700' : ''">
+              {{ 'tour_detail.service_content' | translate }}
+            </button>
           </div>
           <div class="tour-detail-title-tabs-content">
             <!-- ===================ĐIỂM NỔI BẬT========================= -->

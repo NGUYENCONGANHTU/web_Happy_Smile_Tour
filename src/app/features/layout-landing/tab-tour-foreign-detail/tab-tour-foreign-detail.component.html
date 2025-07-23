@@ -22,17 +22,27 @@
         <div class="tour-detail-title">{{ tourDetail.title }}</div>
         <div class="tour-detail-title-tabs">
           <div
-            class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc]">
-            <button (click)="scrollTo('diemNoiBat')">
+            class="tour-detail-title-tabs-title border-b-1 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
+            <button
+              (click)="scrollTo('diemNoiBat')"
+              [class]="
+                activeSection === 'diem-noi-bat' ? '!text-green-700' : ''
+              ">
               {{ 'tour_detail.feature_place' | translate }}
             </button>
-            <button (click)="scrollTo('lichTrinh')">
+            <button
+              (click)="scrollTo('lichTrinh')"
+              [class]="activeSection === 'lich-trinh' ? '!text-green-700' : ''">
               {{ 'tour_detail.schedule' | translate }}
             </button>
-            <button (click)="scrollTo('bangGia')">
+            <button
+              (click)="scrollTo('bangGia')"
+              [class]="activeSection === 'bang-gia' ? '!text-green-700' : ''">
               {{ 'tour_detail.table' | translate }}
             </button>
-            <button (click)="scrollTo('dichVu')">
+            <button
+              (click)="scrollTo('dichVu')"
+              [class]="activeSection === 'dich-vu' ? '!text-green-700' : ''">
               {{ 'tour_detail.service_content' | translate }}
             </button>
           </div>
@@ -134,7 +144,7 @@
           </div>
         </div>
       </div>
-      <div class="right-content shadow-sm rounded-xl">
+      <div class="right-content !hidden lg:!block shadow-sm rounded-xl">
         <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
         </app-sidebar-tab-tour-foreign>
       </div>
