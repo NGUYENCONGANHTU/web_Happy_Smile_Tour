@@ -1,6 +1,6 @@
 .tab-service {
   .banner-tab-service {
-    height: calc(100vh - 90px);
+    height: 80vh;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -84,9 +84,9 @@
           margin-bottom: 20px;
         }
         .service-contact-form {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
+          //display: grid;
+          //grid-template-columns: 1fr 1fr;
+          //gap: 10px;
         }
       }
     }
@@ -112,10 +112,10 @@
   }
 }
 
-@media (min-width: 1025px) {
-  .workflow-steps {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
+//@media (min-width: 1025px) {
+//  .workflow-steps {
+//    display: flex;
+//    flex-wrap: wrap;
+//    justify-content: center;
+//  }
+//}
