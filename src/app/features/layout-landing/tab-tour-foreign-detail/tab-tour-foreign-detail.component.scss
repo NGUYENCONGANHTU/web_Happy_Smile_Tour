@@ -5,13 +5,11 @@
     margin-bottom: 10px;
   }
   .tab-tour-foreign-detail-main-content {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    width: 100%;
+    display: flex;
     gap: 16px;
     padding: 0 10%;
     .left-content {
-      width: 100%;
+      min-width: calc(100% - 316px);
       box-sizing: border-box;
       //overflow: hidden;
       .tour-detail-title {
@@ -84,7 +82,7 @@
       position: sticky;
       top: 0;
       right: 10%;
-      width: 300px;
+      min-width: 300px;
       background: white;
       z-index: 10;
     }
