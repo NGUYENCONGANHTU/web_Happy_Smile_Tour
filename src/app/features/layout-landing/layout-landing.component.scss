@@ -8,6 +8,9 @@
   .logo {
     width: 120px;
   }
+  //.menu-trigger{
+  //  display: block
+  //}
   nav {
     margin-top: 20px;
     .menu-items {
@@ -74,3 +77,13 @@
   color: #1890ff;
   font-weight: bold;
 }
+//@media (min-width: 1146px) {
+//  .container-header{
+//    .menu-trigger{
+//      display: none;
+//    }
+//    nav{
+//      display: block;
+//    }
+//  }
+//}

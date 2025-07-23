@@ -15,7 +15,8 @@
       }}</nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
-    <div class="tab-tour-foreign-detail-main-content flex-wrap lg:flex-nowrap">
+    <div
+      class="tab-tour-foreign-detail-main-content grid grid-cols-1 lg:[grid-template-columns:3fr_1fr] gap-x-4">
       <div class="left-content">
         <app-slide-tour-detail
           [listImageBanner]="tourDetail"></app-slide-tour-detail>
@@ -89,7 +90,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.service_content' | translate }}
                   </div>
-                  <div class="content-1">{{ tourDetail.service }}</div>
+                  <div class="content-1 text-justify">
+                    {{ tourDetail.service }}
+                  </div>
                 </div>
               }
 
@@ -99,7 +102,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.non_service_content' | translate }}
                   </div>
-                  <div class="content-2-text">{{ tourDetail.nonService }}</div>
+                  <div class="content-2-text text-justify">
+                    {{ tourDetail.nonService }}
+                  </div>
                 </div>
               }
 
@@ -109,7 +114,7 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.t_c' | translate }}
                   </div>
-                  <div class="content-3-text">
+                  <div class="content-3-text text-justify">
                     {{ tourDetail.regulation }}
                   </div>
                 </div>
@@ -121,7 +126,7 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.note' | translate }}
                   </div>
-                  <div class="content-3-text">
+                  <div class="content-3-text text-justify">
                     {{ tourDetail.note }}
                   </div>
                 </div>

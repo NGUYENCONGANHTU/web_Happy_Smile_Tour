@@ -17,7 +17,7 @@ swiper-container {
       gap: 15px;
       transition: box-shadow 0.3s ease;
       &:hover {
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
       }
     }
   }

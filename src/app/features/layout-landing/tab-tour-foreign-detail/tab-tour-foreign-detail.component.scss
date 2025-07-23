@@ -6,8 +6,8 @@
     margin-bottom: 10px;
   }
   .tab-tour-foreign-detail-main-content {
-    display: flex;
-    gap: 16px;
+    //display: flex;
+    //gap: 16px;
     padding: 0 10%;
     .left-content {
       min-width: calc(100% - 316px);
@@ -22,7 +22,7 @@
       .tour-detail-title-tabs {
         .tour-detail-title-tabs-title {
           position: sticky;
-          top: 60px; /* nếu header bạn cao 60px */
+          top: 0;
           background-color: white;
           z-index: 999;
           display: flex;
