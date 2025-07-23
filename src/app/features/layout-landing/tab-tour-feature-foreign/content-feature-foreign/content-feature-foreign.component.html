@@ -1,11 +1,11 @@
 <div class="cards-content-feature-domestic">
   @for (data of tours; track data.id) {
     <div
-      class="card-content-feature-domestic-item cursor-pointer"
+      class="card-content-feature-domestic-item grid grid-cols-1 md:[grid-template-columns:1fr_2fr] lg:gap-5 cursor-pointer"
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="card-content-feature-domestic-item-image">
         <img
-          class="h-[160px] w-[250px] object-cover bg-center bg-cover"
+          class="md:h-[160px] md:w-[250px] lg:w-full !rounded-md object-cover bg-center bg-cover"
           [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="" />
       </div>
