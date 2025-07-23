@@ -1,7 +1,9 @@
 import {
+  AfterViewInit,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  HostListener,
   inject,
   OnInit,
   ViewChild,
@@ -24,7 +26,8 @@ import { FeaturePlaceDomesticComponent } from './feature-place-domestic/feature-
 import { SlideTourDomesticDetailComponent } from './slide-tour-domestic-detail/slide-tour-domestic-detail.component';
 import { TourPriceListService } from '../tab-tour-foreign-detail/price-list/tour-price-list.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
-import {ReviewListComponent} from '../../../shared/components/review-list/review-list.component';
+import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab-tour-domestic-detail',
@@ -46,16 +49,57 @@ import {ReviewListComponent} from '../../../shared/components/review-list/review
     SlideTourDomesticDetailComponent,
     ReviewSummaryComponent,
     ReviewListComponent,
+    TranslatePipe,
   ],
   templateUrl: './tab-tour-domestic-detail.component.html',
   styleUrl: './tab-tour-domestic-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TabTourDomesticDetailComponent implements OnInit {
+export class TabTourDomesticDetailComponent implements OnInit, AfterViewInit {
   @ViewChild('diemNoiBat') diemNoiBatSection!: ElementRef;
   @ViewChild('lichTrinh') lichTrinhSection!: ElementRef;
   @ViewChild('bangGia') bangGiaSection!: ElementRef;
   @ViewChild('dichVu') dichVuSection!: ElementRef;
+
+  activeSection = 'section1';
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.onWindowScroll();
+    }, 0);
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollPosition =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const offset = 100;
+
+    let currentActiveSection: string | null = null;
+    [
+      this.diemNoiBatSection,
+      this.lichTrinhSection,
+      this.bangGiaSection,
+      this.dichVuSection,
+    ].forEach((sectionRef: ElementRef) => {
+      const sectionElement: HTMLElement = sectionRef?.nativeElement; // Get the native DOM element
+      const rect = sectionElement.getBoundingClientRect();
+      const sectionTop = rect.top + scrollPosition;
+      const sectionBottom = rect.bottom + scrollPosition;
+      if (
+        scrollPosition + offset >= sectionTop &&
+        scrollPosition + offset < sectionBottom
+      ) {
+        currentActiveSection = sectionElement.id;
+      }
+    });
+    if (currentActiveSection && this.activeSection !== currentActiveSection) {
+      this.activeSection = currentActiveSection;
+    }
+  }
 
   scrollTo(section: string) {
     switch (section) {
