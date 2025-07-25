@@ -101,9 +101,10 @@ export interface FeatureReqDTO {
   tourId: number;
   title: string;
   averageRate: number;
-  originalPrice: number;
+  numberComment: number;
+  originalPrice: string;
   discount: number;
-  finalPrice: number;
+  finalPrice: string;
   stayDate: string;
   location: LocationResDTO;
   startingPoints: LocationResDTO[];
@@ -127,9 +128,9 @@ export interface FeatureResDTO {
   title: string;
   averageRate: number;
   numberComment: number;
-  originalPrice: number;
+  originalPrice: string;
   discount: number;
-  finalPrice: number;
+  finalPrice: string;
   stayDate: string;
   location: LocationResDTO;
   startingPoints: LocationResDTO[];
@@ -239,6 +240,7 @@ export interface ContactPrivateTourReqDTO {
   budget: string;
   location: string;
   message: string;
+  contactType: ContactType;
 }
 export interface ContactPrivateTourResDTO {
   id: number;
@@ -251,6 +253,11 @@ export interface ContactPrivateTourResDTO {
   budget: string;
   location: string;
   message: string;
+  contactType: ContactType;
+}
+export enum ContactType {
+  'TOUR',
+  'VISA',
 }
 /* ==================== TRANG LIÊN HỆ   ==================== */
 export interface ContactPageReqDTO {

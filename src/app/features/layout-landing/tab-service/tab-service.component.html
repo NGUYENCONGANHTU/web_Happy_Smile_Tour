@@ -31,32 +31,36 @@
         </div>
       </div>
     </div>
+
     <div class="banner-tab-service-content">
-      <div class="content-service-contact flex gap-10 flex-wrap justify-center">
-        <div class="content-service !space-y-6 !w-full lg:!w-2/5">
-          <div class="content-service-title">
+      <div
+        class="content-service-contact !mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-5">
+        <div class="content-service space-y-2!">
+          <div class="content-service-title text-2xl font-bold">
             {{ dataServiceDetail.serviceTitle }}
           </div>
           <div class="content-service-list">
             {{ dataServiceDetail.serviceContent }}
           </div>
         </div>
-        <div class="service-contact !w-full lg:!w-2/5">
-          <div class="service-contact-title">
+        <div class="service-contact">
+          <div class="service-contact-title text-2xl font-bold !mb-4">
             {{ 'tab_service.instruction' | translate }}
           </div>
           <form
             nz-form
             [formGroup]="validateForm"
             (ngSubmit)="submitForm()"
-            class="service-contact-form grid grid-col-2 !gap-x-2"
+            class="service-contact-form !space-y-5 md:grid grid-cols-2 !gap-x-2"
             nzLayout="vertical">
             <!--     Tên-->
-            <nz-form-item>
-              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]"
-                >{{ 'tab_service.name' | translate
-                }}<span class="text-red-500 !mx-2">*</span></nz-form-label
-              >
+            <div>
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[14px] !mb-1">
+                {{ 'tab_service.name' | translate }}
+                <span class="text-red-500 !mx-2">*</span>
+              </nz-form-label>
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.name"
                 nzErrorTip="{{ 'tab_service.name_required' | translate }}">
@@ -66,10 +70,10 @@
                   placeholder="{{ 'tab_service.enter_name' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
+            </div>
             <!--     Số điện thoại-->
-            <nz-form-item>
-              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]"
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium text-[14px] !mb-1"
                 >{{ 'tab_service.phone' | translate
                 }}<span class="text-red-500 !mx-2">*</span></nz-form-label
               >
@@ -83,11 +87,11 @@
                   placeholder="{{ 'tab_service.phone' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
+            </div>
 
             <!--     Email-->
-            <nz-form-item>
-              <nz-form-label [nzSpan]="24" class="font-medium text-[16px]"
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium text-[16px] !mb-1"
                 >Email</nz-form-label
               >
               <nz-form-control>
@@ -98,11 +102,13 @@
                   placeholder="Email"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
+            </div>
 
             <!--     Ghi chú-->
-            <nz-form-item>
-              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]">
+            <div>
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[14px] !mb-1">
                 {{ 'tab_service.note' | translate }}
               </nz-form-label>
               <nz-form-control>
@@ -113,7 +119,7 @@
                   placeholder="{{ 'tab_service.note' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
+            </div>
 
             <!--     Buttons -->
             <div class="col-span-2 text-center">

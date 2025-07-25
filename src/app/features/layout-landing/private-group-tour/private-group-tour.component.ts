@@ -8,11 +8,13 @@ import { RouterLink } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import {
   ContactPrivateTourReqDTO,
+  ContactType,
   PrivateTourResDTO,
 } from '../../../../interface';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+
 @Component({
   selector: 'app-private-group-tour',
   imports: [
@@ -76,6 +78,7 @@ export class PrivateGroupTourComponent implements OnInit {
         budget: rawForm.budget ?? '',
         location: rawForm.location ?? '',
         message: rawForm.message ?? '',
+        contactType: ContactType.TOUR,
       };
 
       this.appService.createDataContactPrivateTour(payload).subscribe({

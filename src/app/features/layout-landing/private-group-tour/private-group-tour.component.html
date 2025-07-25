@@ -10,7 +10,7 @@
     </nz-breadcrumb-item>
   </nz-breadcrumb>
   <!--  =====================================================-->
-  <div class="section-private-group-tour">
+  <div class="section-private-group-tour !pt-4 !px-[10%]">
     @for (data of dataPrivateTour; track data.id) {
       <div class="private-group-tour-title">
         {{ data.title }}
@@ -19,7 +19,7 @@
         {{ data.description }}
       </div>
     }
-    <div class="private-group-tour-contact">
+    <div class="private-group-tour-contact !py-10">
       <div class="private-group-tour-contact-title">
         {{ 'private_tour.contact_us' | translate }}
       </div>
@@ -27,9 +27,9 @@
         nz-form
         [formGroup]="validateForm"
         (ngSubmit)="submitForm()"
-        class="private-group-tour-contact-form md:grid md:grid-cols-2 md:!px-[10%] xl:!px-[20%] gap-x-2">
+        class="private-group-tour-contact-form !space-y-4 md:grid md:grid-cols-2 md:!px-[10%] xl:!px-[20%] gap-x-6">
         <!--     Tên-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'tab_service.name' | translate }}
             <span class="text-red-500 !mx-2">*</span>
@@ -44,9 +44,9 @@
               formControlName="name"
               placeholder="{{ 'tab_service.name' | translate }}" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <!--     Số điện thoại-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'tab_service.phone' | translate }}
             <span class="text-red-500 !mx-2">*</span>
@@ -60,9 +60,9 @@
               formControlName="phone"
               placeholder="{{ 'tab_service.phone' | translate }}" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <!--    Email-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             Email
           </nz-form-label>
@@ -73,9 +73,9 @@
               formControlName="email"
               placeholder="Email" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <!--      Công ty-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'tab_service.company' | translate }}
           </nz-form-label>
@@ -86,10 +86,10 @@
               formControlName="company"
               placeholder="{{ 'tab_service.company' | translate }}" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
 
         <!--      Số người-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'private_tour.people_count' | translate }}
           </nz-form-label>
@@ -100,9 +100,9 @@
               formControlName="number_of_people"
               placeholder="{{ 'private_tour.people_count' | translate }}" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <!--      Thời gian dự kiến-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'private_tour.estimated_time' | translate }}
           </nz-form-label>
@@ -112,9 +112,9 @@
               nzPlaceHolder="{{ 'private_tour.estimated_time' | translate }}"
               class="w-full"></nz-date-picker>
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <!--      Ngân sách dự kiến-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'private_tour.estimated_budget' | translate }}
           </nz-form-label>
@@ -125,10 +125,10 @@
               formControlName="budget"
               placeholder="{{ 'private_tour.estimated_budget' | translate }}" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
 
         <!--     Địa điểm mong muốn-->
-        <nz-form-item>
+        <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'private_tour.desired_destination' | translate }}
           </nz-form-label>
@@ -141,9 +141,9 @@
                 'private_tour.desired_destination' | translate
               }}" />
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <!--     Ghi chú-->
-        <nz-form-item class="full-width">
+        <div class="col-span-2">
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
             {{ 'private_tour.note' | translate }}:
           </nz-form-label>
@@ -154,7 +154,7 @@
               nz-input
               placeholder="{{ 'private_tour.note' | translate }}"></textarea>
           </nz-form-control>
-        </nz-form-item>
+        </div>
         <div class="text-right! col-span-2 space-x-4!">
           <button
             class="btn-reset border border-gray-300 text-gray-800 hover:bg-gray-100 font-medium py-2 px-4 rounded-md"

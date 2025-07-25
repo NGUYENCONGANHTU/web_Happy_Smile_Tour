@@ -52,10 +52,11 @@
     "register_consulting": "Đăng kí tư vấn",
     "enter_name": "Nhập tên của bạn",
     "name_required": "Tên là bắt buộc",
+    "email_valid" : "Email không hợp lệ",
     "phone_required": "Số điện thoại là bắt buộc"
   },
   "private_tour": {
-    "people_count": "Số người",
+    "people_count": "Số thành viên tham gia",
     "estimated_time": "Thời gian dự kiến",
     "estimated_budget": "Ngân sách dự kiến",
     "desired_destination": "Địa điểm mong muốn",
@@ -89,6 +90,7 @@
     "table": "BẢNG GIÁ",
     "service_content": "DỊCH VỤ BAO GỒM",
     "non_service_content": "DỊCH VỤ KHÔNG BAO GỒM",
+
     "note": "GHI CHÚ",
     "t_c": "ĐIỀU KIỆN VÀ QUY ĐỊNH",
     "customer_preview": "KHÁCH HÀNG ĐÁNH GIÁ ",

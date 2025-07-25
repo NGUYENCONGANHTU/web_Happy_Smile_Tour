@@ -150,7 +150,10 @@
         </div>
       </div>
       <div class="right-content shadow-sm rounded-md !mb-5">
-        <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
+        <app-sidebar-tab-tour-foreign
+          [tourDetail]="tourDetail"
+          [priceTour]="tourDetail.finalPrice"
+          [nameTour]="tourDetail.title">
         </app-sidebar-tab-tour-foreign>
       </div>
     </div>
