@@ -60,9 +60,9 @@
   color: white;
   font-weight: 500;
 }
-.ant-btn-primary {
-  background: #28a745 !important;
-  border: none;
+::ng-deep .ant-modal-footer .ant-btn-primary {
+  background-color: #ed1e27 !important;
+  border-color: #ed1e27 !important;
 }
 ::ng-deep .ant-modal-close-x {
   color: #e0e0e0;

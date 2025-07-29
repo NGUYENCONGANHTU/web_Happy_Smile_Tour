@@ -1,15 +1,14 @@
 .tab-service {
   .banner-tab-service {
-    height: 90vh;
+    height: 80vh;
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     .overlay {
-      background-color: rgba(0, 0, 0, 0.4); // bạn chỉnh màu tùy ý
+      background-color: rgba(0, 0, 0, 0.4);
       .content {
-        //z-index: 2;
         color: white;
         .sub-title {
           letter-spacing: 4px;

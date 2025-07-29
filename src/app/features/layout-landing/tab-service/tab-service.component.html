@@ -34,24 +34,25 @@
 
     <div class="banner-tab-service-content">
       <div
-        class="content-service-contact !mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-5">
+        class="content-service-contact !mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-10">
         <div class="content-service space-y-2!">
           <div class="content-service-title text-2xl font-bold">
             {{ dataServiceDetail.serviceTitle }}
           </div>
-          <div class="content-service-list">
+          <div class="content-service-list text-justify">
             {{ dataServiceDetail.serviceContent }}
           </div>
         </div>
         <div class="service-contact">
-          <div class="service-contact-title text-2xl font-bold !mb-4">
+          <div
+            class="service-contact-title text-center text-2xl font-bold !mb-4">
             {{ 'tab_service.instruction' | translate }}
           </div>
           <form
             nz-form
             [formGroup]="validateForm"
             (ngSubmit)="submitForm()"
-            class="service-contact-form !space-y-5 md:grid grid-cols-2 !gap-x-2"
+            class="service-contact-form !space-y-5 md:grid grid-cols-2 !gap-x-5"
             nzLayout="vertical">
             <!--     Tên-->
             <div>
@@ -103,21 +104,62 @@
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </div>
-
-            <!--     Ghi chú-->
+            <!-- ================= Số thành viên tham gia ================= -->
             <div>
-              <nz-form-label
-                [nzSpan]="24"
-                class="font-medium text-[14px] !mb-1">
-                {{ 'tab_service.note' | translate }}
+              <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                Số thành viên tham gia
+              </nz-form-label>
+              <nz-form-control
+                nzErrorTip="{{ 'private_tour.name_required' | translate }}">
+                <input
+                  class="!rounded-lg py-2! px-4!"
+                  nz-input
+                  formControlName="number_of_people"
+                  type="number"
+                  placeholder="Số thành viên tham gia" />
+              </nz-form-control>
+            </div>
+            <!-- ================= Công Ty ================= -->
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                Tên công ty
               </nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
+                  class="!rounded-lg py-2! px-4!"
+                  placeholder="{{ 'tour_detail.address' | translate }}"
+                  formControlName="company" />
+              </nz-form-control>
+            </div>
+            <!-- ================= Thời gian kiến ================= -->
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                Thời gian dự kiến
+              </nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  class="!rounded-lg py-2! px-4!"
+                  placeholder="{{ 'tour_detail.address' | translate }}"
+                  formControlName="expected_date" />
+              </nz-form-control>
+            </div>
+            <!--     Ghi chú-->
+            <div class="col-span-2">
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[16px] !mb-1">
+                {{ 'tab_service.note' | translate }}
+              </nz-form-label>
+              <nz-form-control>
+                <textarea
+                  rows="6"
+                  nz-input
                   type="text"
                   formControlName="message"
                   placeholder="{{ 'tab_service.note' | translate }}"
-                  class="py-2! rounded-lg!" />
+                  class="py-2! rounded-lg!"></textarea>
               </nz-form-control>
             </div>
 
