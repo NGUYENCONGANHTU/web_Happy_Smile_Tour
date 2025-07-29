@@ -16,7 +16,8 @@ import { ContactConfigComponent } from './features/admin/contact-config/contact-
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
 import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
 import { TabTravelGuideDetailComponent } from './features/layout-landing/tab-travel-guide-detail/tab-travel-guide-detail.component';
-import { TOUR_CONFIG_ROUTE } from './features/admin/tour-config/tour-config.routes';
+import { TOUR_CONFIG_ROUTES } from './features/admin/tour-config/tour-config.routes';
+import { BLOG_ROUTES } from './features/admin/blog/blog.routes';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -115,8 +116,13 @@ export const routes: Routes = [
           },
           {
             path: 'tour-config',
-            children: TOUR_CONFIG_ROUTE,
+            children: TOUR_CONFIG_ROUTES,
             data: { breadcrumb: 'Cấu hình tour' },
+          },
+          {
+            path: 'blog-config',
+            children: BLOG_ROUTES,
+            data: { breadcrumb: 'Bài viết' },
           },
         ],
       },

@@ -1,0 +1,68 @@
+<form
+  [formGroup]="blogForm"
+  nz-form
+  [nzLayout]="'vertical'"
+  [class]="mode === BaseFormMode.VIEW ? 'view-mode underline ' : ''">
+  <nz-form-item>
+    <nz-form-label nzRequired>Hình ảnh</nz-form-label>
+    <nz-form-control [nzErrorTip]="fileList | appValidationMessage">
+      @if (fileList.enabled) {
+        <nz-upload
+          nzListType="picture-card"
+          [nzFileList]="fileList.value"
+          [nzBeforeUpload]="beforeUpload"
+          [nzMultiple]="false">
+          <div>
+            <i nz-icon nzType="plus"></i>
+            <div style="margin-top: 8px">Tải ảnh</div>
+          </div>
+        </nz-upload>
+      } @else {
+        <div class="flex gap-2">
+          @for (image of fileList.value; track $index) {
+            <div class="w-[100px] h-[100px]">
+              <img
+                width="auto"
+                height="auto"
+                [src]="image?.thumbUrl"
+                alt="image" />
+            </div>
+          }
+        </div>
+      }
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Tiêu đề</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="blogForm.controls['title'] | appValidationMessage">
+      <input nz-input formControlName="title" placeholder="Nhập tiêu đề" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzSpan="24">Nội dung</nz-form-label>
+    <nz-form-control [nzErrorTip]="content | appValidationMessage">
+      @if (content?.enabled) {
+        @if (editorContentEnabled && configContentEnabled) {
+          <ckeditor
+            formControlName="content"
+            [class]="content.touched && content.invalid ? 'error' : ''"
+            [editor]="editorContentEnabled"
+            [config]="configContentEnabled">
+          </ckeditor>
+        }
+      } @else {
+        @if (editorContentDisabled && configContentDisabled) {
+          <ckeditor
+            formControlName="content"
+            [editor]="editorContentDisabled"
+            [config]="configContentDisabled"
+            [disabled]="true">
+          </ckeditor>
+        }
+      }
+    </nz-form-control>
+  </nz-form-item>
+</form>

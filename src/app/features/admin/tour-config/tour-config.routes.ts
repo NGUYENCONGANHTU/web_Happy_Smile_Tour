@@ -4,7 +4,7 @@ import { ViewTourComponent } from './pages/view-tour/view-tour.component';
 import { CreateTourComponent } from './pages/create-tour/create-tour.component';
 import { UpdateTourComponent } from './pages/update-tour/update-tour.component';
 
-export const TOUR_CONFIG_ROUTE: Routes = [
+export const TOUR_CONFIG_ROUTES: Routes = [
   {
     path: '',
     redirectTo: 'list',

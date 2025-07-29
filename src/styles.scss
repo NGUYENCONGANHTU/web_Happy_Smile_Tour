@@ -50,13 +50,6 @@ p {
   font-size: 13px;
 }
 
-ckeditor.error {
-  .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
-  .ck.ck-editor__main > .ck-editor__editable {
-    border-color: #ff4d4f;
-  }
-}
-
 .ant-form.view-mode {
   .ant-input[disabled] {
     color: rgba(0, 0, 0, 0.85);
@@ -131,4 +124,15 @@ ckeditor.error {
   .ant-picker.ant-picker-disabled {
     border-bottom: 1px solid;
   }
+}
+
+ckeditor.error {
+  .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content,
+  .ck.ck-editor__main > .ck-editor__editable {
+    border-color: #ff4d4f;
+  }
+}
+
+.ck-editor__editable_inline {
+  min-height: 200px;
 }

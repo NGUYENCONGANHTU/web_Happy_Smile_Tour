@@ -6,7 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ChangeEvent, CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { ValidationMessagePipe } from '../../../../../../../shared/pipes/validation.pipe';
@@ -31,14 +31,6 @@ export class TourFormServiceTabComponent {
 
   serviceEditor = inject(CkeditorService);
   nonServiceEditor = inject(CkeditorService);
-
-  onChangeServiceEditor({ editor }: ChangeEvent) {
-    this.service?.patchValue(editor.getData());
-  }
-
-  onChangeNonServiceEditor({ editor }: ChangeEvent) {
-    this.nonService?.patchValue(editor.getData());
-  }
 
   get service(): FormControl {
     return this.tourForm.get('service') as FormControl;
