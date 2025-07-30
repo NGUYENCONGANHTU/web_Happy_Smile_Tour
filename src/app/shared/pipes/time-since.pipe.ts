@@ -1,6 +1,6 @@
-import {inject, Pipe, PipeTransform} from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
 import moment from 'moment';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Pipe({
   name: 'timeSince',

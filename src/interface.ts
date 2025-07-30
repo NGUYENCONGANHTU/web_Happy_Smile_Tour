@@ -5,7 +5,7 @@ import {
   TourPriceResDTO,
   TourSurchargeResDTO,
 } from './app/features/layout-landing/tab-tour-foreign-detail/price-list/interface-tour-price';
-import {IRating} from './app/shared/components/review-summary/review-summary.component';
+import { IRating } from './app/shared/components/review-summary/review-summary.component';
 
 export interface HomeBannerReqDTO {
   homeBannerId: number;
@@ -144,7 +144,7 @@ export interface FeatureResDTO {
   tourComments: TourCommentDetailResDTO[];
   averageRate?: number;
   ratingList?: IRating[];
-  totalReviews?: number
+  totalReviews?: number;
 }
 //
 /* ==================== CẨM NANG TIN TỨC ==================== */

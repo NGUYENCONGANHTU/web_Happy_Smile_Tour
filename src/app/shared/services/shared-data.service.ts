@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, of } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment';
 import { ResponseBaseList } from '../../core/interfaces/base.interface';
 import { LanguageResDTO } from '../interfaces/shared-data.interface';
+import { HttpClient } from '@angular/common/http';
 
 interface ISharedData {
-  languageOptions: { label: string; value: any }[];
+  languageOptions: LanguageResDTO[];
 }
 
 @Injectable({
@@ -19,11 +19,12 @@ export class SharedDataService {
     languageOptions: [],
   });
   private readonly apiUrl = `${environment.API_URL}`;
-  private readonly apiList = {
-    languageOptions: this.fetchLanguageOptions(),
-  };
+  private apiList;
 
-  constructor(private readonly http: HttpClient) {
+  constructor(private http: HttpClient) {
+    this.apiList = {
+      languageOptions: this.fetchLanguageOptions(),
+    };
     try {
       const sharedData =
         JSON.parse(localStorage.getItem('sharedData') as string) ?? [];
@@ -31,7 +32,7 @@ export class SharedDataService {
     } catch (e) {
       console.log(e);
     }
-    this.fetchAllData();
+    this.fetchAllData().subscribe();
   }
 
   // Fetch all data in parallel
@@ -83,14 +84,12 @@ export class SharedDataService {
   }
 
   // Language
-  fetchLanguageOptions(): Observable<{ label: string; value: any }[]> {
+  fetchLanguageOptions() {
     return this.http
       .get<ResponseBaseList<LanguageResDTO>>(`${this.apiUrl}/language`)
       .pipe(
         map(res => {
-          return (
-            res?.data?.map(dt => ({ label: dt?.name, value: dt?.code })) ?? []
-          );
+          return res?.data ?? [];
         }),
         catchError(() => of([]))
       );

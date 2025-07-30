@@ -8,7 +8,10 @@
         [ngModel]="averageRate"
         [nzAllowHalf]="true"
         [nzDisabled]="true"></nz-rate>
-      <div class="text-gray-500 !mt-1">{{ totalReviews }} <span class="lowercase">{{'tour_detail.reviews' | translate}}</span></div>
+      <div class="text-gray-500 !mt-1">
+        {{ totalReviews }}
+        <span class="lowercase">{{ 'tour_detail.reviews' | translate }}</span>
+      </div>
     </div>
 
     <div class="flex-1">
@@ -30,7 +33,12 @@
             nzSize="small"
             class="flex-1 mx-2">
           </nz-progress>
-          <span class="w-25 text-gray-700">{{ item.count }} <span class="lowercase">{{'tour_detail.reviews' | translate}}</span></span>
+          <span class="w-25 text-gray-700"
+            >{{ item.count }}
+            <span class="lowercase">{{
+              'tour_detail.reviews' | translate
+            }}</span></span
+          >
         </div>
       }
     </div>

@@ -1,6 +1,6 @@
 import { environment } from '../../../../environment';
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   LocationResDTO,
   TourDiscountReqDTO,
@@ -23,10 +23,15 @@ export class TourConfigService {
   httpClient = inject(HttpClient);
 
   apiUrlTour = environment.API_URL + '/tour';
+  apiUrlTourTrans = environment.API_URL + '/tour-trans';
   apiUrlTourPrice = environment.API_URL + '/tour-price';
+  apiUrlTourPriceTrans = environment.API_URL + '/tour-price-trans';
   apiUrlTourDiscount = environment.API_URL + '/tour-discount';
+  apiUrlTourDiscountTrans = environment.API_URL + '/tour-discount-trans';
   apiUrlTourSurcharge = environment.API_URL + '/tour-surcharge';
+  apiUrlTourSurchargeTrans = environment.API_URL + '/tour-surcharge-trans';
   apiUrlSchedule = environment.API_URL + '/tour-schedule';
+  apiUrlScheduleTrans = environment.API_URL + '/tour-schedule-trans';
   apiUrlLocation = environment.API_URL + '/location';
 
   getTours() {
@@ -36,6 +41,14 @@ export class TourConfigService {
   getTourById(id: string | number) {
     return this.httpClient.get<ResponseBase<TourResDTO>>(
       this.apiUrlTour + '/' + id
+    );
+  }
+
+  getTourTransById(id: string | number, langCode: string) {
+    const params = new HttpParams().set('langCode', langCode);
+    return this.httpClient.get<ResponseBase<TourResDTO>>(
+      this.apiUrlTourTrans + '/service/' + id,
+      { params }
     );
   }
 
@@ -50,9 +63,22 @@ export class TourConfigService {
     );
   }
 
+  updateTourTransById(id: string | number, formData: FormData) {
+    return this.httpClient.put<TourResDTO>(
+      this.apiUrlTourTrans + '/' + id,
+      formData
+    );
+  }
+
   getTourPricesByTourId(tourId: string | number) {
     return this.httpClient.get<ResponseBaseList<TourPriceResDTO>>(
       this.apiUrlTourPrice + '/tourId/' + tourId
+    );
+  }
+
+  getTourPricesTransByTourId(tourId: string | number) {
+    return this.httpClient.get<ResponseBaseList<TourPriceResDTO>>(
+      this.apiUrlTourPriceTrans + '/tourId/' + tourId
     );
   }
 
@@ -60,8 +86,16 @@ export class TourConfigService {
     return this.httpClient.post(this.apiUrlTourPrice, data);
   }
 
+  createTourPricesTrans(data: TourPriceReqDTO) {
+    return this.httpClient.post(this.apiUrlTourPriceTrans, data);
+  }
+
   updateTourPrices(data: TourPriceReqDTO[]) {
     return this.httpClient.put(this.apiUrlTourPrice, data);
+  }
+
+  updateTourPricesTrans(data: TourPriceReqDTO[]) {
+    return this.httpClient.put(this.apiUrlTourPriceTrans, data);
   }
 
   getTourDiscountsByTourId(tourId: string | number) {
@@ -70,12 +104,26 @@ export class TourConfigService {
     );
   }
 
+  getTourDiscountsTransByTourId(tourId: string | number) {
+    return this.httpClient.get<ResponseBaseList<TourDiscountResDTO>>(
+      this.apiUrlTourDiscountTrans + '/tourId/' + tourId
+    );
+  }
+
   createTourDiscounts(data: TourDiscountReqDTO[]) {
     return this.httpClient.post(this.apiUrlTourDiscount, data);
   }
 
+  createTourDiscountTrans(data: TourDiscountReqDTO) {
+    return this.httpClient.post(this.apiUrlTourDiscountTrans, data);
+  }
+
   updateTourDiscounts(data: TourDiscountReqDTO[]) {
     return this.httpClient.put(this.apiUrlTourDiscount, data);
+  }
+
+  updateTourDiscountsTrans(data: TourDiscountReqDTO[]) {
+    return this.httpClient.put(this.apiUrlTourDiscountTrans, data);
   }
 
   getTourSurchargesByTourId(tourId: string | number) {
@@ -84,12 +132,26 @@ export class TourConfigService {
     );
   }
 
+  getTourSurchargesTransByTourId(tourId: string | number) {
+    return this.httpClient.get<ResponseBaseList<TourSurchargeResDTO>>(
+      this.apiUrlTourSurchargeTrans + '/tourId/' + tourId
+    );
+  }
+
   createTourSurcharges(data: TourSurchargeReqDTO[]) {
+    return this.httpClient.post(this.apiUrlTourSurcharge, data);
+  }
+
+  createTourSurchargeTrans(data: TourSurchargeReqDTO) {
     return this.httpClient.post(this.apiUrlTourSurcharge, data);
   }
 
   updateTourSurcharges(data: TourSurchargeReqDTO[]) {
     return this.httpClient.put(this.apiUrlTourSurcharge, data);
+  }
+
+  updateTourSurchargesTrans(data: TourSurchargeReqDTO[]) {
+    return this.httpClient.put(this.apiUrlTourSurchargeTrans, data);
   }
 
   getTourSchedulesByTourId(tourId: string | number) {
@@ -98,12 +160,26 @@ export class TourConfigService {
     );
   }
 
+  getTourSchedulesTransByTourId(tourId: string | number) {
+    return this.httpClient.get<ResponseBaseList<TourScheduleResDTO>>(
+      this.apiUrlScheduleTrans + '/tourId/' + tourId
+    );
+  }
+
   createTourSchedules(data: TourScheduleReqDTO[]) {
     return this.httpClient.post(this.apiUrlSchedule, data);
   }
 
+  createTourScheduleTrans(data: TourScheduleReqDTO) {
+    return this.httpClient.post(this.apiUrlScheduleTrans, data);
+  }
+
   updateTourSchedules(data: TourScheduleReqDTO[]) {
-    return this.httpClient.put(this.apiUrlSchedule, data);
+    return this.httpClient.put(this.apiUrlScheduleTrans, data);
+  }
+
+  updateTourSchedulesTrans(data: TourScheduleReqDTO[]) {
+    return this.httpClient.put(this.apiUrlScheduleTrans, data);
   }
 
   getLocations() {

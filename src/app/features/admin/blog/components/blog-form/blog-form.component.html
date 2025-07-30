@@ -1,68 +1,108 @@
-<form
-  [formGroup]="blogForm"
-  nz-form
-  [nzLayout]="'vertical'"
-  [class]="mode === BaseFormMode.VIEW ? 'view-mode underline ' : ''">
-  <nz-form-item>
-    <nz-form-label nzRequired>Hình ảnh</nz-form-label>
-    <nz-form-control [nzErrorTip]="fileList | appValidationMessage">
-      @if (fileList.enabled) {
-        <nz-upload
-          nzListType="picture-card"
-          [nzFileList]="fileList.value"
-          [nzBeforeUpload]="beforeUpload"
-          [nzMultiple]="false">
-          <div>
-            <i nz-icon nzType="plus"></i>
-            <div style="margin-top: 8px">Tải ảnh</div>
+<div>
+  <div class="flex gap-2 justify-between !mb-2">
+    <div class="italic">
+      @if (isOriginalTrans) {
+        Bản gốc
+      } @else {
+        Bản dịch
+      }
+    </div>
+    <div class="flex gap-2">
+      @switch (mode) {
+        @case (BaseFormMode.CREATE) {
+          <button nz-button (click)="handleCreate()">
+            <nz-icon nzType="plus" />
+            Thêm mới
+          </button>
+        }
+        @case (BaseFormMode.UPDATE) {
+          <button nz-button (click)="handleUpdate()">
+            <nz-icon nzType="edit" />
+            Cập nhật
+          </button>
+        }
+        @case (BaseFormMode.VIEW) {
+          <button nz-button (click)="goTo(BaseFormMode.UPDATE)">
+            Chỉnh sửa
+          </button>
+        }
+      }
+      @if (mode !== BaseFormMode.CREATE) {
+        <app-language-selection
+          [(selectedLanguage)]="selectedLanguage"
+          (selectedLanguageChange)="
+            handleSelectedLanguageChange()
+          "></app-language-selection>
+      }
+    </div>
+  </div>
+  <form
+    [formGroup]="blogForm"
+    nz-form
+    [nzLayout]="'vertical'"
+    [class]="mode === BaseFormMode.VIEW ? 'view-mode underline ' : ''">
+    <nz-form-item>
+      <nz-form-label nzRequired>Hình ảnh</nz-form-label>
+      <nz-form-control
+        [nzErrorTip]="blogForm.controls['image'] | appValidationMessage">
+        @if (blogForm.controls['image'].enabled) {
+          <nz-upload
+            nzListType="picture-card"
+            [nzBeforeUpload]="beforeUpload"
+            [nzMultiple]="false"
+            [nzShowUploadList]="false">
+            @if (blogForm.controls['image']) {
+              <img [src]="imgPreview" class="w-full" alt="blog" />
+            } @else {
+              <div>
+                <i nz-icon nzType="plus"></i>
+                <div>Tải ảnh</div>
+              </div>
+            }
+          </nz-upload>
+        } @else {
+          <div class="w-[100px] h-[100px]">
+            <img
+              width="auto"
+              height="auto"
+              [src]="blogForm.controls['title']?.value?.thumbUrl"
+              alt="image" />
           </div>
-        </nz-upload>
-      } @else {
-        <div class="flex gap-2">
-          @for (image of fileList.value; track $index) {
-            <div class="w-[100px] h-[100px]">
-              <img
-                width="auto"
-                height="auto"
-                [src]="image?.thumbUrl"
-                alt="image" />
-            </div>
+        }
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Tiêu đề</nz-form-label>
+      <nz-form-control
+        [nzErrorTip]="blogForm.controls['title'] | appValidationMessage">
+        <input nz-input formControlName="title" placeholder="Nhập tiêu đề" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzSpan="24">Nội dung</nz-form-label>
+      <nz-form-control [nzErrorTip]="content | appValidationMessage">
+        @if (content?.enabled) {
+          @if (editorContentEnabled && configContentEnabled) {
+            <ckeditor
+              formControlName="content"
+              [class]="content.touched && content.invalid ? 'error' : ''"
+              [editor]="editorContentEnabled"
+              [config]="configContentEnabled">
+            </ckeditor>
           }
-        </div>
-      }
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label nzRequired>Tiêu đề</nz-form-label>
-    <nz-form-control
-      [nzErrorTip]="blogForm.controls['title'] | appValidationMessage">
-      <input nz-input formControlName="title" placeholder="Nhập tiêu đề" />
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label nzRequired nzSpan="24">Nội dung</nz-form-label>
-    <nz-form-control [nzErrorTip]="content | appValidationMessage">
-      @if (content?.enabled) {
-        @if (editorContentEnabled && configContentEnabled) {
-          <ckeditor
-            formControlName="content"
-            [class]="content.touched && content.invalid ? 'error' : ''"
-            [editor]="editorContentEnabled"
-            [config]="configContentEnabled">
-          </ckeditor>
+        } @else {
+          @if (editorContentDisabled && configContentDisabled) {
+            <ckeditor
+              formControlName="content"
+              [editor]="editorContentDisabled"
+              [config]="configContentDisabled"
+              [disabled]="true">
+            </ckeditor>
+          }
         }
-      } @else {
-        @if (editorContentDisabled && configContentDisabled) {
-          <ckeditor
-            formControlName="content"
-            [editor]="editorContentDisabled"
-            [config]="configContentDisabled"
-            [disabled]="true">
-          </ckeditor>
-        }
-      }
-    </nz-form-control>
-  </nz-form-item>
-</form>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

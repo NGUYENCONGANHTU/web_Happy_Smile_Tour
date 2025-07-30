@@ -35,7 +35,7 @@ export const BLOG_ROUTES: Routes = [
       {
         path: 'update',
         component: UpdateBlogComponent,
-        data: { breadcrumb: 'Cập nhật bài viêt' },
+        data: { breadcrumb: 'Cập nhật bài viết' },
       },
     ],
   },

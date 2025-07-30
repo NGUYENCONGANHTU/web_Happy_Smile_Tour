@@ -11,6 +11,7 @@
   </nz-tab>
   <nz-tab nzTitle="Bảng giá">
     <app-tour-form-pricing-tab
+      [lang]="selectedLanguage"
       [priceForm]="priceForm"
       [mode]="mode"></app-tour-form-pricing-tab>
   </nz-tab>
@@ -21,15 +22,31 @@
 </nz-tabs>
 
 <ng-template #extraTemplate>
-  @if (mode === BaseFormMode.VIEW) {
-    <button nz-button (click)="goTo(BaseFormMode.UPDATE)">Chỉnh sửa</button>
-  } @else {
-    <button nz-button (click)="submit()" [disabled]="tourForm.invalid">
-      @if (mode === BaseFormMode.CREATE) {
-        Tạo tour
+  <div class="flex gap-2 items-center">
+    <div class="italic">
+      @if (isOriginalTrans) {
+        Bản gốc
       } @else {
-        Cập nhật tour
+        Bản dịch
       }
-    </button>
-  }
+    </div>
+    @if (mode === BaseFormMode.VIEW) {
+      <button nz-button (click)="goTo(BaseFormMode.UPDATE)">Chỉnh sửa</button>
+    } @else {
+      <button nz-button (click)="submit()" [disabled]="tourForm.invalid">
+        @if (mode === BaseFormMode.CREATE) {
+          Tạo tour
+        } @else {
+          Cập nhật tour
+        }
+      </button>
+    }
+    @if (mode !== BaseFormMode.CREATE) {
+      <app-language-selection
+        [(selectedLanguage)]="selectedLanguage"
+        (selectedLanguageChange)="
+          handleSelectedLanguageChange()
+        "></app-language-selection>
+    }
+  </div>
 </ng-template>

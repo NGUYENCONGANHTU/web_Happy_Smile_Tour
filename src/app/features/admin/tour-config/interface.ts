@@ -65,6 +65,7 @@ export interface TourPriceResDTO {
   age?: string;
   price?: number;
   tourId: number;
+  created?: boolean;
 }
 
 export interface TourDiscountResDTO {

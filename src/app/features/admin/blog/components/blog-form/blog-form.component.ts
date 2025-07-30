@@ -1,6 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -14,11 +13,18 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzUploadFile, NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { parseToNzUploadFile } from '../../../../../shared/utils/helpers';
-import { ActivatedRoute } from '@angular/router';
+import {
+  getBase64,
+  parseToNzUploadFile,
+} from '../../../../../shared/utils/helpers';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CkeditorService } from '../../../../../shared/services/ckeditor.service';
 import { BlogService } from '../../blog.service';
+import { LanguageSelectionComponent } from '../../../../../shared/components/language-selection/language-selection.component';
+import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.constant';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { SharedDataService } from '../../../../../shared/services/shared-data.service';
 
 @Component({
   selector: 'app-blog-form',
@@ -32,7 +38,9 @@ import { BlogService } from '../../blog.service';
     NzUploadModule,
     NzSelectModule,
     NzIconModule,
+    NzButtonModule,
     CKEditorModule,
+    LanguageSelectionComponent,
   ],
 })
 export class BlogFormComponent implements OnInit {
@@ -41,55 +49,127 @@ export class BlogFormComponent implements OnInit {
   fb = inject(FormBuilder);
   blogService = inject(BlogService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
   contentEditor = inject(CkeditorService);
+  sharedService = inject(SharedDataService);
 
-  id?: string;
-  selectedLanguage = 'vi';
+  blogId!: string;
+  blogTransId!: string | number;
+  imgPreview = '';
+  selectedLanguage = ORIGINAL_LANGUAGE;
   blogForm: FormGroup = this.fb.group({
     title: [null, [Validators.required]],
-    image: this.fb.array([]),
+    image: [null, [Validators.required]],
     content: [null, [Validators.required]],
   });
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.blogId = this.route.snapshot.params['id'];
     switch (this.mode) {
       case BaseFormMode.VIEW:
-        this.getBlogById();
+        this.getBlogTransById();
         this.blogForm.disable();
         break;
       case BaseFormMode.UPDATE:
-        this.getBlogById();
+        this.getBlogTransById();
         break;
       default:
     }
   }
 
-  getBlogById() {
-    this.blogService.getBlogById(this.route.snapshot.params?.['id']).subscribe({
-      next: res => {
-        this.blogForm.patchValue({
-          ...res.data,
-        });
-        this.fileList.clear();
-        this.fileList.push(
-          this.fb.control(parseToNzUploadFile(res.data?.image?.storagePath))
-        );
-      },
-    });
+  getBlogTransById() {
+    this.blogService
+      .getBlogTransById(this.blogId, this.selectedLanguage)
+      .subscribe({
+        next: res => {
+          this.blogTransId =
+            this.sharedService
+              .getLanguageOptions()
+              .find(lang => lang.code === this.selectedLanguage)?.id ?? 1;
+          this.blogForm.patchValue({
+            ...res.data,
+            image: parseToNzUploadFile(res.data?.image?.storagePath),
+          });
+        },
+      });
   }
 
-  beforeUpload = (_file: NzUploadFile, fileList: NzUploadFile[]) => {
-    const oldFileList = fileList;
-    this.fileList.clear();
-    oldFileList.forEach(file => {
-      this.fileList.push(this.fb.control(file));
+  handleCreate() {
+    if (this.blogForm.valid) {
+      this.blogService
+        .createBlog({
+          ...this.blogForm.value,
+        })
+        .subscribe({
+          next: () => {
+            this.goTo(BaseFormMode.VIEW);
+          },
+        });
+    } else {
+      this.blogForm.markAllAsTouched();
+    }
+  }
+
+  handleUpdate() {
+    if (this.blogForm.valid) {
+      if (this.isOriginalTrans) {
+        this.blogService
+          .updateBlogById(this.blogId, this.blogForm.value)
+          .subscribe({
+            next: () => {
+              this.goTo(BaseFormMode.VIEW);
+            },
+          });
+      } else {
+        this.blogService
+          .updateBlogTransById(this.blogTransId, {
+            ...this.blogForm.value,
+            travelGuideId: this.blogId,
+            language: this.selectedLanguage,
+          })
+          .subscribe({
+            next: () => {
+              this.goTo(BaseFormMode.VIEW);
+            },
+          });
+      }
+    }
+  }
+
+  handleSelectedLanguageChange() {
+    this.getBlogTransById();
+    if (this.isOriginalTrans && this.mode !== BaseFormMode.VIEW) {
+      this.blogForm.get('image')?.enable();
+    } else {
+      this.blogForm.get('image')?.disable();
+    }
+  }
+
+  goTo(target: string) {
+    switch (target) {
+      case BaseFormMode.CREATE:
+        this.router.navigate(['admin', 'blog-config', 'create']);
+        break;
+      case BaseFormMode.UPDATE:
+        this.router.navigate(['admin', 'blog-config', this.blogId, 'update']);
+        break;
+      case BaseFormMode.VIEW:
+        this.router.navigate(['admin', 'blog-config', this.blogId, 'view']);
+        break;
+      default:
+    }
+  }
+
+  beforeUpload = (file: NzUploadFile) => {
+    this.blogForm.patchValue({ image: file });
+    getBase64(file as unknown as File, (img: string) => {
+      this.imgPreview = img;
     });
     return false;
   };
 
-  get fileList() {
-    return this.blogForm.controls['image'] as FormArray;
+  get isOriginalTrans() {
+    return this.selectedLanguage === ORIGINAL_LANGUAGE;
   }
 
   get content(): FormControl {

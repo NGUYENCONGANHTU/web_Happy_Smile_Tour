@@ -32,6 +32,8 @@ import {
   TourSurchargeReqDTO,
   TourSurchargeResDTO,
 } from '../../../interface';
+import { ORIGINAL_LANGUAGE } from '../../../../../../shared/constants/global.constant';
+import { LanguageSelectionComponent } from '../../../../../../shared/components/language-selection/language-selection.component';
 
 @Component({
   selector: 'app-tour-form',
@@ -53,6 +55,7 @@ import {
     TourFormServiceTabComponent,
     TourFormPricingTabComponent,
     TourFormScheduleTabComponent,
+    LanguageSelectionComponent,
   ],
 })
 export class TourFormComponent implements OnInit {
@@ -100,6 +103,7 @@ export class TourFormComponent implements OnInit {
     ]),
   });
   id?: string | number;
+  selectedLanguage = ORIGINAL_LANGUAGE;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -121,11 +125,18 @@ export class TourFormComponent implements OnInit {
         this.fetching = true;
       }
       forkJoin({
-        tour: this.tourConfigService.getTourById(this.id),
-        tourSchedule: this.tourConfigService.getTourSchedulesByTourId(this.id),
-        tourPrices: this.tourConfigService.getTourPricesByTourId(this.id),
-        tourDiscounts: this.tourConfigService.getTourDiscountsByTourId(this.id),
-        tourSurcharges: this.tourConfigService.getTourSurchargesByTourId(
+        tour: this.tourConfigService.getTourTransById(
+          this.id,
+          this.selectedLanguage
+        ),
+        tourSchedule: this.tourConfigService.getTourSchedulesTransByTourId(
+          this.id
+        ),
+        tourPrices: this.tourConfigService.getTourPricesTransByTourId(this.id),
+        tourDiscounts: this.tourConfigService.getTourDiscountsTransByTourId(
+          this.id
+        ),
+        tourSurcharges: this.tourConfigService.getTourSurchargesTransByTourId(
           this.id
         ),
       }).subscribe({
@@ -144,7 +155,12 @@ export class TourFormComponent implements OnInit {
           });
           res.tourPrices.data.forEach(dt => {
             this.tourPrices.push(
-              this.fb.group({ name: dt.name, age: dt.age, price: dt.price })
+              this.fb.group({
+                name: dt.name,
+                age: dt.age,
+                price: dt.price,
+                created: dt.created,
+              })
             );
           });
           res.tourDiscounts.data.forEach(dt => {
@@ -205,15 +221,28 @@ export class TourFormComponent implements OnInit {
               formData.append(key, value);
             }
           }
-          this.tourConfigService.updateTourById(this.id, formData).subscribe({
-            next: _res => {
-              this.submittingTour = false;
-              this.goTo(BaseFormMode.VIEW);
-            },
-            error: () => {
-              this.submittingTour = false;
-            },
-          });
+          if (this.isOriginalTrans) {
+            this.tourConfigService.updateTourById(this.id, formData).subscribe({
+              next: _res => {
+                this.submittingTour = false;
+              },
+              error: () => {
+                this.submittingTour = false;
+              },
+            });
+          } else {
+            this.tourConfigService
+              .updateTourTransById(this.id, formData)
+              .subscribe({
+                next: _res => {
+                  this.submittingTour = false;
+                },
+                error: () => {
+                  this.submittingTour = false;
+                },
+              });
+          }
+
           this.submittingPrice = true;
           const tourPrices: TourPriceReqDTO[] =
             this.tourPrices.value.map((price: TourPriceResDTO) => ({
@@ -231,7 +260,7 @@ export class TourFormComponent implements OnInit {
               tourId: this.id,
             })) ?? [];
           if (tourPrices.length) {
-            this.tourConfigService.updateTourPrices(tourPrices).subscribe({
+            this.tourConfigService.updateTourPricesTrans(tourPrices).subscribe({
               next: () => {
                 this.submittingPrice = false;
               },
@@ -242,7 +271,7 @@ export class TourFormComponent implements OnInit {
           }
           if (tourDiscounts.length) {
             this.tourConfigService
-              .updateTourDiscounts(tourDiscounts)
+              .updateTourDiscountsTrans(tourDiscounts)
               .subscribe({
                 next: () => {
                   this.submittingPrice = false;
@@ -254,7 +283,7 @@ export class TourFormComponent implements OnInit {
           }
           if (tourSurcharges.length) {
             this.tourConfigService
-              .updateTourSurcharges(tourSurcharges)
+              .updateTourSurchargesTrans(tourSurcharges)
               .subscribe({
                 next: () => {
                   this.submittingPrice = false;
@@ -270,14 +299,16 @@ export class TourFormComponent implements OnInit {
               ...surcharges,
               tourId: this.id,
             })) ?? [];
-          this.tourConfigService.updateTourSchedules(tourSchedules).subscribe({
-            next: () => {
-              this.submittingSchedule = false;
-            },
-            error: () => {
-              this.submittingSchedule = false;
-            },
-          });
+          this.tourConfigService
+            .updateTourSchedulesTrans(tourSchedules)
+            .subscribe({
+              next: () => {
+                this.submittingSchedule = false;
+              },
+              error: () => {
+                this.submittingSchedule = false;
+              },
+            });
         } else {
           this.tourForm.markAllAsTouched();
           this.priceForm.markAllAsTouched();
@@ -393,6 +424,15 @@ export class TourFormComponent implements OnInit {
     }
   }
 
+  handleSelectedLanguageChange() {
+    // this.getBlogTransById();
+    // if (this.isOriginalTrans && this.mode !== BaseFormMode.VIEW) {
+    //   this.blogForm.get('image')?.enable();
+    // } else {
+    //   this.blogForm.get('image')?.disable();
+    // }
+  }
+
   goTo(target: string, _data?: any) {
     switch (target) {
       case BaseFormMode.CREATE:
@@ -406,6 +446,10 @@ export class TourFormComponent implements OnInit {
         break;
       default:
     }
+  }
+
+  get isOriginalTrans() {
+    return this.selectedLanguage === ORIGINAL_LANGUAGE;
   }
 
   get submitting(): boolean {

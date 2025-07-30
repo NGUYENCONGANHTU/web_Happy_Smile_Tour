@@ -4,7 +4,7 @@
   [class]="mode === BaseFormMode.VIEW ? 'view-mode' : ''">
   <div class="flex gap-2 justify-between !my-2">
     <h2>1. Giá tour theo độ tuổi</h2>
-    @if (tourPrices.enabled) {
+    @if (tourPrices.enabled && isOriginalLang) {
       <button nz-button nzType="dashed" (click)="addTourPrice()">+ Thêm</button>
     }
   </div>
@@ -26,7 +26,14 @@
     <tbody formArrayName="tourPrices">
       @for (group of tourPrices.controls; track $index) {
         <tr [formGroupName]="$index">
-          <td><input nz-input formControlName="name" /></td>
+          <td>
+            <div>
+              <input nz-input formControlName="name" />
+              @if (!group.get('created')?.value) {
+                <div class="text-red-400">Chưa có bản dịch</div>
+              }
+            </div>
+          </td>
           <td><input nz-input formControlName="age" /></td>
           <td><input nz-input type="number" formControlName="price" /></td>
           @if (tourPrices.enabled) {
@@ -43,7 +50,7 @@
   <hr class="!my-5" />
   <div class="flex gap-2 justify-between !my-2">
     <h2>2. Phụ thu áp dụng</h2>
-    @if (tourPrices.enabled) {
+    @if (tourPrices.enabled && isOriginalLang) {
       <button nz-button nzType="dashed" (click)="addSurcharge()">+ Thêm</button>
     }
   </div>
@@ -82,7 +89,7 @@
   <hr class="!my-5" />
   <div class="flex gap-2 justify-between !my-2">
     <h2>3. Giảm giá áp dụng</h2>
-    @if (tourPrices.enabled) {
+    @if (tourPrices.enabled && isOriginalLang) {
       <button nz-button nzType="dashed" (click)="addDiscount()">+ Thêm</button>
     }
   </div>

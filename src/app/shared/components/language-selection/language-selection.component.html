@@ -1,0 +1,7 @@
+<nz-select
+  [(ngModel)]="selectedLanguage"
+  (ngModelChange)="selectedLanguageChange.emit(selectedLanguage)">
+  @for (language of listLanguages; track $index) {
+    <nz-option [nzValue]="language.code" [nzLabel]="language.name"></nz-option>
+  }
+</nz-select>
