@@ -162,8 +162,8 @@ export class AppService {
   /*======================== CÁC TOUR NỔI BẬT ==========================*/
 
   getAllDataTourFeature4() {
-    return this.http.get<{ data: { content: FeatureResDTO[] } }>(
-      this.apiUrl4 + `langCode=${this.languageService.locale}`
+    return this.http.get<{ data: FeatureResDTO[] }>(
+      this.apiUrl5 + `/all?langCode=${this.languageService.locale}`
     );
   }
   createDataTourFeature4(data: FeatureReqDTO) {

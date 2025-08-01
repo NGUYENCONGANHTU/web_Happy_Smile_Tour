@@ -23,6 +23,5 @@ export class TabTourFeatureDomesticComponent {
 
   onFiltersChanged(newFilters: FeatureResDTO[]) {
     this.filters = newFilters;
-    console.log(this.filters);
   }
 }

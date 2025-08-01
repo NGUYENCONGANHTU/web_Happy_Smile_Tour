@@ -35,8 +35,8 @@ export class FeatureActionComponent implements OnInit {
   dataFeatureTour: FeatureResDTO[] = [];
   getAllData() {
     this.appService.getAllDataTourFeature4().subscribe(res => {
-      if (res?.data?.content) {
-        this.dataFeatureTour = res.data.content;
+      if (res.data) {
+        this.dataFeatureTour = res.data;
       } else {
         this.dataFeatureTour = [];
       }

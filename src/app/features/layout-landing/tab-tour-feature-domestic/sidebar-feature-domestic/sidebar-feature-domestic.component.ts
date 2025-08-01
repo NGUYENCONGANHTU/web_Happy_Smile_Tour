@@ -37,14 +37,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class SidebarFeatureDomesticComponent implements OnInit {
   appService = inject(AppService);
-
-  // Ngân sách
-  rangeValue: number[] = [0, 200000000];
-  // Điểm đi và điểm đến
-  departure = '';
-  destination = '';
-
   @Output() filtersChanged = new EventEmitter<any>();
+
+  rangeValue: number[] = [0, 200000000]; // Ngân sách
+  departure = ''; // điểm đi
+  destination = ''; // điểm đến
+
   searchTour(): void {
     const formData = {
       min: this.rangeValue[0],
@@ -52,10 +50,10 @@ export class SidebarFeatureDomesticComponent implements OnInit {
       departure: this.departure,
       destination: this.destination,
     };
-    console.log('Form data:', formData);
     this.filtersChanged.emit(formData);
   }
 
+  // lấy data điểm đến và điểm đi
   ngOnInit() {
     this.getDataStartingPoint();
   }
