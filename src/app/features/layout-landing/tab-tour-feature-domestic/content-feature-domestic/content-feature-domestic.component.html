@@ -5,7 +5,7 @@
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="card-content-feature-domestic-item-image">
         <img
-          class="md:h-[160px] md:w-[250px] lg:w-full !rounded-md object-cover bg-center bg-cover"
+          class="h-[200px] w-full !mb-1 md:h-[160px] md:w-[250px] lg:w-full !rounded-md object-cover bg-center bg-cover"
           [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="" />
       </div>
@@ -73,4 +73,11 @@
       </div>
     </div>
   }
+  <nz-pagination
+    [nzPageIndex]="page"
+    [nzPageSize]="pageSize"
+    [nzTotal]="total"
+    (nzPageIndexChange)="onPageChange($event)"
+    class="text-right mt-3!">
+  </nz-pagination>
 </div>

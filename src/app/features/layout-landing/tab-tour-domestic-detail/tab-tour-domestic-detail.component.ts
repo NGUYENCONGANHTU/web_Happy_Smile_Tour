@@ -136,7 +136,7 @@ export class TabTourDomesticDetailComponent implements OnInit, AfterViewInit {
   dataFeaturePlace: FeatureResDTO[] = [];
   getAllDataFeature() {
     this.appService.getAllDataTourFeature4().subscribe(data => {
-      this.dataFeaturePlace = data.data.content;
+      this.dataFeaturePlace = data.data;
     });
   }
   tourId = 0;
