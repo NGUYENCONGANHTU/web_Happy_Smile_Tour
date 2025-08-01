@@ -1,7 +1,7 @@
 <section class="introduce">
   <!-- ======================= Banner giới thiệu ======================= -->
   @for (data of dataBannerIntroduce; track data.id) {
-    @for (image of data.documentDTOS; track image.id) {
+    @for (image of data.images; track image.id) {
       <div
         class="banner-introduce-service"
         [ngStyle]="{
@@ -33,7 +33,7 @@
           <div class="item">
             <div class="icon">
               <img
-                [src]="formatImage(data.responseDocumentDTO.storagePath)"
+                [src]="formatImage(data.image.storagePath)"
                 width="80px"
                 alt="" />
             </div>

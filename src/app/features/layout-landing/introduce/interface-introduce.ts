@@ -33,10 +33,10 @@ export enum IntroType {
 // Nội dung của các dịch vụ
 export interface AdvertiseReqDTO {
   title: string;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
 export interface AdvertiseResDTO {
   id: number;
   title: string;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }

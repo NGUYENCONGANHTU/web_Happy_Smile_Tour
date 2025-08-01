@@ -1,6 +1,6 @@
 <section class="tab-contact">
   @for (data of dataBanner; track data.id) {
-    @for (image of data.documentDTOS; track image.id) {
+    @for (image of data.images; track image.id) {
       <div
         class="banner-contact"
         [ngStyle]="{

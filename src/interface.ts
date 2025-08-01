@@ -13,7 +13,7 @@ export interface HomeBannerReqDTO {
   title: string;
   description: string;
   bannerType: BannerType;
-  documentDTOS: DocumentResDTO[];
+  images: DocumentResDTO[];
 }
 export interface HomeBannerResDTO {
   id: number;
@@ -22,7 +22,7 @@ export interface HomeBannerResDTO {
   title: string;
   description: string;
   bannerType: BannerType;
-  documentDTOS: DocumentResDTO[];
+  images: DocumentResDTO[];
 }
 export enum BannerType {
   HOME = 'HOME',
@@ -183,7 +183,7 @@ export interface CommentFeedbackReqDTO {
   description: string;
   content: string;
   start: number;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
 export interface CommentFeedbackResDTO {
   id: number;
@@ -191,7 +191,7 @@ export interface CommentFeedbackResDTO {
   description: string;
   content: string;
   start: number;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
 
 export enum Introduce {
@@ -368,10 +368,10 @@ export interface VisaProcessResDTO {
 
 /* ==================== Partner  ==================== */
 export interface PartnerReqDTO {
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
 
 export interface PartnerResDTO {
   id: number;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
