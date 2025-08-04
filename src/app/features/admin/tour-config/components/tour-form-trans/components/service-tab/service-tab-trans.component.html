@@ -1,0 +1,74 @@
+<div class="flex gap-5 justify-between">
+  <div class="w-1/2">
+    <div class="italic flex h-[32px] !mb-2">Bản gốc</div>
+    <form [formGroup]="tourForm" nz-form>
+      <nz-form-item>
+        <nz-form-label nzRequired nzSpan="24">Dịch vụ bao gồm</nz-form-label>
+        <nz-form-control [nzErrorTip]="service | appValidationMessage">
+          @if (editorServiceDisabled && configServiceDisabled) {
+            <ckeditor
+              formControlName="service"
+              [editor]="editorServiceDisabled"
+              [config]="configServiceDisabled"
+              [disabled]="true">
+            </ckeditor>
+          }
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired nzSpan="24">Không bao gồm</nz-form-label>
+        <nz-form-control [nzErrorTip]="nonService | appValidationMessage">
+          @if (editorNonServiceDisabled && configNonServiceDisabled) {
+            <ckeditor
+              formControlName="nonService"
+              [editor]="editorNonServiceDisabled"
+              [config]="configNonServiceDisabled"
+              [disabled]="true">
+            </ckeditor>
+          }
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div class="border-l-1"></div>
+  <div class="w-1/2">
+    <div class="flex gap-2 justify-between h-[32px] !mb-2">
+      <div class="italic">Bản dịch</div>
+      <button nz-button [disabled]="tourFormTrans.invalid">Lưu</button>
+    </div>
+    <form [formGroup]="tourFormTrans" nz-form>
+      <nz-form-item>
+        <nz-form-label nzRequired nzSpan="24">Dịch vụ bao gồm</nz-form-label>
+        <nz-form-control [nzErrorTip]="serviceTrans | appValidationMessage">
+          @if (editorServiceTransEnabled && configServiceTransEnabled) {
+            <ckeditor
+              formControlName="service"
+              [class]="
+                serviceTrans.touched && serviceTrans.invalid ? 'error' : ''
+              "
+              [editor]="editorServiceTransEnabled"
+              [config]="configServiceTransEnabled">
+            </ckeditor>
+          }
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired nzSpan="24">Không bao gồm</nz-form-label>
+        <nz-form-control [nzErrorTip]="nonServiceTrans | appValidationMessage">
+          @if (editorNonServiceTransEnabled && configNonServiceTransEnabled) {
+            <ckeditor
+              formControlName="nonService"
+              [class]="
+                nonServiceTrans.touched && serviceTrans.invalid ? 'error' : ''
+              "
+              [editor]="editorNonServiceTransEnabled"
+              [config]="configNonServiceTransEnabled">
+            </ckeditor>
+          }
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { ListToursComponent } from './pages/list-tours/list-tours.component';
 import { ViewTourComponent } from './pages/view-tour/view-tour.component';
 import { CreateTourComponent } from './pages/create-tour/create-tour.component';
 import { UpdateTourComponent } from './pages/update-tour/update-tour.component';
+import { UpdateTourTransComponent } from './pages/update-tour-trans/update-tour-trans.component';
 
 export const TOUR_CONFIG_ROUTES: Routes = [
   {
@@ -34,7 +35,17 @@ export const TOUR_CONFIG_ROUTES: Routes = [
       },
       {
         path: 'update',
-        component: UpdateTourComponent,
+        children: [
+          {
+            path: '',
+            component: UpdateTourComponent,
+          },
+          {
+            path: 'trans',
+            component: UpdateTourTransComponent,
+            data: { breadcrumb: 'Bản dịch' },
+          },
+        ],
         data: { breadcrumb: 'Cập nhật tour' },
       },
     ],

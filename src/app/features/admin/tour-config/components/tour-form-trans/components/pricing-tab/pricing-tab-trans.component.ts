@@ -11,10 +11,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
 
 @Component({
-  selector: 'app-tour-form-pricing-tab',
-  templateUrl: 'pricing-tab.component.html',
+  selector: 'app-tour-form-pricing-tab-trans',
+  templateUrl: 'pricing-tab-trans.component.html',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -26,11 +27,12 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzFormModule,
   ],
 })
-export class TourFormPricingTabComponent {
+export class PricingTabTransComponent {
   fb = inject(FormBuilder);
 
   @Input({ required: true }) priceForm!: FormGroup;
-  @Input({ required: true }) mode!: BaseFormMode;
+  @Input({ required: true }) priceFormTrans!: FormGroup;
+  @Input({ required: true }) lang!: string;
 
   get tourPrices(): FormArray {
     return this.priceForm.get('tourPrices') as FormArray;
@@ -42,30 +44,18 @@ export class TourFormPricingTabComponent {
     return this.priceForm.get('discounts') as FormArray;
   }
 
-  addTourPrice() {
-    this.tourPrices.push(this.fb.group({ name: '', age: '', price: null }));
+  get tourPricesTrans(): FormArray {
+    return this.priceFormTrans.get('tourPrices') as FormArray;
+  }
+  get surchargesTrans(): FormArray {
+    return this.priceFormTrans.get('surcharges') as FormArray;
+  }
+  get discountsTrans(): FormArray {
+    return this.priceFormTrans.get('discounts') as FormArray;
   }
 
-  deleteTourPrice(index: number) {
-    this.tourPrices.removeAt(index);
-  }
-
-  addSurcharge() {
-    this.surcharges.push(this.fb.group({ name: '', price: null, apply: '' }));
-  }
-
-  deleteSurcharge(index: number) {
-    this.surcharges.removeAt(index);
-  }
-
-  addDiscount() {
-    this.discounts.push(
-      this.fb.group({ name: '', description: '', price: null, condition: '' })
-    );
-  }
-
-  deleteDiscount(index: number) {
-    this.discounts.removeAt(index);
+  get isOriginalLang() {
+    return this.lang === ORIGINAL_LANGUAGE;
   }
 
   protected readonly BaseFormMode = BaseFormMode;

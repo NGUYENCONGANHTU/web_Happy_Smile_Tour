@@ -32,16 +32,19 @@
     </div>
     @if (mode === BaseFormMode.VIEW) {
       <button nz-button (click)="goTo(BaseFormMode.UPDATE)">Chỉnh sửa</button>
+    } @else if (mode === BaseFormMode.CREATE) {
+      <button nz-button (click)="submit()" [disabled]="tourForm.invalid">
+        Tạo tour
+      </button>
     } @else {
       <button nz-button (click)="submit()" [disabled]="tourForm.invalid">
-        @if (mode === BaseFormMode.CREATE) {
-          Tạo tour
-        } @else {
-          Cập nhật tour
-        }
+        Lưu
+      </button>
+      <button nz-button (click)="goTo('update-trans')">
+        Chỉnh sửa bản dịch
       </button>
     }
-    @if (mode !== BaseFormMode.CREATE) {
+    @if (mode === BaseFormMode.VIEW) {
       <app-language-selection
         [(selectedLanguage)]="selectedLanguage"
         (selectedLanguageChange)="

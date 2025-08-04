@@ -40,7 +40,9 @@
     [formGroup]="blogForm"
     nz-form
     [nzLayout]="'vertical'"
-    [class]="mode === BaseFormMode.VIEW ? 'view-mode underline ' : ''">
+    [class]="
+      mode === BaseFormMode.VIEW ? 'form-view-mode input-underline ' : ''
+    ">
     <nz-form-item>
       <nz-form-label nzRequired>Hình ảnh</nz-form-label>
       <nz-form-control

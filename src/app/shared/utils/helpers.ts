@@ -57,9 +57,11 @@ export function getPageData(res: ResponseBasePage<any>) {
 
 export function parseToNzUploadFile(
   src?: string,
+  id?: string | number,
   fileName = 'image.png'
 ): NzUploadFile {
   return {
+    id,
     uid: `${Date.now()}`,
     name: fileName,
     status: 'done',

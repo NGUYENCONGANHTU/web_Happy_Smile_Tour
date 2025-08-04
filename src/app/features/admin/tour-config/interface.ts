@@ -17,7 +17,7 @@ export interface TourResDTO {
   nonService?: string;
   regulation?: string;
   note?: string;
-  images: { storagePath: string }[];
+  images: { storagePath: string; id: string | number }[];
 }
 
 interface LanguageResponse {
@@ -31,6 +31,7 @@ interface LocationResponse {
   name?: string;
   country?: string;
   province?: string;
+  locationId?: string | number;
 }
 
 export enum TourType {
@@ -54,7 +55,8 @@ export interface CreateTourReqDTO {
   nonService: string; // Dịch vụ không bao gồm (bắt buộc)
   regulation: string; // Chính sách hủy tour (bắt buộc)
   note: string; // Lưu ý thêm (bắt buộc)
-  images: File[]; // Danh sách ảnh (bắt buộc)
+  idFiles: (string | number)[];
+  files: File[]; // Danh sách ảnh (bắt buộc)
 }
 
 export interface TourPriceResDTO {

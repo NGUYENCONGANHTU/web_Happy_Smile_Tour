@@ -76,9 +76,11 @@ export class TourConfigService {
     );
   }
 
-  getTourPricesTransByTourId(tourId: string | number) {
+  getTourPricesTransByTourId(tourId: string | number, langCode: string) {
+    const params = new HttpParams().set('langCode', langCode);
     return this.httpClient.get<ResponseBaseList<TourPriceResDTO>>(
-      this.apiUrlTourPriceTrans + '/tourId/' + tourId
+      this.apiUrlTourPriceTrans + '/tourId/' + tourId,
+      { params }
     );
   }
 
@@ -104,9 +106,11 @@ export class TourConfigService {
     );
   }
 
-  getTourDiscountsTransByTourId(tourId: string | number) {
+  getTourDiscountsTransByTourId(tourId: string | number, langCode: string) {
+    const params = new HttpParams().set('langCode', langCode);
     return this.httpClient.get<ResponseBaseList<TourDiscountResDTO>>(
-      this.apiUrlTourDiscountTrans + '/tourId/' + tourId
+      this.apiUrlTourDiscountTrans + '/tourId/' + tourId,
+      { params }
     );
   }
 
@@ -132,9 +136,11 @@ export class TourConfigService {
     );
   }
 
-  getTourSurchargesTransByTourId(tourId: string | number) {
+  getTourSurchargesTransByTourId(tourId: string | number, langCode: string) {
+    const params = new HttpParams().set('langCode', langCode);
     return this.httpClient.get<ResponseBaseList<TourSurchargeResDTO>>(
-      this.apiUrlTourSurchargeTrans + '/tourId/' + tourId
+      this.apiUrlTourSurchargeTrans + '/tourId/' + tourId,
+      { params }
     );
   }
 
@@ -160,9 +166,11 @@ export class TourConfigService {
     );
   }
 
-  getTourSchedulesTransByTourId(tourId: string | number) {
+  getTourSchedulesTransByTourId(tourId: string | number, langCode: string) {
+    const params = new HttpParams().set('langCode', langCode);
     return this.httpClient.get<ResponseBaseList<TourScheduleResDTO>>(
-      this.apiUrlScheduleTrans + '/tourId/' + tourId
+      this.apiUrlScheduleTrans + '/tourId/' + tourId,
+      { params }
     );
   }
 
@@ -175,7 +183,7 @@ export class TourConfigService {
   }
 
   updateTourSchedules(data: TourScheduleReqDTO[]) {
-    return this.httpClient.put(this.apiUrlScheduleTrans, data);
+    return this.httpClient.put(this.apiUrlSchedule, data);
   }
 
   updateTourSchedulesTrans(data: TourScheduleReqDTO[]) {

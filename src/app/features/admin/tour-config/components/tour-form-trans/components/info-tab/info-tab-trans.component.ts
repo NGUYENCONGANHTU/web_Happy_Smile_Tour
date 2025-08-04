@@ -17,8 +17,8 @@ import { OptionItem } from '../../../../../../../core/interfaces/base.interface'
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 
 @Component({
-  selector: 'app-tour-form-info-tab',
-  templateUrl: 'info-tab.component.html',
+  selector: 'app-tour-form-info-tab-trans',
+  templateUrl: 'info-tab-trans.component.html',
   imports: [
     NzFormModule,
     NzInputModule,
@@ -37,7 +37,7 @@ export class TourFormInfoTabComponent implements OnInit {
   locationOptions: OptionItem[] = [];
 
   @Input({ required: true }) tourForm!: FormGroup;
-  @Input({ required: true }) mode!: BaseFormMode;
+  @Input({ required: true }) tourFormTrans!: FormGroup;
 
   ngOnInit(): void {
     this.fetchLocationData();
@@ -62,15 +62,6 @@ export class TourFormInfoTabComponent implements OnInit {
     });
     return false;
   };
-
-  handleFileListChange(fileList: NzUploadFile[]) {
-    console.log(fileList);
-    const oldFileList = fileList;
-    this.fileList.clear();
-    oldFileList.forEach(file => {
-      this.fileList.push(this.fb.control(file));
-    });
-  }
 
   get fileList() {
     return this.tourForm.controls['images'] as FormArray;
