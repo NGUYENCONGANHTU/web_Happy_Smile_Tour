@@ -46,11 +46,15 @@ export class BreadcrumbService {
       const routeConfig = currentRoute.routeConfig;
 
       if (routeConfig?.path) {
-        url += `/${routeConfig.path}`;
+        let finalPath = routeConfig.path;
+        if (routeConfig.path.includes(':')) {
+          const targetParam = routeConfig.path.split(':')[1];
+          finalPath = currentRoute.snapshot.params[targetParam];
+        }
+        url += `/${finalPath}`;
         const label =
           this.overriddenBreadcrumbs.get(url) ??
           (routeConfig.data?.['breadcrumb'] as string | null);
-
         if (label) {
           breadcrumbs.push({ label, url });
         }

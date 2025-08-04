@@ -50,25 +50,26 @@ p {
   font-size: 13px;
 }
 
-.ant-form.view-mode {
+.form-view-mode {
   .ant-input[disabled] {
     color: rgba(0, 0, 0, 0.85);
     background-color: transparent;
-    border: none;
+    border-color: transparent;
     border-radius: 0;
     cursor: text;
     text-overflow: ellipsis;
+    resize: none;
   }
 
   .ant-select-disabled.ant-select:not(.ant-select-customize-input)
     .ant-select-selector {
     color: rgba(0, 0, 0, 0.85);
-    background: transparent;
+    background: transparent !important;
     cursor: text;
   }
 
   .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    border: none;
+    border-color: transparent;
     border-radius: 0 !important;
   }
 
@@ -97,7 +98,7 @@ p {
 
   .ant-picker.ant-picker-disabled {
     background: transparent;
-    border: none;
+    border-color: transparent;
     border-radius: 0;
     cursor: text;
   }
@@ -112,7 +113,7 @@ p {
   }
 }
 
-.ant-form.view-mode.underline {
+.form-view-mode.input-underline:not(.input-no-underline) {
   .ant-input[disabled] {
     border-bottom: 1px solid;
   }

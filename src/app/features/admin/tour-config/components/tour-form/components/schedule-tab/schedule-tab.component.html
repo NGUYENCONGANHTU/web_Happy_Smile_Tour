@@ -1,7 +1,7 @@
 <form
   [formGroup]="scheduleForm"
   nz-form
-  [class]="mode === BaseFormMode.VIEW ? 'view-mode' : ''">
+  [class]="mode === BaseFormMode.VIEW ? 'form-view-mode' : ''">
   <div formArrayName="schedules">
     @for (
       schedule of schedules.controls;

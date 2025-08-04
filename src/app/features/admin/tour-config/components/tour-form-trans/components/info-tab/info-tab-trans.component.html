@@ -1,0 +1,324 @@
+<div class="flex gap-10 justify-between">
+  <div class="w-full">
+    <div class="italic flex h-[32px]">Bản gốc</div>
+    <form
+      [formGroup]="tourForm"
+      nz-form
+      [nzLayout]="'vertical'"
+      class="form-view-mode input-underline">
+      <nz-form-item>
+        <nz-form-label nzRequired>Tên tour</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['title'] | appValidationMessage">
+          <input
+            nz-input
+            formControlName="title"
+            placeholder="VD: Tour Đà Lạt 3N2Đ" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Số sao đánh giá</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourForm.controls['averageRate'] | appValidationMessage
+          ">
+          <input
+            nz-input
+            type="number"
+            formControlName="averageRate"
+            placeholder="1 - 5" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Điểm đến</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['locationId'] | appValidationMessage">
+          <input
+            nz-input
+            formControlName="locationId"
+            placeholder="Nhập các điểm đến" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Giá gốc</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourForm.controls['originalPrice'] | appValidationMessage
+          ">
+          <input nz-input type="number" formControlName="originalPrice" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Giảm giá</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['discount'] | appValidationMessage">
+          <input nz-input type="number" formControlName="discount" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Giá sau giảm</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['finalPrice'] | appValidationMessage">
+          <input nz-input type="number" formControlName="finalPrice" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Thời gian lưu trú</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['stayDate'] | appValidationMessage">
+          <input nz-input formControlName="stayDate" placeholder="VD: 3N2Đ" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Các điểm khởi hành</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourForm.controls['startingPointIds'] | appValidationMessage
+          ">
+          <nz-select
+            formControlName="startingPointIds"
+            nzMode="tags"
+            nzPlaceHolder="Chọn các điểm xuất phát">
+            @for (item of locationOptions; track item) {
+              <nz-option
+                [nzLabel]="item.label"
+                [nzValue]="item.value"></nz-option>
+            }
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Nội dung nổi bật</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['highlight'] | appValidationMessage">
+          <textarea nz-input rows="5" formControlName="highlight"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Chính sách</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['regulation'] | appValidationMessage">
+          <textarea nz-input rows="3" formControlName="regulation"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Ghi chú thêm</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['note'] | appValidationMessage">
+          <textarea nz-input rows="3" formControlName="note"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['images'] | appValidationMessage">
+          @if (tourForm.controls['images'].enabled) {
+            <nz-upload
+              nzListType="picture-card"
+              [nzFileList]="fileList.value"
+              [nzBeforeUpload]="beforeUpload"
+              [nzMultiple]="true">
+              <div>
+                <i nz-icon nzType="plus"></i>
+                <div style="margin-top: 8px">Tải ảnh</div>
+              </div>
+            </nz-upload>
+          } @else {
+            <div class="flex gap-2">
+              @for (image of fileList.value; track $index) {
+                <div class="w-[100px] h-[100px]">
+                  <img
+                    width="auto"
+                    height="auto"
+                    [src]="image?.thumbUrl"
+                    alt="image" />
+                </div>
+              }
+            </div>
+          }
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div class="border-l-1"></div>
+  <div class="w-full">
+    <div class="flex gap-2 justify-between h-[32px]">
+      <div class="italic">Bản dịch</div>
+      <button nz-button [disabled]="tourFormTrans.invalid">Lưu</button>
+    </div>
+    <form
+      [formGroup]="tourFormTrans"
+      nz-form
+      [nzLayout]="'vertical'"
+      class="form-view-mode input-underline">
+      <nz-form-item>
+        <nz-form-label nzRequired>Tên tour</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourFormTrans.controls['title'] | appValidationMessage">
+          <input
+            nz-input
+            formControlName="title"
+            placeholder="VD: Tour Đà Lạt 3N2Đ" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Số sao đánh giá</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['averageRate'] | appValidationMessage
+          ">
+          <input
+            nz-input
+            type="number"
+            formControlName="averageRate"
+            placeholder="1 - 5" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Điểm đến</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['location'] | appValidationMessage
+          ">
+          <input
+            nz-input
+            formControlName="location"
+            placeholder="Nhập các điểm đến" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Giá gốc</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['originalPrice'] | appValidationMessage
+          ">
+          <input nz-input type="number" formControlName="originalPrice" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Giảm giá</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['discount'] | appValidationMessage
+          ">
+          <input nz-input type="number" formControlName="discount" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Giá sau giảm</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['finalPrice'] | appValidationMessage
+          ">
+          <input nz-input type="number" formControlName="finalPrice" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Thời gian lưu trú</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['stayDate'] | appValidationMessage
+          ">
+          <input nz-input formControlName="stayDate" placeholder="VD: 3N2Đ" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Các điểm khởi hành</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['startingPointIds'] | appValidationMessage
+          ">
+          <nz-select
+            formControlName="startingPointIds"
+            nzMode="tags"
+            nzPlaceHolder="Chọn các điểm xuất phát">
+            @for (item of locationOptions; track item) {
+              <nz-option
+                [nzLabel]="item.label"
+                [nzValue]="item.value"></nz-option>
+            }
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Nội dung nổi bật</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['highlight'] | appValidationMessage
+          ">
+          <textarea nz-input rows="5" formControlName="highlight"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Chính sách</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['regulation'] | appValidationMessage
+          ">
+          <textarea nz-input rows="3" formControlName="regulation"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Ghi chú thêm</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourFormTrans.controls['note'] | appValidationMessage">
+          <textarea nz-input rows="3" formControlName="note"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="
+            tourFormTrans.controls['images'] | appValidationMessage
+          ">
+          @if (tourForm.controls['images'].enabled) {
+            <nz-upload
+              nzListType="picture-card"
+              [nzFileList]="fileList.value"
+              [nzBeforeUpload]="beforeUpload"
+              [nzMultiple]="true">
+              <div>
+                <i nz-icon nzType="plus"></i>
+                <div style="margin-top: 8px">Tải ảnh</div>
+              </div>
+            </nz-upload>
+          } @else {
+            <div class="flex gap-2">
+              @for (image of fileList.value; track $index) {
+                <div class="w-[100px] h-[100px]">
+                  <img
+                    width="auto"
+                    height="auto"
+                    [src]="image?.thumbUrl"
+                    alt="image" />
+                </div>
+              }
+            </div>
+          }
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
