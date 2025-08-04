@@ -3,10 +3,7 @@
     <div class="container-header flex items-center justify-between p-4">
       <div class="logo">
         <a href="/">
-          <img
-            src="https://happysmilesvietnam.com/client_/images/logo.webp"
-            class="w-full"
-            alt="Logo" />
+          <img src="/assets/logo_Web_HST_N_1.png" class="w-full" alt="Logo" />
         </a>
       </div>
 
@@ -148,53 +145,99 @@
     <router-outlet></router-outlet>
   </main>
 
-  <footer>
-    <div class="footer !p-5 lg:flex lg:gap-20 justify-center">
-      <div class="travel-footer lg:w-2/5">
-        <div class="travel-footer-logo">
-          <a href="">
-            <img
-              src="https://happysmilesvietnam.com/client_/images/logo.webp"
-              width="150"
-              alt="" />
-          </a>
+  @if (footerData) {
+    <footer>
+      <div class="footer !p-5 md:!px-[10%] lg:flex justify-between !space-y-7">
+        <div class="travel-footer !space-y-3">
+          <div class="travel-footer-logo">
+            <a href="">
+              <img src="/assets/logo_Web_HST_N_1.png" width="150" alt="" />
+            </a>
+          </div>
+          <div class="travel-footer-description !text-[20px] font-medium">
+            {{ footerData.company }}
+          </div>
+          <div class="travel-footer-partners !text-[16px] !w-[600px]">
+            {{ footerData.address }}
+          </div>
+          <div class="tax-code">
+            <span>Taxt code:</span>
+            <span class="!ml-1">{{ footerData.taxCode }}</span>
+          </div>
+          <div class="license-no">
+            <span>License No:</span>
+            <span class="!ml-1">{{ footerData.licenseNumber }}</span>
+          </div>
         </div>
-        <div class="travel-footer-description">
-          Công ty TNHH HappySmiles Viet Nam Travel – Cầu nối #1 giữa Công Ty Lữ
-          Hành Quốc Tế tại Việt Nam với công ty tổ chức tour tại nhiều quốc gia
-          trên thế giới.
-        </div>
-        <div class="travel-footer-partners">
-          <img
-            src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"
-            width="150"
-            alt="" />
+        <!--========================= Contact =========================-->
+        <div class="travel-footer-contact space-y-2!">
+          <div class="travel-footer-contact-title">
+            <h1>Connect With Us</h1>
+          </div>
+          <div class="travel-footer-contact-content space-y-3!">
+            <div class="travel-footer-contact-contact">
+              <div class="font-semibold text-lg">{{ footerData.name }}</div>
+              <div class="text-sm text-gray-600 italic">
+                {{ footerData.position }}
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <fa-icon
+                [icon]="faEnvelope"
+                class="text-xl text-[#e93d47]"></fa-icon>
+              <span>{{ footerData.email }}</span>
+            </div>
+            <div class="zalo-whatsapp">
+              <fa-icon
+                [icon]="faPhone"
+                class="text-xl text-[#2D72D9]"></fa-icon>
+              <span class="!ml-2">Zalo / Whatsapp</span>
+              <span class="!ml-2">
+                <span class="font-medium">{{ footerData.mobileNumber }}</span>
+                <span class="mx-2!">/</span>
+                <span class="font-medium">{{ footerData.whatsappNumber }}</span>
+              </span>
+            </div>
+            <div class="website">
+              <fa-icon
+                [icon]="faEarthAsia"
+                class="text-xl text-[#25D366]"></fa-icon>
+              <a class="!ml-2 !text-black">{{ footerData.website }}</a>
+            </div>
+            <div class="internet-app flex items-center gap-3">
+              <p class="flex items-center gap-1">
+                <fa-icon
+                  [icon]="faFacebook"
+                  class="text-xl text-[#1773ea]"></fa-icon>
+                <span>Facebook</span>
+              </p>
+              <p class="flex items-center gap-1">
+                <a
+                  href="https://zalo.me/your_zalo_id"
+                  target="_blank"
+                  title="Zalo">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 fill-current text-blue-500"
+                    viewBox="0 0 48 48">
+                    <image
+                      href="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+                      height="48"
+                      width="48" />
+                  </svg>
+                </a>
+                <span>Zalo</span>
+              </p>
+              <p class="flex items-center gap-1">
+                <fa-icon
+                  [icon]="faWhatsapp"
+                  class="text-xl text-[#41c051]"></fa-icon>
+                <span>Whatsapp</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="travel-footer-contact lg:w-2/5">
-        <div class="travel-footer-contact-title">
-          <h1>Liên Hệ HappySmiles VietNam Travel</h1>
-        </div>
-        <div class="travel-footer-contact-address space-y-4!">
-          <div class="travel-footer-contact-address-1">
-            <span class="font-medium">Địa chỉ:</span>
-            Số 16, Ngõ 322/158, Đường Mỹ Đình, Phường Từ Liêm, Thành Phố Hà Nội,
-            Việt Nam
-          </div>
-
-          <div class="travel-footer-contact-address-hotline">
-            <span class="font-medium">Hotline :</span>
-            +84 912.883.347
-          </div>
-          <div class="travel-footer-contact-address-feedback">
-            <span class="font-medium !mr-1">Mã số thuế:</span>011.066.5455
-          </div>
-          <div class="travel-footer-contact-email">
-            <span class="font-medium">Email:</span>
-            happysmilesvn&#64;gmail.com
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  }
 </div>

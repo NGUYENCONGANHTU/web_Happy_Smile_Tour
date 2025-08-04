@@ -84,7 +84,7 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
       this.bangGiaSection,
       this.dichVuSection,
     ].forEach((sectionRef: ElementRef) => {
-      const sectionElement: HTMLElement = sectionRef?.nativeElement; // Get the native DOM element
+      const sectionElement: HTMLElement = sectionRef?.nativeElement;
       const rect = sectionElement.getBoundingClientRect();
       const sectionTop = rect.top + scrollPosition;
       const sectionBottom = rect.bottom + scrollPosition;
@@ -101,25 +101,32 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   }
 
   scrollTo(section: string) {
+    let sectionEl: HTMLElement | null = null;
     switch (section) {
       case 'diemNoiBat':
-        this.diemNoiBatSection.nativeElement.scrollIntoView({
-          behavior: 'smooth',
-        });
+        sectionEl =
+          this.diemNoiBatSection.nativeElement.querySelector('.tab-title');
         break;
       case 'lichTrinh':
-        this.lichTrinhSection.nativeElement.scrollIntoView({
-          behavior: 'smooth',
-        });
+        sectionEl =
+          this.lichTrinhSection.nativeElement.querySelector('.tab-title');
         break;
       case 'bangGia':
-        this.bangGiaSection.nativeElement.scrollIntoView({
-          behavior: 'smooth',
-        });
+        sectionEl =
+          this.bangGiaSection.nativeElement.querySelector('.tab-title');
         break;
       case 'dichVu':
-        this.dichVuSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        sectionEl =
+          this.dichVuSection.nativeElement.querySelector('.tab-title');
         break;
+    }
+
+    if (sectionEl) {
+      const offset = -70;
+      const y =
+        sectionEl.getBoundingClientRect().top + window.pageYOffset + offset;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }
 

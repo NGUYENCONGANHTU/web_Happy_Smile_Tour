@@ -37,16 +37,14 @@
 }
 
 /* =========== Footer =========== */
-.footer {
-  background: #dcdcdc;
+footer {
+  background: #e8e8e8;
   box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
   .travel-footer {
     .travel-footer-description {
       font-size: 16px;
-      padding-top: 23px;
     }
     .travel-footer-partners {
-      padding-top: 23px;
     }
   }
   .travel-footer-contact {
@@ -56,7 +54,6 @@
       }
     }
     .travel-footer-contact-address {
-      padding-top: 10px;
       font-size: 16px;
     }
   }
