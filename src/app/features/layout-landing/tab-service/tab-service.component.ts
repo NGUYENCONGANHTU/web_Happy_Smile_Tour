@@ -1,22 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
+import { NzColDirective } from 'ng-zorro-antd/grid';
 import {
   NzFormControlComponent,
   NzFormDirective,
-  NzFormItemComponent,
   NzFormLabelComponent,
 } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { ActivatedRoute } from '@angular/router';
-import { TabServiceService } from './tab-service.service';
-import {
-  ContactType,
-  TourServiceReqDTO,
-} from './interface-contact-tour-service';
+import { ContactType } from './interface-contact-tour-service';
 import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
@@ -30,9 +25,7 @@ import { LanguageService } from '../../../shared/services/language.service';
     NzColDirective,
     NzFormControlComponent,
     NzFormDirective,
-    NzFormItemComponent,
     NzInputDirective,
-    NzRowDirective,
     ReactiveFormsModule,
     NzFormLabelComponent,
     NgStyle,
@@ -88,20 +81,27 @@ export class TabServiceComponent implements OnInit {
     email: [''],
     phone: ['', [Validators.required]],
     message: [''],
+    company: [''],
+    number_of_people: [''],
+    expected_date: [''],
   });
 
-  //
-  tourService = inject(TabServiceService);
   submitForm() {
     if (this.validateForm.valid) {
-      const body: TourServiceReqDTO = {
-        name: this.validateForm.value.name ?? '',
-        email: this.validateForm.value.email ?? '',
-        phone: this.validateForm.value.phone ?? '',
-        message: this.validateForm.value.message ?? '',
+      const rawForm = this.validateForm.value;
+      const body = {
+        name: rawForm.name ?? '',
+        email: rawForm.email ?? '',
+        phone: rawForm.phone ?? '',
+        company: rawForm.company ?? '',
+        number_of_people: rawForm.number_of_people ?? '',
+        expected_date: rawForm.expected_date ?? '',
+        budget: '',
+        location: this.dataServiceDetail?.serviceTitle ?? '',
+        message: rawForm.message ?? '',
         contactType: ContactType.VISA,
       };
-      this.tourService.createDataTourService(body).subscribe({
+      this.appService.createDataContactPrivateTour(body).subscribe({
         next: res => {
           console.log('Gửi thành công:', res);
           this.validateForm.reset();

@@ -12,12 +12,10 @@ import { DecimalPipe } from '@angular/common';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ContactType,
-  TourServiceReqDTO,
-} from '../../tab-service/interface-contact-tour-service';
-import { TabServiceService } from '../../tab-service/tab-service.service';
+import { ContactType } from '../../tab-service/interface-contact-tour-service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { AppService } from '../../../../../app.service';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -37,30 +35,40 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SidebarTabTourForeignComponent {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
+  message = inject(NzMessageService);
   @Input() tourDetail: FeatureResDTO | null = null;
+  @Input() priceTour = '';
+  @Input() nameTour = '';
 
   isVisible = false;
 
   showModal(): void {
     this.isVisible = true;
   }
-  tourService = inject(TabServiceService);
+  appService = inject(AppService);
   handleOk(): void {
     if (this.validateForm.valid) {
-      const body: TourServiceReqDTO = {
-        name: this.validateForm.value.name ?? '',
-        email: this.validateForm.value.email ?? '',
-        phone: this.validateForm.value.phone ?? '',
-        message: this.validateForm.value.message ?? '',
+      const rawForm = this.validateForm.value;
+      const body = {
+        name: rawForm.name ?? '',
+        email: rawForm.email ?? '',
+        phone: rawForm.phone ?? '',
+        company: rawForm.company ?? '',
+        number_of_people: rawForm.number_of_people ?? '',
+        expected_date: rawForm.expected_date ?? '',
+        budget: this.priceTour ?? '',
+        location: this.nameTour ?? '',
+        message: rawForm.message ?? '',
         contactType: ContactType.TOUR,
       };
-      this.tourService.createDataTourService(body).subscribe({
-        next: res => {
-          console.log('Gửi thành công:', res);
+      this.appService.createDataContactPrivateTour(body).subscribe({
+        next: () => {
+          this.message.success('Gửi thành công!');
           this.validateForm.reset();
+          this.isVisible = false;
         },
-        error: err => {
-          console.error('Lỗi khi gửi dữ liệu:', err);
+        error: () => {
+          this.message.error('Lỗi gửi thông tin!');
         },
       });
     } else {
@@ -76,13 +84,17 @@ export class SidebarTabTourForeignComponent {
 
   handleCancel(): void {
     this.isVisible = false;
+    this.validateForm.reset();
   }
 
   private fb = inject(FormBuilder);
   validateForm = this.fb.group({
-    name: this.fb.control('', [Validators.required]),
-    email: this.fb.control(''),
-    phone: this.fb.control('', [Validators.required]),
-    message: this.fb.control(''),
+    name: ['', [Validators.required]],
+    email: [''],
+    phone: ['', [Validators.required]],
+    company: [''],
+    number_of_people: [''],
+    expected_date: [''],
+    message: [''],
   });
 }

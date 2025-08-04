@@ -1,16 +1,18 @@
 <div class="cards-content-feature-domestic">
   @for (data of tours; track data.id) {
     <div
-      class="card-content-feature-domestic-item cursor-pointer"
+      class="card-content-feature-domestic-item grid grid-cols-1 md:[grid-template-columns:1fr_2fr] lg:gap-5 cursor-pointer"
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="card-content-feature-domestic-item-image">
         <img
-          class="h-[160px] object-cover bg-center bg-cover"
+          class="h-[200px] w-full !mb-1 md:h-[160px] md:w-[250px] lg:w-full !rounded-md object-cover bg-center bg-cover"
           [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="" />
       </div>
       <div class="truncate !space-y-[10px]">
-        <div class="font-bold truncate text-[16px]">{{ data.title }}</div>
+        <div class="font-bold truncate text-[16px] text-[#0d9344]">
+          {{ data.title }}
+        </div>
         <div class="feedback">
           <div class="flex items-center !space-x-2">
             <div class="star flex">
@@ -18,14 +20,14 @@
                 <fa-icon
                   [icon]="faStar"
                   [ngClass]="
-                    i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'
+                    i <= data.averageRate ? 'text-[#e5831e]' : 'text-gray-300'
                   "
                   class="mr-1"></fa-icon>
               }
             </div>
             <span class="text-[#888]">|</span>
             <div class="">
-              {{ data.numberComment | number }}
+              {{ data.totalReviews | number }}
               {{ 'tour_card.rating' | translate }}
             </div>
           </div>
@@ -71,4 +73,11 @@
       </div>
     </div>
   }
+  <nz-pagination
+    [nzPageIndex]="page"
+    [nzPageSize]="pageSize"
+    [nzTotal]="total"
+    (nzPageIndexChange)="onPageChange($event)"
+    class="text-right mt-3!">
+  </nz-pagination>
 </div>

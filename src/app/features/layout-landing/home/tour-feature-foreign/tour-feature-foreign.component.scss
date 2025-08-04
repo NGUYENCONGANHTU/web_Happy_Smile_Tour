@@ -1,14 +1,12 @@
 swiper-container {
   width: 100%;
   height: auto;
-  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
-
   swiper-slide {
-    padding: 10px;
-
+    padding: 2px;
     .card-item {
+      border: 1px solid #eaebef;
       box-shadow:
         rgba(0, 0, 0, 0.02) 0 1px 3px 0,
         rgba(27, 31, 35, 0.15) 0 0 0 1px;
@@ -17,31 +15,18 @@ swiper-container {
       padding: 10px;
       grid-template-columns: 1fr;
       gap: 15px;
-    }
-  }
-}
-
-@media (max-width: 1024px) {
-  swiper-container {
-    swiper-slide {
-      padding: 1px;
-
-      .card-item {
-        box-shadow:
-          rgba(0, 0, 0, 0.02) 0 1px 3px 0,
-          rgba(27, 31, 35, 0.15) 0 0 0 1px;
-        border-radius: 8px;
-        padding: 10px;
-        grid-template-columns: 1fr 2fr;
+      transition: box-shadow 0.3s ease;
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
       }
     }
   }
 }
-@media (min-width: 1025px) {
+
+@media (min-width: 1024px) {
   swiper-container {
     swiper-slide {
       padding: 1px;
-
       .card-item {
         box-shadow:
           rgba(0, 0, 0, 0.02) 0 1px 3px 0,

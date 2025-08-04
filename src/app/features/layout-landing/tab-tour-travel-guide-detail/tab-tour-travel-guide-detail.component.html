@@ -1,25 +1,27 @@
-<section class="tab-travel-guide-detail" *ngIf="dataContentTravelGuide">
-  <nz-breadcrumb nzSeparator=">" class="breadcrumb">
-    <nz-breadcrumb-item>
-      <a routerLink="/">Trang chủ</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item class="italic"> Cẩm nang du lịch </nz-breadcrumb-item>
-    <nz-breadcrumb-item class="italic font-medium">
-      Tour đoàn riêng
-    </nz-breadcrumb-item>
-  </nz-breadcrumb>
-  <div class="travel-guide-detail">
-    <div class="travel-guide-detail-content">
-      <div
-        class="font-medium text-[23px]"
-        [innerHTML]="sanitizeHtml(dataContentTravelGuide.title)"></div>
-      <div class="travel-guide-detail-content-time">
-        <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
-        <span class="text-[14px]">01/07/2025 10:23:26</span>
+@if (dataContentTravelGuide) {
+  <section class="tab-travel-guide-detail">
+    <nz-breadcrumb nzSeparator=">" class="breadcrumb">
+      <nz-breadcrumb-item>
+        <a routerLink="/">Trang chủ</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item class="italic"> Cẩm nang du lịch </nz-breadcrumb-item>
+      <nz-breadcrumb-item class="italic font-medium">
+        Tour đoàn riêng
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="travel-guide-detail">
+      <div class="travel-guide-detail-content">
+        <div
+          class="font-medium text-[23px]"
+          [innerHTML]="sanitizeHtml(dataContentTravelGuide.title)"></div>
+        <div class="travel-guide-detail-content-time">
+          <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
+          <span class="text-[14px]">01/07/2025 10:23:26</span>
+        </div>
+        <div
+          class="travel-guide-detail-content-text"
+          [innerHTML]="sanitizeHtml(dataContentTravelGuide.content)"></div>
       </div>
-      <div
-        class="travel-guide-detail-content-text"
-        [innerHTML]="sanitizeHtml(dataContentTravelGuide.content)"></div>
     </div>
-  </div>
-</section>
+  </section>
+}

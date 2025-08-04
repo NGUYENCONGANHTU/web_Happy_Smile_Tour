@@ -22,12 +22,21 @@
         <span>{{ 'tour_card.itinerary' | translate }}:</span>
         <div class="date font-medium">{{ tourDetail.stayDate }}</div>
       </div>
-      <div class="departure-location">
+      <div class="departure-location truncate">
         <fa-icon [icon]="faLocationDot" class="icon-location"></fa-icon>
         <span>{{ 'tour_card.from' | translate }}:</span>
-        <ul class=" ">
-          @for (data of tourDetail.startingPoints; track $index) {
-            <li class="font-medium">- {{ data.name }}</li>
+        <ul class="flex truncate gap-1">
+          @for (
+            data of tourDetail.startingPoints;
+            track $index;
+            let last = $last
+          ) {
+            <li class="font-medium">
+              {{ data.name }}
+              @if (!last) {
+                <span>,</span>
+              }
+            </li>
           }
         </ul>
       </div>
@@ -39,6 +48,7 @@
           {{ 'tour_detail.not_yet_pay' | translate }}
         </div>
       </button>
+
       <form nz-form [formGroup]="validateForm" (ngSubmit)="handleCancel()">
         <nz-modal
           class="!rounded-xl"
@@ -48,10 +58,16 @@
           nzTitle="{{ 'tour_detail.info_contact' | translate }}"
           nzOkText="{{ 'tour_detail.submit' | translate }}"
           (nzOnCancel)="handleCancel()"
-          (nzOnOk)="handleOk()">
+          (nzOnOk)="handleOk()"
+          [nzStyle]="{ top: '50px', height: '400px' }">
           <ng-container *nzModalContent>
-            <div class="grid grid-cols-2 gap-2">
-              <nz-form-item>
+            <div class="space-y-4! md:grid grid-cols-2 gap-x-5">
+              <!-- ================= Tên khách hàng ================= -->
+              <div>
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  {{ 'tab_service.name' | translate }}
+                  <span class="text-red-500 !mx-2">*</span>
+                </nz-form-label>
                 <nz-form-control
                   nzErrorTip="{{ 'private_tour.name_required' | translate }}">
                   <input
@@ -60,38 +76,98 @@
                     placeholder="{{ 'tour_detail.full_name' | translate }}"
                     formControlName="name" />
                 </nz-form-control>
-              </nz-form-item>
-
-              <nz-form-item>
+              </div>
+              <!-- ================= Số điện thoại ================= -->
+              <div>
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  {{ 'tab_service.phone' | translate }}
+                  <span class="text-red-500 !mx-2">*</span>
+                </nz-form-label>
                 <nz-form-control
                   nzErrorTip="{{ 'private_tour.phone_required' | translate }}">
                   <input
                     nz-input
+                    type="number"
                     class="!rounded-lg py-2! px-4!"
                     placeholder="{{ 'tab_service.phone' | translate }}"
                     formControlName="phone" />
                 </nz-form-control>
-              </nz-form-item>
-
-              <nz-form-item>
-                <nz-form-control>
+              </div>
+              <!-- ================= Email ================= -->
+              <div>
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  Email
+                </nz-form-label>
+                <nz-form-control
+                  nzErrorTip="{{ 'tab_service.email_valid' | translate }}">
                   <input
                     nz-input
+                    type="email"
                     class="!rounded-lg py-2! px-4!"
                     placeholder="Email"
                     formControlName="email" />
                 </nz-form-control>
-              </nz-form-item>
-
-              <nz-form-item>
+              </div>
+              <!-- ================= Số thành viên tham gia ================= -->
+              <div>
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  {{ 'private_tour.people_count' | translate }}
+                </nz-form-label>
+                <nz-form-control
+                  nzErrorTip="{{ 'private_tour.name_required' | translate }}">
+                  <input
+                    class="!rounded-lg py-2! px-4!"
+                    nz-input
+                    formControlName="number_of_people"
+                    type="number"
+                    placeholder="{{
+                      'private_tour.people_count' | translate
+                    }}" />
+                </nz-form-control>
+              </div>
+              <!-- ================= Công Ty ================= -->
+              <div>
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  {{ 'tab_service.company' | translate }}
+                </nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
                     class="!rounded-lg py-2! px-4!"
-                    placeholder="{{ 'tour_detail.address' | translate }}"
-                    formControlName="message" />
+                    placeholder="{{ 'tab_service.company' | translate }}"
+                    formControlName="company" />
                 </nz-form-control>
-              </nz-form-item>
+              </div>
+              <!-- ================= Thời gian kiến ================= -->
+              <div>
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  {{ 'private_tour.estimated_budget' | translate }}
+                </nz-form-label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    class="!rounded-lg py-2! px-4!"
+                    placeholder="{{
+                      'private_tour.estimated_budget' | translate
+                    }}"
+                    formControlName="expected_date" />
+                </nz-form-control>
+              </div>
+              <!-- ================= Ghi chú ================= -->
+              <div class="col-span-2">
+                <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                  {{ 'private_tour.note' | translate }}:
+                </nz-form-label>
+                <nz-form-control>
+                  <textarea
+                    rows="6"
+                    formControlName="message"
+                    nz-input
+                    placeholder="{{
+                      'private_tour.note' | translate
+                    }}"></textarea>
+                </nz-form-control>
+              </div>
             </div>
           </ng-container>
         </nz-modal>

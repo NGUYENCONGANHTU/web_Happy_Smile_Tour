@@ -1,15 +1,14 @@
 .tab-service {
   .banner-tab-service {
-    height: calc(100vh - 90px);
+    height: 80vh;
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     .overlay {
-      background-color: rgba(0, 0, 0, 0.4); // bạn chỉnh màu tùy ý
+      background-color: rgba(0, 0, 0, 0.4);
       .content {
-        //z-index: 2;
         color: white;
         .sub-title {
           letter-spacing: 4px;
@@ -35,7 +34,7 @@
           }
         }
         .cta-button {
-          background-color: #fcb900;
+          //background-color: #fcb900;
           color: white;
           border: none;
           padding: 12px 24px;
@@ -50,15 +49,8 @@
   .banner-tab-service-content {
     padding: 3% 8%;
     .content-service-contact {
-      //display: grid;
-      //grid-template-columns: 1fr 1fr;
-      //gap: 50px;
       .content-service {
         .content-service-title {
-          font-size: 45px;
-          color: #010e4b;
-          font-weight: bold;
-          line-height: 1.3;
         }
         .content-service-list {
           .content-service-list-item {
@@ -77,16 +69,8 @@
       }
       .service-contact {
         .service-contact-title {
-          font-size: 23px;
-          font-weight: 600;
-          text-align: center;
-          margin-top: 10px;
-          margin-bottom: 20px;
         }
         .service-contact-form {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
         }
       }
     }
@@ -112,10 +96,10 @@
   }
 }
 
-@media (min-width: 1025px) {
-  .workflow-steps {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
+//@media (min-width: 1025px) {
+//  .workflow-steps {
+//    display: flex;
+//    flex-wrap: wrap;
+//    justify-content: center;
+//  }
+//}

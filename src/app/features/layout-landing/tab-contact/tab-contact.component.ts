@@ -6,7 +6,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from '../../../../app.service';
-import { HomeBannerResDTO, IntroducePageResDTO } from '../../../../interface';
+import { ContactPageResDTO, HomeBannerResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
 
@@ -46,7 +46,7 @@ export class TabContactComponent implements OnInit {
   }
 
   // ================== PHONE =======================
-  dataPhone: IntroducePageResDTO[] = [];
+  dataPhone: ContactPageResDTO[] = [];
   getAllDataPhone() {
     this.appService.getAllDataPhoneContactPage().subscribe(res => {
       if (res?.data) {
@@ -58,7 +58,7 @@ export class TabContactComponent implements OnInit {
   }
 
   // ================== ADDRESS =======================
-  dataAddress: IntroducePageResDTO[] = [];
+  dataAddress: ContactPageResDTO[] = [];
   getAllDataAddress() {
     this.appService.getAllDataAddressContactPage().subscribe(res => {
       if (res?.data) {
@@ -69,7 +69,7 @@ export class TabContactComponent implements OnInit {
     });
   }
   // ================== Email =======================
-  dataEmail: IntroducePageResDTO[] = [];
+  dataEmail: ContactPageResDTO[] = [];
   getAllDataEmail() {
     this.appService.getAllDataEmailContactPage().subscribe(res => {
       if (res?.data) {

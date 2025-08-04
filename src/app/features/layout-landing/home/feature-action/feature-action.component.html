@@ -3,7 +3,7 @@
   slides-per-view="1"
   space-between="15"
   breakpoints='{
-                      "640": { "slidesPerView": 1 },
+                      "640": { "slidesPerView": 2 },
                       "768": { "slidesPerView": 2 },
                       "1024": { "slidesPerView": 3 },
                       "1280": { "slidesPerView": 4 }
@@ -20,9 +20,9 @@
         <img
           [src]="formatImage(data.images?.[0]?.storagePath || '')"
           alt="Tour"
-          class="tour-image !h-[200px] object-cover bg-center bg-cover" />
+          class="tour-image !h-[200px] !w-full object-cover bg-center bg-cover" />
         <div class="tour-content">
-          <div class="tour-title truncate text-gray-900">
+          <div class="tour-title truncate text-[#0d9344]">
             {{ data.title }}
           </div>
 
@@ -32,13 +32,13 @@
                 <fa-icon
                   [icon]="faStar"
                   [ngClass]="
-                    i <= data.star ? 'text-[#e5831e]' : 'text-gray-300'
+                    i <= data.averageRate ? 'text-[#e5831e]' : 'text-gray-300'
                   "
                   class="mr-1"></fa-icon>
               }
             </div>
             <span class="reviews !mx-2"
-              >| {{ data.numberComment | number }}
+              >| {{ data.totalReviews | number }}
               {{ 'tour_card.rating' | translate }}
             </span>
           </div>
@@ -51,7 +51,7 @@
             }}</span>
           </div>
           <div class="tour-points text-[#6A6B6D] truncate">
-            <span class="!mr-[4px] font-medium !text-[#3A3A3C]"
+            <span class="!mx-[4px] font-medium !text-[#3A3A3C]"
               >{{ 'tour_card.from' | translate }}:</span
             >
             <ul class="truncate">
@@ -63,7 +63,7 @@
                 <li class="inline !text-gray-500">
                   {{ item.name }}
                   @if (!last) {
-                    <span class="!mr-[4px]">,</span>
+                    <span class="!mr-[1px]">,</span>
                   }
                 </li>
               }
@@ -74,7 +74,7 @@
               {{ 'tour_card.price_from' | translate }}:
             </div>
             <div class="price truncate">
-              <span class="old-price !text-gray-400"
+              <span class="old-price !text-gray-400 font-medium"
                 >{{ data.originalPrice | number }} VNĐ</span
               >
               <span class="new-price !text-red-600"

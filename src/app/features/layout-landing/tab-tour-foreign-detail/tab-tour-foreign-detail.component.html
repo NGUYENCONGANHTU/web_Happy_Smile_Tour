@@ -15,34 +15,35 @@
       }}</nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
-    <div class="tab-tour-foreign-detail-main-content flex-wrap lg:flex-nowrap">
+    <div
+      class="tab-tour-foreign-detail-main-content grid grid-cols-1 lg:[grid-template-columns:3fr_1fr] gap-x-4">
       <div class="left-content">
-        <app-slide-tour-detail
-          [listImageBanner]="tourDetail"></app-slide-tour-detail>
+        <app-slide-tour-detail [listImageBanner]="tourDetail">
+        </app-slide-tour-detail>
         <div class="tour-detail-title">{{ tourDetail.title }}</div>
         <div class="tour-detail-title-tabs">
           <div
-            class="tour-detail-title-tabs-title !hidden md:!flex border-b-1 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
+            class="tour-detail-title-tabs-title !hidden md:!flex border-b-2 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
             <button
               (click)="scrollTo('diemNoiBat')"
               [class]="
-                activeSection === 'diem-noi-bat' ? '!text-green-700' : ''
+                activeSection === 'diem-noi-bat' ? '!text-[#ed1e27]' : ''
               ">
               {{ 'tour_detail.feature_place' | translate }}
             </button>
             <button
               (click)="scrollTo('lichTrinh')"
-              [class]="activeSection === 'lich-trinh' ? '!text-green-700' : ''">
+              [class]="activeSection === 'lich-trinh' ? '!text-[#ed1e27]' : ''">
               {{ 'tour_detail.schedule' | translate }}
             </button>
             <button
               (click)="scrollTo('bangGia')"
-              [class]="activeSection === 'bang-gia' ? '!text-green-700' : ''">
+              [class]="activeSection === 'bang-gia' ? '!text-[#ed1e27]' : ''">
               {{ 'tour_detail.table' | translate }}
             </button>
             <button
               (click)="scrollTo('dichVu')"
-              [class]="activeSection === 'dich-vu' ? '!text-green-700' : ''">
+              [class]="activeSection === 'dich-vu' ? '!text-[#ed1e27]' : ''">
               {{ 'tour_detail.service_content' | translate }}
             </button>
           </div>
@@ -89,7 +90,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.service_content' | translate }}
                   </div>
-                  <div class="content-1">{{ tourDetail.service }}</div>
+                  <div class="content-1 text-justify">
+                    {{ tourDetail.service }}
+                  </div>
                 </div>
               }
 
@@ -99,7 +102,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.non_service_content' | translate }}
                   </div>
-                  <div class="content-2-text">{{ tourDetail.nonService }}</div>
+                  <div class="content-2-text text-justify">
+                    {{ tourDetail.nonService }}
+                  </div>
                 </div>
               }
 
@@ -109,7 +114,7 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.t_c' | translate }}
                   </div>
-                  <div class="content-3-text">
+                  <div class="content-3-text text-justify">
                     {{ tourDetail.regulation }}
                   </div>
                 </div>
@@ -121,7 +126,7 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.note' | translate }}
                   </div>
-                  <div class="content-3-text">
+                  <div class="content-3-text text-justify">
                     {{ tourDetail.note }}
                   </div>
                 </div>
@@ -138,14 +143,17 @@
               [averageRate]="tourDetail?.averageRate ?? 5"
               [totalReviews]="tourDetail?.totalReviews ?? 0"
               [ratingList]="tourDetail?.ratingList ?? []"></app-review-summary>
-            <app-form-feedback></app-form-feedback>
+            <app-form-feedback [tourDetail]="tourDetail"></app-form-feedback>
             <app-review-list
               [reviews]="tourDetail.tourComments ?? []"></app-review-list>
           </div>
         </div>
       </div>
-      <div class="right-content shadow-sm rounded-xl !mb-5">
-        <app-sidebar-tab-tour-foreign [tourDetail]="tourDetail">
+      <div class="right-content shadow-sm rounded-md !mb-5">
+        <app-sidebar-tab-tour-foreign
+          [tourDetail]="tourDetail"
+          [priceTour]="tourDetail.finalPrice"
+          [nameTour]="tourDetail.title">
         </app-sidebar-tab-tour-foreign>
       </div>
     </div>

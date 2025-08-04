@@ -51,11 +51,12 @@
     "consult_now": "CONSULT NOW",
     "register_consulting": "Register for Consultation",
     "enter_name": "Enter your name",
+    "email_valid": "Email is valid",
     "name_required": "Name is required",
     "phone_required": "Phone number is required"
   },
   "private_tour": {
-    "people_count": "Number of people",
+    "people_count": "Number of member",
     "estimated_time": "Estimated date",
     "estimated_budget": "Estimated budget",
     "desired_destination": "Desired destination",

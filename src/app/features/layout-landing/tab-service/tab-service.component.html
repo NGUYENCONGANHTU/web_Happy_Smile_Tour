@@ -12,50 +12,57 @@
           <p class="sub-title lg:!text-[20px] uppercase">
             {{ 'tab_service.title' | translate }}
           </p>
-          <div class="title !text-sm md:!text-[30px] lg:!text-[60px] !px-15">
+          <div
+            class="title !text-[18px] md:!text-[30px] lg:!text-[60px] !px-15">
             {{ dataServiceDetail.bannerTitle }}
           </div>
-          <button class="cta-button">
+          <button
+            class="cta-button !text-[20px] hover:outline hover:outline-red-500 hover:outline-2">
             <fa-icon
               [icon]="faPhoneFlip"
               class="phone-icon mr-2! tracking-wide"></fa-icon>
-            {{ 'tab_service.consulting' | translate }}:
-            {{ dataServiceDetail.phone }}
+            <span>
+              {{ 'tab_service.consulting' | translate }}:
+              <span class="text-red-500 tracking-wider">
+                {{ dataServiceDetail.phone }}
+              </span>
+            </span>
           </button>
         </div>
       </div>
     </div>
+
     <div class="banner-tab-service-content">
-      <div class="content-service-contact flex gap-10 flex-wrap justify-center">
-        <div class="content-service !space-y-6 !w-full lg:!w-2/5">
-          <div class="content-service-title">
+      <div
+        class="content-service-contact !mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-10">
+        <div class="content-service space-y-2!">
+          <div
+            class="content-service-title text-left md:text-center text-3xl font-bold">
             {{ dataServiceDetail.serviceTitle }}
           </div>
-          <div class="content-service-list">
+          <div class="content-service-list text-justify">
             {{ dataServiceDetail.serviceContent }}
           </div>
-          <button class="btn-contact uppercase">
-            {{ 'tab_service.consult_now' | translate }}
-          </button>
         </div>
-        <div class="service-contact !w-full lg:!w-2/5">
-          <div class="service-contact-title">
+        <div class="service-contact">
+          <div
+            class="service-contact-title text-left lg:text-center text-3xl font-bold !mb-5 md:!mb-10">
             {{ 'tab_service.instruction' | translate }}
           </div>
           <form
             nz-form
             [formGroup]="validateForm"
             (ngSubmit)="submitForm()"
-            class="service-contact-form"
+            class="service-contact-form !space-y-5 md:grid grid-cols-2 !gap-x-5"
             nzLayout="vertical">
-            <!--     Tên-->
-            <nz-form-item>
+            <!--  ============= Tên =============-->
+            <div>
               <nz-form-label
                 [nzSpan]="24"
-                class="font-medium text-[14px]"
-                nzRequired
-                >{{ 'tab_service.name' | translate }}:</nz-form-label
-              >
+                class="font-medium text-[14px] !mb-1">
+                {{ 'tab_service.name' | translate }}
+                <span class="text-red-500 !mx-2">*</span>
+              </nz-form-label>
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.name"
                 nzErrorTip="{{ 'tab_service.name_required' | translate }}">
@@ -65,15 +72,15 @@
                   placeholder="{{ 'tab_service.enter_name' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
-            <!--     Số điện thoại-->
-            <nz-form-item>
+            </div>
+            <!--  ============= Số điện thoại =============-->
+            <div>
               <nz-form-label
                 [nzSpan]="24"
-                class="font-medium text-[14px]"
-                nzRequired
-                >{{ 'tab_service.phone' | translate }}:</nz-form-label
-              >
+                class="font-medium text-[14px] !mb-1">
+                {{ 'tab_service.phone' | translate }}
+                <span class="text-red-500 !mx-2">*</span>
+              </nz-form-label>
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.phone"
                 nzErrorTip="{{ 'tab_service.phone_required' | translate }}">
@@ -84,12 +91,12 @@
                   placeholder="{{ 'tab_service.phone' | translate }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
+            </div>
 
             <!--     Email-->
-            <nz-form-item>
-              <nz-form-label [nzSpan]="24" class="font-medium text-[16px]"
-                >Email:</nz-form-label
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium text-[16px] !mb-1"
+                >Email</nz-form-label
               >
               <nz-form-control>
                 <input
@@ -99,27 +106,70 @@
                   placeholder="Email"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
-            </nz-form-item>
-
-            <!--     Ghi chú-->
-            <nz-form-item>
-              <nz-form-label [nzSpan]="24" class="font-medium text-[14px]">
-                {{ 'tab_service.note' | translate }}:
+            </div>
+            <!-- ================= Số thành viên tham gia ================= -->
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                {{ 'private_tour.people_count' | translate }}
+              </nz-form-label>
+              <nz-form-control
+                nzErrorTip="{{ 'private_tour.name_required' | translate }}">
+                <input
+                  class="!rounded-lg py-2! px-4!"
+                  nz-input
+                  formControlName="number_of_people"
+                  type="number"
+                  placeholder="{{ 'private_tour.people_count' | translate }}" />
+              </nz-form-control>
+            </div>
+            <!-- ================= Công Ty ================= -->
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                {{ 'tab_service.company' | translate }}
               </nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
+                  class="!rounded-lg py-2! px-4!"
+                  placeholder="{{ 'tab_service.company' | translate }}"
+                  formControlName="company" />
+              </nz-form-control>
+            </div>
+            <!-- ================= Thời gian kiến ================= -->
+            <div>
+              <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
+                {{ 'private_tour.estimated_time' | translate }}
+              </nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  class="!rounded-lg py-2! px-4!"
+                  placeholder="{{ 'private_tour.estimated_time' | translate }}"
+                  formControlName="expected_date" />
+              </nz-form-control>
+            </div>
+            <!--   =================  Ghi chú   =================  -->
+            <div class="col-span-2">
+              <nz-form-label
+                [nzSpan]="24"
+                class="font-medium text-[16px] !mb-1">
+                {{ 'tab_service.note' | translate }}
+              </nz-form-label>
+              <nz-form-control>
+                <textarea
+                  rows="6"
+                  nz-input
                   type="text"
                   formControlName="message"
                   placeholder="{{ 'tab_service.note' | translate }}"
-                  class="py-2! rounded-lg!" />
+                  class="py-2! rounded-lg!"></textarea>
               </nz-form-control>
-            </nz-form-item>
+            </div>
 
-            <!--     Buttons -->
+            <!--  =================   Buttons  =================  -->
             <div class="col-span-2 text-center">
               <button
-                class="!px-10 !py-2 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white !uppercase">
+                class="!px-12 !py-3 rounded-xl font-bold cursor-pointer bg-[#ed1d26] !text-white !uppercase">
                 {{ 'tab_service.register_consulting' | translate }}
               </button>
             </div>
@@ -130,8 +180,9 @@
         <div class="workflow-title text-center font-bold uppercase">
           {{ dataServiceDetail.workflow }}
         </div>
-        <div class="workflow-steps">
-          @for (data of dataVisaProcess; track data.id) {
+        <div
+          class="workflow-steps grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          @for (data of dataServiceDetail.visaProcesses; track data.id) {
             <div class="workflow-step">
               <div class="step">{{ data.title }}</div>
               <div class="step-content">{{ data.description }}</div>

@@ -1,8 +1,8 @@
 <swiper-container
   class="mySwiper"
-  pagination="true"
+  pagination="false"
   pagination-clickable="true"
-  space-between="30"
+  space-between="20"
   slides-per-view="1"
   grid='{
     "rows": 1,
@@ -10,12 +10,12 @@
   }'
   breakpoints='{
     "640": {
-      "slidesPerView": 1,
-      "grid": { "rows": 1 }
+      "slidesPerView": 2,
+      "grid": { "rows":2 }
     },
     "768": {
-      "slidesPerView": 1,
-      "grid": { "rows": 1 }
+      "slidesPerView": 2,
+      "grid": { "rows": 2 }
     },
     "1024": {
       "slidesPerView": 2,
@@ -33,15 +33,17 @@
       <div class="card-item">
         <div class="picture">
           <img
-            class="h-[130px] object-cover bg-center bg-cover"
+            class="h-[200px] w-full rounded-sm lg:!h-[130px] lg:!w-[200px] object-cover bg-center bg-cover"
             [src]="formatImage(tour.images?.[0]?.storagePath || '')"
             alt="" />
         </div>
         <div class="picture truncate !space-y-[8px]">
           @if (tour.title) {
-            <div class="truncate font-bold uppercase">{{ tour.title }}</div>
+            <div class="truncate font-bold uppercase text-[#0d9344]">
+              {{ tour.title }}
+            </div>
           }
-          @if (tour.star) {
+          @if (tour.averageRate) {
             <div class="feedback">
               <div class="flex items-center !space-x-2">
                 <div class="star flex">
@@ -49,14 +51,16 @@
                     <fa-icon
                       [icon]="faStar"
                       [ngClass]="
-                        i <= tour.star ? 'text-[#e5831e]' : 'text-gray-300'
+                        i <= tour.averageRate
+                          ? 'text-[#e5831e]'
+                          : 'text-gray-300'
                       "
                       class="mr-1"></fa-icon>
                   }
                 </div>
                 <span class="text-[#888]">|</span>
-                <div class="">
-                  {{ tour.numberComment }} {{ 'tour_card.rating' | translate }}
+                <div class="text-[#888]">
+                  {{ tour.totalReviews }} {{ 'tour_card.rating' | translate }}
                 </div>
               </div>
               <div class="total-feedback"></div>

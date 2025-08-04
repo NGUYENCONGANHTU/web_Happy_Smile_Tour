@@ -7,32 +7,58 @@ import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { sanitizeUrl } from '../../../../shared/utils/helpers';
 @Component({
   selector: 'app-content-feature-foreign',
   standalone: true,
-  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
+  imports: [
+    FaIconComponent,
+    NgClass,
+    DecimalPipe,
+    RouterLink,
+    TranslatePipe,
+    NzPaginationModule,
+  ],
   templateUrl: './content-feature-foreign.component.html',
   styleUrl: './content-feature-foreign.component.scss',
 })
 export class ContentFeatureForeignComponent implements OnChanges {
-  faStar = faStar;
+  faStar = faStar; // icon
+  filterTourService = inject(FilterTourService); // service Filter
+  appService = inject(AppService); //App service
+  formatImage = sanitizeUrl; // Format Image
   @Input() filterParams: any;
   tours: FeatureResDTO[] = [];
 
-  filterTourService = inject(FilterTourService);
-  appService = inject(AppService);
+  //=============== Phân trang =================
+  page = 1;
+  pageSize = 10;
+  total = 0;
+
   ngOnChanges() {
-    if (this.filterParams && Object.keys(this.filterParams).length > 0) {
-      this.filterTourService.getTours(this.filterParams).subscribe(data => {
-        this.tours = data;
-      });
-    } else {
-      this.appService.getDataTourForeign().subscribe(res => {
+    this.page = 1;
+    this.loadTours();
+  }
+  loadTours() {
+    const params = {
+      type: 'INTERNATIONAL',
+      startingPosition: this.filterParams.departure || '',
+      locationId: this.filterParams.destination || '',
+      min: this.filterParams.min || 0,
+      max: this.filterParams.max || 200000000,
+      page: this.page - 1,
+      size: this.pageSize,
+    };
+    if (params) {
+      this.filterTourService.filterTours(params).subscribe(res => {
         this.tours = res.data.content;
+        this.total = res.data.totalElements;
       });
     }
   }
-
-  protected readonly formatImage = sanitizeUrl;
+  onPageChange(page: number) {
+    this.page = page;
+    this.loadTours();
+  }
 }

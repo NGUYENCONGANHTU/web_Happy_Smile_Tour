@@ -1,12 +1,13 @@
 .tab-tour-foreign-detail {
+  position: relative;
   .breadcrumb {
     background-color: #f3f0f0;
     padding: 10px 10%;
     margin-bottom: 10px;
   }
   .tab-tour-foreign-detail-main-content {
-    display: flex;
-    gap: 16px;
+    //display: flex;
+    //gap: 16px;
     padding: 0 10%;
     .left-content {
       min-width: calc(100% - 316px);
@@ -19,8 +20,11 @@
         margin: 20px 0;
       }
       .tour-detail-title-tabs {
-        //border: 1px solid red;
         .tour-detail-title-tabs-title {
+          position: sticky;
+          top: 0;
+          background-color: white;
+          z-index: 999;
           display: flex;
           justify-content: space-between;
           gap: 10px;
@@ -32,7 +36,7 @@
             font-weight: bold;
             transition: color 0.3s;
             &:hover {
-              color: #007bff;
+              color: #ed1e27;
             }
           }
         }

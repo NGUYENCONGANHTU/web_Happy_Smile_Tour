@@ -19,9 +19,7 @@
         <div class="customer-feedback-card-item-info">
           <!--avatar customer-->
           <div class="customer-feedback-card-item-info-image">
-            <img
-              [src]="formatImage(data?.responseDocumentDTO?.storagePath || '')"
-              alt="" />
+            <img [src]="formatImage(data?.image?.storagePath || '')" alt="" />
           </div>
           <!--customer info -->
           <div class="customer-feedback-card-item-info-title">

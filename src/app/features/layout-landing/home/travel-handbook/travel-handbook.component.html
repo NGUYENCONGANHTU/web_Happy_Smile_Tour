@@ -11,7 +11,9 @@
         <div class="feature-news-title truncate uppercase">
           {{ featureNews.title }}
         </div>
-        <div class="">{{ featureNews.modifiedDate | dateTimeFormat }}</div>
+        <div class="text-[#888]">
+          {{ featureNews.modifiedDate | dateTimeFormat }}
+        </div>
       </div>
     }
     <div class="normal-news">
@@ -29,7 +31,7 @@
             <div class="normal-news-cards-item-title truncate uppercase">
               {{ data.title }}
             </div>
-            <div class="news-right-cards-item-date">
+            <div class="news-right-cards-item-date text-[#888]">
               {{ data.modifiedDate | dateTimeFormat }}
             </div>
           </div>
@@ -51,7 +53,7 @@
             <div class="news-right-cards-item-info-title truncate uppercase">
               {{ data.title }}
             </div>
-            <div class="news-right-cards-item-info-date">
+            <div class="news-right-cards-item-info-date text-[#888]">
               {{ data.modifiedDate | dateTimeFormat }}
             </div>
           </div>

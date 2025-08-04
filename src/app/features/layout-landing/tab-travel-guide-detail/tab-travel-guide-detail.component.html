@@ -2,7 +2,7 @@
   @if (dataContentTravelGuide) {
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/">Trang chủ</a>
+        <a routerLink="/"> {{ 'menu.home' | translate }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item class="font-bold italic">
         {{ dataContentTravelGuide.title }}
@@ -15,7 +15,9 @@
       </div>
       <div class="mt-3!">
         <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
-        <span class="italic">27/12/2002</span>
+        <span class="italic">
+          {{ dataContentTravelGuide.modifiedDate | dateTimeFormat }}</span
+        >
       </div>
       <div class="trave-tour-detail-content">
         {{ dataContentTravelGuide.content }}

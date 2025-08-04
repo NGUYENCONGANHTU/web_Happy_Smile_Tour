@@ -37,20 +37,14 @@
 }
 
 /* =========== Footer =========== */
-.footer {
-  background: #dcdcdc;
-  //display: grid;
-  //grid-template-columns: 1fr 1fr;
-  //gap: 30px;
-  //padding: 4% 20%;
+footer {
+  background: #e8e8e8;
   box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
   .travel-footer {
     .travel-footer-description {
       font-size: 16px;
-      padding-top: 23px;
     }
     .travel-footer-partners {
-      padding-top: 23px;
     }
   }
   .travel-footer-contact {
@@ -60,7 +54,6 @@
       }
     }
     .travel-footer-contact-address {
-      padding-top: 10px;
       font-size: 16px;
     }
   }
@@ -68,9 +61,31 @@
 .active-menu-item {
   border-radius: 5px;
   color: #ed1d26;
-  font-weight: bold;
+  font-weight: 500;
 }
 .active-menu-label {
   color: #1890ff;
   font-weight: bold;
 }
+
+/* Media query for screens smaller than 1146px */
+//@media (max-width: 1145px) {
+//  nav {
+//    display: none; /* Ẩn nav khi màn hình nhỏ */
+//  }
+//
+//  .menu-trigger {
+//    display: block; /* Hiển thị menu trigger */
+//  }
+//}
+//
+///* Media query for screens larger than or equal to 1146px */
+//@media (min-width: 1146px) {
+//  nav {
+//    display: block; /* Hiển thị nav khi màn hình lớn */
+//  }
+//
+//  .menu-trigger {
+//    display: none; /* Ẩn menu trigger */
+//  }
+//}

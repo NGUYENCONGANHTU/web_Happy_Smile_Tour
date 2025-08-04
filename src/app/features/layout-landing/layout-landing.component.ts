@@ -17,6 +17,11 @@ import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../shared/services/language.service';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 interface ILang {
   code: string;
@@ -42,6 +47,13 @@ interface ILang {
   standalone: true,
 })
 export class LayoutLandingComponent implements OnInit {
+  // icon
+  faEnvelope = faEnvelope;
+  faPhone = faPhone;
+  faEarthAsia = faEarthAsia;
+  faFacebook = faFacebook;
+  faWhatsapp = faWhatsapp;
+  //
   translate = inject(TranslateService);
   languageService = inject(LanguageService);
 
@@ -49,7 +61,6 @@ export class LayoutLandingComponent implements OnInit {
   languages: ILang[] = [
     { code: 'vi', name: 'Tiếng Việt', flag: 'vn' },
     { code: 'en', name: 'English', flag: 'gb' },
-    { code: 'cn', name: '中文', flag: 'cn' },
   ];
   selectedLang!: ILang;
 
@@ -90,4 +101,30 @@ export class LayoutLandingComponent implements OnInit {
     this.languageService.setLanguage(lang.code);
     location.reload();
   }
+
+  footerData: FooterRequest = {
+    name: 'Ms Christine Huong',
+    position: 'General Director',
+    company: 'HAPPYSMILES VIETNAM TRAVEL COMPANY LTD',
+    address:
+      'Room 201, Upland Office Building, 146 Hoang Quoc Viet Street, Nghia Tan Ward, Cau Giay Dist, Ha Noi, Vietnam.',
+    taxCode: '0110665455',
+    licenseNumber: '01-2627/2024/CDLQGVN-GP LHQT',
+    website: 'www.happysmilesvietnam.com',
+    email: 'happysmilesvn@gmail.com',
+    mobileNumber: '+84 912 88 33 47',
+    whatsappNumber: '+84 966 788 728',
+  };
+}
+export interface FooterRequest {
+  name?: string;
+  position?: string;
+  company?: string;
+  address?: string;
+  taxCode?: string;
+  licenseNumber?: string;
+  website?: string;
+  email?: string;
+  mobileNumber?: string;
+  whatsappNumber?: string;
 }

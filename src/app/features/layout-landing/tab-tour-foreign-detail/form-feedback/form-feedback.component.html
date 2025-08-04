@@ -5,16 +5,16 @@
       <nz-form-item>
         <nz-form-control
           [nzErrorTip]="'tour_detail.please_feedback' | translate">
-          <nz-rate formControlName="star"></nz-rate>
+          <nz-rate formControlName="rate"></nz-rate>
 
-          @if (validateForm.value.star) {
+          @if (validateForm.value.rate) {
             <span class="text-[20px] ml-2!">/</span>
             <span class="ant-rate-text !text-[20px] font-bold">
-              {{ tooltips[validateForm.value.star - 1] }}
+              {{ tooltips[validateForm.value.rate - 1] }}
             </span>
             <fa-icon
               [icon]="faStar"
-              class="text-[#fadb14]! !text-[20px]"></fa-icon>
+              class="text-[#f0b100]! !text-[20px]"></fa-icon>
           }
         </nz-form-control>
       </nz-form-item>

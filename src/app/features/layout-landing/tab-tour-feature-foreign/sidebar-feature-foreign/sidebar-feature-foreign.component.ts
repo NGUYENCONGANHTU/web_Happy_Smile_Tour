@@ -39,11 +39,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SidebarFeatureForeignComponent implements OnInit {
   appService = inject(AppService);
 
-  // Ngân sách
-  rangeValue: number[] = [0, 200000000];
-  // Điểm đi và điểm đến
-  departure = '';
-  destination = '';
+  rangeValue: number[] = [0, 200000000]; // Khoảng ngân sách
+  departure = ''; // Điểm đến
+  destination = ''; // Điểm đi
 
   @Output() filtersChanged = new EventEmitter<any>();
   searchTour(): void {

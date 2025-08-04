@@ -13,7 +13,7 @@ export interface HomeBannerReqDTO {
   title: string;
   description: string;
   bannerType: BannerType;
-  documentDTOS: DocumentResDTO[];
+  images: DocumentResDTO[];
 }
 export interface HomeBannerResDTO {
   id: number;
@@ -22,7 +22,7 @@ export interface HomeBannerResDTO {
   title: string;
   description: string;
   bannerType: BannerType;
-  documentDTOS: DocumentResDTO[];
+  images: DocumentResDTO[];
 }
 export enum BannerType {
   HOME = 'HOME',
@@ -98,12 +98,13 @@ export enum LocationType {
 
 /* ==================== Các hoạt động nổi bật ==================== */
 export interface FeatureReqDTO {
+  tourId: number;
   title: string;
-  star: number;
+  averageRate: number;
   numberComment: number;
-  originalPrice: number;
+  originalPrice: string;
   discount: number;
-  finalPrice: number;
+  finalPrice: string;
   stayDate: string;
   location: LocationResDTO;
   startingPoints: LocationResDTO[];
@@ -118,16 +119,18 @@ export interface FeatureReqDTO {
   tourSurcharges: TourSurchargeResDTO[];
   tourDiscounts: TourDiscountResDTO[];
   tourComments: TourCommentDetailResDTO[];
+  totalReviews: number;
+  ratingList: RatingResDTO[];
 }
 export interface FeatureResDTO {
   id: number;
   tourId: number;
   title: string;
-  star: number;
+  averageRate: number;
   numberComment: number;
-  originalPrice: number;
+  originalPrice: string;
   discount: number;
-  finalPrice: number;
+  finalPrice: string;
   stayDate: string;
   location: LocationResDTO;
   startingPoints: LocationResDTO[];
@@ -142,11 +145,24 @@ export interface FeatureResDTO {
   tourSurcharges: TourSurchargeResDTO[];
   tourDiscounts: TourDiscountResDTO[];
   tourComments: TourCommentDetailResDTO[];
+  totalReviews: number;
+  ratingList: RatingResDTO[];
+}
+export interface RatingReqDTO {
+  star: number;
+  percent: number;
+  count: number;
   averageRate?: number;
   ratingList?: IRating[];
   totalReviews?: number;
 }
-//
+export interface RatingResDTO {
+  id: number;
+  star: number;
+  percent: number;
+  count: number;
+}
+
 /* ==================== CẨM NANG TIN TỨC ==================== */
 export interface TravelGuideReqDTO {
   title: string;
@@ -167,7 +183,7 @@ export interface CommentFeedbackReqDTO {
   description: string;
   content: string;
   start: number;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
 export interface CommentFeedbackResDTO {
   id: number;
@@ -175,19 +191,7 @@ export interface CommentFeedbackResDTO {
   description: string;
   content: string;
   start: number;
-  responseDocumentDTO: DocumentResDTO;
-}
-/* ====================  PAGE GIỚI THIỆU  ==================== */
-export interface IntroducePageReqDTO {
-  title: string;
-  description: string;
-  type: Introduce;
-}
-export interface IntroducePageResDTO {
-  id: number;
-  title: string;
-  description: string;
-  type: Introduce;
+  image: DocumentResDTO;
 }
 
 export enum Introduce {
@@ -236,6 +240,7 @@ export interface ContactPrivateTourReqDTO {
   budget: string;
   location: string;
   message: string;
+  contactType: ContactType;
 }
 export interface ContactPrivateTourResDTO {
   id: number;
@@ -248,6 +253,11 @@ export interface ContactPrivateTourResDTO {
   budget: string;
   location: string;
   message: string;
+  contactType: ContactType;
+}
+export enum ContactType {
+  'TOUR',
+  'VISA',
 }
 /* ==================== TRANG LIÊN HỆ   ==================== */
 export interface ContactPageReqDTO {
@@ -266,14 +276,18 @@ export enum ContactPage {
   ADDRESS,
   PHONE,
   EMAIL,
-  FOOTER,
 }
 
 /* ==================== ĐÁNH GIÁ CHI TIẾT TOUR  ==================== */
+
 export interface TourCommentDetailReqDTO {
-  name: string;
-  content: string;
-  star: number;
+  name?: string;
+  rate?: number;
+  content?: string;
+  tags?: string[];
+  imageUrl?: string;
+  time?: Date;
+  tourId?: number;
 }
 export interface TourCommentDetailResDTO {
   id: number;
@@ -322,6 +336,7 @@ export interface VisaServiceReqDTO {
   serviceTitle: string;
   serviceContent: string;
   workflow: string;
+  visaProcesses: VisaProcessResDTO[];
 }
 
 export interface VisaServiceResDTO {
@@ -334,6 +349,7 @@ export interface VisaServiceResDTO {
   serviceTitle: string;
   serviceContent: string;
   workflow: string;
+  visaProcesses: VisaProcessResDTO[];
 }
 
 /* ==================== Menu Dịch Vụ ( nội dung quy trình )  ==================== */
@@ -352,10 +368,10 @@ export interface VisaProcessResDTO {
 
 /* ==================== Partner  ==================== */
 export interface PartnerReqDTO {
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
 
 export interface PartnerResDTO {
   id: number;
-  responseDocumentDTO: DocumentResDTO;
+  image: DocumentResDTO;
 }
