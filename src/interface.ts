@@ -303,13 +303,13 @@ export interface TourCommentDetailResDTO {
 export interface LanguageReqDTO {
   name: string;
   code: string;
-  flag: string;
+  image: DocumentResDTO;
 }
 export interface LanguageResDTO {
   id: number;
   name: string;
   code: string;
-  flag: string;
+  image: DocumentResDTO;
 }
 
 /* ==================== LỊCH TRÌNH  ==================== */
@@ -374,4 +374,29 @@ export interface PartnerReqDTO {
 export interface PartnerResDTO {
   id: number;
   image: DocumentResDTO;
+}
+export interface FooterReqDTO {
+  name?: string;
+  position?: string;
+  company?: string;
+  address?: string;
+  taxCode?: string;
+  licenseNumber?: string;
+  website?: string;
+  email?: string;
+  mobileNumber?: string;
+  whatsappNumber?: string;
+}
+export interface FooterResDTO {
+  id: number;
+  name?: string;
+  position?: string;
+  company?: string;
+  address?: string;
+  taxCode?: string;
+  licenseNumber?: string;
+  website?: string;
+  email?: string;
+  mobileNumber?: string;
+  whatsappNumber?: string;
 }

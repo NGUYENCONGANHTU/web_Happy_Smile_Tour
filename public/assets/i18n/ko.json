@@ -1,0 +1,109 @@
+{
+  "base": {
+    "time": {
+      "ago": "전",
+      "just_now": "방금 전"
+    }
+  },
+  "menu": {
+    "home": "홈",
+    "about": "소개",
+    "domestic_tours": "국내 여행",
+    "international_tours": "해외 여행",
+    "private_group_tours": "개인 그룹 투어",
+    "services": "서비스",
+    "contact": "연락처",
+    "language": "한국어"
+  },
+  "feedback": {
+    "customer": "고객"
+  },
+  "domestic_tour": {
+    "title": "당신에게 맞는 여행을 찾아보세요!",
+    "tab_domestic": "국내",
+    "tab_foreign": "해외",
+    "budget": "예산",
+    "location": "지역 선택",
+    "departure": "출발지",
+    "destination": "목적지",
+    "find_tour": "여행 찾기"
+  },
+  "tour_card": {
+    "best_sale": "최고의 가격",
+    "rating": "개의 리뷰",
+    "itinerary": "일정",
+    "from": "부터",
+    "price_from": "시작 가격"
+  },
+  "breadcrumb": {
+    "home": "홈",
+    "private_group_tours": "개인 그룹 투어"
+  },
+  "tab_service": {
+    "company": "회사",
+    "title": "상담 서비스",
+    "consulting": "상담",
+    "instruction": "무료 상담을 위해 정보를 입력하세요",
+    "name": "이름",
+    "phone": "전화번호",
+    "email": "이메일",
+    "note": "메모",
+    "consult_now": "상담하기",
+    "register_consulting": "상담 등록",
+    "enter_name": "이름을 입력하세요",
+    "name_required": "이름은 필수입니다",
+    "email_valid": "이메일이 유효하지 않습니다",
+    "phone_required": "전화번호는 필수입니다"
+  },
+  "private_tour": {
+    "people_count": "참가 인원",
+    "estimated_time": "예상 시간",
+    "estimated_budget": "예상 예산",
+    "desired_destination": "희망 목적지",
+    "note": "메모",
+    "contact_us": "저희에게 연락주세요",
+    "name_required": "이름은 필수입니다",
+    "phone_required": "전화번호는 필수입니다",
+    "cancel": "취소",
+    "submit": "보내기"
+  },
+  "tour_detail": {
+    "your_feedback": "귀하의 평가",
+    "please_feedback": "평가를 선택해주세요",
+    "please_enter_content_feedback": "리뷰 내용을 입력해주세요",
+    "submit_feedback": "리뷰 제출",
+    "group_age": "연령대",
+    "age": "나이",
+    "original_price": "원래 가격",
+    "table_discount": "할인표",
+    "type_discount": "할인 유형",
+    "description": "설명",
+    "value_discount": "할인 금액",
+    "if_else": "조건",
+    "table_surcharge": "추가 요금표",
+    "name_surcharge": "추가 요금명",
+    "price_surcharge": "금액",
+    "apply_for": "적용 대상",
+    "day": "일",
+    "feature_place": "주요 장소",
+    "schedule": "일정표",
+    "table": "요금표",
+    "service_content": "포함 서비스",
+    "non_service_content": "불포함 서비스",
+    "note": "비고",
+    "t_c": "이용 약관",
+    "customer_preview": "고객 리뷰",
+    "booking": "지금 예약하기",
+    "not_yet_pay": "지금 예약하고 결제는 나중에",
+    "tour": "여행",
+    "reviews": "리뷰",
+    "stars": "별점",
+    "filter_reviews_by": "리뷰 필터",
+    "all": "전체",
+    "cancel": "취소",
+    "info_contact": "연락처 정보",
+    "submit": "보내기",
+    "full_name": "성명",
+    "address": "주소"
+  }
+}

@@ -10,6 +10,8 @@ import {
   ContactPrivateTourResDTO,
   FeatureReqDTO,
   FeatureResDTO,
+  FooterReqDTO,
+  FooterResDTO,
   HomeBannerReqDTO,
   HomeBannerResDTO,
   HomeTitleReqDTO,
@@ -65,6 +67,7 @@ export class AppService {
   apiPartner = environment.API_URL + '/partner';
   apiVisaProcess = environment.API_URL + '/visa-process-trans';
   apiUrlTourCommentDetail = environment.API_URL + '/tour-comment';
+  apiFooter = environment.API_URL + '/footer-trans';
 
   /*======================== HOME BANNER ==========================*/
   createData(data: HomeBannerReqDTO) {
@@ -457,5 +460,25 @@ export class AppService {
   }
   deleteDataPartner(id: number) {
     return this.http.delete<PartnerResDTO>(`${this.apiPartner}/${id}`);
+  }
+
+  /*============================== Footer ================================*/
+  createDataFooter(data: FooterReqDTO) {
+    return this.http.post<FooterResDTO>(this.apiFooter, data);
+  }
+  getAllDataFooter() {
+    return this.http.get<{ data: FooterResDTO[] }>(
+      this.apiFooter + `/all?langCode=${this.languageService.locale}`
+    );
+  }
+  getDataByIdFooter(id: number) {
+    return this.http.get<FooterResDTO>(`${this.apiFooter}/${id}`);
+  }
+
+  updateDataFooter(data: FooterReqDTO, id: number) {
+    return this.http.put<FooterResDTO>(`${this.apiFooter}/${id}`, data);
+  }
+  deleteDataFooter(id: number) {
+    return this.http.delete<FooterResDTO>(`${this.apiFooter}/${id}`);
   }
 }
