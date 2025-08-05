@@ -1,0 +1,18 @@
+#chat-icon:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+#chat-popup {
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+#chat-popup div {
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+#chat-icon img {
+  pointer-events: none;
+}

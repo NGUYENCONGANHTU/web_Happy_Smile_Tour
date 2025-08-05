@@ -12,7 +12,11 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../app.service';
-import { VisaServiceResDTO } from '../../../interface';
+import {
+  FooterResDTO,
+  LanguageResDTO,
+  VisaServiceResDTO,
+} from '../../../interface';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -22,12 +26,8 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-
-interface ILang {
-  code: string;
-  name: string;
-  flag: string;
-}
+import { sanitizeUrl } from '../../shared/utils/helpers';
+import { ChatBoxComponent } from '../chat-box/chat-box.component';
 
 @Component({
   selector: 'app-layout-landing',
@@ -41,6 +41,7 @@ interface ILang {
     RouterLinkActive,
     NgClass,
     TranslatePipe,
+    ChatBoxComponent,
   ],
   templateUrl: './layout-landing.component.html',
   styleUrl: './layout-landing.component.scss',
@@ -53,17 +54,16 @@ export class LayoutLandingComponent implements OnInit {
   faEarthAsia = faEarthAsia;
   faFacebook = faFacebook;
   faWhatsapp = faWhatsapp;
-  //
+
+  // ======================== service ========================
   translate = inject(TranslateService);
+  router = inject(Router);
   languageService = inject(LanguageService);
-
+  appService = inject(AppService);
   faCaretDown = faCaretDown;
-  languages: ILang[] = [
-    { code: 'vi', name: 'Tiếng Việt', flag: 'vn' },
-    { code: 'en', name: 'English', flag: 'gb' },
-  ];
-  selectedLang!: ILang;
-
+  languages: LanguageResDTO[] = [];
+  selectedLang!: LanguageResDTO;
+  formatImage = sanitizeUrl;
   isServiceActive = false;
   isMenuOpen = false;
 
@@ -72,20 +72,29 @@ export class LayoutLandingComponent implements OnInit {
     this.selectedServiceId = id;
   }
 
-  router = inject(Router);
   ngOnInit() {
-    this.selectedLang = this.languages.find(
-      lang => lang.code === (localStorage.getItem('lang') ?? 'vi')
-    ) as ILang;
-    this.translate.use(this.languageService.locale);
     this.getDataVisaMenu();
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.isServiceActive = event.url.startsWith('/tab-service');
       });
+    this.getDataFooter();
+    this.getDataLanguages();
   }
-  appService = inject(AppService);
+
+  // ======================== Get data Language ========================
+  getDataLanguages() {
+    this.appService.getAllDataLanguage().subscribe(res => {
+      this.languages = res.data;
+
+      const langCode = localStorage.getItem('lang') ?? 'vi';
+      this.selectedLang =
+        this.languages.find(lang => lang.code === langCode) ??
+        this.languages[0];
+    });
+  }
+  // ======================== data Footer ========================
   dataVisaMenu: VisaServiceResDTO[] = [];
   getDataVisaMenu() {
     this.appService.getAllDataMenuService().subscribe(res => {
@@ -96,35 +105,17 @@ export class LayoutLandingComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  handleChangeLanguage(lang: ILang) {
+  handleChangeLanguage(lang: LanguageResDTO) {
     this.selectedLang = lang;
     this.languageService.setLanguage(lang.code);
     location.reload();
   }
 
-  footerData: FooterRequest = {
-    name: 'Ms Christine Huong',
-    position: 'General Director',
-    company: 'HAPPYSMILES VIETNAM TRAVEL COMPANY LTD',
-    address:
-      'Room 201, Upland Office Building, 146 Hoang Quoc Viet Street, Nghia Tan Ward, Cau Giay Dist, Ha Noi, Vietnam.',
-    taxCode: '0110665455',
-    licenseNumber: '01-2627/2024/CDLQGVN-GP LHQT',
-    website: 'www.happysmilesvietnam.com',
-    email: 'happysmilesvn@gmail.com',
-    mobileNumber: '+84 912 88 33 47',
-    whatsappNumber: '+84 966 788 728',
-  };
-}
-export interface FooterRequest {
-  name?: string;
-  position?: string;
-  company?: string;
-  address?: string;
-  taxCode?: string;
-  licenseNumber?: string;
-  website?: string;
-  email?: string;
-  mobileNumber?: string;
-  whatsappNumber?: string;
+  // ======================== Get data Footer ========================
+  footerData: FooterResDTO[] = [];
+  getDataFooter() {
+    this.appService.getAllDataFooter().subscribe(res => {
+      this.footerData = res.data;
+    });
+  }
 }
