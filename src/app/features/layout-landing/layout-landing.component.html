@@ -148,8 +148,9 @@
   </header>
   <main class="flex-1">
     <router-outlet></router-outlet>
+    <app-chat-box></app-chat-box>
   </main>
-
+  <!-- -->
   @for (data of footerData; track data.id) {
     <footer>
       <div class="footer !p-5 md:!px-[10%] lg:flex justify-between !space-y-7">
