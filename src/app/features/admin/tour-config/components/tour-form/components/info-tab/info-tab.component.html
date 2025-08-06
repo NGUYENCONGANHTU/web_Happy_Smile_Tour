@@ -30,9 +30,7 @@
     <nz-form-label nzRequired>Điểm đến</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['locationId'] | appValidationMessage">
-      <nz-select
-        formControlName="locationId"
-        nzPlaceHolder="Chọn các điểm xuất phát">
+      <nz-select formControlName="locationId" nzPlaceHolder="Chọn điểm đến">
         @for (item of locationOptions; track item) {
           <nz-option [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
         }

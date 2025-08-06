@@ -1,0 +1,61 @@
+<form
+  nz-form
+  [formGroup]="bannerForm"
+  nzLayout="vertical"
+  (ngSubmit)="onSubmit()">
+  <div class="flex justify-between">
+    <h1>
+      {{ title }}
+      <span class="italic text-gray-500 font-normal">{{
+        isOriginalLanguage ? '(Bản gốc)' : '(Bản dịch)'
+      }}</span>
+    </h1>
+    <button nz-button nzType="primary" type="submit">Lưu</button>
+  </div>
+  <nz-form-item>
+    <nz-form-label nzRequired>Tiêu đề</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="bannerForm.controls['title'] | appValidationMessage">
+      <input nz-input formControlName="title" placeholder="Nhập" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Nội dung</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="bannerForm.controls['description'] | appValidationMessage">
+      <textarea nz-input rows="3" formControlName="description"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="bannerForm.controls['images'] | appValidationMessage">
+      @if (bannerForm.controls['images'].enabled) {
+        <nz-upload
+          nzListType="picture-card"
+          [nzFileList]="fileList.value"
+          [nzBeforeUpload]="beforeUpload"
+          [nzMultiple]="false">
+          <div>
+            <i nz-icon nzType="plus"></i>
+            <div style="margin-top: 8px">Tải ảnh</div>
+          </div>
+        </nz-upload>
+      } @else {
+        <div class="flex gap-2">
+          @for (image of fileList.value; track $index) {
+            <div class="w-[100px] h-[100px]">
+              <img
+                width="auto"
+                height="auto"
+                [src]="image?.thumbUrl"
+                alt="image" />
+            </div>
+          }
+        </div>
+      }
+    </nz-form-control>
+  </nz-form-item>
+</form>

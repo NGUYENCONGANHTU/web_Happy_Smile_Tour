@@ -35,10 +35,13 @@
         <nz-form-label nzRequired>Điểm đến</nz-form-label>
         <nz-form-control
           [nzErrorTip]="tourForm.controls['locationId'] | appValidationMessage">
-          <input
-            nz-input
-            formControlName="locationId"
-            placeholder="Nhập các điểm đến" />
+          <nz-select formControlName="locationId" nzPlaceHolder="Chọn điểm đến">
+            @for (item of locationOptions; track item) {
+              <nz-option
+                [nzLabel]="item.label"
+                [nzValue]="item.value"></nz-option>
+            }
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
 
@@ -155,7 +158,12 @@
   <div class="w-full">
     <div class="flex gap-2 justify-between h-[32px]">
       <div class="italic">Bản dịch</div>
-      <button nz-button [disabled]="tourFormTrans.invalid">Lưu</button>
+      <button
+        nz-button
+        [disabled]="tourFormTrans.invalid"
+        (click)="saved.emit()">
+        Lưu
+      </button>
     </div>
     <form
       [formGroup]="tourFormTrans"
@@ -191,12 +199,15 @@
         <nz-form-label nzRequired>Điểm đến</nz-form-label>
         <nz-form-control
           [nzErrorTip]="
-            tourFormTrans.controls['location'] | appValidationMessage
+            tourFormTrans.controls['locationId'] | appValidationMessage
           ">
-          <input
-            nz-input
-            formControlName="location"
-            placeholder="Nhập các điểm đến" />
+          <nz-select formControlName="locationId" nzPlaceHolder="Chọn điểm đến">
+            @for (item of locationOptions; track item) {
+              <nz-option
+                [nzLabel]="item.label"
+                [nzValue]="item.value"></nz-option>
+            }
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
 

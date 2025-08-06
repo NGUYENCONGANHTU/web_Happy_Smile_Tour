@@ -35,7 +35,12 @@
   <div class="w-1/2">
     <div class="flex gap-2 justify-between h-[32px] !mb-2">
       <div class="italic">Bản dịch</div>
-      <button nz-button [disabled]="tourFormTrans.invalid">Lưu</button>
+      <button
+        nz-button
+        [disabled]="tourFormTrans.invalid"
+        (click)="saved.emit()">
+        Lưu
+      </button>
     </div>
     <form [formGroup]="tourFormTrans" nz-form>
       <nz-form-item>

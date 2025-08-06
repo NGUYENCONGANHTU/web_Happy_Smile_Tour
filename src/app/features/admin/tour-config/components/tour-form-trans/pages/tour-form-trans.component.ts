@@ -34,6 +34,7 @@ import { LanguageSelectionComponent } from '../../../../../../shared/components/
 import { ScheduleTabTransComponent } from '../components/schedule-tab/schedule-tab-trans.component';
 import { PricingTabTransComponent } from '../components/pricing-tab/pricing-tab-trans.component';
 import { ServiceTabTransComponent } from '../components/service-tab/service-tab-trans.component';
+import { SharedDataService } from '../../../../../../shared/services/shared-data.service';
 
 @Component({
   selector: 'app-tour-form-trans',
@@ -62,6 +63,7 @@ export class TourFormTransComponent implements OnInit {
   fb = inject(FormBuilder);
   tourConfigService = inject(TourConfigService);
   notification = inject(NzNotificationService);
+  sharedService = inject(SharedDataService);
 
   fetching = false;
   submittingTour = false;
@@ -75,7 +77,9 @@ export class TourFormTransComponent implements OnInit {
   scheduleFormTrans: FormGroup = this.getScheduleFormGroupTrans();
   scheduleForm: FormGroup = this.getScheduleFormGroupTrans();
   id?: string | number;
-  selectedLanguage = ORIGINAL_LANGUAGE;
+  selectedLanguage = this.sharedService
+    .getLanguageOptions()
+    .filter(l => l.code !== ORIGINAL_LANGUAGE)[0].code;
 
   ngOnInit(): void {
     this.tourForm.disable();
@@ -131,16 +135,16 @@ export class TourFormTransComponent implements OnInit {
           });
           this.tourForm.patchValue({
             ...res.tour.data,
-            location: res.tour.data.location?.locationId,
+            locationId: res.tour.data.location?.locationId,
             startingPointIds: res.tour.data.startingPoints?.map(
               point => point.locationId
             ),
           });
           this.fileList.clear();
           this.fileListTrans.clear();
-          res.tour.data.images.forEach(({ storagePath }) => {
+          res.tour.data.images.forEach(({ storagePath, id }) => {
             this.fileList.push(
-              this.fb.control(parseToNzUploadFile(storagePath))
+              this.fb.control(parseToNzUploadFile(storagePath, id))
             );
           });
           res.tourTrans.data.images.forEach(({ storagePath, id }) => {
@@ -157,7 +161,6 @@ export class TourFormTransComponent implements OnInit {
                 name: dt.name,
                 age: dt.age,
                 price: dt.price,
-                created: dt.created,
               })
             );
           });
@@ -166,6 +169,9 @@ export class TourFormTransComponent implements OnInit {
           res.tourPricesTrans.data.forEach(dt => {
             this.tourPricesTrans.push(
               this.fb.group({
+                id: dt.created ? dt.id : undefined,
+                tourPriceId: dt.tourPriceId,
+                languageCode: this.selectedLanguage,
                 name: dt.name,
                 age: dt.age,
                 price: { value: dt.price, disabled: true },
@@ -189,10 +195,14 @@ export class TourFormTransComponent implements OnInit {
           res.tourDiscountsTrans.data.forEach(dt => {
             this.discountsTrans.push(
               this.fb.group({
+                id: dt.created ? dt.id : undefined,
+                tourDiscountId: dt.tourDiscountId,
+                languageCode: this.selectedLanguage,
                 name: dt.name,
                 description: dt.description,
                 price: { value: dt.price, disabled: true },
                 condition: dt.condition,
+                created: dt.created,
               })
             );
           });
@@ -207,9 +217,13 @@ export class TourFormTransComponent implements OnInit {
           res.tourSurchargesTrans.data.forEach(dt => {
             this.surchargesTrans.push(
               this.fb.group({
+                id: dt.created ? dt.id : undefined,
+                tourSurchargeId: dt.tourSurchargeId,
+                languageCode: this.selectedLanguage,
                 name: dt.name,
                 price: { value: dt.price, disabled: true },
                 apply: dt.apply,
+                created: dt.created,
               })
             );
           });
@@ -223,7 +237,14 @@ export class TourFormTransComponent implements OnInit {
           this.tourSchedulesTrans.clear();
           res.tourScheduleTrans.data.forEach(dt => {
             this.tourSchedulesTrans.push(
-              this.fb.group({ title: dt.title, description: dt.description })
+              this.fb.group({
+                id: dt.id,
+                tourScheduleId: dt.tourScheduleId,
+                languageCode: this.selectedLanguage,
+                title: dt.title,
+                description: dt.description,
+                created: dt.created,
+              })
             );
           });
           this.fetching = false;
@@ -237,126 +258,139 @@ export class TourFormTransComponent implements OnInit {
     }
   }
 
-  submit(): void {
+  submit(part: 'INFO' | 'SCHEDULES' | 'PRICES'): void {
     if (this.id) {
-      if (
-        this.tourFormTrans.valid &&
-        this.priceFormTrans.valid &&
-        this.scheduleFormTrans.valid
-      ) {
-        this.submittingTour = true;
-        const formValues = this.tourFormTrans.getRawValue();
-        const formData = new FormData();
-
-        // Đưa các field đơn giản vào FormData
-        for (const key in formValues) {
-          const value = formValues[key];
-          if (Array.isArray(value)) {
-            value.forEach((v: any) => formData.append(key, v));
+      switch (part) {
+        case 'INFO':
+          if (this.tourFormTrans.valid) {
+            this.submittingTour = true;
+            const formValues = this.tourFormTrans.value;
+            if (this.tourFormTrans?.value?.created) {
+              this.tourConfigService
+                .updateTourTransById(formValues?.id, formValues)
+                .subscribe({
+                  next: _res => {
+                    this.submittingTour = false;
+                  },
+                  error: () => {
+                    this.submittingTour = false;
+                  },
+                });
+            } else {
+              this.tourConfigService
+                .createTourTrans({
+                  ...formValues,
+                  tourId: this.id,
+                  languageCode: this.selectedLanguage,
+                })
+                .subscribe({
+                  next: _res => {
+                    this.submittingTour = false;
+                  },
+                  error: () => {
+                    this.submittingTour = false;
+                  },
+                });
+            }
           } else {
-            formData.append(key, value);
+            this.tourFormTrans.markAllAsTouched();
           }
-        }
-        if (this.isOriginalTrans) {
-          this.tourConfigService.updateTourById(this.id, formData).subscribe({
-            next: _res => {
-              this.submittingTour = false;
-            },
-            error: () => {
-              this.submittingTour = false;
-            },
-          });
-        } else {
-          this.tourConfigService
-            .updateTourTransById(this.id, formData)
-            .subscribe({
-              next: _res => {
-                this.submittingTour = false;
-              },
-              error: () => {
-                this.submittingTour = false;
-              },
-            });
-        }
-
-        this.submittingPrice = true;
-        const tourPrices: TourPriceReqDTO[] =
-          this.tourPrices.value.map((price: TourPriceResDTO) => ({
-            ...price,
-            tourId: this.id,
-          })) ?? [];
-        const tourDiscounts: TourDiscountReqDTO[] =
-          this.discounts.value.map((discount: TourDiscountResDTO) => ({
-            ...discount,
-            tourId: this.id,
-          })) ?? [];
-        const tourSurcharges: TourSurchargeReqDTO[] =
-          this.surcharges.value.map((surcharges: TourSurchargeResDTO) => ({
-            ...surcharges,
-            tourId: this.id,
-          })) ?? [];
-        if (tourPrices.length) {
-          this.tourConfigService.updateTourPricesTrans(tourPrices).subscribe({
-            next: () => {
-              this.submittingPrice = false;
-            },
-            error: () => {
-              this.submittingPrice = false;
-            },
-          });
-        }
-        if (tourDiscounts.length) {
-          this.tourConfigService
-            .updateTourDiscountsTrans(tourDiscounts)
-            .subscribe({
-              next: () => {
-                this.submittingPrice = false;
-              },
-              error: () => {
-                this.submittingPrice = false;
-              },
-            });
-        }
-        if (tourSurcharges.length) {
-          this.tourConfigService
-            .updateTourSurchargesTrans(tourSurcharges)
-            .subscribe({
-              next: () => {
-                this.submittingPrice = false;
-              },
-              error: () => {
-                this.submittingPrice = false;
-              },
-            });
-        }
-        this.submittingSchedule = true;
-        const tourSchedules: TourScheduleReqDTO[] =
-          this.tourSchedules.value.map((surcharges: TourSurchargeResDTO) => ({
-            ...surcharges,
-            tourId: this.id,
-          })) ?? [];
-        this.tourConfigService
-          .updateTourSchedulesTrans(tourSchedules)
-          .subscribe({
-            next: () => {
-              this.submittingSchedule = false;
-            },
-            error: () => {
-              this.submittingSchedule = false;
-            },
-          });
-      } else {
-        this.tourFormTrans.markAllAsTouched();
-        this.priceFormTrans.markAllAsTouched();
-        this.scheduleFormTrans.markAllAsTouched();
+          break;
+        case 'PRICES':
+          if (this.priceFormTrans.valid) {
+            this.submittingPrice = true;
+            const tourPrices: TourPriceReqDTO[] =
+              this.tourPricesTrans.value.map((price: TourPriceResDTO) => ({
+                ...price,
+                tourId: this.id,
+              })) ?? [];
+            const tourDiscounts: TourDiscountReqDTO[] =
+              this.discountsTrans.value.map((discount: TourDiscountResDTO) => ({
+                ...discount,
+                tourId: this.id,
+              })) ?? [];
+            const tourSurcharges: TourSurchargeReqDTO[] =
+              this.surchargesTrans.value.map(
+                (surcharges: TourSurchargeResDTO) => ({
+                  ...surcharges,
+                  tourId: this.id,
+                })
+              ) ?? [];
+            if (tourPrices.length) {
+              this.tourConfigService
+                .createTourPricesTrans(tourPrices)
+                .subscribe({
+                  next: () => {
+                    this.submittingPrice = false;
+                  },
+                  error: () => {
+                    this.submittingPrice = false;
+                  },
+                });
+            }
+            if (tourDiscounts.length) {
+              this.tourConfigService
+                .createTourDiscountTrans(tourDiscounts)
+                .subscribe({
+                  next: () => {
+                    this.submittingPrice = false;
+                  },
+                  error: () => {
+                    this.submittingPrice = false;
+                  },
+                });
+            }
+            if (tourSurcharges.length) {
+              this.tourConfigService
+                .createTourSurchargeTrans(tourSurcharges)
+                .subscribe({
+                  next: () => {
+                    this.submittingPrice = false;
+                  },
+                  error: () => {
+                    this.submittingPrice = false;
+                  },
+                });
+            }
+          } else {
+            this.priceFormTrans.markAllAsTouched();
+          }
+          break;
+        case 'SCHEDULES':
+          if (this.scheduleFormTrans.valid) {
+            this.submittingSchedule = true;
+            const tourSchedules: TourScheduleReqDTO[] =
+              this.tourSchedulesTrans.value.map(
+                (surcharges: TourSurchargeResDTO) => ({
+                  ...surcharges,
+                  tourId: this.id,
+                })
+              ) ?? [];
+            this.tourConfigService
+              .createTourScheduleTrans(tourSchedules)
+              .subscribe({
+                next: () => {
+                  this.submittingSchedule = false;
+                },
+                error: () => {
+                  this.submittingSchedule = false;
+                },
+              });
+          } else {
+            this.scheduleFormTrans.markAllAsTouched();
+          }
+          break;
+        default:
       }
     } else {
       this.notification.error('Lỗi', 'Không tìm thấy id tour.');
     }
   }
 
-  handleSelectedLanguageChange() {
-    this.fetchTourData();
+  handleSelectedLanguageChange(lang?: string) {
+    if (lang) {
+      this.fetchTourData();
+    }
   }
 
   goTo(target: string, _data?: any) {
@@ -382,7 +416,7 @@ export class TourFormTransComponent implements OnInit {
       discount: [{ value: 0, disabled: true }],
       finalPrice: [{ value: 0, disabled: true }],
       stayDate: [null, [Validators.required]],
-      location: [{ value: null, disabled: true }, [Validators.required]],
+      locationId: [{ value: null, disabled: true }, [Validators.required]],
       startingPointIds: [{ value: [], disabled: true }, [Validators.required]],
       highlight: [null, [Validators.required]],
       service: [null, [Validators.required]],
@@ -390,6 +424,8 @@ export class TourFormTransComponent implements OnInit {
       regulation: [null, [Validators.required]],
       note: [null, [Validators.required]],
       images: this.fb.array([]),
+      created: [false],
+      id: [null],
     });
   }
 

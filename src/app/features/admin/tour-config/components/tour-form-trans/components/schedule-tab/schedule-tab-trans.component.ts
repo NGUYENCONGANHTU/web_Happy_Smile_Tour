@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -35,6 +35,8 @@ export class ScheduleTabTransComponent {
 
   @Input({ required: true }) scheduleForm!: FormGroup;
   @Input({ required: true }) scheduleFormTrans!: FormGroup;
+
+  @Output() saved = new EventEmitter();
 
   createItem(): FormGroup {
     return this.fb.group({

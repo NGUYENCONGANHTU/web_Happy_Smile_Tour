@@ -4,6 +4,14 @@
     <app-banner-config></app-banner-config>
   </nz-tab>
 
+  <nz-tab nzTitle="Footer">
+    <app-footer-config></app-footer-config>
+  </nz-tab>
+
+  <nz-tab nzTitle="Partner">
+    <app-partner-config></app-partner-config>
+  </nz-tab>
+
   <!-- Tour nổi bật -->
   <nz-tab nzTitle="Tour nổi bật">
     <nz-form-item>
@@ -13,36 +21,6 @@
       </nz-form-control>
     </nz-form-item>
     <button nz-button nzType="primary">Lưu</button>
-  </nz-tab>
-
-  <!-- Tour trong nước -->
-  <nz-tab nzTitle="Tour trong nước">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">ID các tour</nz-form-label>
-      <nz-form-control [nzSpan]="20">
-        <textarea
-          nz-input
-          rows="4"
-          placeholder="Nhập các ID tour, cách nhau bởi dấu phẩy"
-          [(ngModel)]="domesticTours"
-          name="domesticTours"></textarea>
-      </nz-form-control>
-    </nz-form-item>
-  </nz-tab>
-
-  <!-- Tour nước ngoài -->
-  <nz-tab nzTitle="Tour nước ngoài">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">ID các tour</nz-form-label>
-      <nz-form-control [nzSpan]="20">
-        <textarea
-          nz-input
-          rows="4"
-          placeholder="Nhập các ID tour, cách nhau bởi dấu phẩy"
-          [(ngModel)]="internationalTours"
-          name="internationalTours"></textarea>
-      </nz-form-control>
-    </nz-form-item>
   </nz-tab>
 
   <!-- Blog chia sẻ -->

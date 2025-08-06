@@ -1,55 +1,20 @@
-<form
-  nz-form
-  [formGroup]="bannerForm"
-  nzLayout="vertical"
-  (ngSubmit)="onSubmit($event)">
-  <div class="flex justify-end">
-    <button nz-button nzType="primary" type="submit">Lưu</button>
+<div>
+  <div class="flex justify-end !mb-3">
+    <app-language-selection
+      [(selectedLanguage)]="selectedLanguage"></app-language-selection>
   </div>
-  <nz-form-item>
-    <nz-form-label nzRequired>Thời gian lưu trú</nz-form-label>
-    <nz-form-control
-      [nzErrorTip]="bannerForm.controls['title'] | appValidationMessage">
-      <input nz-input formControlName="title" placeholder="Nhập" />
-    </nz-form-control>
-  </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label nzRequired>Nội dung</nz-form-label>
-    <nz-form-control
-      [nzErrorTip]="bannerForm.controls['description'] | appValidationMessage">
-      <textarea nz-input rows="3" formControlName="description"></textarea>
-    </nz-form-control>
-  </nz-form-item>
+  <hr class="!my-2" />
 
-  <nz-form-item>
-    <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
-    <nz-form-control
-      [nzErrorTip]="bannerForm.controls['images'] | appValidationMessage">
-      @if (bannerForm.controls['images'].enabled) {
-        <nz-upload
-          nzListType="picture-card"
-          [nzFileList]="fileList.value"
-          [nzBeforeUpload]="beforeUpload"
-          [nzMultiple]="false">
-          <div>
-            <i nz-icon nzType="plus"></i>
-            <div style="margin-top: 8px">Tải ảnh</div>
-          </div>
-        </nz-upload>
-      } @else {
-        <div class="flex gap-2">
-          @for (image of fileList.value; track $index) {
-            <div class="w-[100px] h-[100px]">
-              <img
-                width="auto"
-                height="auto"
-                [src]="image?.thumbUrl"
-                alt="image" />
-            </div>
-          }
-        </div>
-      }
-    </nz-form-control>
-  </nz-form-item>
-</form>
+  <app-banner-form type="HOME" [langCode]="selectedLanguage"></app-banner-form>
+
+  <hr class="!my-2" />
+
+  <app-banner-form type="INTRO" [langCode]="selectedLanguage"></app-banner-form>
+
+  <hr class="!my-2" />
+
+  <app-banner-form
+    type="CONTACT"
+    [langCode]="selectedLanguage"></app-banner-form>
+</div>

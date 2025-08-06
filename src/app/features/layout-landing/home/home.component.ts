@@ -22,7 +22,7 @@ import { AppService } from '../../../../app.service';
 import {
   CommentFeedbackResDTO,
   FeatureResDTO,
-  HomeBannerResDTO,
+  BannerResDTO,
   HomeTitleResDTO,
   LocationResDTO,
   PartnerResDTO,
@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
   sanitizeUrl = sanitizeUrl;
 
   /*========================== Home Banner =============================*/
-  dataBannerHome: HomeBannerResDTO[] = [];
+  dataBannerHome: BannerResDTO[] = [];
   getAllData() {
     this.appService.getAlLDataBannerHome().subscribe(res => {
       this.dataBannerHome = res.data;
