@@ -205,12 +205,21 @@
                   <a
                     href="https://zalo.me/84966788728"
                     target="_blank"
-                    title="Zalo">
+                    title="Zalo"
+                    class="!text-black">
                     {{ data.mobileNumber }}
                   </a>
                 </span>
                 <span class="mx-2!">/</span>
-                <span class="font-medium">{{ data.whatsappNumber }}</span>
+                <span class="font-medium">
+                  <a
+                    href="https://wa.me/84966788728"
+                    target="_blank"
+                    title="Zalo"
+                    class="!text-black">
+                    {{ data.whatsappNumber }}
+                  </a>
+                </span>
               </span>
             </div>
             <div class="website">
@@ -237,9 +246,9 @@
                 <span>Zalo</span>
               </a>
               <a
-                href=""
                 target="_blank"
                 title="Whatsapp"
+                href="https://wa.me/84966788728"
                 class="flex items-center gap-1 !text-black">
                 <fa-icon
                   [icon]="faWhatsapp"
