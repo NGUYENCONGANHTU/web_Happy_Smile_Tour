@@ -148,7 +148,6 @@
   </header>
   <main class="flex-1">
     <router-outlet></router-outlet>
-    <app-chat-box></app-chat-box>
   </main>
   <!-- -->
   @for (data of footerData; track data.id) {
@@ -202,7 +201,14 @@
                 class="text-xl text-[#2D72D9]"></fa-icon>
               <span class="!ml-2">Zalo / Whatsapp</span>
               <span class="!ml-2">
-                <span class="font-medium">{{ data.mobileNumber }}</span>
+                <span class="font-medium">
+                  <a
+                    href="https://zalo.me/84966788728"
+                    target="_blank"
+                    title="Zalo">
+                    {{ data.mobileNumber }}
+                  </a>
+                </span>
                 <span class="mx-2!">/</span>
                 <span class="font-medium">{{ data.whatsappNumber }}</span>
               </span>
@@ -214,35 +220,32 @@
               <a class="!ml-2 !text-black">{{ data.website }}</a>
             </div>
             <div class="internet-app flex items-center gap-3">
-              <p class="flex items-center gap-1">
-                <fa-icon
-                  [icon]="faFacebook"
-                  class="text-xl text-[#1773ea]"></fa-icon>
-                <span>Facebook</span>
-              </p>
-              <p class="flex items-center gap-1">
-                <a
-                  href="https://zalo.me/your_zalo_id"
-                  target="_blank"
-                  title="Zalo">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5 fill-current text-blue-500"
-                    viewBox="0 0 48 48">
-                    <image
-                      href="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
-                      height="48"
-                      width="48" />
-                  </svg>
-                </a>
+              <a
+                href="https://zalo.me/84966788728"
+                class="flex items-center gap-1 !text-black"
+                target="_blank"
+                title="Zalo">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 fill-current text-blue-500"
+                  viewBox="0 0 48 48">
+                  <image
+                    href="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+                    height="48"
+                    width="48" />
+                </svg>
                 <span>Zalo</span>
-              </p>
-              <p class="flex items-center gap-1">
+              </a>
+              <a
+                href=""
+                target="_blank"
+                title="Whatsapp"
+                class="flex items-center gap-1 !text-black">
                 <fa-icon
                   [icon]="faWhatsapp"
-                  class="text-xl text-[#41c051]"></fa-icon>
+                  class="!text-[22px] text-[#41c051]"></fa-icon>
                 <span>Whatsapp</span>
-              </p>
+              </a>
             </div>
           </div>
         </div>

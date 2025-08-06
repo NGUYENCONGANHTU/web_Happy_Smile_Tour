@@ -1,33 +1,27 @@
-import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @Component({
   selector: 'app-chat-box',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NzButtonModule, NzPopoverModule],
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.scss'],
 })
 export class ChatBoxComponent {
-  isChatOpen = false;
+  visible = false;
 
-  toggleChat() {
-    console.log('ToggleChat called before change');
-    this.isChatOpen = !this.isChatOpen;
-    console.log('Chat toggled, isChatOpen:', this.isChatOpen);
+  eRef = inject(ElementRef);
+  togglePopover(event: MouseEvent): void {
+    event.stopPropagation();
+    this.visible = !this.visible;
   }
 
   @HostListener('document:click', ['$event'])
-  onClickOutside(event: MouseEvent) {
-    const chatIcon = document.getElementById('chat-icon');
-    const chatPopup = document.getElementById('chat-popup');
-    if (
-      this.isChatOpen &&
-      !chatIcon?.contains(event.target as Node) &&
-      !chatPopup?.contains(event.target as Node)
-    ) {
-      this.isChatOpen = false;
-      console.log('Popup closed by outside click');
+  onDocumentClick(event: MouseEvent) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.visible = false;
     }
   }
 }

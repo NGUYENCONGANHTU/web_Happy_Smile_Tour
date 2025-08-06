@@ -27,7 +27,6 @@ import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { sanitizeUrl } from '../../shared/utils/helpers';
-import { ChatBoxComponent } from '../chat-box/chat-box.component';
 
 @Component({
   selector: 'app-layout-landing',
@@ -41,7 +40,6 @@ import { ChatBoxComponent } from '../chat-box/chat-box.component';
     RouterLinkActive,
     NgClass,
     TranslatePipe,
-    ChatBoxComponent,
   ],
   templateUrl: './layout-landing.component.html',
   styleUrl: './layout-landing.component.scss',

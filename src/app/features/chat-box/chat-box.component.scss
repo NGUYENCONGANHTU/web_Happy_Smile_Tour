@@ -16,3 +16,8 @@
 #chat-icon img {
   pointer-events: none;
 }
+::ng-deep .ant-popover-inner-content {
+  border: 1px solid #ddf0ec;
+  max-width: 320px;
+  padding: 18px 15px;
+}
