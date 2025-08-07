@@ -5,6 +5,7 @@
       "just_now": "Just now"
     }
   },
+
   "menu": {
     "home": "Home",
     "about": "About Us",
@@ -17,6 +18,9 @@
   },
   "feedback": {
     "customer": "Customer"
+  },
+  "tab_tour": {
+    "nothing_tour": "No suitable tour found!"
   },
   "domestic_tour": {
     "title": "Find the perfect trip for you here!",

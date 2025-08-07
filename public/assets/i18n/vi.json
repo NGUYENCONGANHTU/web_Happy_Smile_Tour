@@ -18,6 +18,9 @@
   "feedback": {
     "customer": "Khách hàng"
   },
+  "tab_tour": {
+    "nothing_tour": "Không tìm thấy tour phù hợp!"
+  },
   "domestic_tour": {
     "title": "Tìm chuyến đi phù hợp với bạn tại đây!",
     "tab_domestic": "Trong nước",
