@@ -339,7 +339,7 @@ export class TourFormComponent implements OnInit {
         }
         this.tourConfigService.createTour(formData).subscribe({
           next: res => {
-            createOrUpdateOtherInfo(res);
+            createOrUpdateOtherInfo(res.data);
             this.submittingTour = false;
           },
           error: () => {

@@ -53,7 +53,10 @@ export class TourConfigService {
   }
 
   createTour(formData: FormData) {
-    return this.httpClient.post<TourResDTO>(this.apiUrlTour, formData);
+    return this.httpClient.post<ResponseBase<TourResDTO>>(
+      this.apiUrlTour,
+      formData
+    );
   }
 
   updateTourById(id: string | number, formData: FormData) {
