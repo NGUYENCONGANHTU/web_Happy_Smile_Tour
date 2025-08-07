@@ -1,83 +1,89 @@
 <div class="cards-content-feature-domestic">
-  @for (data of tours; track data.id) {
-    <div
-      class="card-content-feature-domestic-item grid grid-cols-1 md:[grid-template-columns:1fr_2fr] md:gap-5 cursor-pointer"
-      [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
-      <div class="card-content-feature-domestic-item-image">
-        <img
-          class="h-[200px] w-full !mb-1 md:h-[160px] md:w-[250px] lg:w-full !rounded-md object-cover bg-center bg-cover"
-          [src]="formatImage(data.images?.[0]?.storagePath || '')"
-          alt="" />
-      </div>
-      <div class="truncate !space-y-[10px] mt-2! !lg:mt-0">
-        <div class="font-bold truncate text-[16px] text-[#0d9344]">
-          {{ data.title }}
+  @if (tours.length > 0) {
+    @for (data of tours; track data.id) {
+      <div
+        class="card-content-feature-domestic-item grid grid-cols-1 md:[grid-template-columns:1fr_2fr] md:gap-5 cursor-pointer"
+        [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
+        <div class="card-content-feature-domestic-item-image">
+          <img
+            class="h-[200px] w-full !mb-1 md:h-[160px] md:w-[250px] lg:w-full !rounded-md object-cover bg-center bg-cover"
+            [src]="formatImage(data.images?.[0]?.storagePath || '')"
+            alt="" />
         </div>
-        <div class="feedback">
-          <div class="flex items-center !space-x-2">
-            <div class="star flex">
-              @for (i of [1, 2, 3, 4, 5]; track i) {
-                <fa-icon
-                  [icon]="faStar"
-                  [ngClass]="
-                    i <= data.averageRate ? 'text-[#e5831e]' : 'text-gray-300'
-                  "
-                  class="mr-1"></fa-icon>
-              }
-            </div>
-            <span class="text-[#888]">|</span>
-            <div class="">
-              {{ data.totalReviews | number }}
-              {{ 'tour_card.rating' | translate }}
-            </div>
+        <div class="truncate !space-y-[10px] mt-2! !lg:mt-0">
+          <div class="font-bold truncate text-[16px] text-[#0d9344]">
+            {{ data.title }}
           </div>
-        </div>
-        <div class="!space-x-2 !text-[14px]">
-          <span class="!text-[#3A3A3C] font-medium">
-            {{ 'tour_card.itinerary' | translate }}:
-          </span>
-          <span class="!text-[#e7000b] font-medium">{{ data.stayDate }}</span>
-        </div>
-        <div class="flex items-start !text-[14px]">
-          <span class="!text-[#3A3A3C] font-medium">
-            {{ 'tour_card.from' | translate }}:
-          </span>
-          <ul class="flex items-center truncate !ml-1">
-            @for (
-              item of data.startingPoints;
-              track item.id;
-              let last = $last
-            ) {
-              <li class="inline !text-gray-500">
-                {{ item.name }}
-                @if (!last) {
-                  <span class="!mr-1">,</span>
+          <div class="feedback">
+            <div class="flex items-center !space-x-2">
+              <div class="star flex">
+                @for (i of [1, 2, 3, 4, 5]; track i) {
+                  <fa-icon
+                    [icon]="faStar"
+                    [ngClass]="
+                      i <= data.averageRate ? 'text-[#e5831e]' : 'text-gray-300'
+                    "
+                    class="mr-1"></fa-icon>
                 }
-              </li>
-            }
-          </ul>
-        </div>
-        <div class="price text-end">
-          <div class="!pr-2 !text-[#3A3A3C] text-[16px] font-medium">
-            {{ 'tour_card.price_from' | translate }}:
+              </div>
+              <span class="text-[#888]">|</span>
+              <div class="">
+                {{ data.totalReviews | number }}
+                {{ 'tour_card.rating' | translate }}
+              </div>
+            </div>
           </div>
-          <div class="!space-x-2">
-            <span class="line-through font-medium !text-gray-400 !text-[14px]"
-              >{{ data.originalPrice | number }} VNĐ</span
-            >
-            <span class="font-bold !text-[18px] !text-red-600"
-              >{{ data.finalPrice | number }} VNĐ</span
-            >
+          <div class="!space-x-2 !text-[14px]">
+            <span class="!text-[#3A3A3C] font-medium">
+              {{ 'tour_card.itinerary' | translate }}:
+            </span>
+            <span class="!text-[#e7000b] font-medium">{{ data.stayDate }}</span>
+          </div>
+          <div class="flex items-start !text-[14px]">
+            <span class="!text-[#3A3A3C] font-medium">
+              {{ 'tour_card.from' | translate }}:
+            </span>
+            <ul class="flex items-center truncate !ml-1">
+              @for (
+                item of data.startingPoints;
+                track item.id;
+                let last = $last
+              ) {
+                <li class="inline !text-gray-500">
+                  {{ item.name }}
+                  @if (!last) {
+                    <span class="!mr-1">,</span>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+          <div class="price text-end">
+            <div class="!pr-2 !text-[#3A3A3C] text-[16px] font-medium">
+              {{ 'tour_card.price_from' | translate }}:
+            </div>
+            <div class="!space-x-2">
+              <span class="line-through font-medium !text-gray-400 !text-[14px]"
+                >{{ data.originalPrice | number }} VNĐ</span
+              >
+              <span class="font-bold !text-[18px] !text-red-600"
+                >{{ data.finalPrice | number }} VNĐ</span
+              >
+            </div>
           </div>
         </div>
       </div>
+    }
+    <nz-pagination
+      [nzPageIndex]="page"
+      [nzPageSize]="pageSize"
+      [nzTotal]="total"
+      (nzPageIndexChange)="onPageChange($event)"
+      class="text-right mt-3!">
+    </nz-pagination>
+  } @else {
+    <div class="text-center !text-[#ed1c23] font-medium">
+      {{ 'tab_tour.nothing_tour' | translate }}
     </div>
   }
-  <nz-pagination
-    [nzPageIndex]="page"
-    [nzPageSize]="pageSize"
-    [nzTotal]="total"
-    (nzPageIndexChange)="onPageChange($event)"
-    class="text-right mt-3!">
-  </nz-pagination>
 </div>

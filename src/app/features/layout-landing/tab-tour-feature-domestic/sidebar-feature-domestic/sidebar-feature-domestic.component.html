@@ -41,9 +41,8 @@
       class="w-full"
       nzPlaceHolder="{{ 'domestic_tour.departure' | translate }}">
       @for (data of dataStartingPointDomestic; track data.id) {
-        <nz-option
-          [nzLabel]="data.name"
-          [nzValue]="data.locationId"></nz-option>
+        <nz-option [nzLabel]="data.name" [nzValue]="data.locationId">
+        </nz-option>
       }
     </nz-select>
 
@@ -54,9 +53,8 @@
       class="w-full"
       nzPlaceHolder="{{ 'domestic_tour.destination' | translate }}">
       @for (data of dataStartingPointDomestic; track data.id) {
-        <nz-option
-          [nzLabel]="data.name"
-          [nzValue]="data.locationId"></nz-option>
+        <nz-option [nzLabel]="data.name" [nzValue]="data.locationId">
+        </nz-option>
       }
     </nz-select>
 

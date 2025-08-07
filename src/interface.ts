@@ -368,12 +368,12 @@ export interface VisaProcessResDTO {
 
 /* ==================== Partner  ==================== */
 export interface PartnerReqDTO {
-  image: DocumentResDTO;
+  images: DocumentResDTO[];
 }
 
 export interface PartnerResDTO {
   id: number;
-  image: DocumentResDTO;
+  images: DocumentResDTO[];
 }
 export interface FooterReqDTO {
   name?: string;

@@ -12,12 +12,14 @@
                       "1280": { "slidesPerView": 5 }
                     }'>
   @for (data of dataCustomerFeature; track $index) {
-    <swiper-slide
-      class="slide border text-center p-5! rounded-lg border-[#D3D3D3] h-[160px]">
-      <img
-        [src]="formatImage(data.image.storagePath)"
-        alt=""
-        class="h-full w-full object-cover bg-center bg-cover" />
-    </swiper-slide>
+    @for (image of data.images; track $index) {
+      <swiper-slide
+        class="slide border text-center p-5! rounded-lg border-[#D3D3D3] h-[160px]">
+        <img
+          [src]="formatImage(image.storagePath)"
+          alt=""
+          class="h-full w-full object-cover bg-center bg-cover" />
+      </swiper-slide>
+    }
   }
 </swiper-container>

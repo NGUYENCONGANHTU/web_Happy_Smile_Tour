@@ -39,9 +39,9 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   appService = inject(AppService);
   @Output() filtersChanged = new EventEmitter<any>();
 
-  rangeValue: number[] = [0, 200000000]; // Ngân sách
-  departure = ''; // điểm đi
-  destination = ''; // điểm đến
+  rangeValue: number[] = [0, 200000000];
+  departure = '';
+  destination = '';
 
   searchTour(): void {
     const formData = {
@@ -53,7 +53,6 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.filtersChanged.emit(formData);
   }
 
-  // lấy data điểm đến và điểm đi
   ngOnInit() {
     this.getDataStartingPoint();
   }

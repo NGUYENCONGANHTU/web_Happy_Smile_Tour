@@ -51,7 +51,6 @@ export class ContentFeatureDomesticComponent implements OnChanges {
     };
     if (params) {
       this.filterTourService.filterTours(params).subscribe(res => {
-        console.log(res);
         this.tours = res.data.content;
         this.total = res.data.totalElements;
       });

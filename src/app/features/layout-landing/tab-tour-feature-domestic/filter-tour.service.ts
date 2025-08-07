@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment';
-import { map, Observable } from 'rxjs';
-import { FeatureResDTO } from '../../../../interface';
+import { Observable } from 'rxjs';
 import { LanguageService } from '../../../shared/services/language.service';
 
 @Injectable({
@@ -12,34 +11,6 @@ export class FilterTourService {
   http = inject(HttpClient);
   languageService = inject(LanguageService);
   apiUrl = environment.API_URL + '/tour-trans/filter';
-
-  getTours(filters: {
-    destination?: string;
-    departure?: string;
-    min?: number;
-    max?: number;
-    page?: number;
-    size?: number;
-  }): Observable<FeatureResDTO[]> {
-    let params = new HttpParams();
-    if (filters.departure) {
-      params = params.set('startingPointId', filters.departure);
-    }
-    if (filters.destination) {
-      params = params.set('locationId', filters.destination);
-    }
-    if (filters.min !== undefined) {
-      params = params.set('min', filters.min.toString());
-    }
-    if (filters.max !== undefined) {
-      params = params.set('max', filters.max.toString());
-    }
-    params = params.set('langCode', this.languageService.locale);
-
-    return this.http
-      .get<{ data: { content: FeatureResDTO[] } }>(this.apiUrl, { params })
-      .pipe(map(res => res.data.content));
-  }
 
   filterTours(params: any): Observable<any> {
     const queryParams = new URLSearchParams();
