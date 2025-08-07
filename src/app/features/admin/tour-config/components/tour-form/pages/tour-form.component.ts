@@ -75,7 +75,7 @@ export class TourFormComponent implements OnInit {
 
   tourForm: FormGroup = this.fb.group({
     title: [null, [Validators.required]],
-    averageRate: [{ value: null, disabled: true }],
+    // averageRate: [{ value: null, disabled: true }],
     originalPrice: [0, [Validators.required]],
     discount: [0],
     finalPrice: [{ value: 0, disabled: true }],

@@ -43,7 +43,7 @@ export class TourFormPricingTabComponent {
   }
 
   addTourPrice() {
-    this.tourPrices.push(this.fb.group({ name: '', age: '', price: null }));
+    this.tourPrices.push(this.fb.group({ name: '', price: null }));
   }
 
   deleteTourPrice(index: number) {
@@ -51,7 +51,7 @@ export class TourFormPricingTabComponent {
   }
 
   addSurcharge() {
-    this.surcharges.push(this.fb.group({ name: '', price: null, apply: '' }));
+    this.surcharges.push(this.fb.group({ name: '', apply: '' }));
   }
 
   deleteSurcharge(index: number) {

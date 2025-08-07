@@ -159,7 +159,7 @@ export class TourFormTransComponent implements OnInit {
             this.tourPrices.push(
               this.fb.group({
                 name: dt.name,
-                age: dt.age,
+                // age: dt.age,
                 price: dt.price,
               })
             );
@@ -173,7 +173,7 @@ export class TourFormTransComponent implements OnInit {
                 tourPriceId: dt.tourPriceId,
                 languageCode: this.selectedLanguage,
                 name: dt.name,
-                age: dt.age,
+                // age: dt.age,
                 price: { value: dt.price, disabled: true },
                 created: dt.created,
               })
@@ -209,7 +209,7 @@ export class TourFormTransComponent implements OnInit {
           this.surcharges.clear();
           res.tourSurcharges.data.forEach(dt => {
             this.surcharges.push(
-              this.fb.group({ name: dt.name, price: dt.price, apply: dt.apply })
+              this.fb.group({ name: dt.name, apply: dt.apply })
             );
           });
           this.surcharges.disable();
@@ -221,7 +221,7 @@ export class TourFormTransComponent implements OnInit {
                 tourSurchargeId: dt.tourSurchargeId,
                 languageCode: this.selectedLanguage,
                 name: dt.name,
-                price: { value: dt.price, disabled: true },
+                // price: { value: dt.price, disabled: true },
                 apply: dt.apply,
                 created: dt.created,
               })
@@ -411,7 +411,7 @@ export class TourFormTransComponent implements OnInit {
   getTourFormGroupTrans() {
     return this.fb.group({
       title: [null, [Validators.required]],
-      averageRate: [{ value: null, disabled: true }],
+      // averageRate: [{ value: null, disabled: true }],
       originalPrice: [{ value: 0, disabled: true }, [Validators.required]],
       discount: [{ value: 0, disabled: true }],
       finalPrice: [{ value: 0, disabled: true }],

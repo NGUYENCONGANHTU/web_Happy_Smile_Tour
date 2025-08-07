@@ -15,6 +15,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TourConfigService } from '../../../../tour-config.service';
 import { OptionItem } from '../../../../../../../core/interfaces/base.interface';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
   selector: 'app-tour-form-info-tab',
@@ -27,6 +28,7 @@ import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.i
     NzSelectModule,
     NzUploadModule,
     NzIconModule,
+    NzInputNumberModule,
     ValidationMessagePipe,
   ],
   standalone: true,
