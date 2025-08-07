@@ -12,8 +12,8 @@ import {
   FeatureResDTO,
   FooterReqDTO,
   FooterResDTO,
-  HomeBannerReqDTO,
-  HomeBannerResDTO,
+  BannerReqDTO,
+  BannerResDTO,
   HomeTitleReqDTO,
   HomeTitleResDTO,
   LanguageReqDTO,
@@ -70,42 +70,42 @@ export class AppService {
   apiFooter = environment.API_URL + '/footer-trans';
 
   /*======================== HOME BANNER ==========================*/
-  createData(data: HomeBannerReqDTO) {
-    return this.http.post<HomeBannerResDTO>(this.apiUrl, data);
+  createData(data: BannerReqDTO) {
+    return this.http.post<BannerResDTO>(this.apiUrl, data);
   }
 
   getAlLDataBannerHome() {
-    return this.http.get<{ data: HomeBannerResDTO[] }>(
+    return this.http.get<{ data: BannerResDTO[] }>(
       this.apiUrl + `/HOME?langCode=${this.languageService.locale}`
     );
   }
 
   getAlLDataBannerIntro() {
-    return this.http.get<{ data: HomeBannerResDTO[] }>(
+    return this.http.get<{ data: BannerResDTO[] }>(
       this.apiUrl + `/INTRO?langCode=${this.languageService.locale}`
     );
   }
 
   getAlLDataBannerContact() {
-    return this.http.get<{ data: HomeBannerResDTO[] }>(
+    return this.http.get<{ data: BannerResDTO[] }>(
       this.apiUrl + `/CONTACT?langCode=${this.languageService.locale}`
     );
   }
   getAlLDataBannerService() {
-    return this.http.get<{ data: HomeBannerResDTO[] }>(
+    return this.http.get<{ data: BannerResDTO[] }>(
       this.apiUrl + `/SERVICE?langCode=${this.languageService.locale}`
     );
   }
 
   getDataById(id: number) {
-    return this.http.get<HomeBannerResDTO>(`${this.apiUrl}/${id}`);
+    return this.http.get<BannerResDTO>(`${this.apiUrl}/${id}`);
   }
 
-  updateData(data: HomeBannerReqDTO, id: number) {
-    return this.http.put<HomeBannerResDTO>(`${this.apiUrl}/${id}`, data);
+  updateData(data: BannerReqDTO, id: number) {
+    return this.http.put<BannerResDTO>(`${this.apiUrl}/${id}`, data);
   }
   deleteData(id: number) {
-    return this.http.delete<HomeBannerResDTO>(`${this.apiUrl}/${id}`);
+    return this.http.delete<BannerResDTO>(`${this.apiUrl}/${id}`);
   }
 
   /*======================== HOME TITLE ==========================*/

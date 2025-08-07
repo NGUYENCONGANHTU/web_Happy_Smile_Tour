@@ -4,7 +4,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../app.service';
-import { HomeBannerResDTO } from '../../../../interface';
+import { BannerResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import {
   AdvertiseResDTO,
@@ -55,7 +55,7 @@ export class IntroduceComponent implements OnInit {
     this.getDataStatistical();
   }
   // banner Gioi thieu
-  dataBannerIntroduce: HomeBannerResDTO[] = [];
+  dataBannerIntroduce: BannerResDTO[] = [];
   getDataBannerIntroducePage() {
     this.appService.getAlLDataBannerIntro().subscribe(res => {
       if (res?.data) {

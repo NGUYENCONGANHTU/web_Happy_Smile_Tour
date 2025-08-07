@@ -1,3 +1,5 @@
+import { FileResDTO } from '../../../core/interfaces/base.interface';
+
 export interface TourResDTO {
   id?: number;
   tourId?: number;
@@ -62,7 +64,12 @@ export interface CreateTourReqDTO {
 export interface TourPriceResDTO {
   id: number;
   tourPriceId: number;
-  language: string;
+  language: {
+    code: string;
+    id: number;
+    image: FileResDTO;
+    name: string;
+  };
   name?: string;
   age?: string;
   price?: number;
@@ -73,31 +80,49 @@ export interface TourPriceResDTO {
 export interface TourDiscountResDTO {
   id: number;
   tourDiscountId: number;
-  language: string;
+  language: {
+    code: string;
+    id: number;
+    image: FileResDTO;
+    name: string;
+  };
   name?: string;
   description?: string;
   price?: number;
   condition?: string;
   tourId: number;
+  created?: boolean;
 }
 
 export interface TourSurchargeResDTO {
   id: number;
   tourSurchargeId: number;
-  language: string;
+  language: {
+    code: string;
+    id: number;
+    image: FileResDTO;
+    name: string;
+  };
   name?: string;
   price?: number;
   apply?: string;
   tourId: number;
+  created?: boolean;
 }
 
 export interface TourScheduleResDTO {
   id: number;
   tourScheduleId: number;
-  language: string;
+  language: {
+    code: string;
+    id: number;
+    image: FileResDTO;
+    name: string;
+  };
   title: string;
   description: string;
   tourId: number;
+  created?: boolean;
 }
 
 type LocationType = 'DOMESTIC' | 'INTERNATIONAL';

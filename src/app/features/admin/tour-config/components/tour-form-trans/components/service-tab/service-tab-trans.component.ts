@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CkeditorService } from '../../../../../../../shared/services/ckeditor.service';
 import {
   FormControl,
@@ -29,6 +29,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 export class ServiceTabTransComponent {
   @Input({ required: true }) tourForm!: FormGroup;
   @Input({ required: true }) tourFormTrans!: FormGroup;
+
+  @Output() saved = new EventEmitter();
 
   serviceEditor = inject(CkeditorService);
   nonServiceEditor = inject(CkeditorService);

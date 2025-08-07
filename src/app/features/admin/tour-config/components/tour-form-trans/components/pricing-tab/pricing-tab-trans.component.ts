@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -33,6 +33,8 @@ export class PricingTabTransComponent {
   @Input({ required: true }) priceForm!: FormGroup;
   @Input({ required: true }) priceFormTrans!: FormGroup;
   @Input({ required: true }) lang!: string;
+
+  @Output() saved = new EventEmitter();
 
   get tourPrices(): FormArray {
     return this.priceForm.get('tourPrices') as FormArray;

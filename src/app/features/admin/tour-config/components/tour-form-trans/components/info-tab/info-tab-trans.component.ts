@@ -1,4 +1,11 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -38,6 +45,8 @@ export class TourFormInfoTabComponent implements OnInit {
 
   @Input({ required: true }) tourForm!: FormGroup;
   @Input({ required: true }) tourFormTrans!: FormGroup;
+
+  @Output() saved = new EventEmitter();
 
   ngOnInit(): void {
     this.fetchLocationData();

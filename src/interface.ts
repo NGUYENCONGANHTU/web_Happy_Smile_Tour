@@ -7,7 +7,7 @@ import {
 } from './app/features/layout-landing/tab-tour-foreign-detail/price-list/interface-tour-price';
 import { IRating } from './app/shared/components/review-summary/review-summary.component';
 
-export interface HomeBannerReqDTO {
+export interface BannerReqDTO {
   homeBannerId: number;
   language: LanguageResDTO;
   title: string;
@@ -15,7 +15,7 @@ export interface HomeBannerReqDTO {
   bannerType: BannerType;
   images: DocumentResDTO[];
 }
-export interface HomeBannerResDTO {
+export interface BannerResDTO {
   id: number;
   homeBannerId: number;
   language: LanguageResDTO;

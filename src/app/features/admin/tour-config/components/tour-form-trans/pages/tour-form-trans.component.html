@@ -2,32 +2,35 @@
   <nz-tab nzTitle="Thông tin">
     <app-tour-form-info-tab-trans
       [tourForm]="tourForm"
-      [tourFormTrans]="tourFormTrans"></app-tour-form-info-tab-trans>
+      [tourFormTrans]="tourFormTrans"
+      (saved)="submit('INFO')"></app-tour-form-info-tab-trans>
   </nz-tab>
   <nz-tab nzTitle="Lịch trình">
     <app-tour-form-schedule-tab-trans
       [scheduleForm]="scheduleForm"
-      [scheduleFormTrans]="
-        scheduleFormTrans
-      "></app-tour-form-schedule-tab-trans>
+      [scheduleFormTrans]="scheduleFormTrans"
+      (saved)="submit('SCHEDULES')"></app-tour-form-schedule-tab-trans>
   </nz-tab>
   <nz-tab nzTitle="Bảng giá">
     <app-tour-form-pricing-tab-trans
       [lang]="selectedLanguage"
       [priceForm]="priceForm"
-      [priceFormTrans]="priceFormTrans"></app-tour-form-pricing-tab-trans>
+      [priceFormTrans]="priceFormTrans"
+      (saved)="submit('PRICES')"></app-tour-form-pricing-tab-trans>
   </nz-tab>
   <nz-tab nzTitle="Dịch vụ">
     <app-tour-form-service-tab-trans
       [tourFormTrans]="tourFormTrans"
-      [tourForm]="tourFormTrans"></app-tour-form-service-tab-trans>
+      [tourForm]="tourFormTrans"
+      (saved)="submit('INFO')"></app-tour-form-service-tab-trans>
   </nz-tab>
 </nz-tabs>
 
 <ng-template #extraTemplate>
   <app-language-selection
     [(selectedLanguage)]="selectedLanguage"
+    [includeOriginLanguage]="false"
     (selectedLanguageChange)="
-      handleSelectedLanguageChange()
+      handleSelectedLanguageChange($event)
     "></app-language-selection>
 </ng-template>

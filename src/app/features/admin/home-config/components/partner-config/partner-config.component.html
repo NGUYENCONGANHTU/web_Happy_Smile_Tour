@@ -1,0 +1,22 @@
+<div>
+  <div class="flex justify-end !mb-3">
+    <button nz-button nzType="primary" type="submit" (click)="onSubmit()">
+      Lưu
+    </button>
+  </div>
+  <nz-form-item>
+    <nz-form-label nzRequired>Ảnh đại diện</nz-form-label>
+    <nz-form-control>
+      <nz-upload
+        nzListType="picture-card"
+        [(nzFileList)]="fileList"
+        [nzBeforeUpload]="beforeUpload"
+        [nzMultiple]="true">
+        <div>
+          <i nz-icon nzType="plus"></i>
+          <div class="mb-2">Tải ảnh</div>
+        </div>
+      </nz-upload>
+    </nz-form-control>
+  </nz-form-item>
+</div>

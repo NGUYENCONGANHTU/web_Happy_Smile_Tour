@@ -287,7 +287,6 @@ export class TourFormComponent implements OnInit {
           const formValues = this.tourForm.value;
           const formData = new FormData();
           // Đưa các field đơn giản vào FormData
-          console.log(this.tourForm);
           for (const key in formValues) {
             const value = formValues[key];
             if (Array.isArray(value)) {

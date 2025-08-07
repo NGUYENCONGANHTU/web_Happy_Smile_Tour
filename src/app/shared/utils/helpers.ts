@@ -62,7 +62,7 @@ export function parseToNzUploadFile(
 ): NzUploadFile {
   return {
     id,
-    uid: `${Date.now()}`,
+    uid: id?.toString() ?? `${Date.now()}`,
     name: fileName,
     status: 'done',
     url: src,

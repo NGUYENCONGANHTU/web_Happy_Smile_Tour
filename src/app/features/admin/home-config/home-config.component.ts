@@ -9,7 +9,9 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { FooterConfigComponent } from './components/footer-config/footer-config.component';
 import { BannerConfigComponent } from './components/banner-config/banner-config.component';
+import { PartnerConfigComponent } from './components/partner-config/partner-config.component';
 
 @Component({
   standalone: true,
@@ -25,7 +27,9 @@ import { BannerConfigComponent } from './components/banner-config/banner-config.
     NzCardModule,
     NzTableModule,
     NzIconModule,
+    FooterConfigComponent,
     BannerConfigComponent,
+    PartnerConfigComponent,
   ],
   templateUrl: './home-config.component.html',
 })
