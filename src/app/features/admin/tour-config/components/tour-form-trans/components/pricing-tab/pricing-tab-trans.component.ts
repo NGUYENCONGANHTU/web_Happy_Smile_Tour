@@ -12,6 +12,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
   selector: 'app-tour-form-pricing-tab-trans',
@@ -25,6 +26,7 @@ import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.
     NzTableModule,
     NzIconModule,
     NzFormModule,
+    NzInputNumberModule,
   ],
 })
 export class PricingTabTransComponent {

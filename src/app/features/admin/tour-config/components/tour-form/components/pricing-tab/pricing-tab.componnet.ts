@@ -11,6 +11,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
   selector: 'app-tour-form-pricing-tab',
@@ -24,6 +25,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzTableModule,
     NzIconModule,
     NzFormModule,
+    NzInputNumberModule,
   ],
 })
 export class TourFormPricingTabComponent {
