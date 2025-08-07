@@ -18,16 +18,16 @@ export interface TourDiscountResDTO {
 /* ==================== BẢNG GIÁ  ==================== */
 export interface TourPriceReqDTO {
   name: string;
-  age: string;
-  price: number;
-  tourId: number;
+  price: string;
+  tourPriceId: number;
+  created: boolean;
 }
 export interface TourPriceResDTO {
   id: number;
   name: string;
-  age: string;
-  price: number;
-  tourId: number;
+  price: string;
+  tourPriceId: number;
+  created: boolean;
 }
 
 /* ==================== BẢNG PHỤ THU  ==================== */
