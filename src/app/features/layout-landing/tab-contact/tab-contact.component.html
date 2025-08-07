@@ -26,9 +26,9 @@
           <div class="cards-contact-item-info-detail-title">
             {{ data.title }}
           </div>
-          <div class="cards-contact-item-info-detail-description">
-            {{ data.description }}
-          </div>
+          <div
+            class="cards-contact-item-info-detail-description"
+            [innerHTML]="sanitizeHtml(data.description)"></div>
         </div>
       }
     </div>

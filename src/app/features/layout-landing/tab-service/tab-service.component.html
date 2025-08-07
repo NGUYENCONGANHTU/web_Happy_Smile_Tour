@@ -13,9 +13,8 @@
             {{ 'tab_service.title' | translate }}
           </p>
           <div
-            class="title !text-[18px] md:!text-[30px] lg:!text-[60px] !px-15">
-            {{ dataServiceDetail.bannerTitle }}
-          </div>
+            class="title !text-[18px] md:!text-[30px] lg:!text-[60px] !px-15"
+            [innerHTML]="sanitizeHtml(dataServiceDetail.bannerTitle)"></div>
           <button
             class="cta-button !text-[20px] hover:outline hover:outline-red-500 hover:outline-2">
             <fa-icon
@@ -23,8 +22,9 @@
               class="phone-icon mr-2! tracking-wide"></fa-icon>
             <span>
               {{ 'tab_service.consulting' | translate }}:
-              <span class="text-red-500 tracking-wider">
-                {{ dataServiceDetail.phone }}
+              <span
+                class="text-red-500 tracking-wider"
+                [innerHTML]="sanitizeHtml(dataServiceDetail.phone)">
               </span>
             </span>
           </button>
@@ -37,12 +37,11 @@
         class="content-service-contact !mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-10">
         <div class="content-service space-y-2!">
           <div
-            class="content-service-title text-left md:text-center text-3xl font-bold">
-            {{ dataServiceDetail.serviceTitle }}
-          </div>
-          <div class="content-service-list text-justify">
-            {{ dataServiceDetail.serviceContent }}
-          </div>
+            class="content-service-title text-left md:text-center text-3xl font-bold"
+            [innerHTML]="sanitizeHtml(dataServiceDetail.serviceTitle)"></div>
+          <div
+            class="content-service-list text-justify"
+            [innerHTML]="sanitizeHtml(dataServiceDetail.serviceContent)"></div>
         </div>
         <div class="service-contact">
           <div
@@ -92,7 +91,6 @@
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </div>
-
             <!--     Email-->
             <div>
               <nz-form-label [nzSpan]="24" class="font-medium text-[16px] !mb-1"

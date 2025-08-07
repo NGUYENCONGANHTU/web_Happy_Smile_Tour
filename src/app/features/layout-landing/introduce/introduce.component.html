@@ -15,7 +15,9 @@
         ">
         <div
           class="flex flex-col justify-center items-center text-center h-full text-white bg-black/10">
-          <div class="text-[45px] font-bold">{{ data.title }}</div>
+          <div
+            class="text-[45px] font-bold"
+            [innerHTML]="sanitizeHtml(data.title)"></div>
         </div>
       </div>
     }
@@ -37,9 +39,9 @@
                 width="80px"
                 alt="" />
             </div>
-            <div class="content text-justify">
-              {{ data.title }}
-            </div>
+            <div
+              class="content text-justify"
+              [innerHTML]="sanitizeHtml(data.title)"></div>
           </div>
         }
       </div>
@@ -47,12 +49,12 @@
     <!--  ======================= Văn bản giới thiệu ======================= -->
     <div class="service-introduce">
       @for (data of dataIntroPage; track data.id) {
-        <div class="text-[24px] font-medium text-[#ef1f28]">
-          {{ data.title }}
-        </div>
-        <div class="service-introduce-content text-justify">
-          {{ data.description }}
-        </div>
+        <div
+          class="text-[24px] font-medium text-[#ef1f28]"
+          [innerHTML]="sanitizeHtml(data.title)"></div>
+        <div
+          class="service-introduce-content text-justify"
+          [innerHTML]="sanitizeHtml(data.description)"></div>
       }
     </div>
     <!--  ======================= Số liệu thống kế ======================= -->

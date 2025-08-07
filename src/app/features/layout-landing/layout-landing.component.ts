@@ -73,6 +73,7 @@ export class LayoutLandingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translate.use(this.languageService.locale);
     this.getDataVisaMenu();
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))

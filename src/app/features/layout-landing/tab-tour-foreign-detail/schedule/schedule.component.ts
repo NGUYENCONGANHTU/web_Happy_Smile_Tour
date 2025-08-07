@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
   NzTimelineComponent,
   NzTimelineItemComponent,
@@ -11,6 +11,7 @@ import {
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ScheduleResDTO } from './schedule-interface';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-schedule',
   imports: [
@@ -26,4 +27,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class ScheduleComponent {
   @Input() tourDays: ScheduleResDTO[] = [];
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
 }

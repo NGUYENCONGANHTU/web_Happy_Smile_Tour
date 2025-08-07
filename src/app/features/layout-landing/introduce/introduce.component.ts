@@ -13,6 +13,7 @@ import {
 } from './interface-introduce';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
 import { IntroduceService } from './introduce.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-introduce',
   imports: [
@@ -101,5 +102,10 @@ export class IntroduceComponent implements OnInit {
         this.dataServiceIntroduce = [];
       }
     });
+  }
+
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

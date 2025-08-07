@@ -12,12 +12,12 @@
   <!--  =====================================================-->
   <div class="section-private-group-tour !pt-4 !px-[10%]">
     @for (data of dataPrivateTour; track data.id) {
-      <div class="private-group-tour-title">
-        {{ data.title }}
-      </div>
-      <div class="private-group-tour-content">
-        {{ data.description }}
-      </div>
+      <div
+        class="private-group-tour-title"
+        [innerHTML]="sanitizeHtml(data.title)"></div>
+      <div
+        class="private-group-tour-content"
+        [innerHTML]="sanitizeHtml(data.description)"></div>
     }
     <div class="private-group-tour-contact !py-10">
       <div class="private-group-tour-contact-title">

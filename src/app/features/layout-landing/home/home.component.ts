@@ -30,6 +30,7 @@ import {
 } from '../../../../interface';
 import { BANNER_WEB } from '../../../shared/constants/global.constant';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -206,5 +207,9 @@ export class HomeComponent implements OnInit {
         console.warn('Dữ liệu không có hoặc trả về null');
       }
     });
+  }
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }
