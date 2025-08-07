@@ -16,7 +16,9 @@
           @for (data of dataTourPrice; track $index) {
             <tr>
               <td>{{ data.name }}</td>
-              <td>{{ data.price | number }} VNĐ</td>
+              @if (data.price) {
+                <td>{{ data.price }}</td>
+              }
             </tr>
           }
         </tbody>
