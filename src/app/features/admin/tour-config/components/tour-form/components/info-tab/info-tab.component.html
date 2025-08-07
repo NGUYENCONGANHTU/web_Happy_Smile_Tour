@@ -14,17 +14,17 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item class="form-view-mode input-underline">
-    <nz-form-label nzRequired>Số sao đánh giá</nz-form-label>
-    <nz-form-control
-      [nzErrorTip]="tourForm.controls['averageRate'] | appValidationMessage">
-      <input
-        nz-input
-        type="number"
-        formControlName="averageRate"
-        placeholder="1 - 5" />
-    </nz-form-control>
-  </nz-form-item>
+  <!--  <nz-form-item class="form-view-mode input-underline">-->
+  <!--    <nz-form-label nzRequired>Số sao đánh giá</nz-form-label>-->
+  <!--    <nz-form-control-->
+  <!--      [nzErrorTip]="tourForm.controls['averageRate'] | appValidationMessage">-->
+  <!--      <input-->
+  <!--        nz-input-->
+  <!--        type="number"-->
+  <!--        formControlName="averageRate"-->
+  <!--        placeholder="1 - 5" />-->
+  <!--    </nz-form-control>-->
+  <!--  </nz-form-item>-->
 
   <nz-form-item>
     <nz-form-label nzRequired>Điểm đến</nz-form-label>
@@ -42,7 +42,7 @@
     <nz-form-label nzRequired>Giá gốc</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['originalPrice'] | appValidationMessage">
-      <input nz-input type="number" formControlName="originalPrice" />
+      <nz-input-number class="!w-full" formControlName="originalPrice" />
     </nz-form-control>
   </nz-form-item>
 
@@ -50,7 +50,7 @@
     <nz-form-label>Giảm giá</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['discount'] | appValidationMessage">
-      <input nz-input type="number" formControlName="discount" />
+      <nz-input-number class="!w-full" formControlName="discount" />
     </nz-form-control>
   </nz-form-item>
 

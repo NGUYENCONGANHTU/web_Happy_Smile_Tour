@@ -39,11 +39,13 @@ export class PartnerConfigComponent implements OnInit {
     this.fetching = true;
     this.partnerService.getPartners().subscribe({
       next: res => {
-        this.fileList = [
-          ...res.data.map(dt =>
-            parseToNzUploadFile(dt.image.storagePath, dt.image.id)
-          ),
-        ];
+        if (res.data.length) {
+          this.fileList = [
+            ...res.data[0].images.map(image =>
+              parseToNzUploadFile(image.storagePath, image.id)
+            ),
+          ];
+        }
       },
     });
   }

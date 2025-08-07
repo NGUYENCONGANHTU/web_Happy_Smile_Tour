@@ -10,6 +10,7 @@ export interface ColumnConfig {
   dateFormatIn?: string;
   dateFormatOut?: string;
   filter?: TableFilterConfig;
+  fixed?: 'left' | 'right';
 }
 
 export interface TableFilterConfig {

@@ -13,7 +13,11 @@
   <thead>
     <tr>
       @for (col of columns; track col) {
-        <th [nzWidth]="col.width || null" nzCustomFilter>
+        <th
+          [nzWidth]="col.width || null"
+          nzCustomFilter
+          [nzLeft]="col?.fixed === 'left'"
+          [nzRight]="col?.fixed === 'right'">
           <div class="flex gap-2 align-middle">
             <div>
               {{ col?.title }}
@@ -130,7 +134,9 @@
     @for (item of baseTable.data; track item) {
       <tr (dblclick)="rowDBClick.emit(item)">
         @for (col of columns; track col) {
-          <td>
+          <td
+            [nzLeft]="col?.fixed === 'left'"
+            [nzRight]="col?.fixed === 'right'">
             <ng-container
               *ngTemplateOutlet="
                 defaultCell;

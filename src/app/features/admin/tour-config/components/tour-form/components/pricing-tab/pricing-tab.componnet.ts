@@ -11,6 +11,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
   selector: 'app-tour-form-pricing-tab',
@@ -24,6 +25,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzTableModule,
     NzIconModule,
     NzFormModule,
+    NzInputNumberModule,
   ],
 })
 export class TourFormPricingTabComponent {
@@ -43,7 +45,7 @@ export class TourFormPricingTabComponent {
   }
 
   addTourPrice() {
-    this.tourPrices.push(this.fb.group({ name: '', age: '', price: null }));
+    this.tourPrices.push(this.fb.group({ name: '', price: null }));
   }
 
   deleteTourPrice(index: number) {
@@ -51,7 +53,7 @@ export class TourFormPricingTabComponent {
   }
 
   addSurcharge() {
-    this.surcharges.push(this.fb.group({ name: '', price: null, apply: '' }));
+    this.surcharges.push(this.fb.group({ name: '', apply: '' }));
   }
 
   deleteSurcharge(index: number) {
