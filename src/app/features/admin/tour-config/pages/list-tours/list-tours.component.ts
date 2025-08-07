@@ -1,7 +1,16 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { TableBaseComponent } from '../../../../../shared/components/table-base/table-base.component';
 import { TourResDTO } from '../../interface';
-import { ColumnConfig } from '../../../../../shared/interfaces/table-base.interface';
+import {
+  ColumnConfig,
+  ColumnType,
+} from '../../../../../shared/interfaces/table-base.interface';
 import { TableMetaData } from '../../../../../shared/models/table-base.model';
 import { HeaderInputSearchComponent } from '../../../../../shared/components/header-input-search/header-input-search.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -22,46 +31,57 @@ import { TourConfigService } from '../../tour-config.service';
   standalone: true,
 })
 export class ListToursComponent implements OnInit {
+  @ViewChild('actionCol', { static: true }) actionCol!: TemplateRef<never>;
+
   router = inject(Router);
   tourConfigService = inject(TourConfigService);
 
   loading = false;
   metaData = new TableMetaData();
   data: TourResDTO[] = [];
-  columns: ColumnConfig[] = [
-    {
-      key: 'title',
-      title: 'Tên Tour',
-      width: '250px',
-    },
-    {
-      key: 'stayDate',
-      title: 'Thời gian',
-      width: '120px',
-    },
-    {
-      key: 'destination',
-      title: 'Điểm đến',
-      width: '180px',
-    },
-    {
-      key: 'finalPrice',
-      title: 'Giá cuối',
-      width: '120px',
-    },
-    {
-      key: 'star',
-      title: 'Đánh giá',
-      width: '100px',
-    },
-    {
-      key: 'numberComment',
-      title: 'Lượt đánh giá',
-      width: '100px',
-    },
-  ];
+  columns: ColumnConfig[] = [];
 
   ngOnInit() {
+    this.columns = [
+      {
+        key: 'title',
+        title: 'Tên Tour',
+        width: '250px',
+      },
+      {
+        key: 'stayDate',
+        title: 'Thời gian',
+        width: '120px',
+      },
+      {
+        key: 'destination',
+        title: 'Điểm đến',
+        width: '180px',
+      },
+      {
+        key: 'finalPrice',
+        title: 'Giá cuối',
+        width: '120px',
+      },
+      {
+        key: 'star',
+        title: 'Đánh giá',
+        width: '100px',
+      },
+      {
+        key: 'numberComment',
+        title: 'Lượt đánh giá',
+        width: '100px',
+      },
+      {
+        key: 'id',
+        title: '',
+        width: '50px',
+        fixed: 'right',
+        type: ColumnType.TEMPLATE_REF,
+        template: this.actionCol,
+      },
+    ];
     this.getTours();
   }
 
@@ -76,6 +96,14 @@ export class ListToursComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
+      },
+    });
+  }
+
+  handleDelete(id: string | number) {
+    this.tourConfigService.deleteTourById(id).subscribe({
+      next: () => {
+        this.getTours();
       },
     });
   }

@@ -14,4 +14,11 @@
   [(pageSize)]="metaData.pageSize"
   [total]="metaData.total"
   [frontPagination]="true"
+  [scroll]="{ x: '1200px', y: 'calc(100vh - 280px)' }"
   (rowDBClick)="goTo(BaseFormMode.VIEW, $event)"></app-table-base-component>
+
+<ng-template #actionCol let-value>
+  <button nz-button (click)="handleDelete(value)">
+    <nz-icon nzType="delete" />
+  </button>
+</ng-template>

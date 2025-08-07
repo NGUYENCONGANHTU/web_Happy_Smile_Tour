@@ -199,4 +199,8 @@ export class TourConfigService {
       this.apiUrlLocation
     );
   }
+
+  deleteTourById(id: string | number) {
+    return this.httpClient.delete(this.apiUrlTour + `/${id}`);
+  }
 }
