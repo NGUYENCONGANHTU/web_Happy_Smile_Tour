@@ -2,25 +2,7 @@
   <nz-form-item>
     <nz-form-label nzRequired nzSpan="24">Dịch vụ bao gồm</nz-form-label>
     <nz-form-control [nzErrorTip]="service | appValidationMessage">
-      @if (service?.enabled) {
-        @if (editorServiceEnabled && configServiceEnabled) {
-          <ckeditor
-            formControlName="service"
-            [class]="service.touched && service.invalid ? 'error' : ''"
-            [editor]="editorServiceEnabled"
-            [config]="configServiceEnabled">
-          </ckeditor>
-        }
-      } @else {
-        @if (editorServiceDisabled && configServiceDisabled) {
-          <ckeditor
-            formControlName="service"
-            [editor]="editorServiceDisabled"
-            [config]="configServiceDisabled"
-            [disabled]="true">
-          </ckeditor>
-        }
-      }
+      <app-ckeditor-wrapper formControlName="service"></app-ckeditor-wrapper>
     </nz-form-control>
   </nz-form-item>
 
@@ -29,25 +11,7 @@
   <nz-form-item>
     <nz-form-label nzRequired nzSpan="24">Không bao gồm</nz-form-label>
     <nz-form-control [nzErrorTip]="nonService | appValidationMessage">
-      @if (nonService?.enabled) {
-        @if (editorNonServiceEnabled && configNonServiceEnabled) {
-          <ckeditor
-            formControlName="nonService"
-            [class]="nonService.touched && service.invalid ? 'error' : ''"
-            [editor]="editorNonServiceEnabled"
-            [config]="configNonServiceEnabled">
-          </ckeditor>
-        }
-      } @else {
-        @if (editorNonServiceDisabled && configNonServiceDisabled) {
-          <ckeditor
-            formControlName="nonService"
-            [editor]="editorNonServiceDisabled"
-            [config]="configNonServiceDisabled"
-            [disabled]="true">
-          </ckeditor>
-        }
-      }
+      <app-ckeditor-wrapper formControlName="nonService"></app-ckeditor-wrapper>
     </nz-form-control>
   </nz-form-item>
 </form>
