@@ -1,21 +1,59 @@
-<nz-tabs [nzTabBarExtraContent]="extraTemplate">
-  <nz-tab nzTitle="Thông tin">
+<nz-tabs [nzTabBarExtraContent]="extraTemplate" nzLinkRouter>
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [class]="tourForm.invalid ? '!text-red-500' : ''"
+      >Thông tin</a
+    >
     <app-tour-form-info-tab
       [tourForm]="tourForm"
       [mode]="mode"></app-tour-form-info-tab>
   </nz-tab>
-  <nz-tab nzTitle="Lịch trình">
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ tab: 'schedule' }"
+      queryParamsHandling="merge"
+      [class]="scheduleForm.invalid ? '!text-red-500' : ''"
+      >Lịch trình</a
+    >
     <app-tour-form-schedule-tab
       [scheduleForm]="scheduleForm"
       [mode]="mode"></app-tour-form-schedule-tab>
   </nz-tab>
-  <nz-tab nzTitle="Bảng giá">
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ tab: 'price' }"
+      queryParamsHandling="merge"
+      [class]="priceForm.invalid ? '!text-red-500' : ''"
+      >Bảng giá</a
+    >
     <app-tour-form-pricing-tab
       [lang]="selectedLanguage"
       [priceForm]="priceForm"
       [mode]="mode"></app-tour-form-pricing-tab>
   </nz-tab>
-  <nz-tab nzTitle="Dịch vụ">
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ tab: 'service' }"
+      queryParamsHandling="merge"
+      [class]="
+        tourForm.get('service')?.invalid || tourForm.get('nonService')?.invalid
+          ? '!text-red-500'
+          : ''
+      "
+      >Dịch vụ</a
+    >
     <app-tour-form-service-tab
       [tourForm]="tourForm"></app-tour-form-service-tab>
   </nz-tab>

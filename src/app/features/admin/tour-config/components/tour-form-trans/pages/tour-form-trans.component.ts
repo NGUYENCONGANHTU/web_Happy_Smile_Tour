@@ -11,7 +11,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BaseFormMode } from '../../../../../../shared/interfaces/form-base.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TourConfigService } from '../../../tour-config.service';
@@ -55,6 +55,7 @@ import { SharedDataService } from '../../../../../../shared/services/shared-data
     PricingTabTransComponent,
     ServiceTabTransComponent,
     TourFormInfoTabComponent,
+    RouterLink,
   ],
 })
 export class TourFormTransComponent implements OnInit {
@@ -174,7 +175,7 @@ export class TourFormTransComponent implements OnInit {
                 languageCode: this.selectedLanguage,
                 name: dt.name,
                 // age: dt.age,
-                price: { value: dt.price, disabled: true },
+                price: dt.price,
                 created: dt.created,
               })
             );

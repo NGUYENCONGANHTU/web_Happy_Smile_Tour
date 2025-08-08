@@ -28,7 +28,7 @@
               </td>
               <!--              <td><input nz-input formControlName="age" /></td>-->
               <td>
-                <nz-input-number class="!w-full" formControlName="price" />
+                <input nz-input formControlName="price" />
               </td>
             </tr>
           }
@@ -121,8 +121,8 @@
         <thead>
           <tr>
             <th>Nhóm tuổi</th>
-            <th>Độ tuổi</th>
-            <th>Giá gốc (VNĐ)</th>
+            <!--            <th>Độ tuổi</th>-->
+            <th>Quy định về giá</th>
             @if (tourPricesTrans.enabled) {
               <th nzWidth="40px"></th>
             }
@@ -134,9 +134,9 @@
               <td>
                 <input nz-input formControlName="name" />
               </td>
-              <td><input nz-input formControlName="age" /></td>
+              <!--              <td><input nz-input formControlName="age" /></td>-->
               <td>
-                <nz-input-number class="!w-full" formControlName="price" />
+                <input nz-input formControlName="price" />
               </td>
             </tr>
           }
@@ -154,7 +154,7 @@
         <thead>
           <tr>
             <th>Tên phụ thu</th>
-            <th>Số tiền (VNĐ)</th>
+            <!--            <th>Số tiền (VNĐ)</th>-->
             <th>Áp dụng cho</th>
           </tr>
         </thead>
@@ -162,9 +162,9 @@
           @for (group of surchargesTrans.controls; track $index) {
             <tr [formGroupName]="$index">
               <td><input nz-input formControlName="name" /></td>
-              <td>
-                <nz-input-number class="!w-full" formControlName="price" />
-              </td>
+              <!--              <td>-->
+              <!--                <nz-input-number class="!w-full" formControlName="price" />-->
+              <!--              </td>-->
               <td><input nz-input formControlName="apply" /></td>
             </tr>
           }

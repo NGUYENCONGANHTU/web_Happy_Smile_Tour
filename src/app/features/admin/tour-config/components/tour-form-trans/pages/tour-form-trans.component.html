@@ -1,24 +1,63 @@
-<nz-tabs [nzTabBarExtraContent]="extraTemplate">
-  <nz-tab nzTitle="Thông tin">
+<nz-tabs [nzTabBarExtraContent]="extraTemplate" nzLinkRouter>
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [class]="tourFormTrans.invalid ? '!text-red-500' : ''"
+      >Thông tin</a
+    >
     <app-tour-form-info-tab-trans
       [tourForm]="tourForm"
       [tourFormTrans]="tourFormTrans"
       (saved)="submit('INFO')"></app-tour-form-info-tab-trans>
   </nz-tab>
-  <nz-tab nzTitle="Lịch trình">
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ tab: 'schedule' }"
+      queryParamsHandling="merge"
+      [class]="scheduleFormTrans.invalid ? '!text-red-500' : ''"
+      >Lịch trình</a
+    >
     <app-tour-form-schedule-tab-trans
       [scheduleForm]="scheduleForm"
       [scheduleFormTrans]="scheduleFormTrans"
       (saved)="submit('SCHEDULES')"></app-tour-form-schedule-tab-trans>
   </nz-tab>
-  <nz-tab nzTitle="Bảng giá">
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ tab: 'price' }"
+      queryParamsHandling="merge"
+      [class]="priceFormTrans.invalid ? '!text-red-500' : ''"
+      >Bảng giá</a
+    >
     <app-tour-form-pricing-tab-trans
       [lang]="selectedLanguage"
       [priceForm]="priceForm"
       [priceFormTrans]="priceFormTrans"
       (saved)="submit('PRICES')"></app-tour-form-pricing-tab-trans>
   </nz-tab>
-  <nz-tab nzTitle="Dịch vụ">
+  <nz-tab>
+    <a
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ tab: 'service' }"
+      queryParamsHandling="merge"
+      [class]="
+        tourFormTrans.get('service')?.invalid ||
+        tourFormTrans.get('nonService')?.invalid
+          ? '!text-red-500'
+          : ''
+      "
+      >Dịch vụ</a
+    >
     <app-tour-form-service-tab-trans
       [tourFormTrans]="tourFormTrans"
       [tourForm]="tourFormTrans"

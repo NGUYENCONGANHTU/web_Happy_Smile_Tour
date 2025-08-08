@@ -27,10 +27,18 @@
       @for (group of tourPrices.controls; track $index) {
         <tr [formGroupName]="$index">
           <td>
-            <input nz-input formControlName="name" />
+            <nz-form-control
+              [nzErrorTip]="group.get('name') | appValidationMessage">
+              <input nz-input formControlName="name" />
+            </nz-form-control>
           </td>
           <!--          <td><input nz-input formControlName="age" /></td>-->
-          <td><nz-input-number class="!w-full" formControlName="price" /></td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('price') | appValidationMessage">
+              <input nz-input formControlName="price" />
+            </nz-form-control>
+          </td>
           @if (tourPrices.enabled) {
             <td>
               <button nz-button (click)="deleteTourPrice($index)">
@@ -67,9 +75,19 @@
     <tbody formArrayName="surcharges">
       @for (group of surcharges.controls; track $index) {
         <tr [formGroupName]="$index">
-          <td><input nz-input formControlName="name" /></td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('name') | appValidationMessage">
+              <input nz-input formControlName="name" />
+            </nz-form-control>
+          </td>
           <!--          <td><input nz-input type="number" formControlName="price" /></td>-->
-          <td><input nz-input formControlName="apply" /></td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('apply') | appValidationMessage">
+              <input nz-input formControlName="apply" />
+            </nz-form-control>
+          </td>
           @if (surcharges.enabled) {
             <td>
               <button nz-button (click)="deleteSurcharge($index)">
@@ -107,10 +125,30 @@
     <tbody formArrayName="discounts">
       @for (group of discounts.controls; track $index) {
         <tr [formGroupName]="$index">
-          <td><input nz-input formControlName="name" /></td>
-          <td><input nz-input formControlName="description" /></td>
-          <td><nz-input-number class="!w-full" formControlName="price" /></td>
-          <td><input nz-input formControlName="condition" /></td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('name') | appValidationMessage">
+              <input nz-input formControlName="name" />
+            </nz-form-control>
+          </td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('description') | appValidationMessage">
+              <input nz-input formControlName="description" />
+            </nz-form-control>
+          </td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('price') | appValidationMessage">
+              <nz-input-number class="!w-full" formControlName="price" />
+            </nz-form-control>
+          </td>
+          <td>
+            <nz-form-control
+              [nzErrorTip]="group.get('condition') | appValidationMessage">
+              <input nz-input formControlName="condition" />
+            </nz-form-control>
+          </td>
           @if (discounts.enabled) {
             <td>
               <button nz-button (click)="deleteDiscount($index)">
