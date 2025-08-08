@@ -17,6 +17,7 @@ import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -119,6 +120,9 @@ export class TabServiceComponent implements OnInit {
       });
     }
   }
-
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
   protected readonly formateImage = sanitizeUrl;
 }

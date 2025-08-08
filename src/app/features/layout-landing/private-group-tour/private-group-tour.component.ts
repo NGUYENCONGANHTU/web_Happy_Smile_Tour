@@ -14,6 +14,7 @@ import {
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-private-group-tour',
@@ -103,5 +104,10 @@ export class PrivateGroupTourComponent implements OnInit {
   resetForm(e: MouseEvent): void {
     e.preventDefault();
     this.validateForm.reset();
+  }
+
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

@@ -1,82 +1,86 @@
-<div class="">
+<div>
   <!--  ========================BẢNG GIÁ TOUR============================  -->
-  <div class="">
-    <nz-table
-      #basicTable
-      [nzData]="[dataTourPrice]"
-      [nzFrontPagination]="false">
-      <thead>
-        <tr>
-          <th>{{ 'tour_detail.group_age' | translate }}</th>
-          <th>{{ 'tour_detail.age' | translate }}</th>
-          <th>{{ 'tour_detail.original_price' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (data of dataTourPrice; track $index) {
+  @if (dataTourPrice.length > 0) {
+    <div>
+      <nz-table
+        #basicTable
+        [nzData]="[dataTourPrice]"
+        [nzFrontPagination]="false">
+        <thead>
           <tr>
-            <td>{{ data.name }}</td>
-            <td>{{ data.age }}</td>
-            <td>{{ data.price | number }} VNĐ</td>
+            <th>{{ 'tour_detail.group_age' | translate }}</th>
+            <th>{{ 'tour_detail.original_price' | translate }}</th>
           </tr>
-        }
-      </tbody>
-    </nz-table>
-  </div>
+        </thead>
+        <tbody>
+          @for (data of dataTourPrice; track $index) {
+            <tr>
+              <td>{{ data.name }}</td>
+              @if (data.price) {
+                <td>{{ data.price }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  }
   <!--  ======================== BẢNG GIẢM GIÁ ============================  -->
-  <div class="">
-    <div class="font-bold mb-8! !uppercase">
-      {{ 'tour_detail.table_discount' | translate }}
-    </div>
-    <nz-table
-      #basicTable
-      [nzData]="[dataTourDiscount]"
-      [nzFrontPagination]="false">
-      <thead>
-        <tr>
-          <th>{{ 'tour_detail.type_discount' | translate }}</th>
-          <th>{{ 'tour_detail.description' | translate }}</th>
-          <th>{{ 'tour_detail.value_discount' | translate }}</th>
-          <th>{{ 'tour_detail.if_else' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (data of dataTourDiscount; track $index) {
+  @if (dataTourDiscount.length > 0) {
+    <div>
+      <div class="font-bold mb-8! !uppercase">
+        {{ 'tour_detail.table_discount' | translate }}
+      </div>
+      <nz-table
+        #basicTable
+        [nzData]="[dataTourDiscount]"
+        [nzFrontPagination]="false">
+        <thead>
           <tr>
-            <td>{{ data.name }}</td>
-            <td>{{ data.description }}</td>
-            <td>{{ data.price | number }} VNĐ</td>
-            <td>{{ data.condition }}</td>
+            <th>{{ 'tour_detail.type_discount' | translate }}</th>
+            <th>{{ 'tour_detail.description' | translate }}</th>
+            <th>{{ 'tour_detail.value_discount' | translate }}</th>
+            <th>{{ 'tour_detail.if_else' | translate }}</th>
           </tr>
-        }
-      </tbody>
-    </nz-table>
-  </div>
+        </thead>
+        <tbody>
+          @for (data of dataTourDiscount; track $index) {
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.description }}</td>
+              <td>{{ data.price | number }} VNĐ</td>
+              <td>{{ data.condition }}</td>
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  }
   <!--  ======================== BẢNG PHỤ THU ============================  -->
-  <div class="">
-    <div class="font-bold mb-8! !uppercase">
-      {{ 'tour_detail.table_surcharge' | translate }}
-    </div>
-    <nz-table
-      #basicTable
-      [nzData]="[dataTourSurcharge]"
-      [nzFrontPagination]="false">
-      <thead>
-        <tr>
-          <th>{{ 'tour_detail.name_surcharge' | translate }}</th>
-          <th>{{ 'tour_detail.price_surcharge' | translate }}</th>
-          <th>{{ 'tour_detail.apply_for' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (data of dataTourSurcharge; track data) {
+  @if (dataTourSurcharge.length > 0) {
+    <div>
+      <div class="font-bold mb-8! !uppercase">
+        {{ 'tour_detail.table_surcharge' | translate }}
+      </div>
+      <nz-table
+        #basicTable
+        [nzData]="[dataTourSurcharge]"
+        [nzFrontPagination]="false">
+        <thead>
           <tr>
-            <td>{{ data.name }}</td>
-            <td>{{ data.price | number }} VNĐ</td>
-            <td>{{ data.apply }}</td>
+            <th>{{ 'tour_detail.name_surcharge' | translate }}</th>
+            <th>{{ 'tour_detail.apply_for' | translate }}</th>
           </tr>
-        }
-      </tbody>
-    </nz-table>
-  </div>
+        </thead>
+        <tbody>
+          @for (data of dataTourSurcharge; track data) {
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.apply }}</td>
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  }
 </div>

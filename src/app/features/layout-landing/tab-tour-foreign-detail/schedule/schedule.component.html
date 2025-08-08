@@ -12,7 +12,9 @@
             day.title
           "
           [nzActive]="false">
-          <div class="text-justify">{{ day.description }}</div>
+          <div
+            class="text-justify"
+            [innerHTML]="sanitizeHtml(day.description)"></div>
         </nz-collapse-panel>
       </nz-collapse>
     </nz-timeline-item>

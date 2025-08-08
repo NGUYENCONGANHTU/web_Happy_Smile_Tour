@@ -72,15 +72,8 @@ export function parseToNzUploadFile(
 
 export function sanitizeUrl(path: string): string {
   if (!path || typeof path !== 'string') return '';
-
-  // Chuyển \\ hoặc \ sang /
   const cleaned = path.replace(/\\/g, '/').trim();
-
-  // Nếu đường dẫn không bắt đầu bằng "/", thêm vào
   const normalized = cleaned.startsWith('/') ? cleaned : '/' + cleaned;
-
-  // Ghép với domain nếu cần (có thể lấy từ env)
-  // const baseUrl = environment.API_URL;
   return '/images/tmp' + normalized;
 }
 

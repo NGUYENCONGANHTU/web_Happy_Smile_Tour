@@ -10,8 +10,9 @@
           {{ 'tour_detail.tour' | translate }}</a
         >
       </nz-breadcrumb-item>
-      <nz-breadcrumb-item class="font-medium italic">
-        {{ tourDetail.title }}
+      <nz-breadcrumb-item
+        class="font-medium italic"
+        [innerHTML]="sanitizeHtml(tourDetail.title)">
       </nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
@@ -20,7 +21,9 @@
       <div class="left-content">
         <app-slide-tour-detail [listImageBanner]="tourDetail">
         </app-slide-tour-detail>
-        <div class="tour-detail-title">{{ tourDetail.title }}</div>
+        <div
+          class="tour-detail-title"
+          [innerHTML]="sanitizeHtml(tourDetail.title)"></div>
         <div class="tour-detail-title-tabs">
           <div
             class="tour-detail-title-tabs-title !hidden md:!flex border-b-2 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
@@ -90,9 +93,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.service_content' | translate }}
                   </div>
-                  <div class="content-1 text-justify">
-                    {{ tourDetail.service }}
-                  </div>
+                  <div
+                    class="content-1 text-justify"
+                    [innerHTML]="sanitizeHtml(tourDetail.service)"></div>
                 </div>
               }
 
@@ -102,9 +105,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.non_service_content' | translate }}
                   </div>
-                  <div class="content-2-text text-justify">
-                    {{ tourDetail.nonService }}
-                  </div>
+                  <div
+                    class="content-2-text text-justify"
+                    [innerHTML]="sanitizeHtml(tourDetail.nonService)"></div>
                 </div>
               }
 
@@ -114,9 +117,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.t_c' | translate }}
                   </div>
-                  <div class="content-3-text text-justify">
-                    {{ tourDetail.regulation }}
-                  </div>
+                  <div
+                    class="content-3-text text-justify"
+                    [innerHTML]="sanitizeHtml(tourDetail.regulation)"></div>
                 </div>
               }
 
@@ -126,9 +129,9 @@
                   <div class="tab-title !uppercase">
                     {{ 'tour_detail.note' | translate }}
                   </div>
-                  <div class="content-3-text text-justify">
-                    {{ tourDetail.note }}
-                  </div>
+                  <div
+                    class="content-3-text text-justify"
+                    [innerHTML]="sanitizeHtml(tourDetail.note)"></div>
                 </div>
               }
             </div>

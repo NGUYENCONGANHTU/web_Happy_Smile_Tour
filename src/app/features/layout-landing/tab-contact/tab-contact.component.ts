@@ -9,6 +9,7 @@ import { AppService } from '../../../../app.service';
 import { ContactPageResDTO, BannerResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tab-contact',
@@ -78,5 +79,10 @@ export class TabContactComponent implements OnInit {
         this.dataEmail = [];
       }
     });
+  }
+
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

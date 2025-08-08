@@ -27,6 +27,7 @@ import { ReviewSummaryComponent } from '../../../shared/components/review-summar
 import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -159,5 +160,9 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
         this.getDataByIdTourDetail();
       }
     });
+  }
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

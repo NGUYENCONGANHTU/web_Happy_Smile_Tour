@@ -19,12 +19,12 @@
       <div
         class="absolute inset-0 z-0 flex justify-center items-center text-white">
         <div class="text-center md:text-left !px-[8%]">
-          <div class="text-[40px] md:text-[60px] text-white! font-bold">
-            {{ data.title }}
-          </div>
-          <div class="text-[20px]">
-            {{ data.description }}
-          </div>
+          <div
+            class="text-[40px] md:text-[60px] text-white! font-bold"
+            [innerHTML]="sanitizeHtml(data.title)"></div>
+          <div
+            class="text-[20px]"
+            [innerHTML]="sanitizeHtml(data.description)"></div>
         </div>
       </div>
     </div>
