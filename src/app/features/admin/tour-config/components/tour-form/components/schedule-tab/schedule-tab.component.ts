@@ -14,6 +14,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
+import { CkeditorWrapperComponent } from '../../../../../../../shared/components/ckeditor-wrapper/ckeditor-wrapper.component';
 
 @Component({
   selector: 'app-tour-form-schedule-tab',
@@ -28,6 +29,7 @@ import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.i
     NzButtonModule,
     NzIconModule,
     NzDropDownModule,
+    CkeditorWrapperComponent,
   ],
 })
 export class TourFormScheduleTabComponent {

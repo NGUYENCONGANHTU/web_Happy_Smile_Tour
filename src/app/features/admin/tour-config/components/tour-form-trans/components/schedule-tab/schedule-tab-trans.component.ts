@@ -4,7 +4,6 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -14,6 +13,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
+import { CkeditorWrapperComponent } from '../../../../../../../shared/components/ckeditor-wrapper/ckeditor-wrapper.component';
 
 @Component({
   selector: 'app-tour-form-schedule-tab-trans',
@@ -28,6 +28,7 @@ import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.i
     NzButtonModule,
     NzIconModule,
     NzDropDownModule,
+    CkeditorWrapperComponent,
   ],
 })
 export class ScheduleTabTransComponent {
@@ -37,41 +38,6 @@ export class ScheduleTabTransComponent {
   @Input({ required: true }) scheduleFormTrans!: FormGroup;
 
   @Output() saved = new EventEmitter();
-
-  createItem(): FormGroup {
-    return this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-    });
-  }
-
-  addSchedule(index?: number) {
-    this.schedules.insert(index ?? 0, this.createItem());
-    this.schedules.updateValueAndValidity();
-  }
-
-  removeSchedule(index: number) {
-    this.schedules.removeAt(index);
-  }
-
-  swapSchedules(index1: number, index2: number) {
-    if (
-      index1 === index2 ||
-      index1 < 0 ||
-      index2 < 0 ||
-      index1 >= this.schedules.length ||
-      index2 >= this.schedules.length
-    ) {
-      return; // Prevent invalid swaps
-    }
-    const controls = this.schedules.controls;
-    // Swap the controls
-    const temp = controls[index1];
-    controls[index1] = controls[index2];
-    controls[index2] = temp;
-    // Trigger change detection
-    this.schedules.updateValueAndValidity();
-  }
 
   get schedules(): FormArray {
     return this.scheduleForm.get('schedules') as FormArray;
