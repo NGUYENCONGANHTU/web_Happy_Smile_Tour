@@ -38,6 +38,7 @@ export class FooterConfigComponent implements OnInit {
 
   footerForm: FormGroup = this.fb.group({
     id: [''],
+    footerId: [''],
     name: [''],
     position: [''],
     company: [''],
@@ -75,7 +76,10 @@ export class FooterConfigComponent implements OnInit {
       this.submitting = true;
       if (this.isOriginalLanguage) {
         this.footerService
-          .updateFooterById(this.footerForm.value?.id, this.footerForm.value)
+          .updateFooterById(
+            this.footerForm.value?.footerId,
+            this.footerForm.value
+          )
           .subscribe({
             next: () => {
               this.submitting = false;
