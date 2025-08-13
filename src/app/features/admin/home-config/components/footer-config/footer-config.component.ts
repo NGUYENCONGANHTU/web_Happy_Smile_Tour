@@ -6,12 +6,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { ValidationMessagePipe } from '../../../../../shared/pipes/validation.pipe';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.constant';
 import { FooterConfigService } from './footer-config.service';
 import { LanguageSelectionComponent } from '../../../../../shared/components/language-selection/language-selection.component';
+import { CkeditorWrapperComponent } from '../../../../../shared/components/ckeditor-wrapper/ckeditor-wrapper.component';
 
 @Component({
   selector: 'app-footer-config',
@@ -22,8 +22,8 @@ import { LanguageSelectionComponent } from '../../../../../shared/components/lan
     NzFormModule,
     NzInputModule,
     ReactiveFormsModule,
-    ValidationMessagePipe,
     LanguageSelectionComponent,
+    CkeditorWrapperComponent,
   ],
   standalone: true,
 })
