@@ -91,7 +91,7 @@
     <nz-form-label nzRequired>Nội dung nổi bật</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['highlight'] | appValidationMessage">
-      <textarea nz-input rows="5" formControlName="highlight"></textarea>
+      <app-ckeditor-wrapper formControlName="highlight"></app-ckeditor-wrapper>
     </nz-form-control>
   </nz-form-item>
 
@@ -99,7 +99,7 @@
     <nz-form-label nzRequired>Chính sách</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['regulation'] | appValidationMessage">
-      <textarea nz-input rows="3" formControlName="regulation"></textarea>
+      <app-ckeditor-wrapper formControlName="regulation"></app-ckeditor-wrapper>
     </nz-form-control>
   </nz-form-item>
 
@@ -107,7 +107,7 @@
     <nz-form-label nzRequired>Ghi chú thêm</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['note'] | appValidationMessage">
-      <textarea nz-input rows="3" formControlName="note"></textarea>
+      <app-ckeditor-wrapper formControlName="note"></app-ckeditor-wrapper>
     </nz-form-control>
   </nz-form-item>
 

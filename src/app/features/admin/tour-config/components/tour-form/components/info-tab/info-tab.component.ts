@@ -16,6 +16,7 @@ import { TourConfigService } from '../../../../tour-config.service';
 import { OptionItem } from '../../../../../../../core/interfaces/base.interface';
 import { BaseFormMode } from '../../../../../../../shared/interfaces/form-base.interface';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { CkeditorWrapperComponent } from '../../../../../../../shared/components/ckeditor-wrapper/ckeditor-wrapper.component';
 
 @Component({
   selector: 'app-tour-form-info-tab',
@@ -30,6 +31,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzIconModule,
     NzInputNumberModule,
     ValidationMessagePipe,
+    CkeditorWrapperComponent,
   ],
   standalone: true,
 })

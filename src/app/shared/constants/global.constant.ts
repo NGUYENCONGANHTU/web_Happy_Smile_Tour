@@ -3,7 +3,7 @@ export enum BASE_DATE_FORMAT {
   DATE_TIME = 'dd/MM/yyyy HH:mm',
 }
 
-export const ORIGINAL_LANGUAGE = 'vi';
+export const ORIGINAL_LANGUAGE = 'en';
 
 export const BANNER_WEB = [
   {

@@ -17,11 +17,8 @@
           [nzExtra]="schedules.enabled ? extraTpl : undefined"
           [nzActive]="true"
           [formGroupName]="indexStep">
-          <textarea
-            nz-input
-            rows="3"
-            formControlName="description"
-            class="w-full"></textarea>
+          <app-ckeditor-wrapper
+            formControlName="description"></app-ckeditor-wrapper>
           <ng-template #header>
             <input
               nz-input

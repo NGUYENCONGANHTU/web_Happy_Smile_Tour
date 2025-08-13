@@ -1,0 +1,22 @@
+@if (disabled) {
+  @if (editorDisabled && configDisabled) {
+    <ckeditor
+      [editor]="editorDisabled"
+      [config]="configDisabled"
+      [disabled]="true"
+      [data]="value"
+      (blur)="onEditorBlur()">
+    </ckeditor>
+  }
+} @else {
+  @if (editorEnabled && configEnabled) {
+    <ckeditor
+      [editor]="editorEnabled"
+      [config]="configEnabled"
+      [data]="value"
+      (change)="onEditorChange($event)"
+      (blur)="onEditorBlur()"
+      [class]="ngControl.touched && ngControl.invalid ? 'error' : ''">
+    </ckeditor>
+  }
+}
