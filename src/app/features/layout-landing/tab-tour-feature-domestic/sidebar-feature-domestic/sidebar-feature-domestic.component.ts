@@ -53,6 +53,22 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.filtersChanged.emit(formData);
   }
 
+  resetFilters(): void {
+    // Đặt lại giá trị mặc định
+    this.rangeValue = [0, 200000000];
+    this.departure = '';
+    this.destination = '';
+
+    // Phát sự kiện gửi dữ liệu về mặc định
+    const defaultData = {
+      min: this.rangeValue[0],
+      max: this.rangeValue[this.rangeValue.length - 1],
+      departure: this.departure,
+      destination: this.destination,
+    };
+    this.filtersChanged.emit(defaultData);
+  }
+
   ngOnInit() {
     this.getDataStartingPoint();
   }

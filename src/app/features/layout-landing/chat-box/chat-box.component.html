@@ -13,29 +13,25 @@
 <ng-template #contentTemplate>
   <div
     class="!bg-[#FFEEEE] !text-[#EE1C23] !p-3 !rounded-md !mb-3 !font-semibold">
-    Xin chào! 👋 Chúng tôi là
-    <span class="!font-bold">HappySmiles Viet Nam Travel</span>. Bạn cần hỗ trợ
-    gì hôm nay?
+    {{ 'chatbox.title' | translate }}
   </div>
 
   <div
     class="!bg-[#F0FFF0] !text-[#0D9343] !p-3 !rounded-md !mb-4 !font-medium">
-    Hãy click link bên dưới để chat với chúng tôi qua WhatsApp nhé!
+    {{ 'chatbox.description' | translate }}
   </div>
 
   <a
     href="https://wa.me/+84912883347?text=Xin%20ch%C3%A0o%2C%20t%C3%B4i%20mu%E1%BB%91n%20h%E1%BB%97%20tr%E1%BB%A3%20t%E1%BB%AB%20HappySmiles"
     target="_blank"
     class="!block !w-full !text-center !bg-[#0D9343] !text-white !py-2 !rounded-md !mb-2 !font-semibold !hover:bg-[#087532] !transition">
-    Liên hệ với chúng tôi trên WhatsApp <br />
-    (+84 912 88 33 47)
+    WhatsApp (+84 912 88 33 47)
   </a>
 
   <a
     href="https://wa.me/+84966788728?text=Xin%20ch%C3%A0o%2C%20t%C3%B4i%20mu%E1%BB%91n%20h%E1%BB%97%20tr%E1%BB%A3%20t%E1%BB%AB%20HappySmiles"
     target="_blank"
     class="!block !w-full !text-center !bg-[#EE1C23] !text-white !py-2 !rounded-md !font-semibold !hover:bg-[#b8161b] !transition">
-    Hoặc liên hệ chúng tôi với số <br />
-    (+84 966 788 728)
+    {{ 'chatbox.or' | translate }} Whatsapp (+84 966 788 728)
   </a>
 </ng-template>

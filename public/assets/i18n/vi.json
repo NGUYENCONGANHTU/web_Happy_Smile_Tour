@@ -29,7 +29,8 @@
     "location": "Chọn địa điểm",
     "departure": "Điểm đi",
     "destination": "Điểm đến",
-    "find_tour": "TÌM TOUR"
+    "find_tour": "TÌM TOUR",
+    "reset_tour": "ĐẶT LẠI"
   },
   "tour_card": {
     "best_sale" : "Giá tốt nhất",
@@ -111,5 +112,15 @@
     "submit": "Gửi",
     "full_name": "Họ và tên",
     "address" : "Địa chỉ"
+  },
+  "footer": {
+    "title": "Liên Hệ HappySmiles VietNam Travel",
+    "description": "Công ty TNHH HappySmiles VietNam Travel – Cầu nối #1 giữa Công Ty Lữ Hành Quốc Tế tại Việt Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới."
+  },
+  "chatbox": {
+    "title": "Xin chào! 👋 HappySmiles VietNam Travel sẵn sàng hỗ trợ bạn qua WhatsApp.",
+    "description": "Hãy click link bên dưới để chat với chúng tôi qua WhatsApp nhé!",
+    "or": "Hoặc"
   }
+
 }

@@ -21,6 +21,7 @@
   },
   "tab_tour": {
     "nothing_tour": "No suitable tour found!"
+
   },
   "domestic_tour": {
     "title": "Find the perfect trip for you here!",
@@ -30,7 +31,8 @@
     "location": "Choose location",
     "departure": "Departure",
     "destination": "Destination",
-    "find_tour": "FIND TOUR"
+    "find_tour": "FIND TOUR",
+    "reset_tour": "RESET"
   },
   "tour_card": {
     "best_sale" : "Best Price",
@@ -111,5 +113,15 @@
     "submit": "Submit",
     "full_name": "Full Name",
     "address": "Address"
+  },
+
+  "footer": {
+    "title": "Contact HappySmiles Vietnam Travel",
+    "description": "HappySmiles Vietnam Travel Co., Ltd – The No.1 bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
+  },
+  "chatbox": {
+    "title": "Hello! 👋 HappySmiles VietNam Travel is ready to assist you via WhatsApp.",
+    "description": "Please click the link below to chat with us on WhatsApp.",
+    "or": "Or"
   }
 }

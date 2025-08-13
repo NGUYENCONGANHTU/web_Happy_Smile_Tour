@@ -1,11 +1,12 @@
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat-box',
   standalone: true,
-  imports: [NzButtonModule, NzPopoverModule],
+  imports: [NzButtonModule, NzPopoverModule, TranslatePipe],
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.scss'],
 })
