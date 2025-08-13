@@ -63,12 +63,21 @@
     </nz-select>
 
     <!--button search-->
-    <button
-      class="w-full !uppercase font-medium! text-lg!"
-      nz-button
-      nzType="primary"
-      (click)="searchTour()">
-      {{ 'domestic_tour.find_tour' | translate }}
-    </button>
+    <div class="flex gap-5">
+      <button
+        class="!bg-[#ED1C24] w-full !py-[17px] !text-white !uppercase font-medium! text-md! !flex !justify-center !items-center !rounded-md"
+        nzType="text"
+        nz-button
+        (click)="resetFilters()">
+        {{ 'domestic_tour.reset_tour' | translate }}
+      </button>
+      <button
+        class="w-full !py-[18px] !uppercase !text-white font-medium! text-md! !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
+        nz-button
+        nzType="primary"
+        (click)="searchTour()">
+        {{ 'domestic_tour.find_tour' | translate }}
+      </button>
+    </div>
   </div>
 </div>

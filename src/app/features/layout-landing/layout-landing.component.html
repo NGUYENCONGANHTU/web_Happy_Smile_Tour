@@ -4,7 +4,7 @@
       <div class="logo">
         <a href="/">
           <img
-            src="/assets/logo_Web_HST_N_1%20-%20Copy.png"
+            src="/assets/Logo_web_finally.png"
             class="w-full object-cover bg-center bg-cover"
             alt="Logo" />
         </a>
@@ -35,7 +35,7 @@
           <li>
             <a
               [routerLink]="['/introduce']"
-              routerLinkActive="!text-[#ed1d26]"
+              routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
               {{ 'menu.about' | translate }}
@@ -44,7 +44,7 @@
           <li>
             <a
               [routerLink]="['/tour-feature-domestic']"
-              routerLinkActive="!text-[#ed1d26]"
+              routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
               {{ 'menu.domestic_tours' | translate }}
@@ -53,7 +53,7 @@
           <li>
             <a
               [routerLink]="['/tour-feature-foreign']"
-              routerLinkActive="!text-[#ed1d26]"
+              routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
               {{ 'menu.international_tours' | translate }}
@@ -62,7 +62,7 @@
           <li>
             <a
               [routerLink]="['/private-group-tour']"
-              routerLinkActive="!text-[#ed1d26]"
+              routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
               {{ 'menu.private_group_tours' | translate }}
@@ -74,7 +74,7 @@
               nzTrigger="click"
               class="block py-2 text-[14px]"
               [nzDropdownMenu]="menu"
-              [ngClass]="{ '!text-[#ed1d26]': isServiceActive }"
+              [ngClass]="{ '!text-[#ed1c24]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
               {{ 'menu.services' | translate }}
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
@@ -100,7 +100,7 @@
           <li>
             <a
               [routerLink]="['/contact-page']"
-              routerLinkActive="!text-[#ed1d26]"
+              routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
               {{ 'menu.contact' | translate }}
@@ -158,100 +158,57 @@
   <main class="flex-1">
     <router-outlet></router-outlet>
   </main>
-  <!-- -->
+
   @for (data of footerData; track data.id) {
     <footer>
-      <div class="footer !p-5 md:!px-[10%] lg:flex justify-between !space-y-7">
-        <div class="travel-footer !space-y-3">
+      <div class="footer !py-5 !px-[4%] lg:flex lg:gap-20 justify-center">
+        <div class="travel-footer lg:w-2/5 !space-y-3">
           <div class="travel-footer-logo">
             <a href="">
-              <img
-                src="/assets/logo_Web_HST_N_1%20-%20Copy.png"
-                class="w-45"
-                alt="" />
+              <img src="/assets/Logo_web_finally.png" width="130" alt="" />
             </a>
           </div>
-          <div class="travel-footer-description !text-[20px] font-medium">
-            {{ data.company }}
+          <div class="travel-footer-description">
+            {{ 'footer.description' | translate }}
           </div>
-          <div class="travel-footer-partners !text-[16px] !w-[600px]">
-            {{ data.address }}
-          </div>
-          <div class="tax-code">
-            <span>Taxt code:</span>
-            <span class="!ml-1">{{ data.taxCode }}</span>
-          </div>
-          <div class="license-no">
-            <span>License No:</span>
-            <span class="!ml-1">{{ data.licenseNumber }}</span>
+          <div class="travel-footer-partners">
+            <img
+              src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"
+              width="150"
+              alt="" />
           </div>
         </div>
-        <!--========================= Contact =========================-->
-        <div class="travel-footer-contact space-y-2!">
+
+        <div class="travel-footer-contact lg:w-2/5 space-y-4!">
           <div class="travel-footer-contact-title">
-            <h1>Connect With Us</h1>
+            {{ data.company }}
           </div>
-          <div class="travel-footer-contact-content space-y-3!">
-            <div class="travel-footer-contact-contact">
-              <div class="font-semibold text-lg">{{ data.name }}</div>
-              <div class="text-sm text-gray-600 italic">
-                {{ data.position }}
+          <div class="travel-footer-contact-address space-y-4!">
+            @if (data.address) {
+              <div class="travel-footer-contact-address-1">
+                <span class="font-medium">Địa chỉ:</span>
+                {{ data.address }}
               </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <fa-icon
-                [icon]="faEnvelope"
-                class="text-xl text-[#e93d47]"></fa-icon>
-              <span>{{ data.email }}</span>
-            </div>
-            <div class="zalo-whatsapp">
-              <fa-icon
-                [icon]="faPhone"
-                class="text-xl text-[#2D72D9]"></fa-icon>
-              <span class="!ml-2">Zalo / Whatsapp</span>
-              <span class="!ml-2">
-                <span class="font-medium">{{ data.mobileNumber }}</span>
-                <span class="mx-2!">/</span>
-                <span class="font-medium">{{ data.whatsappNumber }}</span>
-              </span>
-            </div>
-            <div class="website">
-              <fa-icon
-                [icon]="faEarthAsia"
-                class="text-xl text-[#25D366]"></fa-icon>
-              <a class="!ml-2 !text-black">{{ data.website }}</a>
-            </div>
-            <div class="internet-app flex items-center gap-3">
-              <p class="flex items-center gap-1">
-                <fa-icon
-                  [icon]="faFacebook"
-                  class="text-xl text-[#1773ea]"></fa-icon>
-                <span>Facebook</span>
-              </p>
-              <p class="flex items-center gap-1">
-                <a
-                  href="https://zalo.me/your_zalo_id"
-                  target="_blank"
-                  title="Zalo">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5 fill-current text-blue-500"
-                    viewBox="0 0 48 48">
-                    <image
-                      href="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
-                      height="48"
-                      width="48" />
-                  </svg>
-                </a>
-                <span>Zalo</span>
-              </p>
-              <p class="flex items-center gap-1">
-                <fa-icon
-                  [icon]="faWhatsapp"
-                  class="text-xl text-[#41c051]"></fa-icon>
-                <span>Whatsapp</span>
-              </p>
-            </div>
+            }
+            @if (data.mobileNumber || data.whatsappNumber) {
+              <div class="travel-footer-contact-address-hotline">
+                <span class="font-medium">Zalo / Whatsapp :</span>
+                <span class=""> {{ data.mobileNumber }} </span> /
+                <span>{{ data.whatsappNumber }}</span>
+              </div>
+            }
+            @if (data.taxCode) {
+              <div class="travel-footer-contact-address-feedback">
+                <span class="font-medium !mr-1">Mã số thuế:</span
+                >{{ data.taxCode }}
+              </div>
+            }
+            @if (data.email) {
+              <div class="travel-footer-contact-email">
+                <span class="font-medium">Email:</span>
+                {{ data.email }}
+              </div>
+            }
           </div>
         </div>
       </div>

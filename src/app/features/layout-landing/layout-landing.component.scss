@@ -23,9 +23,7 @@
           border-radius: 12px;
           transition: all 0.2s ease-in-out;
           &:hover {
-            //background: #e5831e;
-            //color: #fff;
-            color: #ed1d26;
+            color: #ed1c24;
           }
           .menu-icon {
             margin-left: 3px;
@@ -49,6 +47,8 @@ footer {
   }
   .travel-footer-contact {
     .travel-footer-contact-title {
+      font-weight: 500;
+      font-size: 23px;
       h1 {
         font-size: 25px;
       }
@@ -60,7 +60,7 @@ footer {
 }
 .active-menu-item {
   border-radius: 5px;
-  color: #ed1d26;
+  color: #ed1c24;
   font-weight: 500;
 }
 .active-menu-label {

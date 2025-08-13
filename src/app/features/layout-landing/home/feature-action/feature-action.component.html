@@ -13,7 +13,7 @@
       class="slide"
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="tour-card cursor-pointer">
-        <div class="ribbon !bg-[#ff5722]">
+        <div class="ribbon !bg-[#ED1C24]">
           {{ 'tour_card.best_sale' | translate }}
           {{ $index + 1 }}
         </div>
@@ -22,7 +22,7 @@
           alt="Tour"
           class="tour-image !h-[200px] !w-full object-cover bg-center bg-cover" />
         <div class="tour-content">
-          <div class="tour-title truncate text-[#0d9344]">
+          <div class="tour-title truncate text-[#0b9444]">
             {{ data.title }}
           </div>
 
@@ -46,7 +46,7 @@
             <span class="font-medium !text-[#3A3A3C]"
               >{{ 'tour_card.itinerary' | translate }}:</span
             >
-            <span class="ml-1! !text-[#e7000b] font-medium">{{
+            <span class="ml-1! !text-[#ED1C24] font-medium">{{
               data.stayDate
             }}</span>
           </div>
@@ -77,7 +77,7 @@
               <span class="old-price !text-gray-400 font-medium"
                 >{{ data.originalPrice | number }} VNĐ</span
               >
-              <span class="new-price !text-red-600"
+              <span class="new-price !text-[#ED1C24]"
                 >{{ data.finalPrice | number }} VNĐ</span
               >
             </div>

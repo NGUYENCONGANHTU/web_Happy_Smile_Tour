@@ -21,11 +21,11 @@ import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../shared/services/language.service';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+// import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+// import { faPhone } from '@fortawesome/free-solid-svg-icons';
+// import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
+// import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+// import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { sanitizeUrl } from '../../shared/utils/helpers';
 import { ChatBoxComponent } from '../chat-box/chat-box.component';
 
@@ -49,11 +49,11 @@ import { ChatBoxComponent } from '../chat-box/chat-box.component';
 })
 export class LayoutLandingComponent implements OnInit {
   // icon
-  faEnvelope = faEnvelope;
-  faPhone = faPhone;
-  faEarthAsia = faEarthAsia;
-  faFacebook = faFacebook;
-  faWhatsapp = faWhatsapp;
+  // faEnvelope = faEnvelope;
+  // faPhone = faPhone;
+  // faEarthAsia = faEarthAsia;
+  // faFacebook = faFacebook;
+  // faWhatsapp = faWhatsapp;
 
   // ======================== service ========================
   translate = inject(TranslateService);
@@ -117,6 +117,7 @@ export class LayoutLandingComponent implements OnInit {
   getDataFooter() {
     this.appService.getAllDataFooter().subscribe(res => {
       this.footerData = res.data;
+      console.log(this.footerData);
     });
   }
 }
