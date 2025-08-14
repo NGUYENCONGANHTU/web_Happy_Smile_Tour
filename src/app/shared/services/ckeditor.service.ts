@@ -59,6 +59,52 @@ export class CkeditorService {
   private _setupEditor() {
     this.editorEnabled = ClassicEditor;
     this.editorDisabled = BalloonEditor;
+
+    // Custom color palette
+    const customColors = [
+      { color: '#ED1C24', label: 'Custom Red' },
+      { color: '#009444', label: 'Custom Green' },
+      { color: '#000000', label: 'Black' },
+      { color: '#808080', label: 'Gray' },
+      { color: '#C0C0C0', label: 'Silver' },
+      { color: '#FFFFFF', label: 'White' },
+      { color: '#800000', label: 'Maroon' },
+      { color: '#FF0000', label: 'Red' },
+      { color: '#FFA07A', label: 'Light Salmon' },
+      { color: '#DC143C', label: 'Crimson' },
+      { color: '#FF6347', label: 'Tomato' },
+      { color: '#FF4500', label: 'Orange Red' },
+      { color: '#FFD700', label: 'Gold' },
+      { color: '#FFFF00', label: 'Yellow' },
+      { color: '#ADFF2F', label: 'Green Yellow' },
+      { color: '#00FF00', label: 'Lime' },
+      { color: '#008000', label: 'Green' },
+      { color: '#006400', label: 'Dark Green' },
+      { color: '#00FFFF', label: 'Cyan' },
+      { color: '#40E0D0', label: 'Turquoise' },
+      { color: '#20B2AA', label: 'Light Sea Green' },
+      { color: '#000080', label: 'Navy' },
+      { color: '#0000FF', label: 'Blue' },
+      { color: '#4169E1', label: 'Royal Blue' },
+      { color: '#1E90FF', label: 'Dodger Blue' },
+      { color: '#87CEFA', label: 'Light Sky Blue' },
+      { color: '#B0C4DE', label: 'Light Steel Blue' },
+      { color: '#8A2BE2', label: 'Blue Violet' },
+      { color: '#4B0082', label: 'Indigo' },
+      { color: '#800080', label: 'Purple' },
+      { color: '#FF00FF', label: 'Magenta' },
+      { color: '#BA55D3', label: 'Medium Orchid' },
+      { color: '#DA70D6', label: 'Orchid' },
+      { color: '#D8BFD8', label: 'Thistle' },
+      { color: '#FF1493', label: 'Deep Pink' },
+      { color: '#FF69B4', label: 'Hot Pink' },
+      { color: '#FFC0CB', label: 'Pink' },
+      { color: '#FAEBD7', label: 'Antique White' },
+      { color: '#FFE4C4', label: 'Bisque' },
+      { color: '#FFEBCD', label: 'Blanched Almond' },
+      { color: '#F5F5DC', label: 'Beige' },
+    ];
+
     this.configEnabled = {
       licenseKey: 'GPL',
       plugins: [
@@ -113,11 +159,12 @@ export class CkeditorService {
         'bold',
         'italic',
         'underline',
-        'formatPainter',
         'removeFormat',
         '|',
+        'fontColor',
+        'fontBackgroundColor',
+        '|',
         'link',
-        'ckbox',
         'insertImage',
         'insertTable',
         'blockQuote',
@@ -125,7 +172,6 @@ export class CkeditorService {
         '|',
         'bulletedList',
         'numberedList',
-        'multilevelList',
         '|',
         'outdent',
         'indent',
@@ -173,16 +219,8 @@ export class CkeditorService {
             label: 'Default image width',
             value: null,
           },
-          {
-            name: 'resizeImage:50',
-            label: '50% page width',
-            value: '50',
-          },
-          {
-            name: 'resizeImage:75',
-            label: '75% page width',
-            value: '75',
-          },
+          { name: 'resizeImage:50', label: '50% page width', value: '50' },
+          { name: 'resizeImage:75', label: '75% page width', value: '75' },
         ],
         toolbar: [
           'imageTextAlternative',
@@ -202,9 +240,6 @@ export class CkeditorService {
       table: {
         contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
       },
-      // ckbox: {
-      //   tokenUrl: CKBOX_TOKEN_URL
-      // },
       fontFamily: {
         supportAllValues: true,
       },
@@ -212,7 +247,14 @@ export class CkeditorService {
         options: [10, 12, 14, 'default', 18, 20, 22],
         supportAllValues: true,
       },
+      fontColor: {
+        colors: customColors,
+      },
+      fontBackgroundColor: {
+        colors: customColors,
+      },
     };
+
     this.configDisabled = {
       licenseKey: 'GPL',
       plugins: [

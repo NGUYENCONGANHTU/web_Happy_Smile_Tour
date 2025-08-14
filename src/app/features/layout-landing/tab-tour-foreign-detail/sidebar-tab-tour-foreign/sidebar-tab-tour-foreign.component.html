@@ -1,7 +1,7 @@
 @if (tourDetail) {
   <div class="sidebar-tour-foreign">
     <div class="space-y-2!">
-      <div class="name-tour !font-bold">
+      <div class="name-tour !font-medium">
         {{ tourDetail.title }}
       </div>
       <div class="price-tour space-y-1!">
@@ -9,7 +9,7 @@
           <div class="price-tour-label">
             {{ 'tour_card.price_from' | translate }}:
           </div>
-          <div class="price-tour-value !font-bold">
+          <div class="price-tour-value !font-medium">
             {{ tourDetail.finalPrice | number }} VNĐ
           </div>
         }

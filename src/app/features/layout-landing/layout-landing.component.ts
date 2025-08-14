@@ -28,6 +28,7 @@ import { LanguageService } from '../../shared/services/language.service';
 // import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { sanitizeUrl } from '../../shared/utils/helpers';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-layout-landing',
@@ -119,5 +120,10 @@ export class LayoutLandingComponent implements OnInit {
       this.footerData = res.data;
       console.log(this.footerData);
     });
+  }
+
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content?: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
   }
 }

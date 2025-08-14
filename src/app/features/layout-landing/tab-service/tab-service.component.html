@@ -37,7 +37,7 @@
         class="content-service-contact !mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-10">
         <div class="content-service space-y-2!">
           <div
-            class="content-service-title text-left md:text-center text-3xl font-bold"
+            class="content-service-title text-left md:text-center text-3xl font-medium"
             [innerHTML]="sanitizeHtml(dataServiceDetail.serviceTitle)"></div>
           <div
             class="content-service-list text-justify"
@@ -45,7 +45,7 @@
         </div>
         <div class="service-contact">
           <div
-            class="service-contact-title text-left lg:text-center text-3xl font-bold !mb-5 md:!mb-10">
+            class="service-contact-title text-left lg:text-center text-3xl font-medium !mb-5 md:!mb-10">
             {{ 'tab_service.instruction' | translate }}
           </div>
           <form
@@ -165,17 +165,39 @@
             </div>
 
             <!--  =================   Buttons  =================  -->
-            <div class="col-span-2 text-center">
+            <div class="col-span-2 !mx-auto">
               <button
-                class="!px-12 !py-3 rounded-xl font-bold cursor-pointer bg-[#ed1c24] !text-white !uppercase">
-                {{ 'tab_service.register_consulting' | translate }}
+                [disabled]="isLoadingOne"
+                class="!px-12 !py-3 rounded-xl !text-[14px] font-medium cursor-pointer bg-[#ed1c24] !text-white !uppercase flex items-center justify-center gap-2">
+                @if (isLoadingOne) {
+                  <svg
+                    class="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                  <span>Đang gửi...</span>
+                } @else {
+                  {{ 'tab_service.register_consulting' | translate }}
+                }
               </button>
             </div>
           </form>
         </div>
       </div>
       <div class="workflow">
-        <div class="workflow-title text-center font-bold uppercase">
+        <div class="workflow-title text-center font-medium uppercase">
           {{ dataServiceDetail.workflow }}
         </div>
         <div

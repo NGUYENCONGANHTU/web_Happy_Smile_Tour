@@ -180,9 +180,9 @@
         </div>
 
         <div class="travel-footer-contact lg:w-2/5 space-y-4!">
-          <div class="travel-footer-contact-title">
-            {{ data.company }}
-          </div>
+          <div
+            class="travel-footer-contact-title"
+            [innerHTML]="sanitizeHtml(data.company)"></div>
           <div class="travel-footer-contact-address space-y-4!">
             @if (data.address) {
               <div class="travel-footer-contact-address-1">
@@ -197,16 +197,16 @@
                 <span>{{ data.whatsappNumber }}</span>
               </div>
             }
-            @if (data.taxCode) {
-              <div class="travel-footer-contact-address-feedback">
-                <span class="font-medium !mr-1">Mã số thuế:</span
-                >{{ data.taxCode }}
-              </div>
-            }
             @if (data.email) {
               <div class="travel-footer-contact-email">
                 <span class="font-medium">Email:</span>
                 {{ data.email }}
+              </div>
+            }
+            @if (data.taxCode) {
+              <div class="travel-footer-contact-address-feedback">
+                <span class="font-medium !mr-1">Mã số thuế:</span
+                >{{ data.taxCode }}
               </div>
             }
           </div>

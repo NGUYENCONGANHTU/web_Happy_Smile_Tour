@@ -39,7 +39,8 @@
         </div>
         <div class="picture truncate !space-y-[8px]">
           @if (tour.title) {
-            <div class="truncate font-bold uppercase !text-[#0b9444]">
+            <div
+              class="truncate font-medium uppercase !text-[var(--green-color)]">
               {{ tour.title }}
             </div>
           }
@@ -108,7 +109,7 @@
                   class="line-through font-medium !text-gray-400 !text-[14px]"
                   >{{ tour.originalPrice | number }} VNĐ</span
                 >
-                <span class="font-bold !text-[18px] !text-[#ED1C24]"
+                <span class="font-medium !text-[18px] !text-[#ED1C24]"
                   >{{ tour.finalPrice | number }} VNĐ</span
                 >
               </div>

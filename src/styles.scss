@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 @import 'ckeditor5/ckeditor5.css';
+:root {
+  --red-color: #ed1c24;
+  --green-color: black;
+  --button-tab-color: #0b9444;
+}
 $green-color: #0f9648;
 * {
   margin: 0;
@@ -8,7 +13,8 @@ $green-color: #0f9648;
 }
 
 body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Roboto, Arial, sans-serif !important;
+  font-weight: 100 !important;
   height: 100%;
 }
 

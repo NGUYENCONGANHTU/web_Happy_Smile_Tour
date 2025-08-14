@@ -2,6 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NzColDirective } from 'ng-zorro-antd/grid';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
 import {
   NzFormControlComponent,
   NzFormDirective,
@@ -13,11 +15,12 @@ import { AppService } from '../../../../app.service';
 import { ActivatedRoute } from '@angular/router';
 import { ContactType } from './interface-contact-tour-service';
 import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
-import { NgStyle } from '@angular/common';
+import { NgIf, NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -31,6 +34,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     NzFormLabelComponent,
     NgStyle,
     TranslatePipe,
+    NzButtonModule,
+    NgIf,
   ],
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',
@@ -39,6 +44,7 @@ export class TabServiceComponent implements OnInit {
   appService = inject(AppService);
   translate = inject(TranslateService);
   languageService = inject(LanguageService);
+  message = inject(NzMessageService);
   formatImage = sanitizeUrl;
 
   serviceId = 0;
@@ -86,9 +92,10 @@ export class TabServiceComponent implements OnInit {
     number_of_people: [''],
     expected_date: [''],
   });
-
+  isLoadingOne = false;
   submitForm() {
     if (this.validateForm.valid) {
+      this.isLoadingOne = true;
       const rawForm = this.validateForm.value;
       const body = {
         name: rawForm.name ?? '',
@@ -103,12 +110,14 @@ export class TabServiceComponent implements OnInit {
         contactType: ContactType.VISA,
       };
       this.appService.createDataContactPrivateTour(body).subscribe({
-        next: res => {
-          console.log('Gửi thành công:', res);
+        next: () => {
+          this.message.success('Gửi thành công!');
           this.validateForm.reset();
+          this.isLoadingOne = false;
         },
-        error: err => {
-          console.error('Lỗi khi gửi dữ liệu:', err);
+        error: () => {
+          this.message.error('Gửi thất bại!');
+          this.isLoadingOne = false;
         },
       });
     } else {

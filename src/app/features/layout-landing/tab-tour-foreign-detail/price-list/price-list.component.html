@@ -2,6 +2,9 @@
   <!--  ========================BẢNG GIÁ TOUR============================  -->
   @if (dataTourPrice.length > 0) {
     <div>
+      <div class="tab-title !uppercase">
+        {{ 'tour_detail.table' | translate }}
+      </div>
       <nz-table
         #basicTable
         [nzData]="[dataTourPrice]"
