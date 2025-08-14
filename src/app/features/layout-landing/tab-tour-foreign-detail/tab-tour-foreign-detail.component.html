@@ -72,18 +72,13 @@
               </div>
             }
             <!-- ======================BẢNG GIÁ====================== -->
-            @if (tourDetail) {
-              <div #bangGia id="bang-gia" class="tab">
-                <div class="tab-title !uppercase">
-                  {{ 'tour_detail.table' | translate }}
-                </div>
-                <app-price-list
-                  [dataTourPrice]="tourDetail.tourPrices"
-                  [dataTourDiscount]="tourDetail.tourDiscounts"
-                  [dataTourSurcharge]="tourDetail.tourSurcharges">
-                </app-price-list>
-              </div>
-            }
+            <div #bangGia id="bang-gia" class="tab">
+              <app-price-list
+                [dataTourPrice]="tourDetail.tourPrices"
+                [dataTourDiscount]="tourDetail.tourDiscounts"
+                [dataTourSurcharge]="tourDetail.tourSurcharges">
+              </app-price-list>
+            </div>
 
             <!--============== DỊCH VỤ =================-->
             <div #dichVu id="dich-vu" class="tab space-y-8!">

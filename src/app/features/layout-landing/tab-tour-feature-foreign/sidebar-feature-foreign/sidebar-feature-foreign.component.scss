@@ -27,7 +27,7 @@
   .router-tour-title {
     font-size: 18px;
     margin-bottom: 25px;
-    font-weight: bold;
+    font-weight: 500;
   }
   .routes-tab-tours {
     display: flex;
@@ -36,7 +36,7 @@
     gap: 20px;
     .routes-tab-tours-item {
       padding: 10px;
-      font-weight: bold;
+      font-weight: 500;
       cursor: pointer;
       color: black;
     }

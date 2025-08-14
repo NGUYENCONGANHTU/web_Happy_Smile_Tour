@@ -11,7 +11,8 @@
             alt="" />
         </div>
         <div class="truncate !space-y-[10px] mt-2! !lg:mt-0">
-          <div class="font-bold truncate text-[16px] text-[#0b9444]">
+          <div
+            class="font-medium truncate text-[16px] !text-[var(--green-color)]">
             {{ data.title }}
           </div>
           <div class="feedback">
@@ -66,7 +67,7 @@
               <span class="line-through font-medium !text-gray-400 !text-[14px]"
                 >{{ data.originalPrice | number }} VNĐ</span
               >
-              <span class="font-bold !text-[18px] !text-red-600"
+              <span class="font-medium !text-[18px] !text-red-600"
                 >{{ data.finalPrice | number }} VNĐ</span
               >
             </div>

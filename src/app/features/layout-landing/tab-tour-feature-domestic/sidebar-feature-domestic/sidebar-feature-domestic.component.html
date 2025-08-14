@@ -1,11 +1,13 @@
 <div class="router-tour">
-  <h1 class="router-tour-title">{{ 'domestic_tour.title' | translate }}!</h1>
+  <h1 class="router-tour-title !font-medium">
+    {{ 'domestic_tour.title' | translate }}!
+  </h1>
   <ul class="routes-tab-tours">
     @for (tab of tabs; track tab.href) {
       <li
         class="routes-tab-tours-item"
         [routerLink]="tab.href"
-        routerLinkActive="!font-bold !text-[#ED1C24] border-b-2 !border-b-[#ED1C24]"
+        routerLinkActive="!font-medium !text-[#ED1C24] border-b-2 !border-b-[#ED1C24]"
         [routerLinkActiveOptions]="{ exact: true }">
         {{ tab.tabName | translate }}
       </li>
@@ -15,7 +17,7 @@
 
 <!--=============================== OPTIONS TOUR =====================================-->
 <div class="options-tour">
-  <h1 class="text-[18px] !mt-[45px] !mb-[25px] font-bold!">
+  <h1 class="text-[18px] !mt-[45px] !mb-[25px] !font-medium">
     {{ 'domestic_tour.budget' | translate }}:
   </h1>
   <div class="options-items space-y-5!">
@@ -29,7 +31,7 @@
       nzTooltipVisible="never">
     </nz-slider>
 
-    <div class="font-bold text-center text-[16px]">
+    <div class="font-medium text-center text-[16px]">
       {{ rangeValue[0] | number }} - {{ rangeValue[1] | number }} VNĐ
     </div>
 
@@ -61,14 +63,14 @@
     <!--button search-->
     <div class="flex gap-5">
       <button
-        class="!bg-[#ED1C24] w-full !py-[17px] !text-white !uppercase font-medium! text-md! !flex !justify-center !items-center !rounded-md"
+        class="!bg-[#ED1C24] w-full !py-[17px] !text-white !uppercase font-medium! !text-[14px] !flex !justify-center !items-center !rounded-md"
         nzType="text"
         nz-button
         (click)="resetFilters()">
         {{ 'domestic_tour.reset_tour' | translate }}
       </button>
       <button
-        class="w-full !py-[18px] !uppercase !text-white font-medium! text-md! !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
+        class="w-full !py-[18px] !uppercase !text-white font-medium! !text-[14px] !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
         nz-button
         nzType="primary"
         (click)="searchTour()">

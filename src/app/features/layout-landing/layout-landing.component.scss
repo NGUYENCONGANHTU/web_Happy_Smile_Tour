@@ -18,7 +18,7 @@
       li {
         a {
           color: #333;
-          font-weight: 600 !important;
+          font-weight: 500 !important;
           padding: 5px 10px;
           border-radius: 12px;
           transition: all 0.2s ease-in-out;
@@ -65,7 +65,7 @@ footer {
 }
 .active-menu-label {
   color: #1890ff;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* Media query for screens smaller than 1146px */
