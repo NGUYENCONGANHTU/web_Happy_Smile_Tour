@@ -74,7 +74,7 @@ export class BlogListComponent implements OnInit {
         this.router.navigate(['admin', 'blog-config', data?.id, 'update']);
         break;
       case BaseFormMode.VIEW:
-        this.router.navigate(['admin', 'blog-config', data?.id, 'view']);
+        this.router.navigate(['admin', 'blog-config', data?.id, 'update']);
         break;
       default:
     }

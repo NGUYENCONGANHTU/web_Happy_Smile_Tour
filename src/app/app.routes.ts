@@ -14,10 +14,10 @@ import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component
 import { HomeConfigComponent } from './features/admin/home-config/home-config.component';
 import { ContactConfigComponent } from './features/admin/contact-config/contact-config.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
-import { ListServicesComponent } from './features/admin/service-config/pages/list-services/list-services.component';
 import { TabTravelGuideDetailComponent } from './features/layout-landing/tab-travel-guide-detail/tab-travel-guide-detail.component';
 import { TOUR_CONFIG_ROUTES } from './features/admin/tour-config/tour-config.routes';
 import { BLOG_ROUTES } from './features/admin/blog/blog.routes';
+import { SERVICE_CONFIG_ROUTES } from './features/admin/service-config/service-config.routes';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -101,18 +101,8 @@ export const routes: Routes = [
           },
           {
             path: 'service-config',
-            data: { breadcrumb: 'Cấu hình liên hệ' },
-            children: [
-              {
-                path: '',
-                redirectTo: 'list',
-                pathMatch: 'full',
-              },
-              {
-                path: 'list',
-                component: ListServicesComponent,
-              },
-            ],
+            data: { breadcrumb: 'Cấu hình dịch vụ' },
+            children: SERVICE_CONFIG_ROUTES,
           },
           {
             path: 'tour-config',
