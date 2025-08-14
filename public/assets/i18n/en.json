@@ -77,7 +77,7 @@
     "your_feedback": "Your Feedback",
     "please_feedback": "Please select a rating",
     "please_enter_content_feedback": "Please enter your review content",
-    "submit_feedback": "Submit Review",
+    "submit_feedback": "SUBMIT REVIEW",
     "group_age": "Age Group",
     "age": "Age",
     "original_price": "Original Price",
@@ -108,16 +108,16 @@
     "filter_reviews_by": "Filter reviews by",
     "all": "All",
 
-    "cancel": "Cancel",
+    "cancel": "CANCEL",
     "info_contact": "Contact Information",
-    "submit": "Submit",
+    "submit": "SUBMIT",
     "full_name": "Full Name",
     "address": "Address"
   },
 
   "footer": {
     "title": "Contact HappySmiles Vietnam Travel",
-    "description": "HappySmiles Vietnam Travel Co., Ltd – The No.1 bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
+    "description": "HappySmiles Vietnam Travel Co., Ltd – The leading bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
   },
   "chatbox": {
     "title": "Hello! 👋 HappySmiles VietNam Travel is ready to assist you via WhatsApp.",
