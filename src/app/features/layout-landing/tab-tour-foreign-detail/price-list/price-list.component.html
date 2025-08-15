@@ -2,9 +2,6 @@
   <!--  ========================BẢNG GIÁ TOUR============================  -->
   @if (dataTourPrice.length > 0) {
     <div>
-      <div class="tab-title !uppercase">
-        {{ 'tour_detail.table' | translate }}
-      </div>
       <nz-table
         #basicTable
         [nzData]="[dataTourPrice]"
@@ -31,7 +28,7 @@
   <!--  ======================== BẢNG GIẢM GIÁ ============================  -->
   @if (dataTourDiscount.length > 0) {
     <div>
-      <div class="font-bold mb-8! !uppercase">
+      <div class="font-bold mb-6! !uppercase">
         {{ 'tour_detail.table_discount' | translate }}
       </div>
       <nz-table
@@ -62,7 +59,7 @@
   <!--  ======================== BẢNG PHỤ THU ============================  -->
   @if (dataTourSurcharge.length > 0) {
     <div>
-      <div class="font-bold mb-8! !uppercase">
+      <div class="font-bold mb-6! !uppercase">
         {{ 'tour_detail.table_surcharge' | translate }}
       </div>
       <nz-table
