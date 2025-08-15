@@ -6,13 +6,10 @@
     margin-bottom: 10px;
   }
   .tab-tour-foreign-detail-main-content {
-    //display: flex;
-    //gap: 16px;
     padding: 0 10%;
     .left-content {
       min-width: calc(100% - 316px);
       box-sizing: border-box;
-      //overflow: hidden;
       .tour-detail-title {
         color: #ed1e27;
         font-size: 25px;
@@ -45,7 +42,6 @@
             margin: 50px 0;
             .tab-title {
               font-weight: bold;
-              font-size: 14px;
               margin-bottom: 30px;
             }
           }
@@ -53,7 +49,6 @@
         .customer-feedback {
           .customer-feedback-title {
             font-weight: bold;
-            font-size: 14px;
             margin-bottom: 30px;
           }
           .form-feedback {

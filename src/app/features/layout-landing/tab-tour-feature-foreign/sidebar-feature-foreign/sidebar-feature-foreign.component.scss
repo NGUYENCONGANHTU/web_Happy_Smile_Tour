@@ -1,13 +1,14 @@
 ::ng-deep .ant-slider-track {
   height: 10px !important;
-  background-color: #0b9444 !important;
+  //background-color: #0b9444 !important;
+  background-color: black !important;
 }
 ::ng-deep .ant-slider-handle {
-  border: 3px solid #0b9444 !important;
+  border: 3px solid black !important;
   padding: 7px;
   &:hover {
-    border: 3px solid #0b9444 !important;
-    outline: #0b9444;
+    border: 3px solid black !important;
+    outline: black;
   }
 }
 ::ng-deep .ant-slider-rail {
@@ -27,7 +28,6 @@
   .router-tour-title {
     font-size: 18px;
     margin-bottom: 25px;
-    font-weight: 500;
   }
   .routes-tab-tours {
     display: flex;

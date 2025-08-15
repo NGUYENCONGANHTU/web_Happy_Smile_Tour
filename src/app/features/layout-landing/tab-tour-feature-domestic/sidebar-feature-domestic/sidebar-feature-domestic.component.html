@@ -18,7 +18,7 @@
 <!--=============================== OPTIONS TOUR =====================================-->
 <div class="options-tour">
   <h1 class="text-[18px] !mt-[45px] !mb-[25px] !font-medium">
-    {{ 'domestic_tour.budget' | translate }}:
+    {{ 'domestic_tour.budget' | translate }}
   </h1>
   <div class="options-items space-y-5!">
     <!--=============Chọn ngân sách===================-->
@@ -37,40 +37,44 @@
 
     <!--============= Chọn điểm đi ===================-->
     <h1 class="text-[17px]">{{ 'domestic_tour.location' | translate }}</h1>
-    <nz-select
-      [(ngModel)]="departure"
-      name="departure"
-      class="w-full"
-      nzPlaceHolder="{{ 'domestic_tour.departure' | translate }}">
-      @for (data of dataStartingPointDomestic; track data.id) {
-        <nz-option [nzLabel]="data.name" [nzValue]="data.locationId">
-        </nz-option>
-      }
-    </nz-select>
-
+    <div class="!space-y-1">
+      <p class="font-medium">{{ 'domestic_tour.departure' | translate }}</p>
+      <nz-select
+        [(ngModel)]="departure"
+        name="departure"
+        class="w-full"
+        nzPlaceHolder="{{ 'domestic_tour.departure' | translate }}">
+        @for (data of dataStartingPointDomestic; track data.id) {
+          <nz-option [nzLabel]="data.name" [nzValue]="data.locationId">
+          </nz-option>
+        }
+      </nz-select>
+    </div>
     <!--============= Chọn điểm đến ===================-->
-    <nz-select
-      [(ngModel)]="destination"
-      name="destination"
-      class="w-full"
-      nzPlaceHolder="{{ 'domestic_tour.destination' | translate }}">
-      @for (data of dataStartingPointDomestic; track data.id) {
-        <nz-option [nzLabel]="data.name" [nzValue]="data.locationId">
-        </nz-option>
-      }
-    </nz-select>
-
+    <div class="!space-y-1">
+      <p class="font-medium">{{ 'domestic_tour.destination' | translate }}</p>
+      <nz-select
+        [(ngModel)]="destination"
+        name="destination"
+        class="w-full"
+        nzPlaceHolder="{{ 'domestic_tour.destination' | translate }}">
+        @for (data of dataStartingPointDomestic; track data.id) {
+          <nz-option [nzLabel]="data.name" [nzValue]="data.locationId">
+          </nz-option>
+        }
+      </nz-select>
+    </div>
     <!--button search-->
     <div class="flex gap-5">
       <button
-        class="!bg-[#ED1C24] w-full !py-[17px] !text-white !uppercase font-medium! !text-[14px] !flex !justify-center !items-center !rounded-md"
+        class="!bg-[#ED1C24] w-full !py-[17px] !text-white font-medium! !text-[14px] !flex !justify-center !items-center !rounded-md"
         nzType="text"
         nz-button
         (click)="resetFilters()">
         {{ 'domestic_tour.reset_tour' | translate }}
       </button>
       <button
-        class="w-full !py-[18px] !uppercase !text-white font-medium! !text-[14px] !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
+        class="w-full !py-[18px] !text-white font-medium! !text-[14px] !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
         nz-button
         nzType="primary"
         (click)="searchTour()">
