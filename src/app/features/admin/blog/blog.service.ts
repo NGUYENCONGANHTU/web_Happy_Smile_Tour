@@ -35,15 +35,27 @@ export class BlogService {
   createBlog(newBlog: BlogReqDTO) {
     const formData = new FormData();
     Object.entries(newBlog).map(([key, value]) => {
-      formData.append(key, value);
+      if (value) {
+        formData.append(key, value);
+      }
     });
     return this.httpClient.post(this.apiUrl, formData);
   }
 
   updateBlogById(id: string | number, newBlog: BlogResDTO) {
     const formData = new FormData();
-    Object.entries(newBlog).map(([key, value]) => {
-      formData.append(key, value);
+    Object.entries(newBlog).forEach(([key, value]) => {
+      if (value) {
+        if (key === 'image') {
+          if (value?.id) {
+            formData.append('idsFile', value.id);
+          } else {
+            formData.append(key, value);
+          }
+        } else {
+          formData.append(key, value);
+        }
+      }
     });
     return this.httpClient.put(this.apiUrl + '/' + id, formData);
   }

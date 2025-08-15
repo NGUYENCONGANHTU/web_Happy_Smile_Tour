@@ -88,7 +88,12 @@ export class BlogFormComponent implements OnInit {
               .find(lang => lang.code === this.selectedLanguage)?.id ?? 1;
           this.blogForm.patchValue({
             ...res.data,
-            image: parseToNzUploadFile(res.data?.image?.storagePath),
+            image: res.data?.image
+              ? parseToNzUploadFile(
+                  res.data.image?.storagePath,
+                  res.data.image?.id
+                )
+              : null,
           });
         },
       });

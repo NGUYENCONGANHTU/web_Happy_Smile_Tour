@@ -9,6 +9,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { BlogService } from '../../blog.service';
 import { BlogResDTO } from '../../blog.interface';
+import { getHtmlSnippet } from '../../../../../shared/utils/helpers';
 
 @Component({
   selector: 'app-blog-list',
@@ -32,17 +33,11 @@ export class BlogListComponent implements OnInit {
     {
       key: 'title',
       title: 'Tiêu đề',
-      width: '250px',
-    },
-    {
-      key: 'image',
-      title: 'Hình ảnh',
-      width: '180px',
+      width: '300px',
     },
     {
       key: 'content',
       title: 'Nội dung',
-      width: '120px',
     },
   ];
 
@@ -56,7 +51,10 @@ export class BlogListComponent implements OnInit {
     }
     this.blogService.getBlogs().subscribe({
       next: res => {
-        this.data = res.data;
+        this.data = res.data.map(dt => ({
+          ...dt,
+          content: getHtmlSnippet(dt.content ?? ''),
+        }));
         this.loading = false;
       },
       error: () => {

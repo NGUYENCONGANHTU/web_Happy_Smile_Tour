@@ -82,3 +82,26 @@ export function getBase64(img: File, callback: (img: string) => void): void {
   reader.addEventListener('load', () => callback(reader.result!.toString()));
   reader.readAsDataURL(img);
 }
+
+export function getHtmlSnippet(htmlString: string, wordLimit = 100) {
+  // 1. Create a temporary element to parse the HTML
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = htmlString;
+
+  // 2. Get the full, unformatted text content
+  const fullText = tempDiv.textContent || tempDiv.innerText || '';
+
+  // 3. Split the text into an array of words
+  // The \s+ regex handles multiple spaces, newlines, and tabs
+  const words = fullText.trim().split(/\s+/);
+
+  // 4. Check if the text is already within the limit
+  if (words.length <= wordLimit) {
+    return fullText;
+  }
+
+  // 5. Slice the array to the desired word limit and join it back
+  const snippet = words.slice(0, wordLimit).join(' ');
+
+  return snippet + '...';
+}

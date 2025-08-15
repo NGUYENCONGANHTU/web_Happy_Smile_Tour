@@ -12,54 +12,54 @@
     <app-partner-config></app-partner-config>
   </nz-tab>
 
-  <!-- Tour nổi bật -->
-  <nz-tab nzTitle="Tour nổi bật">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">Nhập ID tour nổi bật</nz-form-label>
-      <nz-form-control [nzSpan]="20">
-        <input nz-input [(ngModel)]="featuredTours[0]" name="featured1" />
-      </nz-form-control>
-    </nz-form-item>
-    <button nz-button nzType="primary">Lưu</button>
-  </nz-tab>
+  <!--  &lt;!&ndash; Tour nổi bật &ndash;&gt;-->
+  <!--  <nz-tab nzTitle="Tour nổi bật">-->
+  <!--    <nz-form-item>-->
+  <!--      <nz-form-label [nzSpan]="4">Nhập ID tour nổi bật</nz-form-label>-->
+  <!--      <nz-form-control [nzSpan]="20">-->
+  <!--        <input nz-input [(ngModel)]="featuredTours[0]" name="featured1" />-->
+  <!--      </nz-form-control>-->
+  <!--    </nz-form-item>-->
+  <!--    <button nz-button nzType="primary">Lưu</button>-->
+  <!--  </nz-tab>-->
 
-  <!-- Blog chia sẻ -->
-  <nz-tab nzTitle="Blog chia sẻ">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">Bài viết nổi bật</nz-form-label>
-      <nz-form-control [nzSpan]="20">
-        <textarea
-          nz-input
-          rows="4"
-          placeholder="ID hoặc tiêu đề blog"
-          [(ngModel)]="blogs"
-          name="blogs"></textarea>
-      </nz-form-control>
-    </nz-form-item>
-  </nz-tab>
+  <!--  &lt;!&ndash; Blog chia sẻ &ndash;&gt;-->
+  <!--  <nz-tab nzTitle="Blog chia sẻ">-->
+  <!--    <nz-form-item>-->
+  <!--      <nz-form-label [nzSpan]="4">Bài viết nổi bật</nz-form-label>-->
+  <!--      <nz-form-control [nzSpan]="20">-->
+  <!--        <textarea-->
+  <!--          nz-input-->
+  <!--          rows="4"-->
+  <!--          placeholder="ID hoặc tiêu đề blog"-->
+  <!--          [(ngModel)]="blogs"-->
+  <!--          name="blogs"></textarea>-->
+  <!--      </nz-form-control>-->
+  <!--    </nz-form-item>-->
+  <!--  </nz-tab>-->
 
-  <!-- Đánh giá khách hàng -->
-  <nz-tab nzTitle="Đánh giá">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">Đánh giá khách hàng</nz-form-label>
-      <nz-form-control [nzSpan]="20">
-        <textarea
-          nz-input
-          rows="4"
-          placeholder="Nội dung đánh giá hoặc ID Google Review"
-          [(ngModel)]="testimonials"
-          name="testimonials"></textarea>
-      </nz-form-control>
-    </nz-form-item>
-  </nz-tab>
+  <!--  &lt;!&ndash; Đánh giá khách hàng &ndash;&gt;-->
+  <!--  <nz-tab nzTitle="Đánh giá">-->
+  <!--    <nz-form-item>-->
+  <!--      <nz-form-label [nzSpan]="4">Đánh giá khách hàng</nz-form-label>-->
+  <!--      <nz-form-control [nzSpan]="20">-->
+  <!--        <textarea-->
+  <!--          nz-input-->
+  <!--          rows="4"-->
+  <!--          placeholder="Nội dung đánh giá hoặc ID Google Review"-->
+  <!--          [(ngModel)]="testimonials"-->
+  <!--          name="testimonials"></textarea>-->
+  <!--      </nz-form-control>-->
+  <!--    </nz-form-item>-->
+  <!--  </nz-tab>-->
 
-  <!-- Khách hàng tiêu biểu -->
-  <nz-tab nzTitle="Khách hàng tiêu biểu">
-    <nz-upload nzListType="picture-card" [nzFileList]="clients">
-      <div>
-        <i nz-icon nzType="plus"></i>
-        <div>Tải logo</div>
-      </div>
-    </nz-upload>
-  </nz-tab>
+  <!--  &lt;!&ndash; Khách hàng tiêu biểu &ndash;&gt;-->
+  <!--  <nz-tab nzTitle="Khách hàng tiêu biểu">-->
+  <!--    <nz-upload nzListType="picture-card" [nzFileList]="clients">-->
+  <!--      <div>-->
+  <!--        <i nz-icon nzType="plus"></i>-->
+  <!--        <div>Tải logo</div>-->
+  <!--      </div>-->
+  <!--    </nz-upload>-->
+  <!--  </nz-tab>-->
 </nz-tabs>
