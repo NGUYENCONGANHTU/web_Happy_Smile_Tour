@@ -29,8 +29,8 @@
     "location": "Chọn địa điểm",
     "departure": "Điểm đi",
     "destination": "Điểm đến",
-    "find_tour": "TÌM TOUR",
-    "reset_tour": "ĐẶT LẠI"
+    "find_tour": "Tìm tour",
+    "reset_tour": "Đặt lại"
   },
   "tour_card": {
     "best_sale" : "Giá tốt nhất",
@@ -107,9 +107,9 @@
     "filter_reviews_by": "Lọc đánh giá theo",
     "all": "Tất cả",
 
-    "cancel": "HỦY BỎ",
+    "cancel": "Hủy bỏ",
     "info_contact": "Thông tin liên lạc",
-    "submit": "GỬI",
+    "submit": "Gửi",
     "full_name": "Họ và tên",
     "address" : "Địa chỉ"
   },
