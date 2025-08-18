@@ -74,10 +74,10 @@
     "submit": "Submit"
   },
   "tour_detail": {
-    "your_feedback": "Your Feedback",
+    "your_feedback": "Your feedback",
     "please_feedback": "Please select a rating",
     "please_enter_content_feedback": "Please enter your review content",
-    "submit_feedback": "SUBMIT REVIEW",
+    "submit_feedback": "Submit review",
     "group_age": "Age Group",
     "age": "Age",
     "original_price": "Original Price",
@@ -120,8 +120,9 @@
     "description": "HappySmiles Vietnam Travel Co., Ltd – The leading bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
   },
   "chatbox": {
-    "title": "Hello! 👋 HappySmiles VietNam Travel is ready to assist you via WhatsApp.",
+    "title": "Hello! 👋 <span class='text-[#0b9444] font-bold'>HappySmiles</span> <span class='text-[#ed1c24] font-bold'>VietNam</span> Travel is ready to assist you via WhatsApp.",
     "description": "Please click the link below to chat with us on WhatsApp.",
-    "or": "Or"
+    "or": "Or",
+    "call":"call"
   }
 }
