@@ -11,7 +11,7 @@ import {
   IntroducePageResDTO,
   IntroduceTitlePageResDTO,
 } from './interface-introduce';
-import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { IntroduceService } from './introduce.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({

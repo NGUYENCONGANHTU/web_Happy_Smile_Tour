@@ -26,7 +26,7 @@ import { LanguageService } from '../../shared/services/language.service';
 // import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 // import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 // import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { sanitizeUrl } from '../../shared/utils/helpers';
+import { sanitizeUrl } from '../../shared/utils/helpers/common.helper';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 

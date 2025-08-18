@@ -18,7 +18,8 @@ import { BaseFormMode } from '../../../../../shared/interfaces/form-base.interfa
 import {
   getBase64,
   parseToNzUploadFile,
-} from '../../../../../shared/utils/helpers';
+  sanitizeUrl,
+} from '../../../../../shared/utils/helpers/common.helper';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
@@ -96,7 +97,7 @@ export class VisaServiceFormComponent implements OnInit {
           if (!this.processSteps.length) {
             this.processSteps.push(this.createItem());
           }
-          this.imgPreview = res.data?.image?.storagePath ?? '';
+          this.imgPreview = sanitizeUrl(res.data?.image?.storagePath ?? '');
           this.fetching = false;
         },
         error: () => {

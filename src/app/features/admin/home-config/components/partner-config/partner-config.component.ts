@@ -7,7 +7,7 @@ import {
 import { NzUploadComponent, NzUploadFile } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { PartnerConfigService } from './partner-config.service';
-import { parseToNzUploadFile } from '../../../../../shared/utils/helpers';
+import { parseToNzUploadFile } from '../../../../../shared/utils/helpers/common.helper';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.constant';
 

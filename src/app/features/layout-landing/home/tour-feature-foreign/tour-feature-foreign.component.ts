@@ -5,7 +5,7 @@ import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 
 @Component({
   selector: 'app-tour-feature-foreign',

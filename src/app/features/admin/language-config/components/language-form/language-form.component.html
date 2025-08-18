@@ -1,0 +1,59 @@
+<form
+  nz-form
+  [formGroup]="languageForm"
+  nzLayout="vertical"
+  (ngSubmit)="onSubmit($event)">
+  <nz-form-item>
+    <nz-form-label>Tên</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" placeholder="Nhập tên" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Mã</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="code" placeholder="Nhập mã" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Ảnh đại diện</nz-form-label>
+    <nz-form-control>
+      @if (languageForm.controls['image'].enabled) {
+        <nz-upload
+          nzListType="picture-card"
+          [nzBeforeUpload]="beforeUpload"
+          [nzMultiple]="false"
+          [nzShowUploadList]="false">
+          @if (languageForm.controls['image']?.value) {
+            <img [src]="imgPreview" class="w-full" alt="blog" />
+          } @else {
+            <div>
+              <i nz-icon nzType="plus"></i>
+              <div>Tải ảnh</div>
+            </div>
+          }
+        </nz-upload>
+      } @else {
+        <div class="w-[100px] h-[100px]">
+          <img
+            width="auto"
+            height="auto"
+            [src]="languageForm.controls['title']?.value?.thumbUrl"
+            alt="image" />
+        </div>
+      }
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="flex justify-end">
+    <button nz-button nzType="primary" type="submit" [nzLoading]="submitting">
+      @if (mode === BaseFormMode.CREATE) {
+        Thêm mới
+      } @else {
+        Lưu
+      }
+    </button>
+  </div>
+</form>

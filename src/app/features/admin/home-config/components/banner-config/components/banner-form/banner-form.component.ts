@@ -21,7 +21,7 @@ import { ValidationMessagePipe } from '../../../../../../../shared/pipes/validat
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { BannerConfigService } from '../../banner-config.service';
 import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
-import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers';
+import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers/common.helper';
 
 @Component({
   selector: 'app-banner-form',

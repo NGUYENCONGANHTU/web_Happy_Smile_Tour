@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { ResponseBasePage } from '../../core/interfaces/base.interface';
+import { ResponseBasePage } from '../../../core/interfaces/base.interface';
 
 export function formatDate(date: string): string {
   return new Date(date).toLocaleDateString();
@@ -65,8 +65,8 @@ export function parseToNzUploadFile(
     uid: id?.toString() ?? `${Date.now()}`,
     name: fileName,
     status: 'done',
-    url: src,
-    thumbUrl: src,
+    url: src ? sanitizeUrl(src) : '',
+    thumbUrl: src ? sanitizeUrl(src) : '',
   };
 }
 

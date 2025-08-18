@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { DecimalPipe, NgClass } from '@angular/common';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
 @Component({

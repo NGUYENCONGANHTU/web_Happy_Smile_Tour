@@ -22,7 +22,7 @@ import { TourFormPricingTabComponent } from '../components/pricing-tab/pricing-t
 import { TourFormServiceTabComponent } from '../components/service-tab/service-tab.component';
 import { forkJoin } from 'rxjs';
 import { TourFormScheduleTabComponent } from '../components/schedule-tab/schedule-tab.component';
-import { parseToNzUploadFile } from '../../../../../../shared/utils/helpers';
+import { parseToNzUploadFile } from '../../../../../../shared/utils/helpers/common.helper';
 import {
   TourDiscountReqDTO,
   TourDiscountResDTO,

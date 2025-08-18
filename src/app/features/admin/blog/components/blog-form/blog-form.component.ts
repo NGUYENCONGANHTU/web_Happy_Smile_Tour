@@ -16,7 +16,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import {
   getBase64,
   parseToNzUploadFile,
-} from '../../../../../shared/utils/helpers';
+} from '../../../../../shared/utils/helpers/common.helper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CkeditorService } from '../../../../../shared/services/ckeditor.service';
