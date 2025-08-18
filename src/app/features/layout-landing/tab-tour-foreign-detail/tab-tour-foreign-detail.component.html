@@ -62,7 +62,7 @@
               </div>
             }
             <!-- ======================LỊCH TRÌNH====================== -->
-            @if (tourDetail.tourSchedules) {
+            @if (tourDetail.tourSchedules.length > 0) {
               <div #lichTrinh id="lich-trinh" class="tab">
                 <div class="tab-title !uppercase">
                   {{ 'tour_detail.schedule' | translate }}
@@ -73,9 +73,11 @@
             }
             <!-- ======================BẢNG GIÁ====================== -->
             <div #bangGia id="bang-gia" class="tab">
-              <div class="tab-title !uppercase">
-                {{ 'tour_detail.table' | translate }}
-              </div>
+              @if (tourDetail.tourPrices.length > 0) {
+                <div class="tab-title !uppercase">
+                  {{ 'tour_detail.table' | translate }}
+                </div>
+              }
               <app-price-list
                 [dataTourPrice]="tourDetail.tourPrices"
                 [dataTourDiscount]="tourDetail.tourDiscounts"

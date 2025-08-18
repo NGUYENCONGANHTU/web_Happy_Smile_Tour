@@ -24,7 +24,9 @@ import { LanguageService } from '../../../../shared/services/language.service';
 export class FeatureActionComponent implements OnInit {
   translate = inject(TranslateService);
   languageService = inject(LanguageService);
+
   appService = inject(AppService);
+
   ngOnInit() {
     this.translate.use(this.languageService.locale);
     this.getAllData();
@@ -32,6 +34,7 @@ export class FeatureActionComponent implements OnInit {
 
   formatImage = sanitizeUrl;
   faStar = faStar;
+
   dataFeatureTour: FeatureResDTO[] = [];
   getAllData() {
     this.appService.getAllDataTourFeature4().subscribe(res => {
