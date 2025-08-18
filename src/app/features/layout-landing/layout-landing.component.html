@@ -169,9 +169,9 @@
               <img src="/assets/Logo_web_finally.png" width="130" alt="" />
             </a>
           </div>
-          <div class="travel-footer-description">
-            {{ 'footer.description' | translate }}
-          </div>
+          <div
+            class="travel-footer-description"
+            [innerHTML]="'footer.description' | translate"></div>
           <div class="travel-footer-partners">
             <img
               src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"

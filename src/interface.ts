@@ -103,6 +103,7 @@ export interface FeatureReqDTO {
   averageRate: number;
   numberComment: number;
   originalPrice: string;
+  currencyUnit: string;
   discount: number;
   finalPrice: string;
   stayDate: string;
@@ -129,6 +130,7 @@ export interface FeatureResDTO {
   averageRate: number;
   numberComment: number;
   originalPrice: string;
+  currencyUnit: string;
   discount: number;
   finalPrice: string;
   stayDate: string;
@@ -237,6 +239,7 @@ export interface ContactPrivateTourReqDTO {
   company: string;
   number_of_people: string;
   expected_date: string;
+  completed: boolean;
   budget: string;
   location: string;
   message: string;
@@ -250,6 +253,7 @@ export interface ContactPrivateTourResDTO {
   company: string;
   number_of_people: string;
   expected_date: string;
+  completed: boolean;
   budget: string;
   location: string;
   message: string;

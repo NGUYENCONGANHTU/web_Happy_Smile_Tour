@@ -39,13 +39,45 @@
       </div>
     </div>
 
+    <!--  ========== Tour trong nước ==========  -->
+    <div class="domestic-tour">
+      <div class="domestic-tour-slides">
+        @if (dataHomeTitle) {
+          <div class="domestic-tour-title !mr-10">
+            {{ dataHomeTitle[1]?.title }}
+          </div>
+        }
+        <div class="tabs-domestic-tour flex gap-4 flex-wrap">
+          @for (item of tabsDomesticTour; track item) {
+            <app-tabs-domestic-tour
+              [tab]="item.name"
+              [active]="selectedTabDomesticTour?.name === item.name"
+              (tabChanged)="handleChangeDomesticTour($event)">
+            </app-tabs-domestic-tour>
+          }
+        </div>
+      </div>
+      @if (selectedTabDomesticTour && dataTourDomestic?.length) {
+        <div class="app-tour-feature-foreign">
+          @if (selectedTabDomesticTour && dataTourDomestic?.length === 0) {
+            <p>Chưa có dữ liệu tour</p>
+          }
+          <app-tour-feature-domestic
+            [selectedTabDomesticTour]="selectedTabDomesticTour"
+            [dataDomesticTour]="dataTourDomestic">
+            ></app-tour-feature-domestic
+          >
+        </div>
+      }
+    </div>
+
     <!-- ========== Tour nước ngoài  ==========  -->
     <div class="foreign-tour">
       <div class="foreign-tour-slides">
         @if (dataHomeTitle) {
           <!-- Tiêu đề tour nước ngoài -->
           <div class="foreign-tour-title !mr-10">
-            {{ dataHomeTitle[1]?.title }}
+            {{ dataHomeTitle[2]?.title }}
           </div>
         }
         <!-- Button tab tour nước ngoài -->
@@ -69,38 +101,6 @@
             [selectedTabForeignTour]="selectedTabForeignTour"
             [dataTour]="dataTourForeign">
           </app-tour-feature-foreign>
-        </div>
-      }
-    </div>
-
-    <!--  ========== Tour trong nước ==========  -->
-    <div class="domestic-tour">
-      <div class="domestic-tour-slides">
-        @if (dataHomeTitle) {
-          <div class="domestic-tour-title !mr-10">
-            {{ dataHomeTitle[2]?.title }}
-          </div>
-        }
-        <div class="tabs-domestic-tour flex gap-4 flex-wrap">
-          @for (item of tabsDomesticTour; track item) {
-            <app-tabs-domestic-tour
-              [tab]="item.name"
-              [active]="selectedTabDomesticTour?.name === item.name"
-              (tabChanged)="handleChangeDomesticTour($event)">
-            </app-tabs-domestic-tour>
-          }
-        </div>
-      </div>
-      @if (selectedTabDomesticTour && dataTourDomestic?.length) {
-        <div class="app-tour-feature-foreign">
-          @if (selectedTabDomesticTour && dataTourDomestic?.length === 0) {
-            <p>Chưa có dữ liệu tour</p>
-          }
-          <app-tour-feature-domestic
-            [selectedTabDomesticTour]="selectedTabDomesticTour"
-            [dataDomesticTour]="dataTourDomestic">
-            ></app-tour-feature-domestic
-          >
         </div>
       }
     </div>

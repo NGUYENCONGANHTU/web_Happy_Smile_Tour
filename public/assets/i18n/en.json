@@ -117,7 +117,7 @@
 
   "footer": {
     "title": "Contact HappySmiles Vietnam Travel",
-    "description": "HappySmiles Vietnam Travel Co., Ltd – The leading bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
+    "description": " <span class='text-[#0b9444] font-bold'>HappySmiles</span> <span class='text-[#ed1c24] font-bold'>VietNam</span> Travel Co., Ltd – The leading bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
   },
   "chatbox": {
     "title": "Hello! 👋 <span class='text-[#0b9444] font-bold'>HappySmiles</span> <span class='text-[#ed1c24] font-bold'>VietNam</span> Travel is ready to assist you via WhatsApp.",

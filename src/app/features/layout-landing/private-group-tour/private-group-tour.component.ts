@@ -79,6 +79,7 @@ export class PrivateGroupTourComponent implements OnInit {
         budget: rawForm.budget ?? '',
         location: rawForm.location ?? '',
         message: rawForm.message ?? '',
+        completed: false,
         contactType: ContactType.TOUR,
       };
 
