@@ -1,0 +1,45 @@
+<div class="flex gap-2 justify-end !mb-2">
+  <app-header-input-search></app-header-input-search>
+  <button nz-button (click)="open(BaseFormMode.CREATE)">
+    <nz-icon nzType="plus" />
+    Thêm mới
+  </button>
+</div>
+
+<app-table-base-component
+  [data]="data"
+  [columns]="columns"
+  [loading]="loading"
+  [(page)]="metaData.page"
+  [(pageSize)]="metaData.pageSize"
+  [total]="metaData.total"
+  [frontPagination]="true"
+  (rowDBClick)="open(BaseFormMode.VIEW, $event)"></app-table-base-component>
+
+<nz-modal
+  [(nzVisible)]="isVisibleLanguageForm"
+  [nzTitle]="languageFormTitle"
+  [nzFooter]="null"
+  (nzOnCancel)="isVisibleLanguageForm = false">
+  <ng-container *nzModalContent>
+    <app-language-form
+      [mode]="languageFormMode"
+      [data]="languageFormData"></app-language-form>
+  </ng-container>
+</nz-modal>
+
+<ng-template #image let-value>
+  <div class="!w-25">
+    <img
+      nz-image
+      [nzSrc]="value?.storagePath"
+      [nzFallback]="fallback"
+      alt="lang-img" />
+  </div>
+</ng-template>
+
+<ng-template #actionCol let-value>
+  <button nz-button (click)="handleDelete(value)">
+    <nz-icon nzType="delete" />
+  </button>
+</ng-template>

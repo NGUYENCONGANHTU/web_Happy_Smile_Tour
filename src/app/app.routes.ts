@@ -18,6 +18,7 @@ import { TabTravelGuideDetailComponent } from './features/layout-landing/tab-tra
 import { TOUR_CONFIG_ROUTES } from './features/admin/tour-config/tour-config.routes';
 import { BLOG_ROUTES } from './features/admin/blog/blog.routes';
 import { SERVICE_CONFIG_ROUTES } from './features/admin/service-config/service-config.routes';
+import { ListLanguageComponent } from './features/admin/language-config/pages/list-language/list-language.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -113,6 +114,11 @@ export const routes: Routes = [
             path: 'blog-config',
             children: BLOG_ROUTES,
             data: { breadcrumb: 'Bài viết' },
+          },
+          {
+            path: 'language-config',
+            component: ListLanguageComponent,
+            data: { breadcrumb: 'Ngôn ngữ' },
           },
         ],
       },

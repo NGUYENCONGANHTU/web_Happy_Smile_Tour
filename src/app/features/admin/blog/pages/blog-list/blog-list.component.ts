@@ -9,7 +9,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { BlogService } from '../../blog.service';
 import { BlogResDTO } from '../../blog.interface';
-import { getHtmlSnippet } from '../../../../../shared/utils/helpers';
+import { getHtmlSnippet } from '../../../../../shared/utils/helpers/common.helper';
 
 @Component({
   selector: 'app-blog-list',

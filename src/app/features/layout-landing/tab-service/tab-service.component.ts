@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ContactType } from './interface-contact-tour-service';
 import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
 import { NgIf, NgStyle } from '@angular/common';
-import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';

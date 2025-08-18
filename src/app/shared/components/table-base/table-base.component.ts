@@ -51,7 +51,7 @@ export class TableBaseComponent implements OnChanges {
   @Input({ required: true }) total = 0;
   @Input() loading = false;
   @Input() frontPagination = false;
-  @Input() scroll = { x: 'auto', y: 'calc(100vh - 280px)' };
+  @Input() scroll = { x: '1200px', y: 'calc(100vh - 280px)' };
   @Output() pageChange = new EventEmitter();
   @Output() pageSizeChange = new EventEmitter();
   @Output() filterChange = new EventEmitter<{

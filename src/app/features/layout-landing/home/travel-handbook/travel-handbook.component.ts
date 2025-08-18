@@ -3,7 +3,7 @@ import { TravelGuideResDTO } from '../../../../../interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DateTimeFormatPipe } from '../../../../shared/pipes/date-time-format.pipe';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 
 @Component({
   selector: 'app-travel-handbook',

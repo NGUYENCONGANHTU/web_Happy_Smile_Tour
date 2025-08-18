@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { PartnerResDTO } from '../../../../../interface';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 
 @Component({
   selector: 'app-feature-customer',

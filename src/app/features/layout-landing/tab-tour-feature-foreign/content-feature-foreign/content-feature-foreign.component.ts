@@ -8,7 +8,7 @@ import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 @Component({
   selector: 'app-content-feature-foreign',
   standalone: true,

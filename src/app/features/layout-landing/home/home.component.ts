@@ -29,7 +29,7 @@ import {
   TravelGuideResDTO,
 } from '../../../../interface';
 import { BANNER_WEB } from '../../../shared/constants/global.constant';
-import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({

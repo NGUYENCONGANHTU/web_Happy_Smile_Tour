@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { FeatureResDTO } from '../../../../../interface';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 @Component({
   selector: 'app-slide-tour-detail',
   imports: [NzCarouselModule],

@@ -14,7 +14,7 @@
     <tr>
       @for (col of columns; track col) {
         <th
-          [nzWidth]="col.width || null"
+          [nzWidth]="col.width || 'auto'"
           nzCustomFilter
           [nzLeft]="col?.fixed === 'left'"
           [nzRight]="col?.fixed === 'right'">

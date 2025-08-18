@@ -19,7 +19,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { TourFormInfoTabComponent } from '../components/info-tab/info-tab-trans.component';
 import { forkJoin } from 'rxjs';
-import { parseToNzUploadFile } from '../../../../../../shared/utils/helpers';
+import { parseToNzUploadFile } from '../../../../../../shared/utils/helpers/common.helper';
 import {
   TourDiscountReqDTO,
   TourDiscountResDTO,

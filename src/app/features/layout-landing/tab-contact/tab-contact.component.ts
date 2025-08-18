@@ -8,7 +8,7 @@ import {
 import { AppService } from '../../../../app.service';
 import { ContactPageResDTO, BannerResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
-import { sanitizeUrl } from '../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({

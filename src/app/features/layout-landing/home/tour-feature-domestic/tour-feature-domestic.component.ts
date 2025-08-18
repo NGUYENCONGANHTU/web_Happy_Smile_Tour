@@ -12,7 +12,7 @@ import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
-import { sanitizeUrl } from '../../../../shared/utils/helpers';
+import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 @Component({
   selector: 'app-tour-feature-domestic',
   imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
