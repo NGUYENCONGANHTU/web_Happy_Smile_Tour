@@ -86,7 +86,7 @@ export class LanguageFormComponent implements OnChanges {
           break;
         case BaseFormMode.UPDATE:
           this.languageService
-            .updateLanguage(this.languageForm.value)
+            .updateLanguage(this.data?.id, this.languageForm.value)
             .subscribe({
               next: () => {
                 this.submitting = false;

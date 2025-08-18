@@ -50,7 +50,7 @@ export class LanguageConfigService {
     );
   }
 
-  updateLanguage(data: LanguageReqDTO) {
+  updateLanguage(id: string | number = '', data: LanguageReqDTO) {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (value) {
@@ -65,8 +65,8 @@ export class LanguageConfigService {
         }
       }
     });
-    return this.httpClient.post<ResponseBase<LanguageResDTO>>(
-      this.apiUrl,
+    return this.httpClient.put<ResponseBase<LanguageResDTO>>(
+      this.apiUrl + '/' + id,
       formData
     );
   }
