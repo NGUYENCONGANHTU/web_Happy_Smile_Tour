@@ -1,5 +1,5 @@
 <div class="flex gap-2 justify-end !mb-2">
-  <app-header-input-search></app-header-input-search>
+  <app-header-input-search [(value)]="searchKey"></app-header-input-search>
   <button nz-button (click)="open(BaseFormMode.CREATE)">
     <nz-icon nzType="plus" />
     Thêm mới
@@ -7,14 +7,14 @@
 </div>
 
 <app-table-base-component
-  [data]="data"
+  [data]="displayData"
   [columns]="columns"
   [loading]="loading"
   [(page)]="metaData.page"
   [(pageSize)]="metaData.pageSize"
   [total]="metaData.total"
   [frontPagination]="true"
-  (rowDBClick)="open(BaseFormMode.VIEW, $event)"></app-table-base-component>
+  (rowDBClick)="open(BaseFormMode.UPDATE, $event)"></app-table-base-component>
 
 <nz-modal
   [(nzVisible)]="isVisibleLanguageForm"
@@ -30,11 +30,7 @@
 
 <ng-template #image let-value>
   <div class="!w-25">
-    <img
-      nz-image
-      [nzSrc]="value?.storagePath"
-      [nzFallback]="fallback"
-      alt="lang-img" />
+    <img nz-image [nzSrc]="value" [nzFallback]="fallback" alt="lang-img" />
   </div>
 </ng-template>
 

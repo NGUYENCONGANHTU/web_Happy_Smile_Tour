@@ -26,6 +26,8 @@ export class ListServicesComponent implements OnInit {
   serviceConfigService = inject(ServiceConfigService);
 
   loading = false;
+
+  searchKey = '';
   metaData = new TableMetaData();
   data: BlogResDTO[] = [];
   columns: ColumnConfig[] = [
@@ -86,4 +88,14 @@ export class ListServicesComponent implements OnInit {
   }
 
   protected readonly BaseFormMode = BaseFormMode;
+
+  get displayData() {
+    return this.data.filter(dt =>
+      Object.values(dt).some(
+        val =>
+          typeof val === 'string' &&
+          val.toLowerCase().includes(this.searchKey.toLowerCase())
+      )
+    );
+  }
 }

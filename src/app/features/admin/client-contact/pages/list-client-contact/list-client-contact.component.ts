@@ -104,7 +104,9 @@ export class ListClientContactComponent implements OnInit {
   get displayData() {
     return this.data.filter(dt =>
       Object.values(dt).some(
-        val => typeof val === 'string' && val.includes(this.searchKey)
+        val =>
+          typeof val === 'string' &&
+          val.toLowerCase().includes(this.searchKey.toLowerCase())
       )
     );
   }

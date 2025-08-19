@@ -23,6 +23,7 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { BaseFormMode } from '../../../../../shared/interfaces/form-base.interface';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { LanguageFormComponent } from '../../components/language-form/language-form.component';
+import { sanitizeUrl } from '../../../../../shared/utils/helpers/common.helper';
 
 @Component({
   selector: 'app-list-language',
@@ -48,6 +49,8 @@ export class ListLanguageComponent implements OnInit {
 
   loading = false;
   isVisibleLanguageForm = false;
+
+  searchKey = '';
   languageFormTitle = '';
   languageFormMode: BaseFormMode = BaseFormMode.CREATE;
   languageFormData?: LanguageResDTO;
@@ -72,7 +75,7 @@ export class ListLanguageComponent implements OnInit {
         title: 'Mã',
       },
       {
-        key: 'image',
+        key: 'imageUrl',
         title: 'Ảnh',
         type: ColumnType.TEMPLATE_REF,
         template: this.imageCol,
@@ -94,7 +97,12 @@ export class ListLanguageComponent implements OnInit {
     }
     this.languageConfigService.getLanguages().subscribe({
       next: res => {
-        this.data = res.data;
+        this.data = res.data.map(dt => ({
+          ...dt,
+          imageUrl: dt?.image?.storagePath
+            ? sanitizeUrl(dt.image.storagePath)
+            : '',
+        }));
         this.loading = false;
       },
       error: () => {
@@ -142,4 +150,14 @@ export class ListLanguageComponent implements OnInit {
   }
 
   protected readonly BaseFormMode = BaseFormMode;
+
+  get displayData() {
+    return this.data.filter(dt =>
+      Object.values(dt).some(
+        val =>
+          typeof val === 'string' &&
+          val.toLowerCase().includes(this.searchKey.toLowerCase())
+      )
+    );
+  }
 }
