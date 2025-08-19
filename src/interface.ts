@@ -239,7 +239,7 @@ export interface ContactPrivateTourReqDTO {
   company: string;
   number_of_people: string;
   expected_date: string;
-  completed: boolean;
+  status: ContactStatus;
   budget: string;
   location: string;
   message: string;
@@ -253,11 +253,16 @@ export interface ContactPrivateTourResDTO {
   company: string;
   number_of_people: string;
   expected_date: string;
-  completed: boolean;
+  status: ContactStatus;
   budget: string;
   location: string;
   message: string;
   contactType: ContactType;
+}
+export enum ContactStatus {
+  'NEW',
+  'PROCESSING',
+  'PROCESSED',
 }
 export enum ContactType {
   'TOUR',

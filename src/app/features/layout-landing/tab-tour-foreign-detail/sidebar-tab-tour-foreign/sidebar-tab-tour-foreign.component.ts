@@ -5,7 +5,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { FeatureResDTO } from '../../../../../interface';
+import { ContactStatus, FeatureResDTO } from '../../../../../interface';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { DecimalPipe } from '@angular/common';
@@ -59,7 +59,7 @@ export class SidebarTabTourForeignComponent {
         budget: this.priceTour ?? '',
         location: this.nameTour ?? '',
         message: rawForm.message ?? '',
-        completed: false,
+        status: ContactStatus.NEW,
         contactType: ContactType.TOUR,
       };
       this.appService.createDataContactPrivateTour(body).subscribe({
