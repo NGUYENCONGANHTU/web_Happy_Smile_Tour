@@ -1,0 +1,68 @@
+<form
+  nz-form
+  [formGroup]="clientContactForm"
+  nzLayout="vertical"
+  class="form-view-mode">
+  <nz-form-item>
+    <nz-form-label>Tên</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Email</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="email" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Số điện thoại</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="phone" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Công ty</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="company" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Số lượng</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="number_of_people" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Ngày dự kiến</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="expected_date" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Ngân sách</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="budget" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Địa điểm</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="location" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Lời nhắn</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="message" />
+    </nz-form-control>
+  </nz-form-item>
+</form>

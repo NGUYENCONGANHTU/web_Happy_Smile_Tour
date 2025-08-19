@@ -1,9 +1,5 @@
 <div class="flex gap-2 justify-end !mb-2">
   <app-header-input-search></app-header-input-search>
-  <button nz-button (click)="goTo(BaseFormMode.CREATE)">
-    <nz-icon nzType="plus" />
-    Thêm mới
-  </button>
 </div>
 
 <app-table-base-component
@@ -13,4 +9,5 @@
   [(page)]="metaData.page"
   [(pageSize)]="metaData.pageSize"
   [total]="metaData.total"
-  (rowDBClick)="goTo(BaseFormMode.VIEW, $event)"></app-table-base-component>
+  [frontPagination]="true"
+  (rowDBClick)="viewDetail($event)"></app-table-base-component>
