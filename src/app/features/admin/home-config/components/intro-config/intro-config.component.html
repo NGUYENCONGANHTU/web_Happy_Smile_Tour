@@ -1,0 +1,41 @@
+<form
+  nz-form
+  [formGroup]="introForm"
+  nzLayout="vertical"
+  (ngSubmit)="onSubmit($event)">
+  <div class="flex justify-end">
+    <div class="flex gap-2">
+      <button nz-button nzType="primary" type="submit">Lưu</button>
+      <app-language-selection
+        [(selectedLanguage)]="selectedLanguage"
+        (selectedLanguageChange)="fetchAllData()"></app-language-selection>
+    </div>
+  </div>
+  <h1>
+    Giới thiệu
+    <span class="italic text-gray-500 font-normal">{{
+      isOriginalLanguage
+        ? '(Bản gốc)'
+        : introForm.value?.created
+          ? '(Bản dịch)'
+          : '(Chưa có bản dịch)'
+    }}</span>
+  </h1>
+  <nz-form-item>
+    <nz-form-label>Tiêu đề</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="title" placeholder="Nhập tiêu đề" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Nội dung</nz-form-label>
+    <nz-form-control>
+      <textarea
+        nz-input
+        rows="6"
+        formControlName="description"
+        placeholder="Nhập nội dung"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>

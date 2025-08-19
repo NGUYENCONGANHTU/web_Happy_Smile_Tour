@@ -12,6 +12,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FooterConfigComponent } from './components/footer-config/footer-config.component';
 import { BannerConfigComponent } from './components/banner-config/banner-config.component';
 import { PartnerConfigComponent } from './components/partner-config/partner-config.component';
+import { IntroConfigComponent } from './components/intro-config/intro-config.component';
 
 @Component({
   standalone: true,
@@ -30,6 +31,7 @@ import { PartnerConfigComponent } from './components/partner-config/partner-conf
     FooterConfigComponent,
     BannerConfigComponent,
     PartnerConfigComponent,
+    IntroConfigComponent,
   ],
   templateUrl: './home-config.component.html',
 })
