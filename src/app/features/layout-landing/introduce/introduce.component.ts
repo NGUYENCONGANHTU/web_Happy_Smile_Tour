@@ -97,7 +97,7 @@ export class IntroduceComponent implements OnInit {
   getAllDataHighLightIntroducePage() {
     this.introService.getAllDataAdvertise().subscribe(res => {
       if (res?.data) {
-        this.dataServiceIntroduce = res.data;
+        this.dataServiceIntroduce = res.data.slice(0, 4);
       } else {
         this.dataServiceIntroduce = [];
       }

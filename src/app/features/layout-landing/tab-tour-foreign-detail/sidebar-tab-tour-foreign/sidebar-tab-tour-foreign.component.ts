@@ -59,6 +59,7 @@ export class SidebarTabTourForeignComponent {
         budget: this.priceTour ?? '',
         location: this.nameTour ?? '',
         message: rawForm.message ?? '',
+        completed: false,
         contactType: ContactType.TOUR,
       };
       this.appService.createDataContactPrivateTour(body).subscribe({

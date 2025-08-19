@@ -107,6 +107,7 @@ export class TabServiceComponent implements OnInit {
         budget: '',
         location: this.dataServiceDetail?.serviceTitle ?? '',
         message: rawForm.message ?? '',
+        completed: false,
         contactType: ContactType.VISA,
       };
       this.appService.createDataContactPrivateTour(body).subscribe({

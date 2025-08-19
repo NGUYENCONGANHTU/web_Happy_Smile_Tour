@@ -75,10 +75,10 @@
             </div>
             <div class="price truncate">
               <span class="old-price !text-gray-400 font-medium"
-                >{{ data.originalPrice | number }} VNĐ</span
+                >{{ data.originalPrice | number }} {{ data.currencyUnit }}</span
               >
-              <span class="new-price !text-[#ED1C24]"
-                >{{ data.finalPrice | number }} VNĐ</span
+              <span class="new-price !text-[#ED1C24] font-bold"
+                >{{ data.finalPrice | number }} {{ data.currencyUnit }}</span
               >
             </div>
           </div>
