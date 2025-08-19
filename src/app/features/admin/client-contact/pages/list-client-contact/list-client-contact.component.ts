@@ -9,7 +9,7 @@ import { BlogResDTO } from '../../../blog/blog.interface';
 import { ColumnConfig } from '../../../../../shared/interfaces/table-base.interface';
 import { ClientContactResDTO } from '../../client-contact.interface';
 import { ClientContactService } from '../../client-contact.service';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { ViewClientContactContentComponent } from '../../components/view-client-contact-content/view-client-contact-content.component';
 
 @Component({
@@ -21,6 +21,7 @@ import { ViewClientContactContentComponent } from '../../components/view-client-
     NzButtonModule,
     NzIconModule,
     TableBaseComponent,
+    NzModalModule,
   ],
 })
 export class ListClientContactComponent implements OnInit {
@@ -29,17 +30,46 @@ export class ListClientContactComponent implements OnInit {
   modal = inject(NzModalService);
 
   loading = false;
+
+  searchKey = '';
   metaData = new TableMetaData();
   data: BlogResDTO[] = [];
   columns: ColumnConfig[] = [
     {
-      key: 'title',
-      title: 'Tiêu đề',
-      width: '300px',
+      key: 'name',
+      title: 'Tên',
     },
     {
-      key: 'content',
-      title: 'Nội dung',
+      key: 'email',
+      title: 'Email',
+    },
+    {
+      key: 'phone',
+      title: 'Số điện thoại',
+    },
+    {
+      key: 'company',
+      title: 'Công ty',
+    },
+    {
+      key: 'number_of_people',
+      title: 'Số lượng',
+    },
+    {
+      key: 'expected_date',
+      title: 'Ngày dự kiến',
+    },
+    {
+      key: 'budget',
+      title: 'Ngân sách',
+    },
+    {
+      key: 'location',
+      title: 'Địa điểm',
+    },
+    {
+      key: 'message',
+      title: 'Lời nhắn',
     },
   ];
 
@@ -69,5 +99,13 @@ export class ListClientContactComponent implements OnInit {
       nzData: data,
       nzFooter: null,
     });
+  }
+
+  get displayData() {
+    return this.data.filter(dt =>
+      Object.values(dt).some(
+        val => typeof val === 'string' && val.includes(this.searchKey)
+      )
+    );
   }
 }

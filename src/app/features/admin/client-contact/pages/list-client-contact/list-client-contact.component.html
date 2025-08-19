@@ -1,9 +1,9 @@
 <div class="flex gap-2 justify-end !mb-2">
-  <app-header-input-search></app-header-input-search>
+  <app-header-input-search [(value)]="searchKey"></app-header-input-search>
 </div>
 
 <app-table-base-component
-  [data]="data"
+  [data]="displayData"
   [columns]="columns"
   [loading]="loading"
   [(page)]="metaData.page"

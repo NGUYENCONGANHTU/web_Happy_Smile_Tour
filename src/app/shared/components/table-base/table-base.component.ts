@@ -46,9 +46,9 @@ import { BehaviorSubject, debounceTime, switchMap } from 'rxjs';
 export class TableBaseComponent implements OnChanges {
   @Input({ required: true }) columns: ColumnConfig[] = [];
   @Input({ required: true }) data: Record<string, any>[] = [];
-  @Input({ required: true }) page = 0;
-  @Input({ required: true }) pageSize = 0;
-  @Input({ required: true }) total = 0;
+  @Input() page = 0;
+  @Input() pageSize = 0;
+  @Input() total = 0;
   @Input() loading = false;
   @Input() frontPagination = true;
   @Input() scroll = { x: '1200px', y: 'calc(100vh - 280px)' };
