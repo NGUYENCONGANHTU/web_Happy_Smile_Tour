@@ -49,13 +49,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   standalone: true,
 })
 export class LayoutLandingComponent implements OnInit {
-  // icon
-  // faEnvelope = faEnvelope;
-  // faPhone = faPhone;
-  // faEarthAsia = faEarthAsia;
-  // faFacebook = faFacebook;
-  // faWhatsapp = faWhatsapp;
-
   // ======================== service ========================
   translate = inject(TranslateService);
   router = inject(Router);
@@ -118,7 +111,6 @@ export class LayoutLandingComponent implements OnInit {
   getDataFooter() {
     this.appService.getAllDataFooter().subscribe(res => {
       this.footerData = res.data;
-      console.log(this.footerData);
     });
   }
 

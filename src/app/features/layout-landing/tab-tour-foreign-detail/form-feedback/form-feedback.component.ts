@@ -56,7 +56,6 @@ export class FormFeedbackComponent {
 
   submitForm() {
     if (this.validateForm.valid) {
-      console.log('Dữ liệu gửi:', this.validateForm.value);
       const rawForm = this.validateForm.value;
 
       // Tạo object đúng kiểu ContactPrivateTourReqDTO

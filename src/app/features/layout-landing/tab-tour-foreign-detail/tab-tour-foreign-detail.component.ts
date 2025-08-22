@@ -102,6 +102,7 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   }
 
   scrollTo(section: string) {
+    this.activeSection = section;
     let sectionEl: HTMLElement | null = null;
     switch (section) {
       case 'diemNoiBat':
@@ -123,7 +124,7 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
     }
 
     if (sectionEl) {
-      const offset = -70;
+      const offset = -150;
       const y =
         sectionEl.getBoundingClientRect().top + window.pageYOffset + offset;
 

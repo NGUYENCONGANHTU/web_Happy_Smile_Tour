@@ -35,6 +35,7 @@ import { ScheduleTabTransComponent } from '../components/schedule-tab/schedule-t
 import { PricingTabTransComponent } from '../components/pricing-tab/pricing-tab-trans.component';
 import { ServiceTabTransComponent } from '../components/service-tab/service-tab-trans.component';
 import { SharedDataService } from '../../../../../../shared/services/shared-data.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-tour-form-trans',
@@ -65,7 +66,7 @@ export class TourFormTransComponent implements OnInit {
   tourConfigService = inject(TourConfigService);
   notification = inject(NzNotificationService);
   sharedService = inject(SharedDataService);
-
+  message = inject(NzMessageService);
   fetching = false;
   submittingTour = false;
   submittingPrice = false;
@@ -287,6 +288,7 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: _res => {
                     this.submittingTour = false;
+                    this.message.success('Thêm thành công!');
                   },
                   error: () => {
                     this.submittingTour = false;
@@ -323,6 +325,7 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: () => {
                     this.submittingPrice = false;
+                    this.message.success('Thêm thành công!');
                   },
                   error: () => {
                     this.submittingPrice = false;
@@ -335,6 +338,7 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: () => {
                     this.submittingPrice = false;
+                    this.message.success('Thêm thành công!');
                   },
                   error: () => {
                     this.submittingPrice = false;
@@ -347,6 +351,7 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: () => {
                     this.submittingPrice = false;
+                    this.message.success('Thêm thành công!');
                   },
                   error: () => {
                     this.submittingPrice = false;
@@ -372,6 +377,7 @@ export class TourFormTransComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this.submittingSchedule = false;
+                  this.message.success('Thêm thành công!');
                 },
                 error: () => {
                   this.submittingSchedule = false;
