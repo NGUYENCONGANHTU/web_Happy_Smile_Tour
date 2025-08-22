@@ -71,6 +71,7 @@
           </li>
           <li>
             <a
+              href=""
               nz-dropdown
               nzTrigger="click"
               class="block py-2 text-[14px]"
@@ -100,6 +101,7 @@
           </li>
           <li>
             <a
+              href=""
               [routerLink]="['/contact-page']"
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -110,6 +112,7 @@
           <li class="mt-4 md:mt-0">
             @if (selectedLang?.image?.storagePath) {
               <a
+                href=""
                 nz-dropdown
                 nzTrigger="click"
                 [nzDropdownMenu]="language"
@@ -131,7 +134,8 @@
                 class="grid grid-cols-2 max-w-[600px] rounded-md! !mt-5px md:mt-[10px]! p-2! gap-2">
                 @for (lang of languages; track $index) {
                   <li nz-menu-item>
-                    <button
+                    <a
+                      href=""
                       (click)="handleChangeLanguage(lang)"
                       class="cursor-pointer">
                       <div
@@ -146,7 +150,7 @@
                           <span>{{ lang.code }}</span>
                         }
                       </div>
-                    </button>
+                    </a>
                   </li>
                 }
               </ul>
