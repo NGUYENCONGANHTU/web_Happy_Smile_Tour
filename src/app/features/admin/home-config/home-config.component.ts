@@ -13,6 +13,7 @@ import { FooterConfigComponent } from './components/footer-config/footer-config.
 import { BannerConfigComponent } from './components/banner-config/banner-config.component';
 import { PartnerConfigComponent } from './components/partner-config/partner-config.component';
 import { IntroConfigComponent } from './components/intro-config/intro-config.component';
+import { ListClientOpinionComponent } from './components/client-opinion/pages/list-client-comment/list-client-opinion.component';
 
 @Component({
   standalone: true,
@@ -32,6 +33,7 @@ import { IntroConfigComponent } from './components/intro-config/intro-config.com
     BannerConfigComponent,
     PartnerConfigComponent,
     IntroConfigComponent,
+    ListClientOpinionComponent,
   ],
   templateUrl: './home-config.component.html',
 })

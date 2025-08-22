@@ -1,0 +1,33 @@
+<div class="flex gap-2 justify-end !mb-2">
+  <app-header-input-search [(value)]="searchKey"></app-header-input-search>
+  <button nz-button (click)="openCreateOrUpdate()">
+    <nz-icon nzType="plus" />
+    Thêm mới
+  </button>
+</div>
+
+<app-table-base-component
+  [data]="displayData"
+  [columns]="columns"
+  [loading]="loading"
+  [(page)]="metaData.page"
+  [(pageSize)]="metaData.pageSize"
+  [total]="metaData.total"
+  [frontPagination]="true"
+  (rowDBClick)="openCreateOrUpdate($event)"></app-table-base-component>
+
+<ng-template #image let-value>
+  <div class="!w-25">
+    <img
+      nz-image
+      [nzSrc]="value"
+      [nzFallback]="DEFAULT_FALLBACK"
+      alt="lang-img" />
+  </div>
+</ng-template>
+
+<ng-template #actionCol let-value>
+  <button nz-button (click)="handleDelete(value)">
+    <nz-icon nzType="delete" />
+  </button>
+</ng-template>

@@ -1,0 +1,70 @@
+<div class="flex justify-end !mb-3">
+  @if (nzModalData) {
+    <button nz-button [nzLoading]="submitting" (click)="handleUpdate()">
+      <nz-icon nzType="edit" />
+      Cập nhật
+    </button>
+  } @else {
+    <button nz-button [nzLoading]="submitting" (click)="handleCreate()">
+      <nz-icon nzType="edit" />
+      Tạo
+    </button>
+  }
+</div>
+
+<form nz-form [formGroup]="clientOpinionForm" nzLayout="vertical">
+  <div class="flex gap-5">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-upload
+          nzListType="picture-card"
+          [nzBeforeUpload]="beforeUpload"
+          [nzMultiple]="false"
+          [nzShowUploadList]="false">
+          @if (clientOpinionForm.controls['image']?.value) {
+            <div style="width: 80px; border-radius: 50%">
+              <img
+                nz-image
+                [nzSrc]="imgPreview"
+                class="w-full"
+                alt="avatar"
+                [nzFallback]="DEFAULT_FALLBACK" />
+            </div>
+          } @else {
+            <div style="width: 80px; border-radius: 50%">
+              <i nz-icon nzType="plus"></i>
+              <div>Tải ảnh</div>
+            </div>
+          }
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item>
+    <div class="grow">
+      <nz-form-item>
+        <nz-form-control>
+          <input nz-input formControlName="name" placeholder="Tên" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <input nz-input formControlName="description" placeholder="Mô tả" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!--      <nz-form-item>-->
+      <!--        <nz-form-label>Đánh giá</nz-form-label>-->
+      <!--        <nz-form-control>-->
+      <!--          <input nz-input formControlName="rate" />-->
+      <!--        </nz-form-control>-->
+      <!--      </nz-form-item>-->
+    </div>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label>Nội dung</nz-form-label>
+    <nz-form-control>
+      <textarea nz-input rows="3" formControlName="content"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>
