@@ -12,6 +12,78 @@
     </div>
   </div>
   <h1>
+    Quảng cáo
+    <span class="italic text-gray-500 font-normal">{{
+      isOriginalLanguage
+        ? '(Bản gốc)'
+        : introTitles.value[0]?.created
+          ? '(Bản dịch)'
+          : '(Chưa có bản dịch)'
+    }}</span>
+  </h1>
+  <div>
+    <nz-form-item>
+      <nz-form-label>Tiêu đề</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          [formControl]="advertiseTitle"
+          placeholder="Nhập tiêu đề" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <div formArrayName="advertises" class="flex gap-3 justify-between">
+    @for (advertise of advertises.controls; track advertise) {
+      <div [formGroupName]="$index" class="w-1/4">
+        <!--        <nz-form-item>-->
+        <!--          <nz-form-label nzRequired>Hình ảnh</nz-form-label>-->
+        <nz-form-control
+          [nzErrorTip]="advertise.get('image') | appValidationMessage">
+          @if (advertise.get('image')?.enabled) {
+            <nz-upload
+              nzListType="picture-card"
+              [nzBeforeUpload]="beforeUploadFns($index)"
+              [nzMultiple]="false"
+              [nzShowUploadList]="false">
+              @if (advertise.get('image')) {
+                <img [src]="imgPreview[$index]" class="w-full" alt="blog" />
+              } @else {
+                <div>
+                  <i nz-icon nzType="plus"></i>
+                  <div>Tải ảnh</div>
+                </div>
+              }
+            </nz-upload>
+          } @else {
+            <div class="w-[100px] h-[100px]">
+              <img
+                width="auto"
+                height="auto"
+                [src]="advertise.get('title')?.value?.thumbUrl"
+                alt="image" />
+            </div>
+          }
+        </nz-form-control>
+        <!--        </nz-form-item>-->
+
+        <nz-form-item class="w-full">
+          <!--          <nz-form-label>Tiêu đề</nz-form-label>-->
+          <nz-form-control>
+            <textarea
+              nz-input
+              class="!w-full"
+              rows="4"
+              formControlName="title"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    }
+  </div>
+
+  <hr class="!my-3" />
+
+  <h1>
     Giới thiệu
     <span class="italic text-gray-500 font-normal">{{
       isOriginalLanguage
@@ -38,4 +110,51 @@
         placeholder="Nhập nội dung"></textarea>
     </nz-form-control>
   </nz-form-item>
+
+  <hr class="!my-3" />
+
+  <h1>
+    Thông số
+    <span class="italic text-gray-500 font-normal">{{
+      isOriginalLanguage
+        ? '(Bản gốc)'
+        : introTitles.value[1]?.created
+          ? '(Bản dịch)'
+          : '(Chưa có bản dịch)'
+    }}</span>
+  </h1>
+  <div>
+    <nz-form-item>
+      <nz-form-label>Tiêu đề</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          [formControl]="statisticTitle"
+          placeholder="Nhập tiêu đề" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div formArrayName="statistics" class="flex gap-3 justify-between">
+    @for (statistic of statistics.controls; track statistic) {
+      <div [formGroupName]="$index" class="w-1/4">
+        <nz-form-item class="w-full">
+          <nz-form-control>
+            <input
+              nz-input
+              formControlName="title"
+              placeholder="Nhập tiêu đề" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="w-full">
+          <nz-form-control>
+            <textarea
+              nz-input
+              class="!w-full"
+              rows="4"
+              formControlName="description"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    }
+  </div>
 </form>

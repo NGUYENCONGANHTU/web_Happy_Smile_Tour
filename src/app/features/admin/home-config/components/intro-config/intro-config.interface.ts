@@ -1,4 +1,5 @@
 import { LanguageResDTO } from '../../../../../shared/interfaces/shared-data.interface';
+import { FileResDTO } from '../../../../../core/interfaces/base.interface';
 
 export interface IntroResDTO {
   created: boolean;
@@ -21,4 +22,42 @@ export interface IntroTransReqDTO {
   languageCode: string;
   title: string;
   description: string;
+}
+
+export interface IntroTitleResDTO {
+  id: number;
+  introTitleId: number;
+  language: LanguageResDTO;
+  title: string;
+  created: boolean;
+}
+
+export interface IntroTitleReqDTO {
+  title: string;
+}
+
+export interface IntroTitleTransReqDTO {
+  introTitleId: number;
+  languageCode: string;
+  title: string;
+}
+
+export interface AdvertisementReqDTO {
+  title: string;
+  image: File;
+}
+
+export interface AdvertisementTransReqDTO {
+  advertiseId: number;
+  languageCode: string;
+  title: string;
+}
+
+export interface AdvertisementResDTO {
+  id: number;
+  advertiseId: number;
+  language: LanguageResDTO;
+  title: string;
+  image: FileResDTO;
+  created: boolean;
 }
