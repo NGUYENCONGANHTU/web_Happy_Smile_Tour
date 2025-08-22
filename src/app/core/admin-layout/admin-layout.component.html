@@ -44,6 +44,13 @@
         >
       </li>
     </ul>
+
+    <div class="absolute bottom-0 left-0 w-full">
+      <button nz-button class="w-full !h-12" (click)="authService.logout()">
+        <nz-icon nzType="logout" />
+        Đăng xuất
+      </button>
+    </div>
   </nz-sider>
   <nz-layout>
     <nz-header>

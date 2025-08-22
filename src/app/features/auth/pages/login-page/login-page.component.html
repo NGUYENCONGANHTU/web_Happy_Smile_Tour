@@ -4,8 +4,8 @@
     [formGroup]="loginForm"
     class="login-form"
     (ngSubmit)="submitForm()">
-    <div class="flex flex-col items-center gap-4 mb-3">
-      <img src="/images/logo_dtdi_login.png" alt="logo_login" />
+    <div class="flex flex-col items-center gap-4 !mb-5">
+      <img src="/assets/logo_Web_HST_N_1.png" alt="logo_login" />
       <h1 class="!text-primary text-xl">Đăng nhập</h1>
     </div>
     <nz-form-item>
@@ -37,16 +37,16 @@
       </nz-form-control>
     </nz-form-item>
     <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <div nz-checkbox formControlName="remember">
-          <span>Nhớ mật khẩu</span>
-        </div>
-      </div>
-      <div nz-col [nzSpan]="12">
-        <a href="/auth/forgot-password" class="login-form-forgot"
-          >Quên mật khẩu</a
-        >
-      </div>
+      <!--      <div nz-col [nzSpan]="12">-->
+      <!--        <div nz-checkbox formControlName="remember">-->
+      <!--          <span>Nhớ mật khẩu</span>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div nz-col [nzSpan]="12">-->
+      <!--        <a href="/auth/forgot-password" class="login-form-forgot"-->
+      <!--        >Quên mật khẩu</a-->
+      <!--        >-->
+      <!--      </div>-->
     </div>
     <button
       nz-button
