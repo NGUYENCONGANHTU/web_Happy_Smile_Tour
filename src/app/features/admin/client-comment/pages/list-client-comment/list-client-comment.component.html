@@ -1,9 +1,5 @@
 <div class="flex gap-2 justify-end !mb-2">
   <app-header-input-search [(value)]="searchKey"></app-header-input-search>
-  <button nz-button (click)="open(BaseFormMode.CREATE)">
-    <nz-icon nzType="plus" />
-    Thêm mới
-  </button>
 </div>
 
 <app-table-base-component
@@ -14,19 +10,7 @@
   [(pageSize)]="metaData.pageSize"
   [total]="metaData.total"
   [frontPagination]="true"
-  (rowDBClick)="open(BaseFormMode.UPDATE, $event)"></app-table-base-component>
-
-<nz-modal
-  [(nzVisible)]="isVisibleLanguageForm"
-  [nzTitle]="languageFormTitle"
-  [nzFooter]="null"
-  (nzOnCancel)="isVisibleLanguageForm = false">
-  <ng-container *nzModalContent>
-    <app-language-form
-      [mode]="languageFormMode"
-      [data]="languageFormData"></app-language-form>
-  </ng-container>
-</nz-modal>
+  (rowDBClick)="viewDetail($event)"></app-table-base-component>
 
 <ng-template #image let-value>
   <div class="!w-25">
@@ -41,5 +25,11 @@
 <ng-template #actionCol let-value>
   <button nz-button (click)="handleDelete(value)">
     <nz-icon nzType="delete" />
+  </button>
+</ng-template>
+
+<ng-template #tourLinkCol let-value>
+  <button nz-button nzType="link" (click)="goToDetail(value)">
+    {{ value }}
   </button>
 </ng-template>

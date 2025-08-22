@@ -61,6 +61,10 @@ p {
     resize: none;
   }
 
+  .ant-input[disabled]:hover {
+    border-color: transparent;
+  }
+
   .ant-select-disabled.ant-select:not(.ant-select-customize-input)
     .ant-select-selector {
     color: rgba(0, 0, 0, 0.85);

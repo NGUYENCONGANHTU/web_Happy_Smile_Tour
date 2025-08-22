@@ -12,10 +12,16 @@ import en from '@angular/common/locales/en';
 import { icons } from '../icons-provider';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { responseToastInterceptor } from './core/interceptors/response-toast.interceptor';
 registerLocaleData(en);
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -40,6 +46,8 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([authInterceptor, responseToastInterceptor])
+    ),
   ],
 };

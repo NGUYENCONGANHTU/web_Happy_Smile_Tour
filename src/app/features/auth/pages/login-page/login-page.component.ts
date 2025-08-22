@@ -51,7 +51,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['']);
+      this.router.navigate(['/admin']);
     }
   }
 
@@ -67,6 +67,7 @@ export class LoginPageComponent implements OnInit {
           .subscribe({
             next: () => {
               this.logging = false;
+              this.router.navigate(['/admin']);
             },
             error: () => {
               this.logging = false;
