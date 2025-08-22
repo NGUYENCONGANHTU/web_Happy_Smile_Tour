@@ -35,6 +35,7 @@ import {
 } from '../../../interface';
 import { ORIGINAL_LANGUAGE } from '../../../../../../shared/constants/global.constant';
 import { LanguageSelectionComponent } from '../../../../../../shared/components/language-selection/language-selection.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-tour-form',
@@ -66,7 +67,7 @@ export class TourFormComponent implements OnInit {
   fb = inject(FormBuilder);
   tourConfigService = inject(TourConfigService);
   notification = inject(NzNotificationService);
-
+  message = inject(NzMessageService);
   @Input({ required: true }) public mode!: BaseFormMode;
 
   fetching = false;
@@ -233,6 +234,7 @@ export class TourFormComponent implements OnInit {
           this.tourConfigService.createTourPrices(tourPrices).subscribe({
             next: () => {
               this.submittingPrice = false;
+              this.message.success('Thêm thành công!');
             },
             error: () => {
               this.submittingPrice = false;
@@ -274,6 +276,7 @@ export class TourFormComponent implements OnInit {
         this.tourConfigService.createTourSchedules(tourSchedules).subscribe({
           next: () => {
             this.submittingSchedule = false;
+            this.message.success('Thêm thành công!');
           },
           error: () => {
             this.submittingSchedule = false;
@@ -342,6 +345,7 @@ export class TourFormComponent implements OnInit {
           next: res => {
             createOrUpdateOtherInfo(res.data);
             this.submittingTour = false;
+            this.message.success('Thêm thành công!');
           },
           error: () => {
             this.submittingTour = false;
