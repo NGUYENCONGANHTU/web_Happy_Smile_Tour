@@ -14,8 +14,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { ActivatedRoute } from '@angular/router';
 import { ContactType } from './interface-contact-tour-service';
-import { VisaProcessResDTO, VisaServiceResDTO } from '../../../../interface';
-import { NgIf, NgStyle } from '@angular/common';
+import {
+  ContactStatus,
+  VisaProcessResDTO,
+  VisaServiceResDTO,
+} from '../../../../interface';
+import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
@@ -35,7 +39,6 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NgStyle,
     TranslatePipe,
     NzButtonModule,
-    NgIf,
   ],
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',
@@ -107,7 +110,7 @@ export class TabServiceComponent implements OnInit {
         budget: '',
         location: this.dataServiceDetail?.serviceTitle ?? '',
         message: rawForm.message ?? '',
-        completed: false,
+        status: ContactStatus.NEW,
         contactType: ContactType.VISA,
       };
       this.appService.createDataContactPrivateTour(body).subscribe({

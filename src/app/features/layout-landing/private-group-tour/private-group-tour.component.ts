@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import {
   ContactPrivateTourReqDTO,
+  ContactStatus,
   ContactType,
   PrivateTourResDTO,
 } from '../../../../interface';
@@ -79,7 +80,7 @@ export class PrivateGroupTourComponent implements OnInit {
         budget: rawForm.budget ?? '',
         location: rawForm.location ?? '',
         message: rawForm.message ?? '',
-        completed: false,
+        status: ContactStatus.NEW,
         contactType: ContactType.TOUR,
       };
 

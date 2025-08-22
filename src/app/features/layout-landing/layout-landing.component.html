@@ -3,7 +3,7 @@
     class="bg-white shadow-md !sticky w-full top-0 left-0 z-[1000] max-h-22">
     <div class="container-header flex items-center justify-between p-4">
       <div class="logo">
-        <a href="/">
+        <a href="/" aria-label="Go to homepage">
           <img
             src="/assets/Logo_web_finally.png"
             class="w-full object-cover bg-center bg-cover"
@@ -71,6 +71,7 @@
           </li>
           <li>
             <a
+              href=""
               nz-dropdown
               nzTrigger="click"
               class="block py-2 text-[14px]"
@@ -100,6 +101,7 @@
           </li>
           <li>
             <a
+              href=""
               [routerLink]="['/contact-page']"
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -110,6 +112,7 @@
           <li class="mt-4 md:mt-0">
             @if (selectedLang?.image?.storagePath) {
               <a
+                href=""
                 nz-dropdown
                 nzTrigger="click"
                 [nzDropdownMenu]="language"
@@ -131,7 +134,8 @@
                 class="grid grid-cols-2 max-w-[600px] rounded-md! !mt-5px md:mt-[10px]! p-2! gap-2">
                 @for (lang of languages; track $index) {
                   <li nz-menu-item>
-                    <button
+                    <a
+                      href=""
                       (click)="handleChangeLanguage(lang)"
                       class="cursor-pointer">
                       <div
@@ -146,7 +150,7 @@
                           <span>{{ lang.code }}</span>
                         }
                       </div>
-                    </button>
+                    </a>
                   </li>
                 }
               </ul>
@@ -173,10 +177,12 @@
             class="travel-footer-description"
             [innerHTML]="'footer.description' | translate"></div>
           <div class="travel-footer-partners">
-            <img
-              src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"
-              width="150"
-              alt="" />
+            <a href="/">
+              <img
+                src="https://landtour.com.vn/wp-content/uploads/2022/08/bao-mat-thong-tin.png"
+                width="150"
+                alt="HappySmileS Vietnam Travel" />
+            </a>
           </div>
         </div>
 
