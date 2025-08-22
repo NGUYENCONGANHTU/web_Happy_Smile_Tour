@@ -37,6 +37,8 @@ export class ListToursComponent implements OnInit {
   tourConfigService = inject(TourConfigService);
 
   loading = false;
+
+  searchKey = '';
   metaData = new TableMetaData();
   data: TourResDTO[] = [];
   columns: ColumnConfig[] = [];
@@ -124,4 +126,14 @@ export class ListToursComponent implements OnInit {
   }
 
   protected readonly BaseFormMode = BaseFormMode;
+
+  get displayData() {
+    return this.data.filter(dt =>
+      Object.values(dt).some(
+        val =>
+          typeof val === 'string' &&
+          val.toLowerCase().includes(this.searchKey.toLowerCase())
+      )
+    );
+  }
 }

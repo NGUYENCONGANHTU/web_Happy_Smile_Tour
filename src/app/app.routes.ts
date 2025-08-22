@@ -19,6 +19,7 @@ import { TOUR_CONFIG_ROUTES } from './features/admin/tour-config/tour-config.rou
 import { BLOG_ROUTES } from './features/admin/blog/blog.routes';
 import { SERVICE_CONFIG_ROUTES } from './features/admin/service-config/service-config.routes';
 import { ListLanguageComponent } from './features/admin/language-config/pages/list-language/list-language.component';
+import { ListClientContactComponent } from './features/admin/client-contact/pages/list-client-contact/list-client-contact.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -119,6 +120,11 @@ export const routes: Routes = [
             path: 'language-config',
             component: ListLanguageComponent,
             data: { breadcrumb: 'Ngôn ngữ' },
+          },
+          {
+            path: 'client-contact',
+            component: ListClientContactComponent,
+            data: { breadcrumb: 'Form liên hệ' },
           },
         ],
       },
