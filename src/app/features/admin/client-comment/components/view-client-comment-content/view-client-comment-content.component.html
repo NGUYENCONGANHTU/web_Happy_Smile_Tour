@@ -1,0 +1,60 @@
+<form
+  nz-form
+  [formGroup]="clientCommentForm"
+  nzLayout="vertical"
+  class="form-view-mode input-underline">
+  <nz-form-item>
+    <nz-form-label>Tên</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Đánh giá</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="rate" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Nội dung</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="content" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Tags</nz-form-label>
+    <nz-form-control>
+      <nz-select
+        formControlName="tags"
+        nzMode="tags"
+        [nzOptions]="clientCommentForm.get('tags')?.value">
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Ảnh</nz-form-label>
+    <img
+      nz-image
+      [nzSrc]="clientCommentForm.get('imageUrl')?.value"
+      [nzFallback]="DEFAULT_FALLBACK"
+      alt="lang-img" />
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Thời gian</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="time" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Tour</nz-form-label>
+    <button nz-button nzType="link" (click)="goToDetail()">
+      Tour được đánh giá
+    </button>
+  </nz-form-item>
+</form>

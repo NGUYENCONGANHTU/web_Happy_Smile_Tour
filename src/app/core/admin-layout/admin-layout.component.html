@@ -37,6 +37,12 @@
         <nz-icon class="!mr-2" nzType="send" />
         <a [routerLink]="['/', 'admin', 'client-contact']">Form liên hệ</a>
       </li>
+      <li nz-menu-item nzMatchRouter>
+        <nz-icon class="!mr-2" nzType="comment" />
+        <a [routerLink]="['/', 'admin', 'client-comment']"
+          >Đánh giá của khách hàng</a
+        >
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>

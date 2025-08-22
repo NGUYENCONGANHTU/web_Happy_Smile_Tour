@@ -15,63 +15,44 @@ import {
   ColumnConfig,
   ColumnType,
 } from '../../../../../shared/interfaces/table-base.interface';
-import {
-  LanguageConfigService,
-  LanguageResDTO,
-} from '../../language-config.service';
-import { NzImageModule } from 'ng-zorro-antd/image';
-import { BaseFormMode } from '../../../../../shared/interfaces/form-base.interface';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
-import { LanguageFormComponent } from '../../components/language-form/language-form.component';
-import { sanitizeUrl } from '../../../../../shared/utils/helpers/common.helper';
+import { ClientCommentService } from '../../client-comment.service';
+import { ClientCommentResDTO } from '../../client-comment.interface';
+import { NzImageModule } from 'ng-zorro-antd/image';
 import { DEFAULT_FALLBACK } from '../../../../../shared/constants/global.constant';
+import { ViewClientCommentContentComponent } from '../../components/view-client-comment-content/view-client-comment-content.component';
 
 @Component({
-  selector: 'app-list-language',
-  templateUrl: 'list-language.component.html',
+  selector: 'app-list-client-comment',
+  templateUrl: 'list-client-comment.component.html',
+  standalone: true,
   imports: [
     HeaderInputSearchComponent,
     NzButtonModule,
     NzIconModule,
     TableBaseComponent,
-    NzImageModule,
     NzModalModule,
-    LanguageFormComponent,
+    NzImageModule,
   ],
-  standalone: true,
 })
-export class ListLanguageComponent implements OnInit {
+export class ListClientCommentComponent implements OnInit {
   @ViewChild('image', { static: true }) imageCol!: TemplateRef<never>;
   @ViewChild('actionCol', { static: true }) actionCol!: TemplateRef<never>;
+  @ViewChild('tourLinkCol', { static: true }) tourLinkCol!: TemplateRef<never>;
 
   router = inject(Router);
-  languageConfigService = inject(LanguageConfigService);
+  clientCommentService = inject(ClientCommentService);
   modal = inject(NzModalService);
 
   loading = false;
-  isVisibleLanguageForm = false;
 
   searchKey = '';
-  languageFormTitle = '';
-  languageFormMode: BaseFormMode = BaseFormMode.CREATE;
-  languageFormData?: LanguageResDTO;
-
   metaData = new TableMetaData();
-  data: LanguageResDTO[] = [];
+  data: ClientCommentResDTO[] = [];
   columns: ColumnConfig[] = [];
 
   ngOnInit() {
-    this.fetchLanguages();
-
     this.columns = [
-      {
-        key: 'name',
-        title: 'Tên',
-      },
-      {
-        key: 'code',
-        title: 'Mã',
-      },
       {
         key: 'imageUrl',
         title: 'Ảnh',
@@ -79,33 +60,67 @@ export class ListLanguageComponent implements OnInit {
         template: this.imageCol,
       },
       {
+        key: 'name',
+        title: 'Tên',
+      },
+      {
+        key: 'rate',
+        title: 'Đánh giá',
+      },
+      {
+        key: 'content',
+        title: 'Nội dung',
+      },
+      {
+        key: 'tagDisplay',
+        title: 'Tags',
+      },
+      {
+        key: 'time',
+        title: 'Thời gian',
+      },
+      {
+        key: 'tourId',
+        title: 'Tour',
+        type: ColumnType.TEMPLATE_REF,
+        template: this.tourLinkCol,
+      },
+      {
         key: 'id',
         title: '',
+        width: '64px',
         fixed: 'right',
-        width: '60px',
         type: ColumnType.TEMPLATE_REF,
         template: this.actionCol,
       },
     ];
+    this.getClientContacts();
   }
 
-  fetchLanguages(toggleLoading = true) {
+  getClientContacts(toggleLoading = true) {
     if (toggleLoading) {
       this.loading = true;
     }
-    this.languageConfigService.getLanguages().subscribe({
+    this.clientCommentService.getClientComments().subscribe({
       next: res => {
         this.data = res.data.map(dt => ({
           ...dt,
-          imageUrl: dt?.image?.storagePath
-            ? sanitizeUrl(dt.image.storagePath)
-            : '',
+          imageUrl: dt.imageUrl,
         }));
         this.loading = false;
       },
       error: () => {
         this.loading = false;
       },
+    });
+  }
+
+  viewDetail(data: ClientCommentResDTO) {
+    this.modal.create({
+      nzTitle: 'Chi tiết đánh giá',
+      nzContent: ViewClientCommentContentComponent,
+      nzData: data,
+      nzFooter: null,
     });
   }
 
@@ -117,9 +132,9 @@ export class ListLanguageComponent implements OnInit {
       nzCancelText: 'Hủy',
       nzOnOk: () => {
         this.loading = true;
-        this.languageConfigService.deleteLanguageById(id).subscribe({
+        this.clientCommentService.deleteClientCommentById(id).subscribe({
           next: () => {
-            this.fetchLanguages(false);
+            this.getClientContacts(false);
             this.loading = false;
           },
           error: () => {
@@ -130,24 +145,9 @@ export class ListLanguageComponent implements OnInit {
     });
   }
 
-  open(target: string, data?: LanguageResDTO) {
-    switch (target) {
-      case BaseFormMode.CREATE:
-        this.languageFormTitle = 'Thêm mới ngôn ngữ';
-        this.languageFormMode = BaseFormMode.CREATE;
-        this.isVisibleLanguageForm = true;
-        break;
-      case BaseFormMode.UPDATE:
-        this.languageFormTitle = 'cập nhật ngôn ngữ';
-        this.languageFormMode = BaseFormMode.CREATE;
-        this.languageFormData = data;
-        this.isVisibleLanguageForm = true;
-        break;
-      default:
-    }
+  goToDetail(id: string | number) {
+    this.router.navigateByUrl(`/admin/tour-config/${id}`);
   }
-
-  protected readonly BaseFormMode = BaseFormMode;
 
   get displayData() {
     return this.data.filter(dt =>
