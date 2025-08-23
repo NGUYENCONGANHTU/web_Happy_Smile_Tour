@@ -110,11 +110,10 @@
           <li class="mt-4 md:mt-0">
             @if (selectedLang?.image?.storagePath) {
               <a
-                href=""
                 nz-dropdown
                 nzTrigger="click"
                 [nzDropdownMenu]="language"
-                class="flex items-center"
+                class="flex items-center !text-black"
                 [nzPlacement]="'bottomCenter'">
                 <img
                   [src]="formatImage(selectedLang.image.storagePath)"
@@ -137,7 +136,7 @@
                       (click)="handleChangeLanguage(lang)"
                       class="cursor-pointer">
                       <div
-                        class="flex items-center justify-between w-full gap-2 text-[12px]">
+                        class="flex items-center justify-between w-full gap-2 text-[12px] !text-black">
                         @if (lang?.image?.storagePath) {
                           <img
                             [src]="formatImage(lang.image.storagePath)"
