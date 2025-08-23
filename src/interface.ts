@@ -93,7 +93,7 @@ export interface LocationResDTO {
 }
 export enum LocationType {
   DOMESTIC = 'DOMESTIC',
-  INTERNATINAL = 'INTERNATINAL',
+  INTERNATIONAL = 'INTERNATIONAL',
 }
 
 /* ==================== Các hoạt động nổi bật ==================== */

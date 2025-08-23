@@ -21,6 +21,7 @@ import { ListClientContactComponent } from './features/admin/client-contact/page
 import { ListClientCommentComponent } from './features/admin/client-comment/pages/list-client-comment/list-client-comment.component';
 import { AuthRoutes } from './features/auth/auth.routes';
 import { AuthGuard } from './core/guards/auth.guard';
+import {ListLocationComponent} from './features/admin/location-config/pages/list-location/list-location.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -126,6 +127,11 @@ export const routes: Routes = [
             path: 'client-comment',
             component: ListClientCommentComponent,
             data: { breadcrumb: 'Đánh giá của khách hàng' },
+          },
+          {
+            path: 'location-config',
+            component: ListLocationComponent,
+            data: { breadcrumb: 'Cấu hình địa điểm' },
           },
         ],
       },

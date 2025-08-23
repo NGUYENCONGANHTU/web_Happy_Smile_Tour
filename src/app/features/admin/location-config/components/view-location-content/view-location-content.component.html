@@ -1,0 +1,34 @@
+<div class="flex justify-end">
+  @if (nzModalData) {
+    <button nz-button [nzLoading]="submitting" (click)="handleUpdate()">
+      <nz-icon nzType="edit" />
+      Cập nhật
+    </button>
+  } @else {
+    <button nz-button [nzLoading]="submitting" (click)="handleCreate()">
+      <nz-icon nzType="edit" />
+      Tạo
+    </button>
+  }
+</div>
+
+<form nz-form [formGroup]="locationForm" nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label nzRequired>Tên:</nz-form-label>
+      <nz-form-control [nzErrorTip]="locationForm.get('name') | appValidationMessage">
+        <input nz-input formControlName="name" placeholder="Tên" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Loại:</nz-form-label>
+      <nz-form-control [nzErrorTip]="locationForm.get('locationType') | appValidationMessage">
+        <nz-select formControlName="locationType">
+          @for (data of options; track data) {
+            <nz-option [nzLabel]="data.label" [nzValue]="data.value">
+            </nz-option>
+          }
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+</form>
