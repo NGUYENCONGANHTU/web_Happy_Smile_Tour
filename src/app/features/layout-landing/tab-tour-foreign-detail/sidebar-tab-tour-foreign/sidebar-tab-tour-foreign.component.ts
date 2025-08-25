@@ -16,6 +16,7 @@ import { ContactType } from '../../tab-service/interface-contact-tour-service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AppService } from '../../../../../app.service';
+import { fakeData } from '../../../../constant';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -98,4 +99,6 @@ export class SidebarTabTourForeignComponent {
     expected_date: [''],
     message: [''],
   });
+
+  translateSidebarTourDetail = fakeData.tab_tour_detail;
 }

@@ -4,24 +4,25 @@
       <nz-breadcrumb-item>
         <a routerLink="/"> {{ 'menu.home' | translate }}</a>
       </nz-breadcrumb-item>
-      <nz-breadcrumb-item class="font-bold italic">
-        {{ dataContentTravelGuide.title }}
+      <nz-breadcrumb-item
+        class="font-medium"
+        [innerHTML]="sanitizeHtml(dataContentTravelGuide.title)">
       </nz-breadcrumb-item>
     </nz-breadcrumb>
 
     <div class="trave-tour-detail space-y-5!">
-      <div class="trave-tour-detail-title">
-        {{ dataContentTravelGuide.title }}
-      </div>
+      <div
+        class="trave-tour-detail-title"
+        [innerHTML]="sanitizeHtml(dataContentTravelGuide.title)"></div>
       <div class="mt-3!">
         <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
         <span class="italic">
           {{ dataContentTravelGuide.modifiedDate | dateTimeFormat }}</span
         >
       </div>
-      <div class="trave-tour-detail-content">
-        {{ dataContentTravelGuide.content }}
-      </div>
+      <div
+        class="trave-tour-detail-content"
+        [innerHTML]="sanitizeHtml(dataContentTravelGuide.content)"></div>
     </div>
   }
 </section>

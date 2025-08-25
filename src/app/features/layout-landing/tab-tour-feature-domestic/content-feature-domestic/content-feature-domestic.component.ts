@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
+import { fakeData } from '../../../../constant';
 @Component({
   selector: 'app-content-feature-domestic',
   imports: [
@@ -60,4 +61,6 @@ export class ContentFeatureDomesticComponent implements OnChanges {
     this.page = page;
     this.loadTours();
   }
+
+  translateTourCard = fakeData.tab_domestic;
 }

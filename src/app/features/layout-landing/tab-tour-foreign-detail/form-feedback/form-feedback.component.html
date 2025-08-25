@@ -1,10 +1,10 @@
 <div class="">
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <nz-card nzTitle=" {{ 'tour_detail.your_feedback' | translate }}">
+    <nz-card nzTitle="{{ translateSidebarTourDetail.your_feedback }}">
       <!--   Đánh giá star   -->
       <nz-form-item>
         <nz-form-control
-          [nzErrorTip]="'tour_detail.please_feedback' | translate">
+          [nzErrorTip]="translateSidebarTourDetail.please_feedback">
           <nz-rate formControlName="rate"></nz-rate>
 
           @if (validateForm.value.rate) {
@@ -24,7 +24,7 @@
           <input
             nz-input
             formControlName="name"
-            placeholder="{{ 'tab_service.enter_name' | translate }}"
+            placeholder="{{ translateSidebarTourDetail.enter_name }}"
             class="py-2! rounded-lg!" />
         </nz-form-control>
       </nz-form-item>
@@ -32,14 +32,14 @@
       <nz-form-item>
         <nz-form-control
           nzErrorTip="{{
-            'tour_detail.please_enter_content_feedback' | translate
+            translateSidebarTourDetail.please_enter_content_feedback
           }}">
           <textarea
             nz-input
             [nzAutosize]="{ minRows: 5, maxRows: 8 }"
             formControlName="content"
             placeholder="{{
-              'tour_detail.please_enter_content_feedback' | translate
+              translateSidebarTourDetail.please_enter_content_feedback
             }}"
             class="py-2! rounded-lg!">
           </textarea>
@@ -47,7 +47,7 @@
       </nz-form-item>
       <nz-divider></nz-divider>
       <button nz-button nzType="primary">
-        {{ 'tour_detail.submit_feedback' | translate }}
+        {{ translateSidebarTourDetail.submit_feedback }}
       </button>
     </nz-card>
   </form>

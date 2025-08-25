@@ -13,6 +13,7 @@ import { DecimalPipe, NgClass } from '@angular/common';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
+import { fakeData } from '../../../../constant';
 @Component({
   selector: 'app-feature-action',
   standalone: true,
@@ -45,4 +46,5 @@ export class FeatureActionComponent implements OnInit {
       }
     });
   }
+  homeData = fakeData.home;
 }

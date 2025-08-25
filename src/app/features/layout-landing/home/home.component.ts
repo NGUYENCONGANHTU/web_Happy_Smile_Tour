@@ -31,6 +31,7 @@ import {
 import { BANNER_WEB } from '../../../shared/constants/global.constant';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { fakeData } from '../../../constant';
 
 @Component({
   selector: 'app-home',
@@ -212,4 +213,6 @@ export class HomeComponent implements OnInit {
   sanitizeHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
+
+  homeData = fakeData.home;
 }

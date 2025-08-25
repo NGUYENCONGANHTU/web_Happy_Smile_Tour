@@ -21,14 +21,10 @@ import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../shared/services/language.service';
-// import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-// import { faPhone } from '@fortawesome/free-solid-svg-icons';
-// import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
-// import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-// import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { sanitizeUrl } from '../../shared/utils/helpers/common.helper';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { fakeData } from '../../constant';
 
 @Component({
   selector: 'app-layout-landing',
@@ -118,4 +114,7 @@ export class LayoutLandingComponent implements OnInit {
   sanitizeHtml(content?: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
   }
+  // Language Fake
+  homeData = fakeData.menu;
+  dataFooter = fakeData.footer;
 }

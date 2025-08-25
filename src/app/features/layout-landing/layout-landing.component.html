@@ -3,7 +3,7 @@
     class="bg-white shadow-md !sticky w-full top-0 left-0 z-[1000] max-h-22">
     <div class="container-header flex items-center justify-between p-4">
       <div class="logo">
-        <a href="" aria-label="Go to homepage">
+        <a href="/">
           <img
             src="/assets/Logo_web_finally.png"
             class="w-full object-cover bg-center bg-cover"
@@ -39,7 +39,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.about' | translate }}
+              {{ homeData.about }}
             </a>
           </li>
           <li>
@@ -48,7 +48,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.domestic_tours' | translate }}
+              {{ homeData.domestic_tours }}
             </a>
           </li>
           <li>
@@ -57,7 +57,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.international_tours' | translate }}
+              {{ homeData.international_tours }}
             </a>
           </li>
           <li>
@@ -66,7 +66,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.private_group_tours' | translate }}
+              {{ homeData.private_group_tours }}
             </a>
           </li>
           <li>
@@ -77,7 +77,7 @@
               [nzDropdownMenu]="menu"
               [ngClass]="{ '!text-[#ed1c24]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
-              {{ 'menu.services' | translate }}
+              {{ homeData.services }}
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -104,7 +104,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.contact' | translate }}
+              {{ homeData.contact }}
             </a>
           </li>
           <li class="mt-4 md:mt-0">
@@ -132,7 +132,6 @@
                 @for (lang of languages; track $index) {
                   <li nz-menu-item>
                     <a
-                      href=""
                       (click)="handleChangeLanguage(lang)"
                       class="cursor-pointer">
                       <div
@@ -172,7 +171,7 @@
           </div>
           <div
             class="travel-footer-description"
-            [innerHTML]="'footer.description' | translate"></div>
+            [innerHTML]="dataFooter.description"></div>
           <div class="travel-footer-partners">
             <a href="/">
               <img

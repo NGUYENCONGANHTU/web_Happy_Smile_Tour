@@ -20,6 +20,7 @@ import {
   FeatureResDTO,
   TourCommentDetailReqDTO,
 } from '../../../../../interface';
+import { fakeData } from '../../../../constant';
 @Component({
   selector: 'app-form-feedback',
   imports: [
@@ -85,4 +86,5 @@ export class FormFeedbackComponent {
       });
     }
   }
+  translateSidebarTourDetail = fakeData.tab_tour_detail;
 }

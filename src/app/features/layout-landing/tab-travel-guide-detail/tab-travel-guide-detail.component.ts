@@ -10,6 +10,7 @@ import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-tab-travel-guide-detail',
   imports: [
@@ -42,5 +43,9 @@ export class TabTravelGuideDetailComponent implements OnInit {
     this.appService.getDataByIdTravelGuide(this.newsId).subscribe(res => {
       this.dataContentTravelGuide = res.data;
     });
+  }
+  private sanitizer = inject(DomSanitizer);
+  sanitizeHtml(content?: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
   }
 }

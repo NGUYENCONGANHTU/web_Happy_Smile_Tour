@@ -3,6 +3,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { fakeData } from '../../../constant';
 @Component({
   selector: 'app-chat-box',
   standalone: true,
@@ -44,4 +45,6 @@ export class ChatBoxComponent {
         });
     }
   }
+
+  homeData = fakeData.chatbox;
 }

@@ -7,6 +7,7 @@ import { TimeSincePipe } from '../../pipes/time-since.pipe';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TourCommentDetailResDTO } from '../../../../interface';
+import { fakeData } from '../../../constant';
 
 @Component({
   selector: 'app-review-list',
@@ -24,32 +25,17 @@ import { TourCommentDetailResDTO } from '../../../../interface';
 })
 export class ReviewListComponent {
   translateService = inject(TranslateService);
-
+  translateTourDetail = fakeData.tab_tour_detail;
   @Input() reviews: TourCommentDetailResDTO[] = [];
 
   selectedFilter = 'all';
   filters = [
-    { key: 'all', label: this.translateService.instant('tour_detail.all') },
-    {
-      key: '5',
-      label: `5 ${this.translateService.instant('tour_detail.stars').toLowerCase()}`,
-    },
-    {
-      key: '4',
-      label: `4 ${this.translateService.instant('tour_detail.stars').toLowerCase()}`,
-    },
-    {
-      key: '3',
-      label: `3 ${this.translateService.instant('tour_detail.stars').toLowerCase()}`,
-    },
-    {
-      key: '2',
-      label: `2 ${this.translateService.instant('tour_detail.stars').toLowerCase()}`,
-    },
-    {
-      key: '1',
-      label: `1 ${this.translateService.instant('tour_detail.stars').toLowerCase()}`,
-    },
+    { key: 'all', label: this.translateTourDetail.all },
+    { key: '5', label: `5 ${this.translateTourDetail.stars.toLowerCase()}` },
+    { key: '4', label: `4 ${this.translateTourDetail.stars.toLowerCase()}` },
+    { key: '3', label: `3 ${this.translateTourDetail.stars.toLowerCase()}` },
+    { key: '2', label: `2 ${this.translateTourDetail.stars.toLowerCase()}` },
+    { key: '1', label: `1 ${this.translateTourDetail.stars.toLowerCase()}` },
   ];
 
   get filteredReviews(): TourCommentDetailResDTO[] {

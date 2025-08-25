@@ -10,6 +10,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { LocationResDTO } from '../../../../../interface';
 import { AppService } from '../../../../../app.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { fakeData } from '../../../../constant';
 @Component({
   selector: 'app-sidebar-feature-domestic',
   imports: [
@@ -42,7 +43,25 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   rangeValue: number[] = [0, 200000000];
   departure = '';
   destination = '';
+  translate: any;
+  tabs: any[] = [];
+  dataStartingPointDomestic: LocationResDTO[] = [];
 
+  ngOnInit() {
+    this.getDataStartingPoint();
+    this.translate = fakeData.tab_domestic;
+
+    this.tabs = [
+      {
+        tabName: this.translate.tab_domestic,
+        href: '/tour-feature-domestic',
+      },
+      {
+        tabName: this.translate.tab_foreign,
+        href: '/tour-feature-foreign',
+      },
+    ];
+  }
   searchTour(): void {
     const formData = {
       min: this.rangeValue[0],
@@ -69,24 +88,9 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.filtersChanged.emit(defaultData);
   }
 
-  ngOnInit() {
-    this.getDataStartingPoint();
-  }
-  dataStartingPointDomestic: LocationResDTO[] = [];
   getDataStartingPoint() {
     this.appService.getAlLDataLocationDomestic().subscribe(res => {
       this.dataStartingPointDomestic = res.data;
     });
   }
-
-  tabs = [
-    {
-      tabName: 'domestic_tour.tab_domestic',
-      href: '/tour-feature-domestic',
-    },
-    {
-      tabName: 'domestic_tour.tab_foreign',
-      href: '/tour-feature-foreign',
-    },
-  ];
 }

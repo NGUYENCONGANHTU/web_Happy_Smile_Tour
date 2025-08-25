@@ -14,7 +14,7 @@
       [routerLink]="['/tab-tour-foreign-detail', data.tourId]">
       <div class="tour-card cursor-pointer">
         <div class="ribbon !bg-[#ED1C24] text-white font-bold">
-          {{ 'tour_card.best_sale' | translate }}
+          {{ homeData.best_sale }}
           {{ $index + 1 }}
         </div>
         <img
@@ -39,20 +39,20 @@
             </div>
             <span class="reviews !mx-2"
               >| {{ data.totalReviews | number }}
-              {{ 'tour_card.rating' | translate }}
+              {{ homeData.rating }}
             </span>
           </div>
           <div class="">
-            <span class="font-medium !text-[#3A3A3C]"
-              >{{ 'tour_card.itinerary' | translate }}:</span
+            <span class="font-medium !text-[#3A3A3C]">
+              {{ homeData.itinerary }}:</span
             >
             <span class="ml-1! !text-[#ED1C24] font-medium">{{
               data.stayDate
             }}</span>
           </div>
           <div class="tour-points text-[#6A6B6D] truncate">
-            <span class="!mx-[4px] font-medium !text-[#3A3A3C]"
-              >{{ 'tour_card.from' | translate }}:</span
+            <span class="!mr-[4px] font-medium !text-[#3A3A3C]">
+              {{ homeData.from }}:</span
             >
             <ul class="truncate">
               @for (
@@ -71,7 +71,7 @@
           </div>
           <div class="">
             <div class="text-end !text-[#3A3A3C] text-[14px] font-medium">
-              {{ 'tour_card.price_from' | translate }}:
+              {{ homeData.price_from }}:
             </div>
             <div class="price truncate">
               <span class="old-price !text-gray-400 font-medium"

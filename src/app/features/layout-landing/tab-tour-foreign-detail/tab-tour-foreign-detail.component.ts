@@ -28,6 +28,7 @@ import { ReviewListComponent } from '../../../shared/components/review-list/revi
 import { TranslatePipe } from '@ngx-translate/core';
 import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { fakeData } from '../../../constant';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -166,4 +167,6 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   sanitizeHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
+
+  translateTourDetail = fakeData.tab_tour_detail;
 }
