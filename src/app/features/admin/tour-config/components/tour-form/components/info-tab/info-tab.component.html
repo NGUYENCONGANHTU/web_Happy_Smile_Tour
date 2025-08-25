@@ -54,11 +54,19 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item class="form-view-mode input-underline">
+  <nz-form-item>
     <nz-form-label>Giá sau giảm</nz-form-label>
     <nz-form-control
       [nzErrorTip]="tourForm.controls['finalPrice'] | appValidationMessage">
       <input nz-input type="number" formControlName="finalPrice" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Đơn vị tiền</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="tourForm.controls['currencyUnit'] | appValidationMessage">
+      <input nz-input formControlName="currencyUnit" />
     </nz-form-control>
   </nz-form-item>
 

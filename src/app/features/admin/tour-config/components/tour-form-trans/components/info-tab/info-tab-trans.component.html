@@ -72,6 +72,14 @@
       </nz-form-item>
 
       <nz-form-item>
+        <nz-form-label>Đơn vị tiền</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourForm.controls['currencyUnit'] | appValidationMessage">
+          <input nz-input formControlName="currencyUnit" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label nzRequired>Thời gian lưu trú</nz-form-label>
         <nz-form-control
           [nzErrorTip]="tourForm.controls['stayDate'] | appValidationMessage">
@@ -240,6 +248,14 @@
             tourFormTrans.controls['finalPrice'] | appValidationMessage
           ">
           <input nz-input type="number" formControlName="finalPrice" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Đơn vị tiền</nz-form-label>
+        <nz-form-control
+          [nzErrorTip]="tourFormTrans.controls['currencyUnit'] | appValidationMessage">
+          <input nz-input formControlName="currencyUnit" />
         </nz-form-control>
       </nz-form-item>
 

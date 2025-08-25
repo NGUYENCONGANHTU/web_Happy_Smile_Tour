@@ -81,6 +81,7 @@ export class TourFormComponent implements OnInit {
     originalPrice: [0, [Validators.required]],
     discount: [0],
     finalPrice: [{ value: 0, disabled: true }],
+    currencyUnit: [null, [Validators.required]],
     stayDate: [null, [Validators.required]],
     locationId: [null, [Validators.required]],
     startingPointIds: [[], [Validators.required]],

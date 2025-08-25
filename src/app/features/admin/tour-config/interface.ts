@@ -12,6 +12,7 @@ export interface TourResDTO {
   discount?: number;
   finalPrice?: number;
   stayDate?: string;
+  currencyUnit?: string;
   location?: LocationResponse;
   startingPoints?: LocationResponse[];
   highlight?: string;

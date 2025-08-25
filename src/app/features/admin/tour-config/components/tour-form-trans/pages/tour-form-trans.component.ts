@@ -419,9 +419,10 @@ export class TourFormTransComponent implements OnInit {
     return this.fb.group({
       title: [null, [Validators.required]],
       // averageRate: [{ value: null, disabled: true }],
-      originalPrice: [{ value: 0, disabled: true }, [Validators.required]],
-      discount: [{ value: 0, disabled: true }],
+      originalPrice: [0, [Validators.required]],
+      discount: [0],
       finalPrice: [{ value: 0, disabled: true }],
+      currencyUnit: [null, [Validators.required]],
       stayDate: [null, [Validators.required]],
       locationId: [{ value: null, disabled: true }, [Validators.required]],
       startingPointIds: [{ value: [], disabled: true }, [Validators.required]],
