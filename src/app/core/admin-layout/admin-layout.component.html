@@ -1,62 +1,86 @@
 <nz-layout>
   <nz-sider
-    [nzCollapsedWidth]="0"
+    nzCollapsible
     [(nzCollapsed)]="isCollapsed"
     [nzTrigger]="null"
     nzWidth="256px"
     nzBreakpoint="md"
     nzTheme="light"
     (nzCollapsedChange)="onCollapse($event)">
-    <div class="w-40">
-      <img src="/assets/logo_Web_HST_N_1.png" alt="logo" />
-    </div>
+    @if (!isCollapsed) {
+      <div class="w-40">
+        <img src="/assets/logo_Web_HST_N_1.png" alt="logo" />
+      </div>
+    }
     <ul nz-menu nzTheme="light" nzMode="inline">
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter [routerLink]="['/', 'admin', 'dashboard']">
         <nz-icon class="!mr-2" nzType="dashboard" />
-        <a [routerLink]="['/', 'admin', 'dashboard']">Dashboard</a>
+        <span>Dashboard</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'home-config']">
         <nz-icon class="!mr-2" nzType="home" />
-        <a [routerLink]="['/', 'admin', 'home-config']">Cấu hình nội dung</a>
+        <span>Cấu hình nội dung</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'tour-config']">
         <nz-icon class="!mr-2" nzType="car" />
-        <a [routerLink]="['/', 'admin', 'tour-config']">Cấu hình tour</a>
+        <span>Cấu hình tour</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'service-config']">
         <nz-icon class="!mr-2" nzType="customer-service" />
-        <a [routerLink]="['/', 'admin', 'service-config']">Cấu hình dịch vụ</a>
+        <span>Cấu hình dịch vụ</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'location-config']">
         <nz-icon class="!mr-2" nzType="flag" />
-        <a [routerLink]="['/', 'admin', 'location-config']"
-          >Cấu hình địa điểm</a
-        >
+        <span>Cấu hình địa điểm</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'blog-config']">
         <nz-icon class="!mr-2" nzType="form" />
-        <a [routerLink]="['/', 'admin', 'blog-config']">Bài viết</a>
+        <span>Bài viết</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'language-config']">
         <nz-icon class="!mr-2" nzType="global" />
-        <a [routerLink]="['/', 'admin', 'language-config']">Ngôn ngữ</a>
+        <span>Ngôn ngữ</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'client-contact']">
         <nz-icon class="!mr-2" nzType="send" />
-        <a [routerLink]="['/', 'admin', 'client-contact']">Form liên hệ</a>
+        <span>Form liên hệ</span>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li
+        nz-menu-item
+        nzMatchRouter
+        [routerLink]="['/', 'admin', 'client-comment']">
         <nz-icon class="!mr-2" nzType="comment" />
-        <a [routerLink]="['/', 'admin', 'client-comment']"
-          >Đánh giá của khách hàng</a
-        >
+        <span>Đánh giá của khách hàng</span>
       </li>
     </ul>
 
     <div class="absolute bottom-0 left-0 w-full">
-      <button nz-button class="w-full !h-12" (click)="authService.logout()">
+      <button nz-button class="!w-full !h-12" (click)="authService.logout()">
         <nz-icon nzType="logout" />
-        Đăng xuất
+        @if (!isCollapsed) {
+          <span>Đăng xuất</span>
+        }
       </button>
     </div>
   </nz-sider>
