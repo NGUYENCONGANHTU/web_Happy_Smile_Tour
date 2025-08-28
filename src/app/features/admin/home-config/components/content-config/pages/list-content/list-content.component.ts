@@ -11,23 +11,24 @@ import { Router } from '@angular/router';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { LocationConfigService } from '../../location-config.service';
-import { TableMetaData } from '../../../../../shared/models/table-base.model';
-import { LocationResDTO } from '../../location-config.interface';
+import {
+  ContentConfigService,
+  ContentResDTO,
+} from '../../content-config.service';
+import { HeaderInputSearchComponent } from '../../../../../../../shared/components/header-input-search/header-input-search.component';
+import { TableBaseComponent } from '../../../../../../../shared/components/table-base/table-base.component';
+import { LanguageSelectionComponent } from '../../../../../../../shared/components/language-selection/language-selection.component';
+import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
+import { TableMetaData } from '../../../../../../../shared/models/table-base.model';
 import {
   ColumnConfig,
   ColumnType,
-} from '../../../../../shared/interfaces/table-base.interface';
-import { TableBaseComponent } from '../../../../../shared/components/table-base/table-base.component';
-import { HeaderInputSearchComponent } from '../../../../../shared/components/header-input-search/header-input-search.component';
-import { LanguageSelectionComponent } from '../../../../../shared/components/language-selection/language-selection.component';
-import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.constant';
-import { LocationType } from '../../../../../../interface';
-import { ViewLocationContentComponent } from '../../components/view-location-content/view-location-content.component';
+} from '../../../../../../../shared/interfaces/table-base.interface';
+import { ViewContentComponent } from '../../components/view-content/view-content.component';
 
 @Component({
-  selector: 'app-list-location',
-  templateUrl: 'list-location.component.html',
+  selector: 'app-list-content',
+  templateUrl: 'list-content.component.html',
   standalone: true,
   imports: [
     HeaderInputSearchComponent,
@@ -39,11 +40,11 @@ import { ViewLocationContentComponent } from '../../components/view-location-con
     LanguageSelectionComponent,
   ],
 })
-export class ListLocationComponent implements OnInit {
+export class ListContentComponent implements OnInit {
   @ViewChild('actionCol', { static: true }) actionCol!: TemplateRef<never>;
 
   router = inject(Router);
-  locationService = inject(LocationConfigService);
+  contentConfigService = inject(ContentConfigService);
   modal = inject(NzModalService);
   message = inject(NzMessageService);
 
@@ -51,13 +52,13 @@ export class ListLocationComponent implements OnInit {
   selectedLanguage = ORIGINAL_LANGUAGE;
   searchKey = '';
   metaData = new TableMetaData();
-  data: LocationResDTO[] = [];
+  data: ContentResDTO[] = [];
   columns: ColumnConfig[] = [];
 
   ngOnInit() {
     this.columns = [
       {
-        key: 'name',
+        key: 'title',
         title: 'Tên',
       },
       {
@@ -73,28 +74,24 @@ export class ListLocationComponent implements OnInit {
         template: this.actionCol,
       },
     ];
-    this.fetchLocationTrans();
+    this.fetchContentData();
   }
 
-  fetchLocationTrans(toggleLoading = true) {
+  fetchContentData(toggleLoading = true) {
     if (toggleLoading) {
       this.loading = true;
     }
-    this.locationService.getLocationsTrans(this.selectedLanguage).subscribe({
-      next: res => {
-        this.data = res.data.map(dt => ({
-          ...dt,
-          locationTypeLabel:
-            dt.locationType === LocationType.DOMESTIC
-              ? 'Trong nước'
-              : 'Quốc tế',
-        }));
-        this.loading = false;
-      },
-      error: () => {
-        this.loading = false;
-      },
-    });
+    this.contentConfigService
+      .getContentDataTrans(this.selectedLanguage)
+      .subscribe({
+        next: res => {
+          this.data = res.data;
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+        },
+      });
   }
 
   handleDelete(id: string | number) {
@@ -105,10 +102,10 @@ export class ListLocationComponent implements OnInit {
       nzCancelText: 'Hủy',
       nzOnOk: () => {
         this.loading = true;
-        this.locationService.deleteLocationById(id).subscribe({
+        this.contentConfigService.deleteContentById(id).subscribe({
           next: () => {
             this.message.success('Xóa thành công.');
-            this.fetchLocationTrans(false);
+            this.fetchContentData(false);
             this.loading = false;
           },
           error: () => {
@@ -123,8 +120,8 @@ export class ListLocationComponent implements OnInit {
     if (this.isOriginalLanguage) {
       this.columns = [
         {
-          key: 'name',
-          title: 'Tên',
+          key: 'title',
+          title: 'Tiêu đề',
         },
         {
           key: 'locationTypeLabel',
@@ -142,8 +139,8 @@ export class ListLocationComponent implements OnInit {
     } else {
       this.columns = [
         {
-          key: 'name',
-          title: 'Tên',
+          key: 'title',
+          title: 'Tiêu đề',
         },
         {
           key: 'locationTypeLabel',
@@ -151,18 +148,18 @@ export class ListLocationComponent implements OnInit {
         },
       ];
     }
-    this.fetchLocationTrans();
+    this.fetchContentData();
   }
 
-  openCreateOrUpdate(data?: LocationResDTO) {
+  openCreateOrUpdate(data?: ContentResDTO) {
     this.modal.create({
-      nzTitle: `${data ? 'Cập nhật' : 'Tạo'} đánh giá`,
-      nzContent: ViewLocationContentComponent,
+      nzTitle: `${data ? 'Cập nhật' : 'Tạo'} nội dung`,
+      nzContent: ViewContentComponent,
       nzData: data ? { ...data, languageCode: this.selectedLanguage } : null,
       nzFooter: null,
       nzOnOk: () => {
         this.message.success(data ? 'Cập nhật thành công.' : 'Tạo thành công.');
-        this.fetchLocationTrans(false);
+        this.fetchContentData(false);
       },
     });
   }

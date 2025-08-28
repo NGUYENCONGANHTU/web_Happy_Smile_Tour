@@ -14,6 +14,7 @@ import { BannerConfigComponent } from './components/banner-config/banner-config.
 import { PartnerConfigComponent } from './components/partner-config/partner-config.component';
 import { IntroConfigComponent } from './components/intro-config/intro-config.component';
 import { ListClientOpinionComponent } from './components/client-opinion/pages/list-client-comment/list-client-opinion.component';
+import { ListContentComponent } from './components/content-config/pages/list-content/list-content.component';
 
 @Component({
   standalone: true,
@@ -34,6 +35,7 @@ import { ListClientOpinionComponent } from './components/client-opinion/pages/li
     PartnerConfigComponent,
     IntroConfigComponent,
     ListClientOpinionComponent,
+    ListContentComponent,
   ],
   templateUrl: './home-config.component.html',
 })

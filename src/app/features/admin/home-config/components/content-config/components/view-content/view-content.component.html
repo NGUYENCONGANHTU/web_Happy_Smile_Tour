@@ -1,0 +1,55 @@
+<div class="flex justify-end">
+  @if (nzModalData) {
+    <button nz-button [nzLoading]="submitting" (click)="handleUpdate()">
+      <nz-icon nzType="edit" />
+      Cập nhật
+    </button>
+  } @else {
+    <button nz-button [nzLoading]="submitting" (click)="handleCreate()">
+      <nz-icon nzType="edit" />
+      Tạo
+    </button>
+  }
+</div>
+
+<form nz-form [formGroup]="contentForm" nzLayout="vertical">
+  <nz-form-item>
+    <nz-form-label nzRequired>Mã:</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="contentForm.get('key') | appValidationMessage">
+      <input nz-input formControlName="key" placeholder="Mã" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Giá trị:</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="contentForm.get('value') | appValidationMessage">
+      <input nz-input formControlName="value" placeholder="Giá trị" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Loại:</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="contentForm.get('menuType') | appValidationMessage">
+      <nz-select formControlName="menuType">
+        @for (data of contentOptions; track data) {
+          <nz-option [nzLabel]="data.label" [nzValue]="data.value"> </nz-option>
+        }
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Trạng thái:</nz-form-label>
+    <nz-form-control
+      [nzErrorTip]="contentForm.get('active') | appValidationMessage">
+      <nz-select formControlName="active">
+        @for (data of activeOptions; track data) {
+          <nz-option [nzLabel]="data.label" [nzValue]="data.value"> </nz-option>
+        }
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>
