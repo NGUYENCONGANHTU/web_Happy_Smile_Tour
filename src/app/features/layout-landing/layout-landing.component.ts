@@ -19,12 +19,16 @@ import {
 } from '../../../interface';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../shared/services/language.service';
 import { sanitizeUrl } from '../../shared/utils/helpers/common.helper';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { fakeData } from '../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from './translation.service';
 
 @Component({
   selector: 'app-layout-landing',
@@ -37,7 +41,6 @@ import { fakeData } from '../../constant';
     FaIconComponent,
     RouterLinkActive,
     NgClass,
-    TranslatePipe,
     ChatBoxComponent,
   ],
   templateUrl: './layout-landing.component.html',
@@ -72,6 +75,7 @@ export class LayoutLandingComponent implements OnInit {
       });
     this.getDataFooter();
     this.getDataLanguages();
+    this.getDataTransitionTour();
   }
 
   // ======================== Get data Language ========================
@@ -115,6 +119,15 @@ export class LayoutLandingComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
   }
   // Language Fake
-  homeData = fakeData.menu;
-  dataFooter = fakeData.footer;
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

@@ -60,13 +60,14 @@
       @if (selectedTabDomesticTour && dataTourDomestic?.length) {
         <div class="app-tour-feature-foreign">
           @if (selectedTabDomesticTour && dataTourDomestic?.length === 0) {
-            <p>Chưa có dữ liệu tour</p>
+            <p>{{ getTrans('home', 'no_tour_found') }}</p>
+          } @else {
+            <app-tour-feature-domestic
+              [selectedTabDomesticTour]="selectedTabDomesticTour"
+              [dataDomesticTour]="dataTourDomestic">
+              >
+            </app-tour-feature-domestic>
           }
-          <app-tour-feature-domestic
-            [selectedTabDomesticTour]="selectedTabDomesticTour"
-            [dataDomesticTour]="dataTourDomestic">
-            ></app-tour-feature-domestic
-          >
         </div>
       }
     </div>
@@ -95,12 +96,13 @@
       @if (selectedTabForeignTour && dataTourForeign?.length) {
         <div class="app-tour-feature-foreign">
           @if (selectedTabForeignTour && dataTourForeign?.length === 0) {
-            <p>Chưa có dữ liệu tour</p>
+            <p>{{ getTrans('home', 'no_tour_found') }}</p>
+          } @else {
+            <app-tour-feature-foreign
+              [selectedTabForeignTour]="selectedTabForeignTour"
+              [dataTour]="dataTourForeign">
+            </app-tour-feature-foreign>
           }
-          <app-tour-feature-foreign
-            [selectedTabForeignTour]="selectedTabForeignTour"
-            [dataTour]="dataTourForeign">
-          </app-tour-feature-foreign>
         </div>
       }
     </div>

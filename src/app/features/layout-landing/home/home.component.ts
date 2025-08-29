@@ -31,7 +31,11 @@ import {
 import { BANNER_WEB } from '../../../shared/constants/global.constant';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { fakeData } from '../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
 
 @Component({
   selector: 'app-home',
@@ -89,6 +93,7 @@ export class HomeComponent implements OnInit {
     this.getAllDataNews();
     this.getAllDataCommentFeedBack();
     this.getAllDataPartner();
+    this.getDataTransitionTour();
   }
   // Hàm biến đổi url từ BE trả về
   sanitizeUrl = sanitizeUrl;
@@ -214,5 +219,16 @@ export class HomeComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
-  homeData = fakeData.home;
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

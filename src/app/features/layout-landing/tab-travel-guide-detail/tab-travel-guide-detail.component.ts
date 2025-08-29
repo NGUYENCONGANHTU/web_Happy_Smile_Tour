@@ -11,6 +11,11 @@ import { TravelGuideResDTO } from '../../../../interface';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
 @Component({
   selector: 'app-tab-travel-guide-detail',
   imports: [
@@ -38,6 +43,7 @@ export class TabTravelGuideDetailComponent implements OnInit {
         this.getContentTravelGuide();
       }
     });
+    this.getDataTransitionTour();
   }
   getContentTravelGuide() {
     this.appService.getDataByIdTravelGuide(this.newsId).subscribe(res => {
@@ -47,5 +53,18 @@ export class TabTravelGuideDetailComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
   sanitizeHtml(content?: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

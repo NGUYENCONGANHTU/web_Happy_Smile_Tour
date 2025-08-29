@@ -1,5 +1,7 @@
 <div class="router-tour">
-  <h1 class="router-tour-title !text-black">{{ translate.title }}!</h1>
+  <h1 class="router-tour-title !text-black">
+    {{ getTrans('tab_domestic', 'title') }}!
+  </h1>
   <ul class="routes-tab-tours">
     @for (tab of tabs; track tab.href) {
       <li
@@ -16,7 +18,7 @@
 <!--=============================== OPTIONS TOUR =====================================-->
 <div class="options-tour">
   <h1 class="text-[18px] !mt-[45px] !mb-[25px] !font-medium !text-black">
-    {{ translate.budget }}
+    {{ getTrans('tab_domestic', 'international_tours') }}
   </h1>
   <div class="options-items space-y-5!">
     <!--=============Chọn ngân sách===================-->
@@ -35,15 +37,15 @@
 
     <!--============= Chọn điểm đi ===================-->
     <h1 class="text-[17px]">
-      {{ translate.location }}
+      {{ getTrans('tab_domestic', 'location') }}
     </h1>
     <div class="!space-y-1">
-      <p class="font-medium">{{ translate.departure }}</p>
+      <p class="font-medium">{{ getTrans('tab_domestic', 'departure') }}</p>
       <nz-select
         [(ngModel)]="departure"
         name="departure"
         class="w-full"
-        nzPlaceHolder="{{ translate.departure }}">
+        nzPlaceHolder="{{ getTrans('tab_domestic', 'departure') }}">
         @for (data of dataStartingPointDomestic; track data.id) {
           <nz-option
             [nzLabel]="data.name"
@@ -53,12 +55,12 @@
     </div>
     <!--============= Chọn điểm đến ===================-->
     <div class="!space-y-1">
-      <p class="font-medium">{{ translate.destination }}</p>
+      <p class="font-medium">{{ getTrans('tab_domestic', 'destination') }}</p>
       <nz-select
         [(ngModel)]="destination"
         name="destination"
         class="w-full"
-        nzPlaceHolder="{{ translate.destination }}">
+        nzPlaceHolder="{{ getTrans('tab_domestic', 'destination') }}">
         @for (data of dataStartingPointForeign; track data.id) {
           <nz-option
             [nzLabel]="data.name"
@@ -73,14 +75,14 @@
         nzType="text"
         nz-button
         (click)="resetFilters()">
-        {{ translate.reset_tour }}
+        {{ getTrans('tab_domestic', 'reset_tour') }}
       </button>
       <button
         class="w-full !py-[18px] !text-white font-medium! text-md! !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
         nz-button
         nzType="primary"
         (click)="searchTour()">
-        {{ translate.find_tour }}
+        {{ getTrans('tab_domestic', 'find_tour') }}
       </button>
     </div>
   </div>

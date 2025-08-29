@@ -1,6 +1,8 @@
 <div class="review-list bg-white rounded shadow !p-4 !mt-6">
   <div class="flex gap-2 !mb-5">
-    <h1 class="w-[140px]">{{ translateTourDetail.filter_reviews_by }}</h1>
+    <h1 class="w-[140px]">
+      {{ getTrans('tab_tour_detail', 'filter_reviews_by') }}
+    </h1>
     <div class="flex gap-1 items-center mb-4 flex-wrap">
       @for (f of filters; track $index) {
         <button

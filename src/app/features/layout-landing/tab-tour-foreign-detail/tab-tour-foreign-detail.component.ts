@@ -28,7 +28,11 @@ import { ReviewListComponent } from '../../../shared/components/review-list/revi
 import { TranslatePipe } from '@ngx-translate/core';
 import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { fakeData } from '../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -137,6 +141,7 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getIdParam();
     this.getAllDataFeature();
+    this.getDataTransitionTour();
   }
 
   /* ================================= ĐIỂM NỘI BẬT ======================================== */
@@ -168,5 +173,16 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
-  translateTourDetail = fakeData.tab_tour_detail;
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

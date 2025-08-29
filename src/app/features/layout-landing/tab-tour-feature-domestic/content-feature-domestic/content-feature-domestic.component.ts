@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit } from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
@@ -6,10 +6,13 @@ import { FilterTourService } from '../filter-tour.service';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
-import { fakeData } from '../../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../../translation.service';
 @Component({
   selector: 'app-content-feature-domestic',
   imports: [
@@ -17,13 +20,12 @@ import { fakeData } from '../../../../constant';
     NgClass,
     DecimalPipe,
     RouterLink,
-    TranslatePipe,
     NzPaginationComponent,
   ],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',
 })
-export class ContentFeatureDomesticComponent implements OnChanges {
+export class ContentFeatureDomesticComponent implements OnInit, OnChanges {
   filterTourService = inject(FilterTourService);
   appService = inject(AppService);
   faStar = faStar;
@@ -35,6 +37,9 @@ export class ContentFeatureDomesticComponent implements OnChanges {
   page = 1;
   pageSize = 10;
   total = 0;
+  ngOnInit() {
+    this.getDataTransitionTour();
+  }
 
   ngOnChanges() {
     this.page = 1;
@@ -62,5 +67,16 @@ export class ContentFeatureDomesticComponent implements OnChanges {
     this.loadTours();
   }
 
-  translateTourCard = fakeData.tab_domestic;
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

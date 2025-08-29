@@ -21,10 +21,15 @@ import {
 } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -37,7 +42,6 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     ReactiveFormsModule,
     NzFormLabelComponent,
     NgStyle,
-    TranslatePipe,
     NzButtonModule,
   ],
   templateUrl: './tab-service.component.html',
@@ -65,6 +69,7 @@ export class TabServiceComponent implements OnInit {
     });
     this.getAllDataServiceById();
     this.getAllDataVisaProcess();
+    this.getDataTransitionTour();
   }
   getAllDataServiceById() {
     this.appService.getDataByIdMenuService(this.serviceId).subscribe({
@@ -138,4 +143,17 @@ export class TabServiceComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
   protected readonly formateImage = sanitizeUrl;
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

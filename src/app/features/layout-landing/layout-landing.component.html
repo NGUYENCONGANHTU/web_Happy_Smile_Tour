@@ -39,7 +39,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ homeData.about }}
+              {{ getTrans('menu', 'about') }}
             </a>
           </li>
           <li>
@@ -48,7 +48,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ homeData.domestic_tours }}
+              {{ getTrans('menu', 'domestic_tours') }}
             </a>
           </li>
           <li>
@@ -57,7 +57,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ homeData.international_tours }}
+              {{ getTrans('menu', 'international_tours') }}
             </a>
           </li>
           <li>
@@ -66,7 +66,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ homeData.private_group_tours }}
+              {{ getTrans('menu', 'private_group_tours') }}
             </a>
           </li>
           <li>
@@ -77,7 +77,7 @@
               [nzDropdownMenu]="menu"
               [ngClass]="{ '!text-[#ed1c24]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
-              {{ homeData.services }}
+              {{ getTrans('menu', 'services') }}
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -104,7 +104,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ homeData.contact }}
+              {{ getTrans('menu', 'contact') }}
             </a>
           </li>
           <li class="mt-4 md:mt-0">
@@ -171,7 +171,7 @@
           </div>
           <div
             class="travel-footer-description"
-            [innerHTML]="dataFooter.description"></div>
+            [innerHTML]="getTrans('footer', 'description')"></div>
           <div class="travel-footer-partners">
             <a href="/">
               <img

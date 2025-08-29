@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import {
   NzFormControlComponent,
   NzFormDirective,
@@ -14,13 +14,16 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../../app.service';
-import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   FeatureResDTO,
   TourCommentDetailReqDTO,
 } from '../../../../../interface';
-import { fakeData } from '../../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../../translation.service';
 @Component({
   selector: 'app-form-feedback',
   imports: [
@@ -37,12 +40,11 @@ import { fakeData } from '../../../../constant';
     NzDividerComponent,
     NzAutosizeDirective,
     FaIconComponent,
-    TranslatePipe,
   ],
   templateUrl: './form-feedback.component.html',
   styleUrl: './form-feedback.component.scss',
 })
-export class FormFeedbackComponent {
+export class FormFeedbackComponent implements OnInit {
   @Input() tourDetail: FeatureResDTO | null = null;
   appService = inject(AppService);
   message = inject(NzMessageService);
@@ -86,5 +88,20 @@ export class FormFeedbackComponent {
       });
     }
   }
-  translateSidebarTourDetail = fakeData.tab_tour_detail;
+  ngOnInit() {
+    this.getDataTransitionTour();
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

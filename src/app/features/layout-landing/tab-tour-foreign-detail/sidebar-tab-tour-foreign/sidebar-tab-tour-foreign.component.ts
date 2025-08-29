@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import {
   faCalendarDays,
@@ -16,7 +16,11 @@ import { ContactType } from '../../tab-service/interface-contact-tour-service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AppService } from '../../../../../app.service';
-import { fakeData } from '../../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../../translation.service';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -33,7 +37,7 @@ import { fakeData } from '../../../../constant';
   templateUrl: './sidebar-tab-tour-foreign.component.html',
   styleUrl: './sidebar-tab-tour-foreign.component.scss',
 })
-export class SidebarTabTourForeignComponent {
+export class SidebarTabTourForeignComponent implements OnInit {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
   message = inject(NzMessageService);
@@ -41,6 +45,9 @@ export class SidebarTabTourForeignComponent {
   @Input() priceTour = '';
   @Input() nameTour = '';
 
+  ngOnInit() {
+    this.getDataTransitionTour();
+  }
   isVisible = false;
 
   showModal(): void {
@@ -100,5 +107,16 @@ export class SidebarTabTourForeignComponent {
     message: [''],
   });
 
-  translateSidebarTourDetail = fakeData.tab_tour_detail;
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

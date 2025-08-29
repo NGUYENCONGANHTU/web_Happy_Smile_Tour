@@ -5,6 +5,8 @@ export const fakeData = {
       just_now: 'Vừa xong',
     },
   },
+
+  // Thanh menu
   menu: {
     home: 'Trang chủ',
     about: 'Giới thiệu',
@@ -13,9 +15,9 @@ export const fakeData = {
     private_group_tours: 'Tour đoàn riêng',
     services: 'Dịch vụ',
     contact: 'Liên hệ',
-    language: 'Tiếng Việt',
   },
 
+  // tab trang chủ
   home: {
     customer: 'Khách hàng',
     best_sale: 'Giá tốt nhất',
@@ -23,17 +25,25 @@ export const fakeData = {
     itinerary: 'Hành trình',
     from: 'Từ',
     price_from: 'Giá chỉ từ',
+    no_tour_found: 'Không tìm thấy tour',
   },
+
+  // tab giới thiệu
   about: {},
+
+  // Tab trong nước
   tab_domestic: {
     no_suitable_tour_found: 'Không tìm thấy chuyến đi phù hợp',
     title: 'Tìm chuyến đi phù hợp với bạn tại đây!',
     tab_domestic: 'Trong nước',
+    tour: 'Chuyến đi',
     tab_foreign: 'Nước ngoài',
     budget: 'Ngân sách bạn có',
     location: 'Chọn địa điểm',
     departure: 'Điểm đi',
     destination: 'Điểm đến',
+    domestic: 'Trong nước',
+    international: 'Nước ngoài',
     find_tour: 'Tìm tour',
     reset_tour: 'Đặt lại',
     rating: ' lượt đánh giá',
@@ -41,54 +51,71 @@ export const fakeData = {
     from: 'Từ',
     price_from: 'Giá chỉ từ',
   },
+
+  // Tab nước ngoài
   tab_foreign: {
     no_suitable_tour_found: 'Không tìm thấy chuyến đi phù hợp',
     title: 'Tìm chuyến đi phù hợp với bạn tại đây!',
     tab_domestic: 'Trong nước',
     tab_foreign: 'Nước ngoài',
+    tour: 'Chuyến đi',
     budget: 'Ngân sách bạn có',
     location: 'Chọn địa điểm',
     departure: 'Điểm đi',
     destination: 'Điểm đến',
     find_tour: 'Tìm tour',
+    domestic: 'Trong nước',
+    international: 'Nước ngoài',
     reset_tour: 'Đặt lại',
     rating: ' lượt đánh giá',
     itinerary: 'Hành trình',
     from: 'Từ',
     price_from: 'Giá chỉ từ',
   },
+
+  // Tour đoàn riêng
   tab_customer_tour: {
+    private_group_tours: 'Tour ghép',
     people_count: 'Số thành viên tham gia',
     estimated_time: 'Thời gian dự kiến',
     estimated_budget: 'Ngân sách dự kiến',
     desired_destination: 'Địa điểm mong muốn',
     note: 'Ghi chú',
     contact_us: 'Hãy liên hệ với chúng tôi',
+    name: 'Tên của bạn',
     name_required: 'Tên của bạn là bắt buộc',
+    phone: 'Số điện thoại',
+    company: 'Công ty',
     phone_required: 'Số điện thoại của bạn là bắt buộc',
     cancel: 'Hủy bỏ',
     submit: 'Gửi',
   },
-  tab_service: {},
-  tab_contact: {
+
+  // Tour dịch vụ
+  tab_service: {
     label_company: 'Công ty',
     title: 'Dịch vụ tư vấn',
     consulting: 'Tư vấn',
     instruction: 'Để thông tin để được tư vấn miễn phí',
     label_name: 'Tên của bạn',
     label_phone: 'Số điện thoại',
-    label_email: 'Email',
-    label_note: 'Ghi chú',
     submit_consult_now: 'TƯ VẤN',
     submit_register: 'Đăng kí tư vấn',
     enter_name: 'Nhập tên của bạn',
     validate_required: 'Tên là bắt buộc',
     validate_email: 'Email không hợp lệ',
     validate_phone: 'Số điện thoại là bắt buộc',
+    number_of_member: 'Số người tham gia',
+    company: 'Công ty',
+    estimated_time: 'Thời gian dự kiến',
+    note: 'Ghi chú',
   },
 
+  // Tour liên hệ
+  tab_contact: {},
+
+  // Chi tiết tour
   tab_tour_detail: {
-    home: 'Trang chủ',
     tour: 'Chuyến đi',
     your_feedback: 'Đánh giá của bạn',
     please_feedback: 'Vui lòng chọn đánh giá',
@@ -138,10 +165,6 @@ export const fakeData = {
     estimated_budget: 'Ngân sách dự kiến',
     no_suitable_tour_found: 'Không tìm thấy chuyến đi phù hợp',
   },
-  breadcrumb: {
-    home: 'Trang chủ',
-    private_group_tours: 'Tour đoàn riêng',
-  },
   footer: {
     title: 'Liên Hệ HappySmiles VietNam Travel',
     description:
@@ -154,5 +177,190 @@ export const fakeData = {
       'Vui lòng nhấn vào liên kết bên dưới để trò chuyện với chúng tôi trên WhatsApp.',
     or: 'Hoặc',
     call: 'gọi số',
+  },
+};
+
+// Bản tiếng anh
+export const fakeDataEnglish = {
+  base: {
+    time: {
+      ago: 'Ago',
+      just_now: 'Just now',
+    },
+  },
+
+  // Menu bar
+  menu: {
+    home: 'Home',
+    about: 'About',
+    domestic_tours: 'Domestic Tours',
+    international_tours: 'International Tours',
+    private_group_tours: 'SIC Tour',
+    services: 'Services',
+    contact: 'Contact',
+  },
+
+  // Home tab
+  home: {
+    customer: 'Customers',
+    best_sale: 'Best Deals',
+    rating: ' reviews',
+    itinerary: 'Itinerary',
+    from: 'From',
+    price_from: 'Only from',
+    no_tour_found: 'No tour found',
+  },
+
+  // About tab
+  about: {},
+
+  // Domestic tours tab
+  tab_domestic: {
+    no_suitable_tour_found: 'No suitable tour found',
+    tour: 'Tour',
+    title: 'Find the right trip for you here!',
+    tab_domestic: 'Domestic',
+    tab_foreign: 'International',
+    budget: 'Your budget',
+    location: 'Choose location',
+    departure: 'Departure',
+    destination: 'Destination',
+    find_tour: 'Find tour',
+    reset_tour: 'Reset',
+    rating: ' reviews',
+    itinerary: 'Itinerary',
+    domestic: 'Domestic',
+    international: 'International',
+    from: 'From',
+    price_from: 'Price from',
+  },
+
+  // International tours tab
+  tab_foreign: {
+    no_suitable_tour_found: 'No suitable tour found',
+    tour: 'Tour',
+    title: 'Find the right trip for you here!',
+    tab_domestic: 'Domestic',
+    tab_foreign: 'International',
+    budget: 'Your budget',
+    location: 'Choose location',
+    departure: 'Departure',
+    domestic: 'Domestic',
+    international: 'International',
+    destination: 'Destination',
+    find_tour: 'Find tour',
+    reset_tour: 'Reset',
+    rating: ' reviews',
+    itinerary: 'Itinerary',
+    from: 'From',
+    price_from: 'Price from',
+  },
+
+  // Private group tour tab
+  tab_customer_tour: {
+    home: 'Home',
+    private_group_tours: 'SIC Tour',
+    people_count: 'Number of members',
+    estimated_time: 'Estimated time',
+    estimated_budget: 'Estimated budget',
+    desired_destination: 'Desired destination',
+    note: 'Note',
+    contact_us: 'Contact us',
+    name: 'Your name',
+    name_required: 'Your name is required',
+    phone: 'Phone number',
+    company: 'Company',
+    phone_required: 'Your phone number is required',
+    cancel: 'Cancel',
+    submit: 'Submit',
+  },
+
+  // Services tab
+  tab_service: {
+    label_company: 'Company',
+    title: 'Consulting Service',
+    consulting: 'Consulting',
+    instruction: 'Leave your information to get free consultation',
+    label_name: 'Your name',
+    label_phone: 'Phone number',
+    submit_consult_now: 'CONSULT NOW',
+    submit_register: 'Register for consultation',
+    enter_name: 'Enter your name',
+    validate_required: 'Name is required',
+    validate_email: 'Invalid email',
+    validate_phone: 'Phone number is required',
+    number_of_member: 'Number of members',
+    company: 'Company',
+    estimated_time: 'Estimated time',
+    note: 'Note',
+  },
+
+  // Contact tab
+  tab_contact: {},
+
+  // Tour detail tab
+  tab_tour_detail: {
+    tour: 'Tour',
+    your_feedback: 'Your feedback',
+    please_feedback: 'Please select a rating',
+    please_enter_content_feedback: 'Please enter feedback content',
+    submit_feedback: 'Submit feedback',
+    group_age: 'Age group',
+    age: 'Age',
+    original_price: 'Price policy',
+    table_discount: 'Discount table',
+    type_discount: 'Discount type',
+    description: 'Description',
+    value_discount: 'Discount value',
+    if_else: 'Conditions',
+    table_surcharge: 'Surcharge table',
+    name_surcharge: 'Surcharge name',
+    price_surcharge: 'Amount',
+    apply_for: 'Apply for',
+    day: 'DAY',
+    feature_place: 'HIGHLIGHTS',
+    schedule: 'ITINERARY',
+    table: 'PRICE TABLE',
+    service_content: 'INCLUDED SERVICES',
+    non_service_content: 'EXCLUDED SERVICES',
+    note: 'Note',
+    t_c: 'TERMS & CONDITIONS',
+    customer_preview: 'CUSTOMER REVIEWS',
+    booking: 'BOOK & RESERVE NOW',
+    not_yet_pay: 'Book now, pay later',
+    reviews: 'Reviews',
+    stars: 'Stars',
+    filter_reviews_by: 'Filter reviews by',
+    all: 'All',
+    cancel: 'Cancel',
+    info_contact: 'Contact Information',
+    submit: 'Submit',
+    address: 'Address',
+    itinerary: 'Itinerary',
+    from: 'From',
+    price_from: 'Price from',
+    full_name: 'Full name',
+    enter_name: 'Enter your name',
+    validate_full_name: 'Full name is required',
+    phone: 'Phone number',
+    validate_phone: 'Your phone number is required',
+    number_of_member: 'Number of members',
+    company: 'Company',
+    estimated_budget: 'Estimated budget',
+    no_suitable_tour_found: 'No suitable tour found',
+  },
+
+  footer: {
+    title: 'Contact HappySmiles VietNam Travel',
+    description:
+      "<span class='text-[#ed1c24] font-medium'> HappySmiles VietNam</span> Travel - A Channel connects Vietnam DMC and Travel Agents in The World.",
+  },
+
+  chatbox: {
+    title:
+      "Hello! 👋<span class='text-[#ed1c24] font-bold'> HappySmiles VietNam</span> Travel is always ready to support you via WhatsApp.",
+    description: 'Please click the link below to chat with us on WhatsApp.',
+    or: 'Or',
+    call: 'call',
   },
 };

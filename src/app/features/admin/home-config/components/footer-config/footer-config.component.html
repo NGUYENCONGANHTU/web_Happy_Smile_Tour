@@ -21,82 +21,90 @@
         (selectedLanguageChange)="fetchFooterData()"></app-language-selection>
     </div>
   </div>
-  <nz-form-item>
-    <nz-form-label>Tên</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="name" placeholder="Nhập tên" />
-    </nz-form-control>
-  </nz-form-item>
+  <div class="grid grid-cols-3 gap-x-10">
+    <nz-form-item class="col-span-3">
+      <nz-form-label>Công ty</nz-form-label>
+      <nz-form-control>
+        <app-ckeditor-wrapper formControlName="company"></app-ckeditor-wrapper>
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Vị trí</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="position" placeholder="Nhập vị trí" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Tên</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="name" placeholder="Nhập tên" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Công ty</nz-form-label>
-    <nz-form-control>
-      <app-ckeditor-wrapper formControlName="company"></app-ckeditor-wrapper>
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Vị trí</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="position" placeholder="Nhập vị trí" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Địa chỉ</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="address" placeholder="Nhập địa chỉ" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Địa chỉ</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="address" placeholder="Nhập địa chỉ" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Mã số thuế</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="taxCode" placeholder="Nhập mã số thuế" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Mã số thuế</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          formControlName="taxCode"
+          placeholder="Nhập mã số thuế" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Số giấy phép</nz-form-label>
-    <nz-form-control>
-      <input
-        nz-input
-        formControlName="licenseNumber"
-        placeholder="Nhập số giấy phép" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Số giấy phép</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          formControlName="licenseNumber"
+          placeholder="Nhập số giấy phép" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Trang web</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="website" placeholder="Nhập trang web" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Trang web</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          formControlName="website"
+          placeholder="Nhập trang web" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Email</nz-form-label>
-    <nz-form-control>
-      <input nz-input formControlName="email" placeholder="Nhập email" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Email</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="email" placeholder="Nhập email" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Số điện thoại di động</nz-form-label>
-    <nz-form-control>
-      <input
-        nz-input
-        formControlName="mobileNumber"
-        placeholder="Nhập số điện thoại di động" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Số điện thoại di động</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          formControlName="mobileNumber"
+          placeholder="Nhập số điện thoại di động" />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label>Số WhatsApp</nz-form-label>
-    <nz-form-control>
-      <input
-        nz-input
-        formControlName="whatsappNumber"
-        placeholder="Nhập số WhatsApp" />
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Số WhatsApp</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          formControlName="whatsappNumber"
+          placeholder="Nhập số WhatsApp" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
 </form>

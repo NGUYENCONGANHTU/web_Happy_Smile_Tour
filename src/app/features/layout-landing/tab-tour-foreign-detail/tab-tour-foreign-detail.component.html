@@ -3,11 +3,11 @@
     <!--  =====================breadcrumb==========================-->
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/">{{ translateTourDetail.home }}</a>
+        <a routerLink="/">{{ getTrans('menu', 'home') }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item>
         <a routerLink="/tour-feature-foreign" class="font-medium">
-          {{ translateTourDetail.tour }}</a
+          {{ getTrans('tab_tour_detail', 'tour') }}</a
         >
       </nz-breadcrumb-item>
       <nz-breadcrumb-item
@@ -33,7 +33,7 @@
                 [class]="
                   activeSection === 'diemNoiBat' ? '!text-[#ed1e26]' : ''
                 ">
-                {{ translateTourDetail.feature_place }}
+                {{ getTrans('tab_tour_detail', 'feature_place') }}
               </button>
             }
             @if (tourDetail.tourSchedules.length > 0) {
@@ -42,21 +42,21 @@
                 [class]="
                   activeSection === 'lichTrinh' ? '!text-[#ed1e26]' : ''
                 ">
-                {{ translateTourDetail.schedule }}
+                {{ getTrans('tab_tour_detail', 'schedule') }}
               </button>
             }
             @if (tourDetail.tourPrices.length > 0) {
               <button
                 (click)="scrollTo('bangGia')"
                 [class]="activeSection === 'bangGia' ? '!text-[#ed1e27]' : ''">
-                {{ translateTourDetail.table }}
+                {{ getTrans('tab_tour_detail', 'table') }}
               </button>
             }
             @if (tourDetail.nonService) {
               <button
                 (click)="scrollTo('dichVu')"
                 [class]="activeSection === 'dichVu' ? '!text-[#ed1e27]' : ''">
-                {{ translateTourDetail.service_content }}
+                {{ getTrans('tab_tour_detail', 'service_content') }}
               </button>
             }
           </div>
@@ -65,7 +65,7 @@
             @if (tourDetail.highlight) {
               <div #diemNoiBat id="diem-noi-bat" class="tab">
                 <div class="tab-title">
-                  {{ translateTourDetail.feature_place }}
+                  {{ getTrans('tab_tour_detail', 'feature_place') }}
                 </div>
                 <app-feature-place [highlight]="tourDetail.highlight">
                 </app-feature-place>
@@ -75,7 +75,7 @@
             @if (tourDetail.tourSchedules.length > 0) {
               <div #lichTrinh id="lich-trinh" class="tab">
                 <div class="tab-title !uppercase">
-                  {{ translateTourDetail.schedule }}
+                  {{ getTrans('tab_tour_detail', 'schedule') }}
                 </div>
                 <app-schedule
                   [tourDays]="tourDetail.tourSchedules"></app-schedule>
@@ -85,7 +85,7 @@
             <div #bangGia id="bang-gia" class="tab">
               @if (tourDetail.tourPrices.length > 0) {
                 <div class="tab-title !uppercase">
-                  {{ translateTourDetail.table }}
+                  {{ getTrans('tab_tour_detail', 'table') }}
                 </div>
               }
               <app-price-list
@@ -101,7 +101,7 @@
               @if (tourDetail.nonService) {
                 <div class="content-1">
                   <div class="tab-title !uppercase">
-                    {{ translateTourDetail.service_content }}
+                    {{ getTrans('tab_tour_detail', 'service_content') }}
                   </div>
                   <div
                     class="content-1 text-justify"
@@ -113,7 +113,7 @@
               @if (tourDetail?.nonService) {
                 <div class="content-2">
                   <div class="tab-title !uppercase">
-                    {{ translateTourDetail.non_service_content }}
+                    {{ getTrans('tab_tour_detail', 'non_service_content') }}
                   </div>
                   <div
                     class="content-2-text text-justify"
@@ -125,7 +125,7 @@
               @if (tourDetail.regulation) {
                 <div class="content-3">
                   <div class="tab-title !uppercase">
-                    {{ translateTourDetail.t_c }}
+                    {{ getTrans('tab_tour_detail', 't_c') }}
                   </div>
                   <div
                     class="content-3-text text-justify"
@@ -137,7 +137,7 @@
               @if (tourDetail.note) {
                 <div class="content-3">
                   <div class="tab-title !uppercase">
-                    {{ translateTourDetail.note }}
+                    {{ getTrans('tab_tour_detail', 'note') }}
                   </div>
                   <div
                     class="content-3-text text-justify"
@@ -150,7 +150,7 @@
           <!--============== CUSTOMER FEEDBACK =================-->
           <div class="customer-feedback mb-2!">
             <div class="customer-feedback-title uppercase">
-              {{ translateTourDetail.customer_preview }}
+              {{ getTrans('tab_tour_detail', 'customer_preview') }}
             </div>
             <app-review-summary
               [averageRate]="tourDetail?.averageRate ?? 5"

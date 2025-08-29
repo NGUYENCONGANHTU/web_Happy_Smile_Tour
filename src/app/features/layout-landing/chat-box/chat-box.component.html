@@ -13,10 +13,10 @@
 <ng-template #contentTemplate>
   <div
     class="!bg-[#FFEEEE] !text-[#333] !p-3 !rounded-md !mb-3 !font-semibold"
-    [innerHTML]="homeData.title"></div>
+    [innerHTML]="'chatbox.title' | translate"></div>
 
   <div class="!bg-[#F0FFF0] !text-[#333] !p-3 !rounded-md !mb-4 !font-medium">
-    {{ homeData.description }}
+    {{ 'chatbox.description' | translate }}
   </div>
 
   <a
@@ -29,6 +29,7 @@
   <button
     (click)="handleCallOrCopy('+84966788728')"
     class="cursor-pointer !block !w-full !text-center !bg-[#EE1C24] !text-white !py-2 !rounded-md !font-semibold !hover:bg-[#b8161b] !transition">
-    {{ homeData.or }} {{ homeData.call }} (+84 966 788 728)
+    {{ 'chatbox.or' | translate }} {{ 'chatbox.call' | translate }} (+84 966 788
+    728)
   </button>
 </ng-template>

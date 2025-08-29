@@ -9,8 +9,11 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../../app.service';
 import { LocationResDTO } from '../../../../../interface';
-import { TranslatePipe } from '@ngx-translate/core';
-import { fakeData } from '../../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../../translation.service';
 
 @Component({
   selector: 'app-sidebar-feature-foreign',
@@ -26,7 +29,6 @@ import { fakeData } from '../../../../constant';
     RouterLinkActive,
     RouterLink,
     DecimalPipe,
-    TranslatePipe,
   ],
   templateUrl: './sidebar-feature-foreign.component.html',
   styleUrl: './sidebar-feature-foreign.component.scss',
@@ -55,19 +57,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
   ngOnInit() {
     this.getDataStartingPointDomestic();
     this.getDataStartingPointForeign();
-
-    this.translate = fakeData.tab_foreign;
-
-    this.tabs = [
-      {
-        tabName: this.translate.tab_domestic,
-        href: '/tour-feature-domestic',
-      },
-      {
-        tabName: this.translate.tab_foreign,
-        href: '/tour-feature-foreign',
-      },
-    ];
+    this.getDataTransitionTour();
   }
 
   searchTour(): void {
@@ -103,5 +93,27 @@ export class SidebarFeatureForeignComponent implements OnInit {
     this.appService.getAlLDataLocationInternational().subscribe(res => {
       this.dataStartingPointForeign = res.data;
     });
+  }
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+      this.tabs = [
+        {
+          tabName: this.getTrans('tab_domestic', 'domestic'),
+          href: '/tour-feature-domestic',
+        },
+        {
+          tabName: this.getTrans('tab_domestic', 'international'),
+          href: '/tour-feature-foreign',
+        },
+      ];
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

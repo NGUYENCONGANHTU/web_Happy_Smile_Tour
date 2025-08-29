@@ -12,10 +12,15 @@ import {
   ContactType,
   PrivateTourResDTO,
 } from '../../../../interface';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
 
 @Component({
   selector: 'app-private-group-tour',
@@ -26,7 +31,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     NzInputModule,
     NzDatePickerModule,
     ReactiveFormsModule,
-    TranslatePipe,
   ],
   templateUrl: './private-group-tour.component.html',
   styleUrl: './private-group-tour.component.scss',
@@ -40,6 +44,7 @@ export class PrivateGroupTourComponent implements OnInit {
   ngOnInit() {
     this.translate.use(this.languageService.locale);
     this.getAllDataPrivateTour();
+    this.getDataTransitionTour();
   }
 
   dataPrivateTour: PrivateTourResDTO[] = [];
@@ -111,5 +116,18 @@ export class PrivateGroupTourComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
   sanitizeHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
+
+  //   service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

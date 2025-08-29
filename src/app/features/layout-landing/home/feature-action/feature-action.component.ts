@@ -11,13 +11,17 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
-import { fakeData } from '../../../../constant';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../../translation.service';
 @Component({
   selector: 'app-feature-action',
   standalone: true,
-  imports: [RouterLink, FaIconComponent, NgClass, DecimalPipe, TranslatePipe],
+  imports: [RouterLink, FaIconComponent, NgClass, DecimalPipe],
   templateUrl: './feature-action.component.html',
   styleUrl: './feature-action.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,6 +35,7 @@ export class FeatureActionComponent implements OnInit {
   ngOnInit() {
     this.translate.use(this.languageService.locale);
     this.getAllData();
+    this.getDataTransitionTour();
   }
 
   formatImage = sanitizeUrl;
@@ -46,5 +51,16 @@ export class FeatureActionComponent implements OnInit {
       }
     });
   }
-  homeData = fakeData.home;
+
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

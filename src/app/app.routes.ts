@@ -6,7 +6,6 @@ import { TabTourFeatureDomesticComponent } from './features/layout-landing/tab-t
 import { TabTourFeatureForeignComponent } from './features/layout-landing/tab-tour-feature-foreign/tab-tour-feature-foreign.component';
 import { PrivateGroupTourComponent } from './features/layout-landing/private-group-tour/private-group-tour.component';
 import { TabContactComponent } from './features/layout-landing/tab-contact/tab-contact.component';
-import { TabTourDomesticDetailComponent } from './features/layout-landing/tab-tour-domestic-detail/tab-tour-domestic-detail.component';
 import { TabTourForeignDetailComponent } from './features/layout-landing/tab-tour-foreign-detail/tab-tour-foreign-detail.component';
 import { TabServiceComponent } from './features/layout-landing/tab-service/tab-service.component';
 import { AdminLayoutComponent } from './core/admin-layout/admin-layout.component';
@@ -21,7 +20,7 @@ import { ListClientContactComponent } from './features/admin/client-contact/page
 import { ListClientCommentComponent } from './features/admin/client-comment/pages/list-client-comment/list-client-comment.component';
 import { AuthRoutes } from './features/auth/auth.routes';
 import { AuthGuard } from './core/guards/auth.guard';
-import {ListLocationComponent} from './features/admin/location-config/pages/list-location/list-location.component';
+import { ListLocationComponent } from './features/admin/location-config/pages/list-location/list-location.component';
 // import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -56,10 +55,6 @@ export const routes: Routes = [
       {
         path: 'contact-page',
         component: TabContactComponent,
-      },
-      {
-        path: 'tab-tour-domestic-detail',
-        component: TabTourDomesticDetailComponent,
       },
       {
         path: 'tab-tour-foreign-detail/:id',

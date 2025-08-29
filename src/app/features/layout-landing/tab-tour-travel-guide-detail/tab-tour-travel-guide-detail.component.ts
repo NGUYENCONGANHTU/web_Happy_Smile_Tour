@@ -9,6 +9,11 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
 
 @Component({
   selector: 'app-tab-tour-travel-guide-detail',
@@ -35,6 +40,7 @@ export class TabTourTravelGuideDetailComponent implements OnInit {
         this.getContentTravelGuideDetail();
       }
     });
+    this.getDataTransitionTour();
   }
   dataContentTravelGuide: TravelGuideResDTO | null = null;
   getContentTravelGuideDetail() {
@@ -51,5 +57,18 @@ export class TabTourTravelGuideDetailComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
   sanitizeHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

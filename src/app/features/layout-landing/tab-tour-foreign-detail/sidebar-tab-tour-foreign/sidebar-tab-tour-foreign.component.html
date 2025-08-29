@@ -7,7 +7,7 @@
       <div class="price-tour space-y-1!">
         @if (tourDetail.finalPrice) {
           <div class="price-tour-label">
-            {{ translateSidebarTourDetail.price_from }}:
+            {{ getTrans('tab_tour_detail', 'price_from') }}:
           </div>
           <div class="price-tour-value !font-medium">
             {{ tourDetail.finalPrice | number }} {{ tourDetail.currencyUnit }}
@@ -19,12 +19,12 @@
     <div class="space-y-2!">
       <div class="departure-date">
         <fa-icon [icon]="faCalendarDays" class="icon-calendar"></fa-icon>
-        <span> {{ translateSidebarTourDetail.itinerary }}:</span>
+        <span> {{ getTrans('tab_tour_detail', 'itinerary') }}: </span>
         <div class="date font-medium">{{ tourDetail.stayDate }}</div>
       </div>
       <div class="departure-location truncate">
         <fa-icon [icon]="faLocationDot" class="icon-location"></fa-icon>
-        <span>{{ translateSidebarTourDetail.from }}:</span>
+        <span> {{ getTrans('tab_tour_detail', 'from') }}: </span>
         <ul class="flex truncate gap-1">
           @for (
             data of tourDetail.startingPoints;
@@ -43,9 +43,11 @@
     </div>
     <div class="text-center">
       <button class="btn-reserve" (click)="showModal()">
-        <div class="btn-title">{{ translateSidebarTourDetail.booking }}</div>
+        <div class="btn-title">
+          {{ getTrans('tab_tour_detail', 'booking') }}:
+        </div>
         <div class="btn-subtitle">
-          {{ translateSidebarTourDetail.not_yet_pay }}
+          {{ getTrans('tab_tour_detail', 'not_yet_pay') }}:
         </div>
       </button>
 
@@ -54,9 +56,9 @@
           class="!rounded-xl"
           [nzWidth]="800"
           [(nzVisible)]="isVisible"
-          nzCancelText="{{ translateSidebarTourDetail.cancel }}"
-          nzTitle="{{ translateSidebarTourDetail.info_contact }}"
-          nzOkText="{{ translateSidebarTourDetail.submit }}"
+          nzCancelText="{{ getTrans('tab_tour_detail', 'cancel') }}"
+          nzTitle="{{ getTrans('tab_tour_detail', 'info_contact') }}"
+          nzOkText="{{ getTrans('tab_tour_detail', 'submit') }}"
           (nzOnCancel)="handleCancel()"
           (nzOnOk)="handleOk()"
           [nzStyle]="{ top: '50px', height: '400px' }">
@@ -65,33 +67,35 @@
               <!-- ================= Tên khách hàng ================= -->
               <div>
                 <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                  {{ translateSidebarTourDetail.full_name }}
+                  {{ getTrans('tab_tour_detail', 'full_name') }}
                   <span class="text-red-500 !mx-2">*</span>
                 </nz-form-label>
                 <nz-form-control
                   nzErrorTip="{{
-                    translateSidebarTourDetail.validate_full_name
+                    getTrans('tab_tour_detail', 'validate_full_name')
                   }}">
                   <input
                     class="!rounded-lg py-2! px-4!"
                     nz-input
-                    placeholder="{{ translateSidebarTourDetail.full_name }}"
+                    placeholder="{{ getTrans('tab_tour_detail', 'full_name') }}"
                     formControlName="name" />
                 </nz-form-control>
               </div>
               <!-- ================= Số điện thoại ================= -->
               <div>
                 <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                  {{ translateSidebarTourDetail.phone }}
+                  {{ getTrans('tab_tour_detail', 'phone') }}
                   <span class="text-red-500 !mx-2">*</span>
                 </nz-form-label>
                 <nz-form-control
-                  nzErrorTip="{{ translateSidebarTourDetail.validate_phone }}">
+                  nzErrorTip="{{
+                    getTrans('tab_tour_detail', 'validate_phone')
+                  }}">
                   <input
                     nz-input
                     type="number"
                     class="!rounded-lg py-2! px-4!"
-                    placeholder="{{ translateSidebarTourDetail.phone }}"
+                    placeholder="{{ getTrans('tab_tour_detail', 'phone') }}"
                     formControlName="phone" />
                 </nz-form-control>
               </div>
@@ -112,7 +116,7 @@
               <!-- ================= Số thành viên tham gia ================= -->
               <div>
                 <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                  {{ translateSidebarTourDetail.number_of_member }}
+                  {{ getTrans('tab_tour_detail', 'number_of_member') }}
                 </nz-form-label>
                 <nz-form-control
                   nzErrorTip="{{ 'private_tour.name_required' | translate }}">
@@ -121,35 +125,35 @@
                     nz-input
                     formControlName="number_of_people"
                     type="number"
-                    placeholder="{{
-                      translateSidebarTourDetail.number_of_member
+                    placeholder=" {{
+                      getTrans('tab_tour_detail', 'number_of_member')
                     }}" />
                 </nz-form-control>
               </div>
               <!-- ================= Công Ty ================= -->
               <div>
                 <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                  {{ translateSidebarTourDetail.company }}
+                  {{ getTrans('tab_tour_detail', 'company') }}
                 </nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
                     class="!rounded-lg py-2! px-4!"
-                    placeholder="{{ translateSidebarTourDetail.company }}"
+                    placeholder="{{ getTrans('tab_tour_detail', 'company') }}"
                     formControlName="company" />
                 </nz-form-control>
               </div>
               <!-- ================= Thời gian kiến ================= -->
               <div>
                 <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                  {{ translateSidebarTourDetail.estimated_budget }}
+                  {{ getTrans('tab_tour_detail', 'estimated_budget') }}
                 </nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
                     class="!rounded-lg py-2! px-4!"
                     placeholder="{{
-                      translateSidebarTourDetail.estimated_budget
+                      getTrans('tab_tour_detail', 'estimated_budget')
                     }}"
                     formControlName="expected_date" />
                 </nz-form-control>
@@ -157,7 +161,7 @@
               <!-- ================= Ghi chú ================= -->
               <div class="col-span-2">
                 <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                  {{ translateSidebarTourDetail.note }}
+                  {{ getTrans('tab_tour_detail', 'note') }}
                 </nz-form-label>
                 <nz-form-control>
                   <textarea
@@ -165,7 +169,7 @@
                     formControlName="message"
                     nz-input
                     placeholder="{{
-                      translateSidebarTourDetail.note
+                      getTrans('tab_tour_detail', 'note')
                     }}"></textarea>
                 </nz-form-control>
               </div>
