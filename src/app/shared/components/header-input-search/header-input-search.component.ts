@@ -11,12 +11,11 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { AutoTrimDirective } from '../../directives/auto-trim.directive';
 
 @Component({
   selector: 'app-header-input-search',
   templateUrl: 'header-input-search.component.html',
-  imports: [NzInputModule, FormsModule, AutoTrimDirective],
+  imports: [NzInputModule, FormsModule],
   standalone: true,
   providers: [
     {
