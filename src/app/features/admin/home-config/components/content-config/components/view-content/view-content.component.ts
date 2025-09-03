@@ -54,7 +54,10 @@ export class ViewContentComponent implements OnInit {
     key: [{ value: '', disabled: !!this.nzModalData }, [Validators.required]],
     value: ['', [Validators.required]],
     active: [
-      { value: false, disabled: this.nzModalData && !this.isOriginalLanguage },
+      {
+        value: false,
+        disabled: this.nzModalData && !this.isOriginalLanguage,
+      },
       [Validators.required],
     ],
     menuId: [''],
@@ -97,7 +100,10 @@ export class ViewContentComponent implements OnInit {
       this.submitting = true;
       if (this.isOriginalLanguage) {
         this.contentConfigService
-          .updateContentById(this.nzModalData.menuId, this.contentForm.value)
+          .updateContentById(
+            this.nzModalData.menuId,
+            this.contentForm.getRawValue()
+          )
           .subscribe({
             next: () => {
               this.submitting = false;
@@ -110,7 +116,10 @@ export class ViewContentComponent implements OnInit {
       } else {
         if (this.nzModalData.created) {
           this.contentConfigService
-            .updateContentTransById(this.nzModalData.id, this.contentForm.value)
+            .updateContentTransById(
+              this.nzModalData.id,
+              this.contentForm.getRawValue()
+            )
             .subscribe({
               next: () => {
                 this.submitting = false;
