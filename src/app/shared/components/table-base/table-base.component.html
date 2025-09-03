@@ -166,7 +166,7 @@
         "></ng-container>
     }
     @default {
-      {{ item?.[col.key] ?? '-' }}
+      <span [innerHTML]="item?.[col.key] ?? '-'"></span>
     }
   }
 </ng-template>
