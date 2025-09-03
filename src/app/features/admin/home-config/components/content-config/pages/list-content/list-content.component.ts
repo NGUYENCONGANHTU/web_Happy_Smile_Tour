@@ -58,11 +58,11 @@ export class ListContentComponent implements OnInit {
   ngOnInit() {
     this.columns = [
       {
-        key: 'title',
+        key: 'value',
         title: 'Tên',
       },
       {
-        key: 'locationTypeLabel',
+        key: 'menuType',
         title: 'Loại',
       },
       {
