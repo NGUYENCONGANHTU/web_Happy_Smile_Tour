@@ -58,7 +58,6 @@ export class AppService {
   apiUrl7 = environment.API_URL + '/travel-guide-trans';
   apiUrl8 = environment.API_URL + '/home-comment';
   apiUrl9 = environment.API_URL + '/intro-trans';
-  apiUrl10 = environment.API_URL + '/intro-title-trans';
   apiUrl11 = environment.API_URL + '/group-tour-trans';
   apiUrl12 = environment.API_URL + '/tour-contact';
   apiUrl13 = environment.API_URL + '/info-trans';
