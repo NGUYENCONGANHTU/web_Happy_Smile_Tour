@@ -72,23 +72,11 @@ footer {
 }
 
 /* Media query for screens smaller than 1146px */
-//@media (max-width: 1145px) {
-//  nav {
-//    display: none; /* Ẩn nav khi màn hình nhỏ */
-//  }
+//@media (min-width: 1145px) {
 //
-//  .menu-trigger {
-//    display: block; /* Hiển thị menu trigger */
-//  }
 //}
 //
 ///* Media query for screens larger than or equal to 1146px */
 //@media (min-width: 1146px) {
-//  nav {
-//    display: block; /* Hiển thị nav khi màn hình lớn */
-//  }
 //
-//  .menu-trigger {
-//    display: none; /* Ẩn menu trigger */
-//  }
 //}
