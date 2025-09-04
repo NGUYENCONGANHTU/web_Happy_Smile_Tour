@@ -1,14 +1,19 @@
-<div class="flex gap-2 justify-end !mb-2">
-  <app-header-input-search [(value)]="searchKey"></app-header-input-search>
-  <app-language-selection
-    [(selectedLanguage)]="selectedLanguage"
-    (selectedLanguageChange)="
-      handleSelectedLanguageChange()
-    "></app-language-selection>
-  <button nz-button (click)="openCreateOrUpdate()">
-    <nz-icon nzType="plus" />
-    Thêm mới
-  </button>
+<div class="flex gap-2 justify-between items-center !mb-2">
+  <div class="italic text-gray-500 font-normal">
+    {{ isOriginalLanguage ? '(Bản gốc)' : '(Bản dịch)' }}
+  </div>
+  <div class="flex gap-2">
+    <app-header-input-search [(value)]="searchKey"></app-header-input-search>
+    <app-language-selection
+      [(selectedLanguage)]="selectedLanguage"
+      (selectedLanguageChange)="
+        handleSelectedLanguageChange()
+      "></app-language-selection>
+    <button nz-button (click)="openCreateOrUpdate()">
+      <nz-icon nzType="plus" />
+      Thêm mới
+    </button>
+  </div>
 </div>
 
 <app-table-base-component
@@ -19,6 +24,7 @@
   [(pageSize)]="metaData.pageSize"
   [total]="metaData.total"
   [frontPagination]="true"
+  [scroll]="{ x: '800px', y: 'calc(100vh - 330px)' }"
   (rowDBClick)="openCreateOrUpdate($event)"></app-table-base-component>
 
 <ng-template #actionCol let-value>
