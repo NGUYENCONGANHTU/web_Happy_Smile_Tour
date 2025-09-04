@@ -30,6 +30,7 @@ import {
   TourPriceResDTO,
   TourResDTO,
   TourScheduleReqDTO,
+  TourScheduleResDTO,
   TourSurchargeReqDTO,
   TourSurchargeResDTO,
 } from '../../../interface';
@@ -219,16 +220,19 @@ export class TourFormComponent implements OnInit {
         const tourPrices: TourPriceReqDTO[] =
           this.tourPrices.value.map((price: TourPriceResDTO) => ({
             ...price,
+            id: price?.created ? price.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
         const tourDiscounts: TourDiscountReqDTO[] =
           this.discounts.value.map((discount: TourDiscountResDTO) => ({
             ...discount,
+            id: discount?.created ? discount.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
         const tourSurcharges: TourSurchargeReqDTO[] =
           this.surcharges.value.map((surcharges: TourSurchargeResDTO) => ({
             ...surcharges,
+            id: surcharges?.created ? surcharges.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
         if (tourPrices.length) {
@@ -270,8 +274,9 @@ export class TourFormComponent implements OnInit {
       if (this.scheduleForm.valid) {
         this.submittingSchedule = true;
         const tourSchedules: TourScheduleReqDTO[] =
-          this.tourSchedules.value.map((surcharges: TourSurchargeResDTO) => ({
-            ...surcharges,
+          this.tourSchedules.value.map((schedule: TourScheduleResDTO) => ({
+            ...schedule,
+            id: schedule?.created ? schedule.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
         this.tourConfigService.createTourSchedules(tourSchedules).subscribe({
