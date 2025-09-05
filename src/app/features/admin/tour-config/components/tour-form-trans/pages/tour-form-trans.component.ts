@@ -272,6 +272,8 @@ export class TourFormTransComponent implements OnInit {
                 .updateTourTrans({
                   ...formValues,
                   id: formValues?.created ? formValues?.id : undefined,
+                  tourId: this.id,
+                  languageCode: this.selectedLanguage,
                 })
                 .subscribe({
                   next: _res => {
