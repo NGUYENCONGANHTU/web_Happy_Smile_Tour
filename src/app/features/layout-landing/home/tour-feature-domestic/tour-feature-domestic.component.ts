@@ -13,15 +13,10 @@ import { RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
-
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-tour-feature-domestic',
-  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink],
+  imports: [FaIconComponent, NgClass, DecimalPipe, RouterLink, TranslatePipe],
   templateUrl: './tour-feature-domestic.component.html',
   styleUrl: './tour-feature-domestic.component.scss',
   standalone: true,
@@ -33,22 +28,8 @@ export class TourFeatureDomesticComponent implements OnInit {
   languageService = inject(LanguageService);
   ngOnInit() {
     this.translate.use(this.languageService.locale);
-    this.getDataTransitionTour();
   }
   formatImage = sanitizeUrl;
   @Input() selectedTabDomesticTour!: LocationResDTO;
   @Input() dataDomesticTour: FeatureResDTO[] = [];
-
-  // Language Service
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
-  }
 }

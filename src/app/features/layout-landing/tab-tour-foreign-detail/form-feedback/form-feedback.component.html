@@ -1,10 +1,10 @@
 <div class="">
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <nz-card nzTitle="{{ getTrans('tab_tour_detail', 'please_feedback') }}">
+    <nz-card nzTitle="{{ 'please_feedback' | trans: 'tab_tour_detail' }}">
       <!--   Đánh giá star   -->
       <nz-form-item>
         <nz-form-control
-          [nzErrorTip]="getTrans('tab_tour_detail', 'please_feedback')">
+          [nzErrorTip]="'please_feedback' | trans: 'tab_tour_detail'">
           <nz-rate formControlName="rate"></nz-rate>
 
           @if (validateForm.value.rate) {
@@ -24,7 +24,7 @@
           <input
             nz-input
             formControlName="name"
-            placeholder="{{ getTrans('tab_tour_detail', 'enter_name') }}"
+            placeholder="{{ 'enter_name' | trans: 'tab_tour_detail' }}"
             class="py-2! rounded-lg!" />
         </nz-form-control>
       </nz-form-item>
@@ -32,14 +32,14 @@
       <nz-form-item>
         <nz-form-control
           nzErrorTip="{{
-            getTrans('tab_tour_detail', 'please_enter_content_feedback')
+            'please_enter_content_feedback' | trans: 'tab_tour_detail'
           }}">
           <textarea
             nz-input
             [nzAutosize]="{ minRows: 5, maxRows: 8 }"
             formControlName="content"
             placeholder="{{
-              getTrans('tab_tour_detail', 'please_enter_content_feedback')
+              'please_enter_content_feedback' | trans: 'tab_tour_detail'
             }}"
             class="py-2! rounded-lg!">
           </textarea>
@@ -47,7 +47,7 @@
       </nz-form-item>
       <nz-divider></nz-divider>
       <button nz-button nzType="primary">
-        {{ getTrans('tab_tour_detail', 'submit_feedback') }}
+        {{ 'submit_feedback' | trans: 'tab_tour_detail' }}
       </button>
     </nz-card>
   </form>

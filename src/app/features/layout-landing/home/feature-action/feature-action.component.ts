@@ -13,15 +13,11 @@ import { DecimalPipe, NgClass } from '@angular/common';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-feature-action',
   standalone: true,
-  imports: [RouterLink, FaIconComponent, NgClass, DecimalPipe],
+  imports: [RouterLink, FaIconComponent, NgClass, DecimalPipe, TranslatePipe],
   templateUrl: './feature-action.component.html',
   styleUrl: './feature-action.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -35,7 +31,6 @@ export class FeatureActionComponent implements OnInit {
   ngOnInit() {
     this.translate.use(this.languageService.locale);
     this.getAllData();
-    this.getDataTransitionTour();
   }
 
   formatImage = sanitizeUrl;
@@ -50,17 +45,5 @@ export class FeatureActionComponent implements OnInit {
         this.dataFeatureTour = [];
       }
     });
-  }
-
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

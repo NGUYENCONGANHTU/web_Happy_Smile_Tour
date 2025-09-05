@@ -39,7 +39,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ getTrans('menu', 'about') }}
+              {{ 'about' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -48,7 +48,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ getTrans('menu', 'domestic_tours') }}
+              {{ 'domestic_tours' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -57,7 +57,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ getTrans('menu', 'international_tours') }}
+              {{ 'international_tours' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -66,7 +66,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ getTrans('menu', 'private_group_tours') }}
+              {{ 'private_group_tours' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -77,7 +77,7 @@
               [nzDropdownMenu]="menu"
               [ngClass]="{ '!text-[#ed1c24]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
-              {{ getTrans('menu', 'services') }}
+              {{ 'services' | trans: 'menu' }}
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -104,7 +104,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ getTrans('menu', 'contact') }}
+              {{ 'contact' | trans: 'menu' }}
             </a>
           </li>
           <li class="mt-4 md:mt-0">
@@ -171,7 +171,7 @@
           </div>
           <div
             class="travel-footer-description"
-            [innerHTML]="getTrans('footer', 'description')"></div>
+            [innerHTML]="'description' | trans: 'footer'"></div>
           <div class="travel-footer-partners">
             <a href="/">
               <img

@@ -10,9 +10,9 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import {
   TranslationResponse,
-  TranslationSection,
   TranslationService,
 } from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-content-feature-foreign',
   standalone: true,
@@ -22,6 +22,7 @@ import {
     DecimalPipe,
     RouterLink,
     NzPaginationModule,
+    TranslatePipe,
   ],
   templateUrl: './content-feature-foreign.component.html',
   styleUrl: './content-feature-foreign.component.scss',
@@ -75,8 +76,5 @@ export class ContentFeatureForeignComponent implements OnInit, OnChanges {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
     });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

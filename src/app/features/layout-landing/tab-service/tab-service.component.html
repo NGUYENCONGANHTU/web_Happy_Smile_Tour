@@ -10,7 +10,7 @@
       <div class="overlay w-full h-full flex flex-col justify-center">
         <div class="content !space-y-10 text-center">
           <p class="sub-title lg:!text-[20px] uppercase">
-            {{ getTrans('tab_service', 'title') }}
+            {{ 'title' | trans: 'tab_service' }}
           </p>
           <div
             class="title !text-[18px] md:!text-[30px] lg:!text-[60px] !px-15"
@@ -21,7 +21,7 @@
               [icon]="faPhoneFlip"
               class="phone-icon mr-2! tracking-wide"></fa-icon>
             <span>
-              {{ getTrans('tab_service', 'consulting') }}:
+              {{ 'consulting' | trans: 'tab_service' }}:
               <span
                 class="text-red-500 tracking-wider"
                 [innerHTML]="sanitizeHtml(dataServiceDetail.phone)">
@@ -46,7 +46,7 @@
         <div class="service-contact">
           <div
             class="service-contact-title text-left lg:text-center text-3xl font-medium !mb-5 md:!mb-10">
-            {{ getTrans('tab_service', 'instruction') }}
+            {{ 'instruction' | trans: 'tab_service' }}
           </div>
           <form
             nz-form
@@ -59,16 +59,16 @@
               <nz-form-label
                 [nzSpan]="24"
                 class="font-medium text-[14px] !mb-1">
-                {{ getTrans('tab_service', 'label_name') }}
+                {{ 'label_name' | trans: 'tab_service' }}
                 <span class="text-red-500 !mx-2">*</span>
               </nz-form-label>
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.name"
-                nzErrorTip="{{ getTrans('tab_service', 'name_required') }}">
+                nzErrorTip="{{ 'name_required' | trans: 'tab_service' }}">
                 <input
                   nz-input
                   formControlName="name"
-                  placeholder="{{ getTrans('tab_service', 'enter_name') }}"
+                  placeholder="{{ 'enter_name' | trans: 'tab_service' }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </div>
@@ -77,17 +77,17 @@
               <nz-form-label
                 [nzSpan]="24"
                 class="font-medium text-[14px] !mb-1">
-                {{ getTrans('tab_service', 'label_phone') }}
+                {{ 'label_phone' | trans: 'tab_service' }}
                 <span class="text-red-500 !mx-2">*</span>
               </nz-form-label>
               <nz-form-control
                 [nzValidateStatus]="validateForm.controls.phone"
-                nzErrorTip="{{ getTrans('tab_service', 'validate_phone') }}">
+                nzErrorTip="{{ 'validate_phone' | trans: 'tab_service' }}">
                 <input
                   nz-input
                   type="number"
                   formControlName="phone"
-                  placeholder=" {{ getTrans('tab_service', 'label_phone') }}"
+                  placeholder="{{ 'label_phone' | trans: 'tab_service' }}"
                   class="py-2! rounded-lg!" />
               </nz-form-control>
             </div>
@@ -108,7 +108,7 @@
             <!-- ================= Số thành viên tham gia ================= -->
             <div>
               <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                {{ getTrans('tab_service', 'number_of_member') }}
+                {{ 'number_of_member' | trans: 'tab_service' }}
               </nz-form-label>
               <nz-form-control>
                 <input
@@ -117,33 +117,33 @@
                   formControlName="number_of_people"
                   type="number"
                   placeholder="{{
-                    getTrans('tab_service', 'number_of_member')
+                    'number_of_member' | trans: 'tab_service'
                   }}" />
               </nz-form-control>
             </div>
             <!-- ================= Công Ty ================= -->
             <div>
               <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                {{ getTrans('tab_service', 'company') }}
+                {{ 'company' | trans: 'tab_service' }}
               </nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
                   class="!rounded-lg py-2! px-4!"
-                  placeholder="{{ getTrans('tab_service', 'company') }}"
+                  placeholder="{{ 'company' | trans: 'tab_service' }}"
                   formControlName="company" />
               </nz-form-control>
             </div>
             <!-- ================= Thời gian kiến ================= -->
             <div>
               <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-                {{ getTrans('tab_service', 'estimated_time') }}
+                {{ 'estimated_time' | trans: 'tab_service' }}
               </nz-form-label>
               <nz-form-control>
                 <input
                   nz-input
                   class="!rounded-lg py-2! px-4!"
-                  placeholder="{{ getTrans('tab_service', 'estimated_time') }}"
+                  placeholder="{{ 'estimated_time' | trans: 'tab_service' }}"
                   formControlName="expected_date" />
               </nz-form-control>
             </div>
@@ -152,7 +152,7 @@
               <nz-form-label
                 [nzSpan]="24"
                 class="font-medium text-[16px] !mb-1">
-                {{ getTrans('tab_service', 'note') }}
+                {{ 'note' | trans: 'tab_service' }}
               </nz-form-label>
               <nz-form-control>
                 <textarea
@@ -160,7 +160,7 @@
                   nz-input
                   type="text"
                   formControlName="message"
-                  placeholder="{{ getTrans('tab_service', 'note') }}"
+                  placeholder="{{ 'note' | trans: 'tab_service' }}"
                   class="py-2! rounded-lg!"></textarea>
               </nz-form-control>
             </div>
@@ -190,7 +190,7 @@
                   </svg>
                   <span>Đang gửi...</span>
                 } @else {
-                  {{ getTrans('tab_service', 'submit_register') }}
+                  {{ 'submit_register' | trans: 'tab_service' }}
                 }
               </button>
             </div>

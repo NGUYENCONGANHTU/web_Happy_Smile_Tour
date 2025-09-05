@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
   NzFormControlComponent,
   NzFormDirective,
@@ -19,11 +19,7 @@ import {
   FeatureResDTO,
   TourCommentDetailReqDTO,
 } from '../../../../../interface';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-form-feedback',
   imports: [
@@ -40,11 +36,12 @@ import {
     NzDividerComponent,
     NzAutosizeDirective,
     FaIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './form-feedback.component.html',
   styleUrl: './form-feedback.component.scss',
 })
-export class FormFeedbackComponent implements OnInit {
+export class FormFeedbackComponent {
   @Input() tourDetail: FeatureResDTO | null = null;
   appService = inject(AppService);
   message = inject(NzMessageService);
@@ -87,21 +84,5 @@ export class FormFeedbackComponent implements OnInit {
         }
       });
     }
-  }
-  ngOnInit() {
-    this.getDataTransitionTour();
-  }
-
-  // service Language
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

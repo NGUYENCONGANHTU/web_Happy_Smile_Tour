@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import {
   faCalendarDays,
@@ -13,14 +13,9 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactType } from '../../tab-service/interface-contact-tour-service';
-import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AppService } from '../../../../../app.service';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-sidebar-tab-tour-foreign',
   imports: [
@@ -37,7 +32,7 @@ import {
   templateUrl: './sidebar-tab-tour-foreign.component.html',
   styleUrl: './sidebar-tab-tour-foreign.component.scss',
 })
-export class SidebarTabTourForeignComponent implements OnInit {
+export class SidebarTabTourForeignComponent {
   faCalendarDays = faCalendarDays;
   faLocationDot = faLocationDot;
   message = inject(NzMessageService);
@@ -45,9 +40,6 @@ export class SidebarTabTourForeignComponent implements OnInit {
   @Input() priceTour = '';
   @Input() nameTour = '';
 
-  ngOnInit() {
-    this.getDataTransitionTour();
-  }
   isVisible = false;
 
   showModal(): void {
@@ -106,17 +98,4 @@ export class SidebarTabTourForeignComponent implements OnInit {
     expected_date: [''],
     message: [''],
   });
-
-  // service Language
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
-  }
 }

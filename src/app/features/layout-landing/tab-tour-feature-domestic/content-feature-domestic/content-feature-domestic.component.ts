@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, inject, Input, OnChanges } from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
@@ -8,11 +8,7 @@ import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-content-feature-domestic',
   imports: [
@@ -21,11 +17,12 @@ import {
     DecimalPipe,
     RouterLink,
     NzPaginationComponent,
+    TranslatePipe,
   ],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',
 })
-export class ContentFeatureDomesticComponent implements OnInit, OnChanges {
+export class ContentFeatureDomesticComponent implements OnChanges {
   filterTourService = inject(FilterTourService);
   appService = inject(AppService);
   faStar = faStar;
@@ -37,9 +34,6 @@ export class ContentFeatureDomesticComponent implements OnInit, OnChanges {
   page = 1;
   pageSize = 10;
   total = 0;
-  ngOnInit() {
-    this.getDataTransitionTour();
-  }
 
   ngOnChanges() {
     this.page = 1;
@@ -65,18 +59,5 @@ export class ContentFeatureDomesticComponent implements OnInit, OnChanges {
   onPageChange(page: number) {
     this.page = page;
     this.loadTours();
-  }
-
-  // service Language
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

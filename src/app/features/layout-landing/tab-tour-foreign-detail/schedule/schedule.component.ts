@@ -10,8 +10,8 @@ import {
 } from 'ng-zorro-antd/collapse';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ScheduleResDTO } from './schedule-interface';
-import { TranslatePipe } from '@ngx-translate/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-schedule',
   imports: [

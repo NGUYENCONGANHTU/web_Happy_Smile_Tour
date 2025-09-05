@@ -24,11 +24,7 @@ import { LanguageService } from '../../shared/services/language.service';
 import { sanitizeUrl } from '../../shared/utils/helpers/common.helper';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from './translation.service';
+import { TranslatePipe } from './translatepipe';
 
 @Component({
   selector: 'app-layout-landing',
@@ -42,6 +38,7 @@ import {
     RouterLinkActive,
     NgClass,
     ChatBoxComponent,
+    TranslatePipe,
   ],
   templateUrl: './layout-landing.component.html',
   styleUrl: './layout-landing.component.scss',
@@ -75,7 +72,6 @@ export class LayoutLandingComponent implements OnInit {
       });
     this.getDataFooter();
     this.getDataLanguages();
-    this.getDataTransitionTour();
   }
 
   // ======================== Get data Language ========================
@@ -103,6 +99,7 @@ export class LayoutLandingComponent implements OnInit {
   handleChangeLanguage(lang: LanguageResDTO) {
     this.selectedLang = lang;
     this.languageService.setLanguage(lang.code);
+    // this.translate.use(lang.code);
     location.reload();
   }
 
@@ -117,17 +114,5 @@ export class LayoutLandingComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
   sanitizeHtml(content?: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
-  }
-  // Language Fake
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

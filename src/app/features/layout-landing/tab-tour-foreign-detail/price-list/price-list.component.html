@@ -8,8 +8,8 @@
         [nzFrontPagination]="false">
         <thead>
           <tr>
-            <th>{{ translateTourDetail.group_age }}</th>
-            <th>{{ translateTourDetail.original_price }}</th>
+            <th>{{ 'group_age' | trans: 'tab_tour_detail' }}</th>
+            <th>{{ 'original_price' | trans: 'tab_tour_detail' }}</th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
   @if (dataTourDiscount.length > 0) {
     <div>
       <div class="font-bold mb-6! !uppercase">
-        {{ translateTourDetail.table_discount }}
+        {{ 'table_discount' | trans: 'tab_tour_detail' }}
       </div>
       <nz-table
         #basicTable
@@ -37,10 +37,10 @@
         [nzFrontPagination]="false">
         <thead>
           <tr>
-            <th>{{ translateTourDetail.type_discount }}</th>
-            <th>{{ translateTourDetail.description }}</th>
-            <th>{{ translateTourDetail.value_discount }}</th>
-            <th>{{ translateTourDetail.if_else }}</th>
+            <th>{{ 'type_discount' | trans: 'tab_tour_detail' }}</th>
+            <th>{{ 'description' | trans: 'tab_tour_detail' }}</th>
+            <th>{{ 'value_discount' | trans: 'tab_tour_detail' }}</th>
+            <th>{{ 'if_else' | trans: 'tab_tour_detail' }}</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +60,7 @@
   @if (dataTourSurcharge.length > 0) {
     <div>
       <div class="font-bold mb-6! !uppercase">
-        {{ translateTourDetail.table_surcharge }}
+        {{ 'table_surcharge' | trans: 'tab_tour_detail' }}
       </div>
       <nz-table
         #basicTable
@@ -68,8 +68,8 @@
         [nzFrontPagination]="false">
         <thead>
           <tr>
-            <th>{{ translateTourDetail.name_surcharge }}</th>
-            <th>{{ translateTourDetail.apply_for }}</th>
+            <th>{{ 'name_surcharge' | trans: 'tab_tour_detail' }}</th>
+            <th>{{ 'apply_for' | trans: 'tab_tour_detail' }}</th>
           </tr>
         </thead>
         <tbody>

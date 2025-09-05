@@ -13,15 +13,11 @@ import { RouterLink } from '@angular/router';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../../shared/services/language.service';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 
 @Component({
   selector: 'app-tour-feature-foreign',
-  imports: [FaIconComponent, DecimalPipe, NgClass, RouterLink],
+  imports: [FaIconComponent, DecimalPipe, NgClass, RouterLink, TranslatePipe],
   standalone: true,
   templateUrl: './tour-feature-foreign.component.html',
   styleUrl: './tour-feature-foreign.component.scss',
@@ -37,18 +33,5 @@ export class TourFeatureForeignComponent implements OnInit {
 
   ngOnInit() {
     this.translate.use(this.languageService.locale);
-    this.getDataTransitionTour();
-  }
-
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

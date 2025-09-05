@@ -8,7 +8,6 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
-import { TranslatePipe } from '@ngx-translate/core';
 import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
@@ -23,7 +22,6 @@ import {
     NzBreadCrumbItemComponent,
     RouterLink,
     FaIconComponent,
-    TranslatePipe,
     DateTimeFormatPipe,
   ],
   templateUrl: './tab-travel-guide-detail.component.html',

@@ -11,9 +11,9 @@ import { AppService } from '../../../../../app.service';
 import { LocationResDTO } from '../../../../../interface';
 import {
   TranslationResponse,
-  TranslationSection,
   TranslationService,
 } from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 
 @Component({
   selector: 'app-sidebar-feature-foreign',
@@ -29,6 +29,7 @@ import {
     RouterLinkActive,
     RouterLink,
     DecimalPipe,
+    TranslatePipe,
   ],
   templateUrl: './sidebar-feature-foreign.component.html',
   styleUrl: './sidebar-feature-foreign.component.scss',
@@ -58,6 +59,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
     this.getDataStartingPointDomestic();
     this.getDataStartingPointForeign();
     this.getDataTransitionTour();
+    this.setTabs();
   }
 
   searchTour(): void {
@@ -101,19 +103,12 @@ export class SidebarFeatureForeignComponent implements OnInit {
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
-      this.tabs = [
-        {
-          tabName: this.getTrans('tab_domestic', 'domestic'),
-          href: '/tour-feature-domestic',
-        },
-        {
-          tabName: this.getTrans('tab_domestic', 'international'),
-          href: '/tour-feature-foreign',
-        },
-      ];
     });
   }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
+  setTabs() {
+    this.tabs = [
+      { tabName: 'domestic', href: '/tour-feature-domestic' },
+      { tabName: 'international', href: '/tour-feature-foreign' },
+    ];
   }
 }

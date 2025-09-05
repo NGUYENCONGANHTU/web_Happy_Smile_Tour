@@ -2,9 +2,11 @@
   <section class="tab-travel-guide-detail">
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/">Trang chủ</a>
+        <a routerLink="/"> {{ 'home' | trans: 'tab_travel_detail' }}</a>
       </nz-breadcrumb-item>
-      <nz-breadcrumb-item class="italic"> Cẩm nang du lịch </nz-breadcrumb-item>
+      <nz-breadcrumb-item class="italic">
+        {{ 'travel_guide' | trans: 'tab_travel_detail' }}
+      </nz-breadcrumb-item>
       <nz-breadcrumb-item class="italic font-medium">
         Tour đoàn riêng
       </nz-breadcrumb-item>

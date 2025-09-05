@@ -1,6 +1,6 @@
 <div class="router-tour">
   <h1 class="router-tour-title !text-black">
-    {{ getTrans('tab_domestic', 'title') }}!
+    {{ 'title' | trans: 'tab_domestic' }}!
   </h1>
   <ul class="routes-tab-tours">
     @for (tab of tabs; track tab.href) {
@@ -9,7 +9,7 @@
         [routerLink]="tab.href"
         routerLinkActive="!font-medium !text-[#ed1d26] border-b-2 !border-b-[#ed1d26]"
         [routerLinkActiveOptions]="{ exact: true }">
-        {{ tab.tabName }}
+        {{ tab.tabName | trans: 'tab_domestic' }}
       </li>
     }
   </ul>
@@ -18,7 +18,7 @@
 <!--=============================== OPTIONS TOUR =====================================-->
 <div class="options-tour">
   <h1 class="text-[18px] !mt-[45px] !mb-[25px] !font-medium !text-black">
-    {{ getTrans('tab_domestic', 'international_tours') }}
+    {{ 'budget' | trans: 'tab_domestic' }}
   </h1>
   <div class="options-items space-y-5!">
     <!--=============Chọn ngân sách===================-->
@@ -37,15 +37,15 @@
 
     <!--============= Chọn điểm đi ===================-->
     <h1 class="text-[17px]">
-      {{ getTrans('tab_domestic', 'location') }}
+      {{ 'location' | trans: 'tab_domestic' }}
     </h1>
     <div class="!space-y-1">
-      <p class="font-medium">{{ getTrans('tab_domestic', 'departure') }}</p>
+      <p class="font-medium">{{ 'departure' | trans: 'tab_domestic' }}</p>
       <nz-select
         [(ngModel)]="departure"
         name="departure"
         class="w-full"
-        nzPlaceHolder="{{ getTrans('tab_domestic', 'departure') }}">
+        nzPlaceHolder="{{ 'departure' | trans: 'tab_domestic' }}">
         @for (data of dataStartingPointDomestic; track data.id) {
           <nz-option
             [nzLabel]="data.name"
@@ -55,12 +55,12 @@
     </div>
     <!--============= Chọn điểm đến ===================-->
     <div class="!space-y-1">
-      <p class="font-medium">{{ getTrans('tab_domestic', 'destination') }}</p>
+      <p class="font-medium">{{ 'destination' | trans: 'tab_domestic' }}</p>
       <nz-select
         [(ngModel)]="destination"
         name="destination"
         class="w-full"
-        nzPlaceHolder="{{ getTrans('tab_domestic', 'destination') }}">
+        nzPlaceHolder="{{ 'destination' | trans: 'tab_domestic' }}">
         @for (data of dataStartingPointForeign; track data.id) {
           <nz-option
             [nzLabel]="data.name"
@@ -75,14 +75,14 @@
         nzType="text"
         nz-button
         (click)="resetFilters()">
-        {{ getTrans('tab_domestic', 'reset_tour') }}
+        {{ 'reset_tour' | trans: 'tab_domestic' }}
       </button>
       <button
         class="w-full !py-[18px] !text-white font-medium! text-md! !bg-[#0b9444] !flex !justify-center !items-center !rounded-md"
         nz-button
         nzType="primary"
         (click)="searchTour()">
-        {{ getTrans('tab_domestic', 'find_tour') }}
+        {{ 'find_tour' | trans: 'tab_domestic' }}
       </button>
     </div>
   </div>

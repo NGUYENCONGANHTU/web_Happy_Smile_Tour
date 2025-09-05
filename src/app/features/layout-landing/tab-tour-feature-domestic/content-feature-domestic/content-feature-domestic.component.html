@@ -30,19 +30,19 @@
               <span class="text-[#888]">|</span>
               <div class="">
                 {{ data.totalReviews | number }}
-                {{ getTrans('tab_domestic', 'rating') }}
+                {{ 'rating' | trans: 'tab_domestic' }}
               </div>
             </div>
           </div>
           <div class="!space-x-2 !text-[14px]">
             <span class="!text-[#3A3A3C] font-medium">
-              {{ getTrans('tab_domestic', 'itinerary') }}:
+              {{ 'itinerary' | trans: 'tab_domestic' }}:
             </span>
             <span class="!text-[#e7000b] font-medium">{{ data.stayDate }}</span>
           </div>
           <div class="flex items-start !text-[14px]">
             <span class="!text-[#3A3A3C] font-medium">
-              {{ getTrans('tab_domestic', 'from') }}:
+              {{ 'from' | trans: 'tab_domestic' }}:
             </span>
             <ul class="flex items-center truncate !ml-1">
               @for (
@@ -61,7 +61,7 @@
           </div>
           <div class="price text-end">
             <div class="!pr-2 !text-[#3A3A3C] text-[16px] font-medium">
-              {{ getTrans('tab_domestic', 'price_from') }}:
+              {{ 'price_from' | trans: 'tab_domestic' }}:
             </div>
             <div class="!space-x-2">
               <span class="line-through font-medium !text-gray-400 !text-[14px]"
@@ -84,7 +84,7 @@
     </nz-pagination>
   } @else {
     <div class="text-center !text-[#ed1c23] font-medium">
-      {{ getTrans('tab_domestic', 'no_suitable_tour_found') }}:
+      {{ 'no_suitable_tour_found' | trans: 'tab_domestic' }}:
     </div>
   }
 </div>

@@ -25,14 +25,9 @@ import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
 import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
-import { TranslatePipe } from '@ngx-translate/core';
 import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {
-  TranslationResponse,
-  TranslationSection,
-  TranslationService,
-} from '../translation.service';
+import { TranslatePipe } from '../translatepipe';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -53,8 +48,8 @@ import {
     FormFeedbackComponent,
     ReviewSummaryComponent,
     ReviewListComponent,
-    TranslatePipe,
     SlideTourDetailComponent,
+    TranslatePipe,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',
@@ -141,7 +136,6 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getIdParam();
     this.getAllDataFeature();
-    this.getDataTransitionTour();
   }
 
   /* ================================= ĐIỂM NỘI BẬT ======================================== */
@@ -171,18 +165,5 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
   private sanitizer = inject(DomSanitizer);
   sanitizeHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
-  }
-
-  // service Language
-  transitionService = inject(TranslationService);
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  getDataTransitionTour() {
-    this.transitionService.getDataTransLate().subscribe(res => {
-      this.dataTrans = res.data;
-    });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }
