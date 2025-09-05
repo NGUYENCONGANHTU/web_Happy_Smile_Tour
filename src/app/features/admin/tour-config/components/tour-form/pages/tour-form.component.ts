@@ -223,54 +223,55 @@ export class TourFormComponent implements OnInit {
             id: price?.created ? price.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
+        this.tourConfigService.createTourPrices(tourPrices).subscribe({
+          next: () => {
+            this.submittingPrice = false;
+            this.message.success('Thêm thành công!');
+          },
+          error: () => {
+            this.submittingPrice = false;
+          },
+        });
+      } else {
+        this.tourPrices.markAllAsTouched();
+      }
+      if (this.discounts.valid) {
         const tourDiscounts: TourDiscountReqDTO[] =
           this.discounts.value.map((discount: TourDiscountResDTO) => ({
             ...discount,
             id: discount?.created ? discount.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
+        this.tourConfigService.createTourDiscounts(tourDiscounts).subscribe({
+          next: () => {
+            this.submittingPrice = false;
+          },
+          error: () => {
+            this.submittingPrice = false;
+          },
+        });
+      } else {
+        this.discounts.markAllAsTouched();
+      }
+      if (this.surcharges.valid) {
         const tourSurcharges: TourSurchargeReqDTO[] =
           this.surcharges.value.map((surcharges: TourSurchargeResDTO) => ({
             ...surcharges,
             id: surcharges?.created ? surcharges.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
-        if (tourPrices.length) {
-          this.tourConfigService.createTourPrices(tourPrices).subscribe({
-            next: () => {
-              this.submittingPrice = false;
-              this.message.success('Thêm thành công!');
-            },
-            error: () => {
-              this.submittingPrice = false;
-            },
-          });
-        }
-        if (tourDiscounts.length) {
-          this.tourConfigService.createTourDiscounts(tourDiscounts).subscribe({
-            next: () => {
-              this.submittingPrice = false;
-            },
-            error: () => {
-              this.submittingPrice = false;
-            },
-          });
-        }
-        if (tourSurcharges.length) {
-          this.tourConfigService
-            .createTourSurcharges(tourSurcharges)
-            .subscribe({
-              next: () => {
-                this.submittingPrice = false;
-              },
-              error: () => {
-                this.submittingPrice = false;
-              },
-            });
-        }
+        this.tourConfigService.createTourSurcharges(tourSurcharges).subscribe({
+          next: () => {
+            this.submittingPrice = false;
+          },
+          error: () => {
+            this.submittingPrice = false;
+          },
+        });
       } else {
-        this.tourPrices.markAllAsTouched();
+        this.surcharges.markAllAsTouched();
       }
+
       if (this.scheduleForm.valid) {
         this.submittingSchedule = true;
         const tourSchedules: TourScheduleReqDTO[] =
