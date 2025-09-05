@@ -26,5 +26,19 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-data",
+      "urls": [
+        "http://10.0.40.184:8080/api/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "3h",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }
   ]
 }
