@@ -71,10 +71,10 @@ export function parseToNzUploadFile(
 }
 
 export function sanitizeUrl(path: string): string {
-  if (!path || typeof path !== 'string') return '';
-  const cleaned = path.replace(/\\/g, '/').trim();
-  const normalized = cleaned.startsWith('/') ? cleaned : '/' + cleaned;
-  return '/images/tmp' + normalized;
+  // if (!path || typeof path !== 'string') return '';
+  // const cleaned = path.replace(/\\/g, '/').trim();
+  // const normalized = cleaned.startsWith('/') ? cleaned : '/' + cleaned;
+  return path;
 }
 
 export function getBase64(img: File, callback: (img: string) => void): void {

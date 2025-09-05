@@ -1,5 +1,7 @@
 @if (scheduleFormTrans.value?.schedules?.length) {
-  <div class="flex gap-5 justify-between overflow-auto">
+  <div
+    class="flex gap-5 justify-between overflow-auto"
+    style="max-height: calc(100vh - 180px)">
     <div class="w-full">
       <div class="italic flex h-[32px] !mb-2">Bản gốc</div>
       <form [formGroup]="scheduleForm" nz-form class="form-view-mode">

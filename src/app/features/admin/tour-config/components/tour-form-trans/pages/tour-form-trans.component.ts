@@ -278,6 +278,8 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: _res => {
                     this.submittingTour = false;
+                    this.message.success('Cập nhật thành công!');
+                    this.fetchTourData(false);
                   },
                   error: () => {
                     this.submittingTour = false;
@@ -293,7 +295,8 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: _res => {
                     this.submittingTour = false;
-                    this.message.success('Thêm thành công!');
+                    this.message.success('Tạo mới thành công!');
+                    this.fetchTourData(false);
                   },
                   error: () => {
                     this.submittingTour = false;
@@ -310,17 +313,20 @@ export class TourFormTransComponent implements OnInit {
             const tourPrices: TourPriceReqDTO[] =
               this.tourPricesTrans.value.map((price: TourPriceResDTO) => ({
                 ...price,
+                id: price?.created ? price.id : undefined,
                 tourId: this.id,
               })) ?? [];
             const tourDiscounts: TourDiscountReqDTO[] =
               this.discountsTrans.value.map((discount: TourDiscountResDTO) => ({
                 ...discount,
+                id: discount?.created ? discount.id : undefined,
                 tourId: this.id,
               })) ?? [];
             const tourSurcharges: TourSurchargeReqDTO[] =
               this.surchargesTrans.value.map(
-                (surcharges: TourSurchargeResDTO) => ({
-                  ...surcharges,
+                (surcharge: TourSurchargeResDTO) => ({
+                  ...surcharge,
+                  id: surcharge?.created ? surcharge.id : undefined,
                   tourId: this.id,
                 })
               ) ?? [];
@@ -330,7 +336,8 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: () => {
                     this.submittingPrice = false;
-                    this.message.success('Thêm thành công!');
+                    this.message.success('Cập nhật thành công!');
+                    this.fetchTourData(false);
                   },
                   error: () => {
                     this.submittingPrice = false;
@@ -343,7 +350,8 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: () => {
                     this.submittingPrice = false;
-                    this.message.success('Thêm thành công!');
+                    this.message.success('Cập nhật thành công!');
+                    this.fetchTourData(false);
                   },
                   error: () => {
                     this.submittingPrice = false;
@@ -356,7 +364,8 @@ export class TourFormTransComponent implements OnInit {
                 .subscribe({
                   next: () => {
                     this.submittingPrice = false;
-                    this.message.success('Thêm thành công!');
+                    this.message.success('Cập nhật thành công!');
+                    this.fetchTourData(false);
                   },
                   error: () => {
                     this.submittingPrice = false;
@@ -372,8 +381,9 @@ export class TourFormTransComponent implements OnInit {
             this.submittingSchedule = true;
             const tourSchedules: TourScheduleReqDTO[] =
               this.tourSchedulesTrans.value.map(
-                (surcharges: TourSurchargeResDTO) => ({
-                  ...surcharges,
+                (schedule: TourSurchargeResDTO) => ({
+                  ...schedule,
+                  id: schedule?.created ? schedule.id : undefined,
                   tourId: this.id,
                 })
               ) ?? [];
@@ -382,7 +392,8 @@ export class TourFormTransComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this.submittingSchedule = false;
-                  this.message.success('Thêm thành công!');
+                  this.message.success('Cập nhật thành công!');
+                  this.fetchTourData(false);
                 },
                 error: () => {
                   this.submittingSchedule = false;
