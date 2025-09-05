@@ -269,7 +269,10 @@ export class TourFormTransComponent implements OnInit {
             const formValues = this.tourFormTrans.value;
             if (this.tourFormTrans?.value?.created) {
               this.tourConfigService
-                .updateTourTransById(formValues?.id, formValues)
+                .updateTourTrans({
+                  ...formValues,
+                  id: formValues?.created ? formValues?.id : undefined,
+                })
                 .subscribe({
                   next: _res => {
                     this.submittingTour = false;
