@@ -2,6 +2,7 @@ import {
   ApplicationConfig,
   provideZoneChangeDetection,
   importProvidersFrom,
+  isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
@@ -22,6 +23,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { responseToastInterceptor } from './core/interceptors/response-toast.interceptor';
+import { provideServiceWorker } from '@angular/service-worker';
 registerLocaleData(en);
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -49,5 +51,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([authInterceptor, responseToastInterceptor])
     ),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 };
