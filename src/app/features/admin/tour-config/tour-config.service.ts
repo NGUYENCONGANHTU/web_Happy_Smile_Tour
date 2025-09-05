@@ -71,7 +71,7 @@ export class TourConfigService {
   }
 
   updateTourTransById(id: string | number, formData: FormData) {
-    return this.httpClient.put<TourResDTO>(
+    return this.httpClient.post<TourResDTO>(
       this.apiUrlTourTrans + '/' + id,
       formData
     );
