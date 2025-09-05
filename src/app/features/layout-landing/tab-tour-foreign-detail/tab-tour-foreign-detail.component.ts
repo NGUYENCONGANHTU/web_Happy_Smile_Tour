@@ -163,7 +163,10 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
     });
   }
   private sanitizer = inject(DomSanitizer);
-  sanitizeHtml(content: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(content);
+  // sanitizeHtml(content: string): SafeHtml {
+  //   return this.sanitizer.bypassSecurityTrustHtml(content);
+  // }
+  sanitizeHtml(value: string | undefined): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(value ?? '');
   }
 }

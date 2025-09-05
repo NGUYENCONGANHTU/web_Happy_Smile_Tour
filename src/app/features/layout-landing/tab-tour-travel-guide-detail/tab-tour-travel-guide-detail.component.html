@@ -2,7 +2,7 @@
   <section class="tab-travel-guide-detail">
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/"> {{ 'home' | trans: 'tab_travel_detail' }}</a>
+        <a routerLink="/">{{ 'home' | trans: 'tab_travel_detail' }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item class="italic">
         {{ 'travel_guide' | trans: 'tab_travel_detail' }}
@@ -20,9 +20,9 @@
           <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
           <span class="text-[14px]">01/07/2025 10:23:26</span>
         </div>
-        <div
-          class="travel-guide-detail-content-text"
-          [innerHTML]="sanitizeHtml(dataContentTravelGuide.content)"></div>
+        <div class="travel-guide-detail-content-text">
+          {{ sanitizeHtml(dataContentTravelGuide.content) }}
+        </div>
       </div>
     </div>
   </section>

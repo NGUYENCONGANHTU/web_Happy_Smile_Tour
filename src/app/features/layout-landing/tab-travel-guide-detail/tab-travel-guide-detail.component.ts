@@ -9,12 +9,12 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
 import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   TranslationResponse,
   TranslationSection,
   TranslationService,
 } from '../translation.service';
+import { TranslatePipe } from '../translatepipe';
 @Component({
   selector: 'app-tab-travel-guide-detail',
   imports: [
@@ -23,6 +23,7 @@ import {
     RouterLink,
     FaIconComponent,
     DateTimeFormatPipe,
+    TranslatePipe,
   ],
   templateUrl: './tab-travel-guide-detail.component.html',
   styleUrl: './tab-travel-guide-detail.component.scss',
@@ -47,10 +48,6 @@ export class TabTravelGuideDetailComponent implements OnInit {
     this.appService.getDataByIdTravelGuide(this.newsId).subscribe(res => {
       this.dataContentTravelGuide = res.data;
     });
-  }
-  private sanitizer = inject(DomSanitizer);
-  sanitizeHtml(content?: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
   }
 
   // service Language

@@ -2,27 +2,27 @@
   @if (dataContentTravelGuide) {
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/">{{ getTrans('home', 'home') }}</a>
+        <a routerLink="/">{{ 'home' | trans: 'tab_travel_detail' }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item
         class="font-medium"
-        [innerHTML]="sanitizeHtml(dataContentTravelGuide.title)">
+        [innerHTML]="dataContentTravelGuide.title">
       </nz-breadcrumb-item>
     </nz-breadcrumb>
 
     <div class="trave-tour-detail space-y-5!">
       <div
         class="trave-tour-detail-title"
-        [innerHTML]="sanitizeHtml(dataContentTravelGuide.title)"></div>
+        [innerHTML]="dataContentTravelGuide.title"></div>
       <div class="mt-3!">
         <fa-icon [icon]="faClock" class="mr-2!"></fa-icon>
         <span class="italic">
-          {{ dataContentTravelGuide.modifiedDate | dateTimeFormat }}</span
-        >
+          {{ dataContentTravelGuide.modifiedDate | dateTimeFormat }}
+        </span>
       </div>
       <div
         class="trave-tour-detail-content"
-        [innerHTML]="sanitizeHtml(dataContentTravelGuide.content)"></div>
+        [innerHTML]="dataContentTravelGuide.content"></div>
     </div>
   }
 </section>
