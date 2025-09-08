@@ -6,9 +6,9 @@ import { FilterTourService } from '../filter-tour.service';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
 import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-content-feature-domestic',
   imports: [
@@ -16,8 +16,8 @@ import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
     NgClass,
     DecimalPipe,
     RouterLink,
-    TranslatePipe,
     NzPaginationComponent,
+    TranslatePipe,
   ],
   templateUrl: './content-feature-domestic.component.html',
   styleUrl: './content-feature-domestic.component.scss',

@@ -8,8 +8,14 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../app.service';
 import { TravelGuideResDTO } from '../../../../interface';
-import { TranslatePipe } from '@ngx-translate/core';
 import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
+import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-tab-travel-guide-detail',
   imports: [
@@ -17,8 +23,9 @@ import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe'
     NzBreadCrumbItemComponent,
     RouterLink,
     FaIconComponent,
-    TranslatePipe,
     DateTimeFormatPipe,
+    TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './tab-travel-guide-detail.component.html',
   styleUrl: './tab-travel-guide-detail.component.scss',
@@ -37,10 +44,24 @@ export class TabTravelGuideDetailComponent implements OnInit {
         this.getContentTravelGuide();
       }
     });
+    this.getDataTransitionTour();
   }
   getContentTravelGuide() {
     this.appService.getDataByIdTravelGuide(this.newsId).subscribe(res => {
       this.dataContentTravelGuide = res.data;
     });
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

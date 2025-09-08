@@ -12,7 +12,9 @@
         [nzDisabled]="true"></nz-rate>
       <div class="text-gray-500 !mt-1">
         {{ totalReviews }}
-        <span class="lowercase">{{ 'tour_detail.reviews' | translate }}</span>
+        <span class="lowercase">
+          {{ getTrans('tab_tour_detail', 'reviews') }}
+        </span>
       </div>
     </div>
 
@@ -38,7 +40,7 @@
           <span class="w-25 text-gray-700"
             >{{ item.count }}
             <span class="lowercase">{{
-              'tour_detail.reviews' | translate
+              getTrans('tab_tour_detail', 'reviews')
             }}</span></span
           >
         </div>

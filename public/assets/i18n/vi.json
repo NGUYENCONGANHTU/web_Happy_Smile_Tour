@@ -10,7 +10,7 @@
     "about": "Giới thiệu",
     "domestic_tours": "Tour trong nước",
     "international_tours": "Tour nước ngoài",
-    "private_group_tours": "Tour đoàn riêng",
+    "customer_tour": "Tour đoàn riêng",
     "services": "Dịch vụ",
     "contact": "Liên hệ",
     "language": "Tiếng Việt"
@@ -118,7 +118,7 @@
     "description": "Công ty TNHH <span class='text-[#0b9444] font-medium'>HappySmiles</span> <span class='text-[#ed1c24] font-medium'>VietNam</span> Travel – Cầu nối giữa Công Ty Lữ Hành Quốc Tế tại Việt Nam với công ty tổ chức tour tại nhiều quốc gia trên thế giới."
   },
   "chatbox": {
-    "title": "Xin chào! 👋 <span class='text-[#0b9444] font-bold'>HappySmiles</span> <span class='text-[#ed1c24] font-bold'>VietNam</span> Travel luôn sẵn sàng hỗ trợ bạn qua WhatsApp.",
+    "title": "Xin chào! 👋<span class='text-[#ed1c24] font-bold'> HappySmiles VietNam</span> Travel luôn sẵn sàng hỗ trợ bạn qua WhatsApp.",
     "description": "Vui lòng nhấn vào liên kết bên dưới để trò chuyện với chúng tôi trên WhatsApp.",
     "or": "Hoặc",
     "call": "gọi số"

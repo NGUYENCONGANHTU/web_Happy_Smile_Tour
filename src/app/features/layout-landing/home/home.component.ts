@@ -31,6 +31,12 @@ import {
 import { BANNER_WEB } from '../../../shared/constants/global.constant';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../translation.service';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-home',
@@ -50,6 +56,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     TravelHandbookComponent,
     CustomerFeedbackComponent,
     FeatureCustomerComponent,
+    SafeHtmlPipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -88,6 +95,7 @@ export class HomeComponent implements OnInit {
     this.getAllDataNews();
     this.getAllDataCommentFeedBack();
     this.getAllDataPartner();
+    this.getDataTransitionTour();
   }
   // Hàm biến đổi url từ BE trả về
   sanitizeUrl = sanitizeUrl;
@@ -211,5 +219,18 @@ export class HomeComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
   sanitizeHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

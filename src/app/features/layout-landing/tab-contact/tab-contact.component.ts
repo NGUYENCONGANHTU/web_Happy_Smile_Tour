@@ -10,10 +10,11 @@ import { ContactPageResDTO, BannerResDTO } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-tab-contact',
-  imports: [FaIconComponent, NgStyle],
+  imports: [FaIconComponent, NgStyle, SafeHtmlPipe],
   templateUrl: './tab-contact.component.html',
   standalone: true,
   styleUrl: './tab-contact.component.scss',

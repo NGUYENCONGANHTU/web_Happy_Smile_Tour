@@ -9,7 +9,12 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { LocationResDTO } from '../../../../../interface';
 import { AppService } from '../../../../../app.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import {
+  TranslationResponse,
+  TranslationService,
+} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
+
 @Component({
   selector: 'app-sidebar-feature-domestic',
   imports: [
@@ -37,11 +42,26 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class SidebarFeatureDomesticComponent implements OnInit {
   appService = inject(AppService);
+  transitionService = inject(TranslationService);
+
   @Output() filtersChanged = new EventEmitter<any>();
 
   rangeValue: number[] = [0, 200000000];
   departure = '';
   destination = '';
+  dataStartingPointDomestic: LocationResDTO[] = [];
+
+  // dữ liệu translation
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  // Tabs hiển thị
+  tabs: { tabName: string; href: string }[] = [];
+
+  ngOnInit() {
+    this.getDataStartingPoint();
+    this.getDataTransitionTour();
+    this.setTabs();
+  }
 
   searchTour(): void {
     const formData = {
@@ -54,12 +74,10 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   }
 
   resetFilters(): void {
-    // Đặt lại giá trị mặc định
     this.rangeValue = [0, 200000000];
     this.departure = '';
     this.destination = '';
 
-    // Phát sự kiện gửi dữ liệu về mặc định
     const defaultData = {
       min: this.rangeValue[0],
       max: this.rangeValue[this.rangeValue.length - 1],
@@ -69,24 +87,22 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.filtersChanged.emit(defaultData);
   }
 
-  ngOnInit() {
-    this.getDataStartingPoint();
-  }
-  dataStartingPointDomestic: LocationResDTO[] = [];
   getDataStartingPoint() {
     this.appService.getAlLDataLocationDomestic().subscribe(res => {
       this.dataStartingPointDomestic = res.data;
     });
   }
 
-  tabs = [
-    {
-      tabName: 'domestic_tour.tab_domestic',
-      href: '/tour-feature-domestic',
-    },
-    {
-      tabName: 'domestic_tour.tab_foreign',
-      href: '/tour-feature-foreign',
-    },
-  ];
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+
+  setTabs() {
+    this.tabs = [
+      { tabName: 'domestic', href: '/tour-feature-domestic' },
+      { tabName: 'international', href: '/tour-feature-foreign' },
+    ];
+  }
 }

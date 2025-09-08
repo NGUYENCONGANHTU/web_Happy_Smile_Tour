@@ -21,10 +21,12 @@ import {
 } from '../../../../interface';
 import { NgStyle } from '@angular/common';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -37,8 +39,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     ReactiveFormsModule,
     NzFormLabelComponent,
     NgStyle,
-    TranslatePipe,
     NzButtonModule,
+    TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',

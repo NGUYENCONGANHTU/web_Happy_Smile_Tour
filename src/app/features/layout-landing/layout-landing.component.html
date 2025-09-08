@@ -3,7 +3,7 @@
     class="bg-white shadow-md !sticky w-full top-0 left-0 z-[1000] max-h-22">
     <div class="container-header flex items-center justify-between p-4">
       <div class="logo">
-        <a href="" aria-label="Go to homepage">
+        <a href="/">
           <img
             src="/assets/logo_Web_HST_N_1.png"
             class="w-full object-cover bg-center bg-cover"
@@ -39,7 +39,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.about' | translate }}
+              {{ 'about' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -48,7 +48,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.domestic_tours' | translate }}
+              {{ 'domestic_tours' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -57,7 +57,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.international_tours' | translate }}
+              {{ 'international_tours' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -66,7 +66,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.private_group_tours' | translate }}
+              {{ 'private_group_tours' | trans: 'menu' }}
             </a>
           </li>
           <li>
@@ -77,7 +77,7 @@
               [nzDropdownMenu]="menu"
               [ngClass]="{ '!text-[#ed1c24]': isServiceActive }"
               [nzPlacement]="'bottomCenter'">
-              {{ 'menu.services' | translate }}
+              {{ 'services' | trans: 'menu' }}
               <fa-icon [icon]="faCaretDown" class="menu-icon"></fa-icon>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -104,7 +104,7 @@
               routerLinkActive="!text-[#ed1c24]"
               [routerLinkActiveOptions]="{ exact: true }"
               class="block py-2 text-[14px]">
-              {{ 'menu.contact' | translate }}
+              {{ 'contact' | trans: 'menu' }}
             </a>
           </li>
           <li class="mt-4 md:mt-0">
@@ -132,7 +132,6 @@
                 @for (lang of languages; track $index) {
                   <li nz-menu-item>
                     <a
-                      href=""
                       (click)="handleChangeLanguage(lang)"
                       class="cursor-pointer">
                       <div
@@ -172,7 +171,7 @@
           </div>
           <div
             class="travel-footer-description"
-            [innerHTML]="'footer.description' | translate"></div>
+            [innerHTML]="'description' | trans: 'footer' | safeHtml"></div>
           <div class="travel-footer-partners">
             <a href="/">
               <img
@@ -186,7 +185,7 @@
         <div class="travel-footer-contact lg:w-2/5 space-y-4!">
           <div
             class="travel-footer-contact-title"
-            [innerHTML]="sanitizeHtml(data.company)"></div>
+            [innerHTML]="data.company | safeHtml"></div>
           <div class="travel-footer-contact-address space-y-4!">
             @if (data.address) {
               <div class="travel-footer-contact-address-1">

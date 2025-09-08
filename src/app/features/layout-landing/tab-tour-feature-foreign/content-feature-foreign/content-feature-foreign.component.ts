@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit } from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO } from '../../../../../interface';
@@ -6,9 +6,13 @@ import { FilterTourService } from '../../tab-tour-feature-domestic/filter-tour.s
 import { DecimalPipe, NgClass } from '@angular/common';
 import { AppService } from '../../../../../app.service';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
+import {
+  TranslationResponse,
+  TranslationService,
+} from '../../translation.service';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-content-feature-foreign',
   standalone: true,
@@ -17,13 +21,13 @@ import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
     NgClass,
     DecimalPipe,
     RouterLink,
-    TranslatePipe,
     NzPaginationModule,
+    TranslatePipe,
   ],
   templateUrl: './content-feature-foreign.component.html',
   styleUrl: './content-feature-foreign.component.scss',
 })
-export class ContentFeatureForeignComponent implements OnChanges {
+export class ContentFeatureForeignComponent implements OnInit, OnChanges {
   faStar = faStar; // icon
   filterTourService = inject(FilterTourService); // service Filter
   appService = inject(AppService); //App service
@@ -35,7 +39,9 @@ export class ContentFeatureForeignComponent implements OnChanges {
   page = 1;
   pageSize = 10;
   total = 0;
-
+  ngOnInit() {
+    this.getDataTransitionTour();
+  }
   ngOnChanges() {
     this.page = 1;
     this.loadTours();
@@ -60,5 +66,15 @@ export class ContentFeatureForeignComponent implements OnChanges {
   onPageChange(page: number) {
     this.page = page;
     this.loadTours();
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
   }
 }
