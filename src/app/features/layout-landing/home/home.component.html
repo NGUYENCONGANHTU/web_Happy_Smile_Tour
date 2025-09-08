@@ -21,10 +21,10 @@
         <div class="text-center md:text-left !px-[8%]">
           <div
             class="text-[40px] md:text-[60px] text-white! font-bold"
-            [innerHTML]="sanitizeHtml(data.title)"></div>
+            [innerHTML]="data?.title | safeHtml"></div>
           <div
             class="text-[20px]"
-            [innerHTML]="sanitizeHtml(data.description)"></div>
+            [innerHTML]="data?.description | safeHtml"></div>
         </div>
       </div>
     </div>

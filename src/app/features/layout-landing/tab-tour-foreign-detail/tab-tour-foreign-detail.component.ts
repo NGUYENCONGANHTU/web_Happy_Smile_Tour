@@ -28,6 +28,7 @@ import { ReviewListComponent } from '../../../shared/components/review-list/revi
 import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -50,6 +51,7 @@ import { TranslatePipe } from '../translatepipe';
     ReviewListComponent,
     SlideTourDetailComponent,
     TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',

@@ -14,7 +14,7 @@
           </p>
           <div
             class="title !text-[18px] md:!text-[30px] lg:!text-[60px] !px-15"
-            [innerHTML]="sanitizeHtml(dataServiceDetail.bannerTitle)"></div>
+            [innerHTML]="dataServiceDetail.bannerTitle | safeHtml"></div>
           <button
             class="cta-button !text-[20px] hover:outline hover:outline-red-500 hover:outline-2">
             <fa-icon
@@ -24,7 +24,7 @@
               {{ 'consulting' | trans: 'tab_service' }}:
               <span
                 class="text-red-500 tracking-wider"
-                [innerHTML]="sanitizeHtml(dataServiceDetail.phone)">
+                [innerHTML]="dataServiceDetail.phone | safeHtml">
               </span>
             </span>
           </button>
@@ -38,10 +38,10 @@
         <div class="content-service space-y-2!">
           <div
             class="content-service-title text-left md:text-center text-3xl font-medium"
-            [innerHTML]="sanitizeHtml(dataServiceDetail.serviceTitle)"></div>
+            [innerHTML]="dataServiceDetail.serviceTitle | safeHtml"></div>
           <div
             class="content-service-list text-justify"
-            [innerHTML]="sanitizeHtml(dataServiceDetail.serviceContent)"></div>
+            [innerHTML]="dataServiceDetail.serviceContent | safeHtml"></div>
         </div>
         <div class="service-contact">
           <div

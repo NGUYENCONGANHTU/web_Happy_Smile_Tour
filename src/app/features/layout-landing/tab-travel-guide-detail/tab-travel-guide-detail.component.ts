@@ -15,6 +15,7 @@ import {
   TranslationService,
 } from '../translation.service';
 import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-tab-travel-guide-detail',
   imports: [
@@ -24,6 +25,7 @@ import { TranslatePipe } from '../translatepipe';
     FaIconComponent,
     DateTimeFormatPipe,
     TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './tab-travel-guide-detail.component.html',
   styleUrl: './tab-travel-guide-detail.component.scss',

@@ -36,6 +36,7 @@ import {
   TranslationSection,
   TranslationService,
 } from '../translation.service';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-home',
@@ -55,6 +56,7 @@ import {
     TravelHandbookComponent,
     CustomerFeedbackComponent,
     FeatureCustomerComponent,
+    SafeHtmlPipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

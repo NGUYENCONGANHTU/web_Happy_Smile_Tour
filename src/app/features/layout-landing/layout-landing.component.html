@@ -171,7 +171,7 @@
           </div>
           <div
             class="travel-footer-description"
-            [innerHTML]="'description' | trans: 'footer'"></div>
+            [innerHTML]="'description' | trans: 'footer' | safeHtml"></div>
           <div class="travel-footer-partners">
             <a href="/">
               <img
@@ -185,7 +185,7 @@
         <div class="travel-footer-contact lg:w-2/5 space-y-4!">
           <div
             class="travel-footer-contact-title"
-            [innerHTML]="sanitizeHtml(data.company)"></div>
+            [innerHTML]="data.company | safeHtml"></div>
           <div class="travel-footer-contact-address space-y-4!">
             @if (data.address) {
               <div class="travel-footer-contact-address-1">

@@ -25,6 +25,7 @@ import { sanitizeUrl } from '../../shared/utils/helpers/common.helper';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TranslatePipe } from './translatepipe';
+import { SafeHtmlPipe } from '../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-layout-landing',
@@ -39,6 +40,7 @@ import { TranslatePipe } from './translatepipe';
     NgClass,
     ChatBoxComponent,
     TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './layout-landing.component.html',
   styleUrl: './layout-landing.component.scss',

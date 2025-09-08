@@ -12,7 +12,7 @@
       </nz-breadcrumb-item>
       <nz-breadcrumb-item
         class="font-medium italic"
-        [innerHTML]="sanitizeHtml(tourDetail.title)">
+        [innerHTML]="tourDetail.title | safeHtml">
       </nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
@@ -23,7 +23,7 @@
         </app-slide-tour-detail>
         <div
           class="tour-detail-title"
-          [innerHTML]="sanitizeHtml(tourDetail.title)"></div>
+          [innerHTML]="tourDetail.title | safeHtml"></div>
         <div class="tour-detail-title-tabs">
           <div
             class="tour-detail-title-tabs-title !hidden md:!flex border-b-2 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
@@ -105,7 +105,7 @@
                   </div>
                   <div
                     class="content-1 text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.service)"></div>
+                    [innerHTML]="tourDetail?.service | safeHtml"></div>
                 </div>
               }
 
@@ -117,7 +117,7 @@
                   </div>
                   <div
                     class="content-2-text text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.nonService)"></div>
+                    [innerHTML]="tourDetail.nonService | safeHtml"></div>
                 </div>
               }
 
@@ -129,7 +129,7 @@
                   </div>
                   <div
                     class="content-3-text text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.regulation)"></div>
+                    [innerHTML]="tourDetail.regulation | safeHtml"></div>
                 </div>
               }
 
@@ -141,7 +141,7 @@
                   </div>
                   <div
                     class="content-3-text text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.note)"></div>
+                    [innerHTML]="tourDetail.note | safeHtml"></div>
                 </div>
               }
             </div>

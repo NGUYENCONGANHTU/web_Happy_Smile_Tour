@@ -13,7 +13,7 @@
           [nzActive]="false">
           <div
             class="text-justify"
-            [innerHTML]="sanitizeHtml(day.description)"></div>
+            [innerHTML]="day?.description | safeHtml"></div>
         </nz-collapse-panel>
       </nz-collapse>
     </nz-timeline-item>

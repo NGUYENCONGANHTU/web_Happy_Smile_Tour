@@ -363,17 +363,4 @@ export const fakeDataEnglish = {
     or: 'Or',
     call: 'call',
   },
-
-  // tab_travel_detail: {
-  //   home: 'Trang chủ',
-  //   about: 'Giới thiệu',
-  //   travel_guide: 'Cẩm nang du lịch',
-  //   ctm_tour:"Tour đoàn riêng"
-  // },
-  // tab_travel_detail: {
-  //   home: 'Home',
-  //   about: 'bout',
-  //   travel_guide: 'Travel guide ',
-  //   ctm_tour:"CIA Tour"
-  // },
 };

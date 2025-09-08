@@ -26,6 +26,7 @@ import { LanguageService } from '../../../shared/services/language.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-tab-service',
   standalone: true,
@@ -40,6 +41,7 @@ import { TranslatePipe } from '../translatepipe';
     NgStyle,
     NzButtonModule,
     TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './tab-service.component.html',
   styleUrl: './tab-service.component.scss',

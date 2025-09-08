@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 @Pipe({
   name: 'trans',
   standalone: true,
-  pure: false, // đổi sang false để Angular check lại khi data thay đổi
+  pure: false,
 })
 export class TranslatePipe implements PipeTransform {
   private dataTrans$ = new BehaviorSubject<TranslationResponse['data'] | null>(

@@ -18,7 +18,7 @@
     display: flex;
     gap: 6px;
     .icon-calendar {
-      color: #0c9544;
+      color: #0b9444;
     }
   }
   .departure-location {
@@ -31,7 +31,7 @@
   .text-center {
     margin-top: 20px;
     .btn-reserve {
-      background-color: #0c9544;
+      background-color: #0b9444;
       color: white;
       border-radius: 8px;
       padding: 6px 20px;
@@ -61,12 +61,12 @@
   font-weight: 500;
 }
 ::ng-deep .ant-modal-footer .ant-btn-primary {
-  background-color: #28a745 !important;
-  border-color: #28a745 !important;
+  background-color: #ed1d26 !important;
+  border-color: #ed1d26 !important;
   color: #fff;
   border: none;
   &:hover {
-    background-color: #218838 !important;
+    background-color: #ed1d26 !important;
   }
 }
 ::ng-deep .ant-modal-close-x {

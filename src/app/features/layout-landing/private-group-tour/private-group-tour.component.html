@@ -14,10 +14,10 @@
     @for (data of dataPrivateTour; track data.id) {
       <div
         class="private-group-tour-title"
-        [innerHTML]="sanitizeHtml(data.title)"></div>
+        [innerHTML]="data.title | safeHtml"></div>
       <div
         class="private-group-tour-content"
-        [innerHTML]="sanitizeHtml(data.description)"></div>
+        [innerHTML]="data.description | safeHtml"></div>
     }
     <div class="private-group-tour-contact !py-10">
       <div class="private-group-tour-contact-title">
