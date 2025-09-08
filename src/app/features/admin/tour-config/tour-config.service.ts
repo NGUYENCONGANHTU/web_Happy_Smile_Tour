@@ -70,11 +70,8 @@ export class TourConfigService {
     return this.httpClient.post<TourResDTO>(this.apiUrlTourTrans, formData);
   }
 
-  updateTourTransById(id: string | number, formData: FormData) {
-    return this.httpClient.put<TourResDTO>(
-      this.apiUrlTourTrans + '/' + id,
-      formData
-    );
+  updateTourTrans(formData: FormData) {
+    return this.httpClient.post<TourResDTO>(this.apiUrlTourTrans, formData);
   }
 
   getTourPricesByTourId(tourId: string | number) {

@@ -1,5 +1,7 @@
 @if (scheduleFormTrans.value?.schedules?.length) {
-  <div class="flex gap-5 justify-between">
+  <div
+    class="flex gap-5 justify-between overflow-auto"
+    style="max-height: calc(100vh - 180px)">
     <div class="w-full">
       <div class="italic flex h-[32px] !mb-2">Bản gốc</div>
       <form [formGroup]="scheduleForm" nz-form class="form-view-mode">
@@ -15,8 +17,10 @@
                 [nzHeader]="header"
                 [nzActive]="true"
                 [formGroupName]="indexStep">
-                <app-ckeditor-wrapper
-                  formControlName="description"></app-ckeditor-wrapper>
+                <div class="w-[800px]">
+                  <app-ckeditor-wrapper
+                    formControlName="description"></app-ckeditor-wrapper>
+                </div>
                 <ng-template #header>
                   <input
                     nz-input
@@ -55,8 +59,10 @@
                 [nzHeader]="header"
                 [nzActive]="true"
                 [formGroupName]="indexStep">
-                <app-ckeditor-wrapper
-                  formControlName="description"></app-ckeditor-wrapper>
+                <div class="w-[800px]">
+                  <app-ckeditor-wrapper
+                    formControlName="description"></app-ckeditor-wrapper>
+                </div>
                 <ng-template #header>
                   <input
                     nz-input

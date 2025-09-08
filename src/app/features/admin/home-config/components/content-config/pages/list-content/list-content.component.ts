@@ -18,7 +18,10 @@ import {
 import { HeaderInputSearchComponent } from '../../../../../../../shared/components/header-input-search/header-input-search.component';
 import { TableBaseComponent } from '../../../../../../../shared/components/table-base/table-base.component';
 import { LanguageSelectionComponent } from '../../../../../../../shared/components/language-selection/language-selection.component';
-import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
+import {
+  CONTENT_DATA_OPTIONS,
+  ORIGINAL_LANGUAGE,
+} from '../../../../../../../shared/constants/global.constant';
 import { TableMetaData } from '../../../../../../../shared/models/table-base.model';
 import {
   ColumnConfig,
@@ -58,11 +61,15 @@ export class ListContentComponent implements OnInit {
   ngOnInit() {
     this.columns = [
       {
-        key: 'value',
-        title: 'Tên',
+        key: 'original',
+        title: 'Tên (gốc)',
       },
       {
-        key: 'menuType',
+        key: 'value',
+        title: 'Tên (dịch)',
+      },
+      {
+        key: 'menuTypeLabel',
         title: 'Loại',
       },
       {
@@ -85,7 +92,12 @@ export class ListContentComponent implements OnInit {
       .getContentDataTrans(this.selectedLanguage)
       .subscribe({
         next: res => {
-          this.data = res.data;
+          this.data = res.data?.map(dt => ({
+            ...dt,
+            menuTypeLabel:
+              CONTENT_DATA_OPTIONS.find(op => op.value === dt.menuType)
+                ?.label ?? dt.menuType,
+          }));
           this.loading = false;
         },
         error: () => {
@@ -120,11 +132,15 @@ export class ListContentComponent implements OnInit {
     if (this.isOriginalLanguage) {
       this.columns = [
         {
-          key: 'title',
-          title: 'Tiêu đề',
+          key: 'original',
+          title: 'Tên (gốc)',
         },
         {
-          key: 'locationTypeLabel',
+          key: 'value',
+          title: 'Tên (dịch)',
+        },
+        {
+          key: 'menuTypeLabel',
           title: 'Loại',
         },
         {
@@ -139,11 +155,15 @@ export class ListContentComponent implements OnInit {
     } else {
       this.columns = [
         {
-          key: 'title',
-          title: 'Tiêu đề',
+          key: 'original',
+          title: 'Tên (gốc)',
         },
         {
-          key: 'locationTypeLabel',
+          key: 'value',
+          title: 'Tên (dịch)',
+        },
+        {
+          key: 'menuTypeLabel',
           title: 'Loại',
         },
       ];

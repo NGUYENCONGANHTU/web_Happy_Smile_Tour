@@ -55,7 +55,7 @@ export class ContentConfigService {
   getContentDataTrans(langCode: string) {
     const params = new HttpParams().set('langCode', langCode);
     return this.httpClient.get<ResponseBaseList<ContentResDTO>>(
-      this.apiUrlTrans,
+      this.apiUrlTrans + '/all',
       { params }
     );
   }

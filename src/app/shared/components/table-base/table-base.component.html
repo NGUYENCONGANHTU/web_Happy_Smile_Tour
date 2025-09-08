@@ -7,6 +7,7 @@
   [nzShowTotal]="rangeTemplate"
   [(nzPageIndex)]="_page"
   [(nzPageSize)]="pageSize"
+  [nzShowSizeChanger]="true"
   (nzPageIndexChange)="pageChange.emit(page)"
   (nzPageSizeChange)="pageSizeChange.emit(pageSize)"
   [nzLoading]="loading">
