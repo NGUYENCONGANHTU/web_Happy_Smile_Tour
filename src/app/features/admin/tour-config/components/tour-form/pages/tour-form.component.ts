@@ -223,15 +223,16 @@ export class TourFormComponent implements OnInit {
             id: price?.created ? price.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
-        this.tourConfigService.createTourPrices(tourPrices).subscribe({
-          next: () => {
-            this.submittingPrice = false;
-            this.message.success('Thêm thành công!');
-          },
-          error: () => {
-            this.submittingPrice = false;
-          },
-        });
+        this.tourConfigService
+          .createTourPrices(tourPrices, res ? res.id : this.id)
+          .subscribe({
+            next: () => {
+              this.submittingPrice = false;
+            },
+            error: () => {
+              this.submittingPrice = false;
+            },
+          });
       } else {
         this.tourPrices.markAllAsTouched();
       }
@@ -242,14 +243,16 @@ export class TourFormComponent implements OnInit {
             id: discount?.created ? discount.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
-        this.tourConfigService.createTourDiscounts(tourDiscounts).subscribe({
-          next: () => {
-            this.submittingPrice = false;
-          },
-          error: () => {
-            this.submittingPrice = false;
-          },
-        });
+        this.tourConfigService
+          .createTourDiscounts(tourDiscounts, res ? res.id : this.id)
+          .subscribe({
+            next: () => {
+              this.submittingPrice = false;
+            },
+            error: () => {
+              this.submittingPrice = false;
+            },
+          });
       } else {
         this.discounts.markAllAsTouched();
       }
@@ -260,14 +263,16 @@ export class TourFormComponent implements OnInit {
             id: surcharges?.created ? surcharges.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
-        this.tourConfigService.createTourSurcharges(tourSurcharges).subscribe({
-          next: () => {
-            this.submittingPrice = false;
-          },
-          error: () => {
-            this.submittingPrice = false;
-          },
-        });
+        this.tourConfigService
+          .createTourSurcharges(tourSurcharges, res ? res.id : this.id)
+          .subscribe({
+            next: () => {
+              this.submittingPrice = false;
+            },
+            error: () => {
+              this.submittingPrice = false;
+            },
+          });
       } else {
         this.surcharges.markAllAsTouched();
       }
@@ -280,15 +285,16 @@ export class TourFormComponent implements OnInit {
             id: schedule?.created ? schedule.id : undefined,
             tourId: res ? res.id : this.id,
           })) ?? [];
-        this.tourConfigService.createTourSchedules(tourSchedules).subscribe({
-          next: () => {
-            this.submittingSchedule = false;
-            this.message.success('Thêm thành công!');
-          },
-          error: () => {
-            this.submittingSchedule = false;
-          },
-        });
+        this.tourConfigService
+          .createTourSchedules(tourSchedules, res ? res.id : this.id)
+          .subscribe({
+            next: () => {
+              this.submittingSchedule = false;
+            },
+            error: () => {
+              this.submittingSchedule = false;
+            },
+          });
       } else {
         this.scheduleForm.markAllAsTouched();
       }

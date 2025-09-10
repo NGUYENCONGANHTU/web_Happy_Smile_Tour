@@ -88,8 +88,12 @@ export class TourConfigService {
     );
   }
 
-  createTourPrices(data: TourPriceReqDTO[]) {
-    return this.httpClient.post(this.apiUrlTourPrice, data);
+  createTourPrices(data: TourPriceReqDTO[], tourId?: string | number) {
+    let params = new HttpParams();
+    if (tourId) {
+      params = params.set('tourId', tourId);
+    }
+    return this.httpClient.post(this.apiUrlTourPrice, data, { params });
   }
 
   createTourPricesTrans(data: TourPriceReqDTO[]) {
@@ -118,8 +122,12 @@ export class TourConfigService {
     );
   }
 
-  createTourDiscounts(data: TourDiscountReqDTO[]) {
-    return this.httpClient.post(this.apiUrlTourDiscount, data);
+  createTourDiscounts(data: TourDiscountReqDTO[], tourId?: string | number) {
+    let params = new HttpParams();
+    if (tourId) {
+      params = params.set('tourId', tourId);
+    }
+    return this.httpClient.post(this.apiUrlTourDiscount, data, { params });
   }
 
   createTourDiscountTrans(data: TourDiscountReqDTO[]) {
@@ -148,8 +156,12 @@ export class TourConfigService {
     );
   }
 
-  createTourSurcharges(data: TourSurchargeReqDTO[]) {
-    return this.httpClient.post(this.apiUrlTourSurcharge, data);
+  createTourSurcharges(data: TourSurchargeReqDTO[], tourId?: string | number) {
+    let params = new HttpParams();
+    if (tourId) {
+      params = params.set('tourId', tourId);
+    }
+    return this.httpClient.post(this.apiUrlTourSurcharge, data, { params });
   }
 
   createTourSurchargeTrans(data: TourSurchargeReqDTO[]) {
@@ -178,8 +190,12 @@ export class TourConfigService {
     );
   }
 
-  createTourSchedules(data: TourScheduleReqDTO[]) {
-    return this.httpClient.post(this.apiUrlSchedule, data);
+  createTourSchedules(data: TourScheduleReqDTO[], tourId?: string | number) {
+    let params = new HttpParams();
+    if (tourId) {
+      params = params.set('tourId', tourId);
+    }
+    return this.httpClient.post(this.apiUrlSchedule, data, { params });
   }
 
   createTourScheduleTrans(data: TourScheduleReqDTO[]) {
