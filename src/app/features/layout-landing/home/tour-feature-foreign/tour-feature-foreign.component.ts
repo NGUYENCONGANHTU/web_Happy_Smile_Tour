@@ -1,11 +1,19 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { FeatureResDTO, LocationResDTO } from '../../../../../interface';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../../shared/services/language.service';
+import { TranslatePipe } from '../../translatepipe';
 
 @Component({
   selector: 'app-tour-feature-foreign',
@@ -15,9 +23,15 @@ import { sanitizeUrl } from '../../../../shared/utils/helpers/common.helper';
   styleUrl: './tour-feature-foreign.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TourFeatureForeignComponent {
+export class TourFeatureForeignComponent implements OnInit {
   faStar = faStar;
   formatImage = sanitizeUrl;
+  translate = inject(TranslateService);
+  languageService = inject(LanguageService);
   @Input() selectedTabForeignTour!: LocationResDTO;
   @Input() dataTour: FeatureResDTO[] = [];
+
+  ngOnInit() {
+    this.translate.use(this.languageService.locale);
+  }
 }

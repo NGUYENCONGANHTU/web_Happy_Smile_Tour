@@ -14,12 +14,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AppService } from '../../../../../app.service';
-import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   FeatureResDTO,
   TourCommentDetailReqDTO,
 } from '../../../../../interface';
+import { TranslatePipe } from '../../translatepipe';
 @Component({
   selector: 'app-form-feedback',
   imports: [

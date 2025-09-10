@@ -43,7 +43,7 @@
   },
   "breadcrumb": {
     "home": "Home",
-    "private_group_tours": "Private Group Tours"
+    "private_group_tours": "Customer Tours"
   },
   "tab_service": {
     "company" : "Company",
@@ -54,7 +54,7 @@
     "phone": "Phone Number",
     "email": "Email",
     "note": "Note",
-    "consult_now": "CONSULT NOW",
+    "consult_now": "Consult Now",
     "register_consulting": "Register for Consultation",
     "enter_name": "Enter your name",
     "email_valid": "Email is valid",
@@ -66,7 +66,7 @@
     "estimated_time": "Estimated date",
     "estimated_budget": "Estimated budget",
     "desired_destination": "Desired destination",
-    "note": "Notes",
+    "note": "Note",
     "contact_us":"Contact Us",
     "name_required": "Your name is required",
     "phone_required": "Your phone number is required",
@@ -102,12 +102,10 @@
     "booking": "BOOK AND RESERVE NOW",
     "not_yet_pay": "Book now, no payment required yet",
     "tour": "Tour",
-
     "reviews": "Reviews",
     "stars": "Stars",
     "filter_reviews_by": "Filter reviews by",
     "all": "All",
-
     "cancel": "Cancel",
     "info_contact": "Contact Information",
     "submit": "Submit",
@@ -120,7 +118,7 @@
     "description": " <span class='text-[#0b9444] font-bold'>HappySmiles</span> <span class='text-[#ed1c24] font-bold'>VietNam</span> Travel Co., Ltd – The leading bridge connecting international travel companies in Vietnam with tour operators in many countries around the world."
   },
   "chatbox": {
-    "title": "Hello! 👋 <span class='text-[#0b9444] font-bold'>HappySmiles</span> <span class='text-[#ed1c24] font-bold'>VietNam</span> Travel is ready to assist you via WhatsApp.",
+    "title": "Hello! 👋<span class='text-[#ed1c24] font-bold'> HappySmiles VietNam</span> Travel is ready to assist you via WhatsApp.",
     "description": "Please click the link below to chat with us on WhatsApp.",
     "or": "Or",
     "call":"call"

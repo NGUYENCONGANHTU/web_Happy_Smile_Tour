@@ -14,6 +14,7 @@ import {
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { IntroduceService } from './introduce.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-introduce',
   imports: [
@@ -22,6 +23,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     NzIconModule,
     NzCarouselModule,
     NgStyle,
+    SafeHtmlPipe,
   ],
   templateUrl: './introduce.component.html',
   styleUrl: './introduce.component.scss',

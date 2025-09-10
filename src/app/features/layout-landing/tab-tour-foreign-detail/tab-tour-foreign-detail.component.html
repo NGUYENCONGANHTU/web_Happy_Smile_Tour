@@ -3,16 +3,16 @@
     <!--  =====================breadcrumb==========================-->
     <nz-breadcrumb nzSeparator=">" class="breadcrumb">
       <nz-breadcrumb-item>
-        <a routerLink="/">{{ 'menu.home' | translate }}</a>
+        <a routerLink="/">{{ 'home' | trans: 'menu' }}</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item>
         <a routerLink="/tour-feature-foreign" class="font-medium">
-          {{ 'tour_detail.tour' | translate }}</a
+          {{ 'tour' | trans: 'tab_tour_detail' }}</a
         >
       </nz-breadcrumb-item>
       <nz-breadcrumb-item
         class="font-medium italic"
-        [innerHTML]="sanitizeHtml(tourDetail.title)">
+        [innerHTML]="tourDetail.title | safeHtml">
       </nz-breadcrumb-item>
     </nz-breadcrumb>
     <!--  ====================content==========================-->
@@ -23,7 +23,7 @@
         </app-slide-tour-detail>
         <div
           class="tour-detail-title"
-          [innerHTML]="sanitizeHtml(tourDetail.title)"></div>
+          [innerHTML]="tourDetail.title | safeHtml"></div>
         <div class="tour-detail-title-tabs">
           <div
             class="tour-detail-title-tabs-title !hidden md:!flex border-b-2 !pb-2 border-[#ccc] sticky top-0 z-999 bg-white">
@@ -33,7 +33,7 @@
                 [class]="
                   activeSection === 'diemNoiBat' ? '!text-[#ed1e26]' : ''
                 ">
-                {{ 'tour_detail.feature_place' | translate }}
+                {{ 'feature_place' | trans: 'tab_tour_detail' }}
               </button>
             }
             @if (tourDetail.tourSchedules.length > 0) {
@@ -42,21 +42,21 @@
                 [class]="
                   activeSection === 'lichTrinh' ? '!text-[#ed1e26]' : ''
                 ">
-                {{ 'tour_detail.schedule' | translate }}
+                {{ 'schedule' | trans: 'tab_tour_detail' }}
               </button>
             }
             @if (tourDetail.tourPrices.length > 0) {
               <button
                 (click)="scrollTo('bangGia')"
                 [class]="activeSection === 'bangGia' ? '!text-[#ed1e27]' : ''">
-                {{ 'tour_detail.table' | translate }}
+                {{ 'table' | trans: 'tab_tour_detail' }}
               </button>
             }
             @if (tourDetail.nonService) {
               <button
                 (click)="scrollTo('dichVu')"
                 [class]="activeSection === 'dichVu' ? '!text-[#ed1e27]' : ''">
-                {{ 'tour_detail.service_content' | translate }}
+                {{ 'service_content' | trans: 'tab_tour_detail' }}
               </button>
             }
           </div>
@@ -65,7 +65,7 @@
             @if (tourDetail.highlight) {
               <div #diemNoiBat id="diem-noi-bat" class="tab">
                 <div class="tab-title">
-                  {{ 'tour_detail.feature_place' | translate }}
+                  {{ 'feature_place' | trans: 'tab_tour_detail' }}
                 </div>
                 <app-feature-place [highlight]="tourDetail.highlight">
                 </app-feature-place>
@@ -75,7 +75,7 @@
             @if (tourDetail.tourSchedules.length > 0) {
               <div #lichTrinh id="lich-trinh" class="tab">
                 <div class="tab-title !uppercase">
-                  {{ 'tour_detail.schedule' | translate }}
+                  {{ 'schedule' | trans: 'tab_tour_detail' }}
                 </div>
                 <app-schedule
                   [tourDays]="tourDetail.tourSchedules"></app-schedule>
@@ -85,7 +85,7 @@
             <div #bangGia id="bang-gia" class="tab">
               @if (tourDetail.tourPrices.length > 0) {
                 <div class="tab-title !uppercase">
-                  {{ 'tour_detail.table' | translate }}
+                  {{ 'table' | trans: 'tab_tour_detail' }}
                 </div>
               }
               <app-price-list
@@ -101,11 +101,11 @@
               @if (tourDetail.nonService) {
                 <div class="content-1">
                   <div class="tab-title !uppercase">
-                    {{ 'tour_detail.service_content' | translate }}
+                    {{ 'service_content' | trans: 'tab_tour_detail' }}
                   </div>
                   <div
                     class="content-1 text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.service)"></div>
+                    [innerHTML]="tourDetail?.service | safeHtml"></div>
                 </div>
               }
 
@@ -113,23 +113,23 @@
               @if (tourDetail?.nonService) {
                 <div class="content-2">
                   <div class="tab-title !uppercase">
-                    {{ 'tour_detail.non_service_content' | translate }}
+                    {{ 'non_service_content' | trans: 'tab_tour_detail' }}
                   </div>
                   <div
                     class="content-2-text text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.nonService)"></div>
+                    [innerHTML]="tourDetail.nonService | safeHtml"></div>
                 </div>
               }
 
-              <!--============== DỊCH VỤ BAO GỒM =================-->
+              <!--============== Quy định =================-->
               @if (tourDetail.regulation) {
                 <div class="content-3">
                   <div class="tab-title !uppercase">
-                    {{ 'tour_detail.t_c' | translate }}
+                    {{ 't_c' | trans: 'tab_tour_detail' }}
                   </div>
                   <div
                     class="content-3-text text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.regulation)"></div>
+                    [innerHTML]="tourDetail.regulation | safeHtml"></div>
                 </div>
               }
 
@@ -137,11 +137,11 @@
               @if (tourDetail.note) {
                 <div class="content-3">
                   <div class="tab-title !uppercase">
-                    {{ 'tour_detail.note' | translate }}
+                    {{ 'note' | trans: 'tab_tour_detail' }}
                   </div>
                   <div
                     class="content-3-text text-justify"
-                    [innerHTML]="sanitizeHtml(tourDetail.note)"></div>
+                    [innerHTML]="tourDetail.note | safeHtml"></div>
                 </div>
               }
             </div>
@@ -150,7 +150,7 @@
           <!--============== CUSTOMER FEEDBACK =================-->
           <div class="customer-feedback mb-2!">
             <div class="customer-feedback-title uppercase">
-              {{ 'tour_detail.customer_preview' | translate }}
+              {{ 'customer_preview' | trans: 'tab_tour_detail' }}
             </div>
             <app-review-summary
               [averageRate]="tourDetail?.averageRate ?? 5"

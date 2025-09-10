@@ -13,7 +13,7 @@
 <ng-template #contentTemplate>
   <div
     class="!bg-[#FFEEEE] !text-[#333] !p-3 !rounded-md !mb-3 !font-semibold"
-    [innerHTML]="'chatbox.title' | translate"></div>
+    [innerHTML]="'chatbox.title' | translate | safeHtml"></div>
 
   <div class="!bg-[#F0FFF0] !text-[#333] !p-3 !rounded-md !mb-4 !font-medium">
     {{ 'chatbox.description' | translate }}

@@ -12,10 +12,12 @@ import {
   ContactType,
   PrivateTourResDTO,
 } from '../../../../interface';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-private-group-tour',
@@ -27,6 +29,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     NzDatePickerModule,
     ReactiveFormsModule,
     TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './private-group-tour.component.html',
   styleUrl: './private-group-tour.component.scss',

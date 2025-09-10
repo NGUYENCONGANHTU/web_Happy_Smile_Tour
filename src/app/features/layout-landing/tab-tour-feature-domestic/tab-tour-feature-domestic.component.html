@@ -1,10 +1,12 @@
 <section class="tab-tour-feature-domestic">
   <nz-breadcrumb nzSeparator=">" class="breadcrumb">
     <nz-breadcrumb-item>
-      <a routerLink="/">{{ 'menu.home' | translate }}</a>
+      <a routerLink="/">
+        {{ 'home' | trans: 'menu' }}
+      </a>
     </nz-breadcrumb-item>
     <nz-breadcrumb-item class="font-medium">
-      {{ 'menu.domestic_tours' | translate }}
+      {{ 'domestic_tours' | trans: 'menu' }}
     </nz-breadcrumb-item>
   </nz-breadcrumb>
   <!--  /*======================================================================*/-->

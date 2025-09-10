@@ -2,11 +2,11 @@
   <nz-breadcrumb nzSeparator=">" class="breadcrumb">
     <nz-breadcrumb-item>
       <a routerLink="/">
-        {{ 'menu.home' | translate }}
+        {{ 'home' | trans: 'menu' }}
       </a>
     </nz-breadcrumb-item>
     <nz-breadcrumb-item class="font-medium">
-      {{ 'menu.private_group_tours' | translate }}
+      {{ 'private_group_tours' | trans: 'tab_customer_tour' }}
     </nz-breadcrumb-item>
   </nz-breadcrumb>
   <!--  =====================================================-->
@@ -14,14 +14,14 @@
     @for (data of dataPrivateTour; track data.id) {
       <div
         class="private-group-tour-title"
-        [innerHTML]="sanitizeHtml(data.title)"></div>
+        [innerHTML]="data.title | safeHtml"></div>
       <div
         class="private-group-tour-content"
-        [innerHTML]="sanitizeHtml(data.description)"></div>
+        [innerHTML]="data.description | safeHtml"></div>
     }
     <div class="private-group-tour-contact !py-10">
       <div class="private-group-tour-contact-title">
-        {{ 'private_tour.contact_us' | translate }}
+        {{ 'contact_us' | trans: 'tab_customer_tour' }}
       </div>
       <form
         nz-form
@@ -31,34 +31,34 @@
         <!--     Tên-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'tab_service.name' | translate }}
+            {{ 'name' | trans: 'tab_customer_tour' }}
             <span class="text-red-500 !mx-2">*</span>
           </nz-form-label>
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.name"
             [nzHasFeedback]="true"
-            nzErrorTip="{{ 'private_tour.name_required' | translate }}">
+            nzErrorTip="{{ 'name_required' | trans: 'tab_customer_tour' }}">
             <input
               nz-input
               type="text"
               formControlName="name"
-              placeholder="{{ 'tab_service.name' | translate }}" />
+              placeholder="{{ 'name' | trans: 'tab_customer_tour' }}" />
           </nz-form-control>
         </div>
         <!--     Số điện thoại-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'tab_service.phone' | translate }}
+            {{ 'phone' | trans: 'tab_customer_tour' }}
             <span class="text-red-500 !mx-2">*</span>
           </nz-form-label>
           <nz-form-control
             [nzValidateStatus]="validateForm.controls.phone"
             [nzHasFeedback]="true"
-            nzErrorTip="{{ 'tab_service.phone_required' | translate }}">
+            nzErrorTip="{{ 'phone_required' | trans: 'tab_customer_tour' }}">
             <input
               nz-input
               formControlName="phone"
-              placeholder="{{ 'tab_service.phone' | translate }}" />
+              placeholder="{{ 'phone' | trans: 'tab_customer_tour' }}" />
           </nz-form-control>
         </div>
         <!--    Email-->
@@ -77,60 +77,64 @@
         <!--      Công ty-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'tab_service.company' | translate }}
+            {{ 'company' | trans: 'tab_customer_tour' }}
           </nz-form-label>
           <nz-form-control>
             <input
               nz-input
               type="text"
               formControlName="company"
-              placeholder="{{ 'tab_service.company' | translate }}" />
+              placeholder="{{ 'company' | trans: 'tab_customer_tour' }}" />
           </nz-form-control>
         </div>
 
         <!--      Số người-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'private_tour.people_count' | translate }}
+            {{ 'people_count' | trans: 'tab_customer_tour' }}
           </nz-form-label>
           <nz-form-control>
             <input
               nz-input
               type="text"
               formControlName="number_of_people"
-              placeholder="{{ 'private_tour.people_count' | translate }}" />
+              placeholder="{{ 'people_count' | trans: 'tab_customer_tour' }}" />
           </nz-form-control>
         </div>
         <!--      Thời gian dự kiến-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'private_tour.estimated_time' | translate }}
+            {{ 'estimated_time' | trans: 'tab_customer_tour' }}
           </nz-form-label>
           <nz-form-control>
             <nz-date-picker
               formControlName="expected_date"
-              nzPlaceHolder="{{ 'private_tour.estimated_time' | translate }}"
+              nzPlaceHolder="{{
+                'estimated_time' | trans: 'tab_customer_tour'
+              }}"
               class="w-full"></nz-date-picker>
           </nz-form-control>
         </div>
         <!--      Ngân sách dự kiến-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'private_tour.estimated_budget' | translate }}
+            {{ 'estimated_budget' | trans: 'tab_customer_tour' }}
           </nz-form-label>
           <nz-form-control>
             <input
               nz-input
               type="text"
               formControlName="budget"
-              placeholder="{{ 'private_tour.estimated_budget' | translate }}" />
+              placeholder="{{
+                'estimated_budget' | trans: 'tab_customer_tour'
+              }}" />
           </nz-form-control>
         </div>
 
         <!--     Địa điểm mong muốn-->
         <div>
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'private_tour.desired_destination' | translate }}
+            {{ 'desired_destination' | trans: 'tab_customer_tour' }}
           </nz-form-label>
           <nz-form-control>
             <input
@@ -138,32 +142,34 @@
               type="text"
               formControlName="location"
               placeholder="{{
-                'private_tour.desired_destination' | translate
+                'desired_destination' | trans: 'tab_customer_tour'
               }}" />
           </nz-form-control>
         </div>
         <!--     Ghi chú-->
         <div class="col-span-2">
           <nz-form-label [nzSpan]="24" class="font-medium !text-[18px]">
-            {{ 'private_tour.note' | translate }}
+            {{ 'note' | trans: 'tab_customer_tour' }}
           </nz-form-label>
           <nz-form-control>
             <textarea
               rows="6"
               formControlName="message"
               nz-input
-              placeholder="{{ 'private_tour.note' | translate }}"></textarea>
+              placeholder="{{
+                'note' | trans: 'tab_customer_tour'
+              }}"></textarea>
           </nz-form-control>
         </div>
         <div class="col-span-2 space-x-4! flex items-center justify-end">
           <button
             class="btn-reset border !bg-[#ed1c24] border-none !text-white font-medium !py-2 px-4 rounded-md"
             (click)="resetForm($event)">
-            {{ 'private_tour.cancel' | translate }}
+            {{ 'cancel' | trans: 'tab_customer_tour' }}
           </button>
           <button
             class="btn-submit !bg-[#0B9444] border-none !text-white !capitalize">
-            {{ 'private_tour.submit' | translate }}
+            {{ 'submit' | trans: 'tab_customer_tour' }}
           </button>
         </div>
       </form>

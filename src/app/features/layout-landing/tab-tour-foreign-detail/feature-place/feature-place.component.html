@@ -2,6 +2,6 @@
   <li class="list-feature-place-item">
     <div
       class="list-feature-place-item-content text-justify"
-      [innerHTML]="sanitizeHtml(highlight)"></div>
+      [innerHTML]="highlight | safeHtml"></div>
   </li>
 </ul>

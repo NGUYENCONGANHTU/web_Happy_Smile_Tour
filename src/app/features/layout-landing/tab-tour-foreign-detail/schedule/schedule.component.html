@@ -4,8 +4,7 @@
       <nz-collapse>
         <nz-collapse-panel
           [nzHeader]="
-            ' ' +
-            ('tour_detail.day' | translate) +
+            ('day' | trans: 'tab_tour_detail') +
             ' ' +
             (i + 1) +
             ': ' +
@@ -14,7 +13,7 @@
           [nzActive]="false">
           <div
             class="text-justify"
-            [innerHTML]="sanitizeHtml(day.description)"></div>
+            [innerHTML]="day?.description | safeHtml"></div>
         </nz-collapse-panel>
       </nz-collapse>
     </nz-timeline-item>

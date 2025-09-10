@@ -3,10 +3,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-chat-box',
   standalone: true,
-  imports: [NzButtonModule, NzPopoverModule, TranslatePipe],
+  imports: [NzButtonModule, NzPopoverModule, TranslatePipe, SafeHtmlPipe],
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.scss'],
 })

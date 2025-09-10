@@ -25,9 +25,10 @@ import { FeatureResDTO } from '../../../../interface';
 import { AppService } from '../../../../app.service';
 import { ReviewSummaryComponent } from '../../../shared/components/review-summary/review-summary.component';
 import { ReviewListComponent } from '../../../shared/components/review-list/review-list.component';
-import { TranslatePipe } from '@ngx-translate/core';
 import { SlideTourDetailComponent } from './slide-tour-detail/slide-tour-detail.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TranslatePipe } from '../translatepipe';
+import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 
 @Component({
   selector: 'app-tab-tour-foreign-detail',
@@ -48,8 +49,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     FormFeedbackComponent,
     ReviewSummaryComponent,
     ReviewListComponent,
-    TranslatePipe,
     SlideTourDetailComponent,
+    TranslatePipe,
+    SafeHtmlPipe,
   ],
   templateUrl: './tab-tour-foreign-detail.component.html',
   styleUrl: './tab-tour-foreign-detail.component.scss',
@@ -163,7 +165,10 @@ export class TabTourForeignDetailComponent implements OnInit, AfterViewInit {
     });
   }
   private sanitizer = inject(DomSanitizer);
-  sanitizeHtml(content: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(content);
+  // sanitizeHtml(content: string): SafeHtml {
+  //   return this.sanitizer.bypassSecurityTrustHtml(content);
+  // }
+  sanitizeHtml(value: string | undefined): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(value ?? '');
   }
 }

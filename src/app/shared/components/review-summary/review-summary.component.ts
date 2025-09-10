@@ -1,10 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule } from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { TranslatePipe } from '@ngx-translate/core';
+import {
+  TranslationResponse,
+  TranslationSection,
+  TranslationService,
+} from '../../../features/layout-landing/translation.service';
 
 export interface IRating {
   star: number;
@@ -22,11 +26,27 @@ export interface IRating {
     NzButtonModule,
     FormsModule,
     NzIconModule,
-    TranslatePipe,
   ],
 })
-export class ReviewSummaryComponent {
+export class ReviewSummaryComponent implements OnInit {
   @Input() averageRate = 5;
   @Input() totalReviews = 0;
   @Input() ratingList: IRating[] = [];
+
+  ngOnInit() {
+    this.getDataTransitionTour();
+  }
+
+  // service Language
+  transitionService = inject(TranslationService);
+  dataTrans: TranslationResponse['data'] | null = null;
+
+  getDataTransitionTour() {
+    this.transitionService.getDataTransLate().subscribe(res => {
+      this.dataTrans = res.data;
+    });
+  }
+  getTrans(key: TranslationSection, value: string, fallback = ''): string {
+    return this.dataTrans?.[key]?.[value] ?? fallback;
+  }
 }

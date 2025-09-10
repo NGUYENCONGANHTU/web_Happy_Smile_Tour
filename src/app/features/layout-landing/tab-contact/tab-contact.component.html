@@ -28,7 +28,7 @@
           </div>
           <div
             class="cards-contact-item-info-detail-description"
-            [innerHTML]="sanitizeHtml(data.description)"></div>
+            [innerHTML]="data?.description | safeHtml"></div>
         </div>
       }
     </div>
