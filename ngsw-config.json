@@ -18,10 +18,14 @@
     },
     {
       "name": "assets",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": [
+          "/assets/**",
+          "/icons/**",
+          "/images/**",
+          "/media/**",
           "/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
         ]
       }
@@ -31,7 +35,7 @@
     {
       "name": "api-data",
       "urls": [
-        "http://10.0.40.184:8080/api/**"
+        "/api/**"
       ],
       "cacheConfig": {
         "maxSize": 100,
