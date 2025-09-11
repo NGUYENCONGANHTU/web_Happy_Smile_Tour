@@ -18,8 +18,11 @@
       <div class="customer-feedback-card-item">
         <div class="customer-feedback-card-item-info">
           <!--avatar customer-->
-          <div class="customer-feedback-card-item-info-image">
-            <img [src]="formatImage(data?.image?.storagePath || '')" alt="" />
+          <div>
+            <nz-avatar
+              [nzSize]="56"
+              [nzText]="data.name?.charAt(0)?.toUpperCase()"
+              [nzSrc]="data?.image?.storagePath"></nz-avatar>
           </div>
           <!--customer info -->
           <div class="customer-feedback-card-item-info-title">
