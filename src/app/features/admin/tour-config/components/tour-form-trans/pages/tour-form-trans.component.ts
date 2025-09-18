@@ -84,6 +84,16 @@ export class TourFormTransComponent implements OnInit {
     .filter(l => l.code !== ORIGINAL_LANGUAGE)[0].code;
 
   ngOnInit(): void {
+    this.tourFormTrans.get('originalPrice')?.valueChanges.subscribe({
+      next: () => {
+        this.updateFinalPrices();
+      },
+    });
+    this.tourFormTrans.get('discount')?.valueChanges.subscribe({
+      next: () => {
+        this.updateFinalPrices();
+      },
+    });
     this.tourForm.disable();
     this.priceForm.disable();
     this.scheduleForm.disable();
@@ -414,6 +424,15 @@ export class TourFormTransComponent implements OnInit {
     if (lang) {
       this.fetchTourData();
     }
+  }
+
+  updateFinalPrices() {
+    this.tourFormTrans
+      .get('finalPrice')
+      ?.patchValue(
+        (this.tourFormTrans.get('originalPrice')?.value ?? 0) -
+          (this.tourFormTrans.get('discount')?.value ?? 0)
+      );
   }
 
   goTo(target: string, _data?: any) {
