@@ -13,25 +13,31 @@ export const ORIGINAL_LANGUAGE = 'en';
 export enum CONTENT_TYPE {
   MENU = 'MENU',
   HOME = 'HOME',
-  INTRO = 'INTRO',
-  DOMESTIC = 'DOMESTIC',
-  INTERNATIONAL = 'INTERNATIONAL',
-  CUSTOMER = 'CUSTOMER',
-  SERVICE = 'SERVICE',
-  CONTACT = 'CONTACT',
-  COMMON = 'COMMON',
+  TAB_INTRO = 'TAB_INTRO',
+  TAB_TOUR_DETAIL = 'TAB_TOUR_DETAIL',
+  TAB_TRAVEL_DETAIL = 'TAB_TRAVEL_DETAIL',
+  TAB_CUSTOMER_TOUR = 'TAB_CUSTOMER_TOUR',
+  TAB_DOMESTIC = 'TAB_DOMESTIC',
+  TAB_FOREIGN = 'TAB_FOREIGN',
+  TAB_CUSTOMER = 'TAB_CUSTOMER',
+  TAB_SERVICE = 'TAB_SERVICE',
+  TAB_CONTACT = 'TAB_CONTACT',
+  TAB_COMMON = 'TAB_COMMON',
 }
 
 export const CONTENT_DATA_OPTIONS: OptionItem[] = [
   { value: CONTENT_TYPE.MENU, label: 'Danh mục' },
   { value: CONTENT_TYPE.HOME, label: 'Trang chủ' },
-  { value: CONTENT_TYPE.INTRO, label: 'Giới thiệu' },
-  { value: CONTENT_TYPE.DOMESTIC, label: 'Tour trong nước' },
-  { value: CONTENT_TYPE.INTERNATIONAL, label: 'Tour quốc tế' },
-  { value: CONTENT_TYPE.CUSTOMER, label: 'Khách hàng' },
-  { value: CONTENT_TYPE.SERVICE, label: 'Dịch vụ' },
-  { value: CONTENT_TYPE.CONTACT, label: 'Liên hệ' },
-  { value: CONTENT_TYPE.COMMON, label: 'Chung' },
+  { value: CONTENT_TYPE.TAB_INTRO, label: 'Giới thiệu' },
+  { value: CONTENT_TYPE.TAB_DOMESTIC, label: 'Tour trong nước' },
+  { value: CONTENT_TYPE.TAB_TOUR_DETAIL, label: 'Tour chi tiết' },
+  { value: CONTENT_TYPE.TAB_TRAVEL_DETAIL, label: 'Cẩm nang du lịch' },
+  { value: CONTENT_TYPE.TAB_CUSTOMER_TOUR, label: 'Tour ghép' },
+  { value: CONTENT_TYPE.TAB_FOREIGN, label: 'Tour quốc tế' },
+  { value: CONTENT_TYPE.TAB_CUSTOMER, label: 'Khách hàng' },
+  { value: CONTENT_TYPE.TAB_SERVICE, label: 'Dịch vụ' },
+  { value: CONTENT_TYPE.TAB_CONTACT, label: 'Liên hệ' },
+  { value: CONTENT_TYPE.TAB_COMMON, label: 'Chung' },
 ];
 
 export const BANNER_WEB = [
@@ -115,7 +121,7 @@ export const TRAVEL_GUIDE = [
   },
   {
     image:
-      'https://hanoitourist.vn/sites/default/files/styles/large/public/2025/07/Hawa-Mahal_Jaipur.jpg?itok=BaOVex_u',
+      'https://hanoitouristhíct.vn/sites/default/files/styles/large/public/2025/07/Hawa-Mahal_Jaipur.jpg?itok=BaOVex_u',
   },
   {
     image:

@@ -3,12 +3,15 @@
     {{ isOriginalLanguage ? '(Bản gốc)' : '(Bản dịch)' }}
   </div>
   <div class="flex gap-2">
+    <!--    Input search   -->
     <app-header-input-search [(value)]="searchKey"></app-header-input-search>
+    <!--    Select Language   -->
     <app-language-selection
       [(selectedLanguage)]="selectedLanguage"
       (selectedLanguageChange)="
         handleSelectedLanguageChange()
       "></app-language-selection>
+    <!--    Button Add   -->
     <button nz-button (click)="openCreateOrUpdate()">
       <nz-icon nzType="plus" />
       Thêm mới

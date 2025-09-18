@@ -105,7 +105,6 @@ export class ListContentComponent implements OnInit {
         },
       });
   }
-
   handleDelete(id: string | number) {
     this.modal.confirm({
       nzTitle: 'Xác nhận xóa?',

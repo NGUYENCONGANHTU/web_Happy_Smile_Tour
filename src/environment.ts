@@ -1,6 +1,6 @@
 export const environment = {
-  API_URL: 'http://26.9.112.19:8080/api',
-  // API_URL: 'http://10.0.40.184:8080/api',
-  API_URL_AUTH: 'http://26.9.112.19:8080/api/auth',
-  // API_URL_AUTH: 'http://10.0.40.184:8080/api/auth',
+  // API_URL: 'http://26.9.112.19:8080/api',
+  API_URL: 'http://10.0.40.184:8080/api',
+  // API_URL_AUTH: 'http://26.9.112.19:8080/api/auth',
+  API_URL_AUTH: 'http://10.0.40.184:8080/api/auth',
 };

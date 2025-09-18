@@ -112,12 +112,22 @@ export class BannerFormComponent implements OnChanges {
     }
   }
 
-  beforeUpload = (_file: NzUploadFile, fileList: NzUploadFile[]) => {
-    const oldFileList = fileList;
+  beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]) => {
+    // Lấy danh sách files hiện tại từ nzFileList của upload component
+    const currentFiles = [...this.fileList.value];
+    const newFile = file;
+
+    // Xóa FormArray hiện tại
     this.fileList.clear();
-    oldFileList.forEach(file => {
-      this.fileList.push(this.fb.control(file));
+
+    // Thêm lại tất cả files cũ
+    currentFiles.forEach(existingFile => {
+      this.fileList.push(this.fb.control(existingFile));
     });
+
+    // Thêm file mới
+    this.fileList.push(this.fb.control(newFile));
+
     return false;
   };
 
