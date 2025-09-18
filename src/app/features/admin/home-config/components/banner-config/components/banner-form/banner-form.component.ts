@@ -22,6 +22,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { BannerConfigService } from '../../banner-config.service';
 import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
 import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers/common.helper';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-banner-form',
@@ -37,6 +38,7 @@ import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers/c
     NzInputModule,
     ReactiveFormsModule,
     NzButtonModule,
+    NzModalModule,
   ],
 })
 export class BannerFormComponent implements OnChanges {
@@ -45,8 +47,12 @@ export class BannerFormComponent implements OnChanges {
 
   fb = inject(FormBuilder);
   bannerService = inject(BannerConfigService);
+  modal = inject(NzModalService);
 
   submitting = false;
+
+  previewImage: string | undefined = '';
+  previewVisible = false;
 
   bannerForm: FormGroup = this.fb.group({
     id: [null],
@@ -90,45 +96,49 @@ export class BannerFormComponent implements OnChanges {
         this.bannerService
           .updateBannerById(formValues?.id, formValues)
           .subscribe({
-            next: _res => {
-              this.submitting = false;
-            },
-            error: () => {
-              this.submitting = false;
-            },
+            next: _res => (this.submitting = false),
+            error: () => (this.submitting = false),
           });
       } else {
         this.bannerService
           .updateBannerTransById(formValues?.id, formValues)
           .subscribe({
-            next: _res => {
-              this.submitting = false;
-            },
-            error: () => {
-              this.submitting = false;
-            },
+            next: _res => (this.submitting = false),
+            error: () => (this.submitting = false),
           });
       }
     }
   }
 
+  // 👉 cải tiến upload ảnh
   beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]) => {
-    // Lấy danh sách files hiện tại từ nzFileList của upload component
-    const currentFiles = [...this.fileList.value];
-    const newFile = file;
-
-    // Xóa FormArray hiện tại
-    this.fileList.clear();
-
-    // Thêm lại tất cả files cũ
-    currentFiles.forEach(existingFile => {
-      this.fileList.push(this.fb.control(existingFile));
+    this.getBase64(file as any, (img: string) => {
+      file.thumbUrl = img;
+      this.fileList.push(this.fb.control(file));
     });
+    return false; // ngăn upload tự động
+  };
 
-    // Thêm file mới
-    this.fileList.push(this.fb.control(newFile));
+  // helper đọc file base64
+  private getBase64(file: File, callback: (img: string) => void): void {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result as string));
+    reader.readAsDataURL(file);
+  }
 
-    return false;
+  handlePreview = async (file: NzUploadFile) => {
+    this.previewImage = file.url || (file.thumbUrl as string);
+    this.previewVisible = true;
+  };
+
+  handleRemove = (file: NzUploadFile) => {
+    const index = this.fileList.value.findIndex(
+      (f: NzUploadFile) => f.uid === file.uid
+    );
+    if (index > -1) {
+      this.fileList.removeAt(index);
+    }
+    return true;
   };
 
   get fileList() {

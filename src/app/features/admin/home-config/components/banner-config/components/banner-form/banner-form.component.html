@@ -6,12 +6,15 @@
   <div class="flex justify-between">
     <h1>
       {{ title }}
-      <span class="italic text-gray-500 font-normal">{{
-        isOriginalLanguage ? '(Bản gốc)' : '(Bản dịch)'
-      }}</span>
+      <span class="italic text-gray-500 font-normal">
+        {{ isOriginalLanguage ? '(Bản gốc)' : '(Bản dịch)' }}
+      </span>
     </h1>
-    <button nz-button nzType="primary" type="submit">Lưu</button>
+    <button nz-button nzType="primary" type="submit" [nzLoading]="submitting">
+      Lưu
+    </button>
   </div>
+
   <nz-form-item>
     <nz-form-label nzRequired>Tiêu đề</nz-form-label>
     <nz-form-control
@@ -37,6 +40,8 @@
           nzListType="picture-card"
           [nzFileList]="fileList.value"
           [nzBeforeUpload]="beforeUpload"
+          [nzRemove]="handleRemove"
+          [nzPreview]="handlePreview"
           [nzMultiple]="true"
           [nzShowUploadList]="true">
           <div>
@@ -60,3 +65,11 @@
     </nz-form-control>
   </nz-form-item>
 </form>
+
+<!-- Modal preview ảnh -->
+<nz-modal
+  [(nzVisible)]="previewVisible"
+  [nzFooter]="null"
+  (nzOnCancel)="previewVisible = false">
+  <img [src]="previewImage" alt="Preview" class="w-full" />
+</nz-modal>
