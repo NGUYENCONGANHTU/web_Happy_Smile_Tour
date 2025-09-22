@@ -62,9 +62,24 @@ export class PartnerConfigComponent implements OnInit {
     this.partnerService.updatePartners(formData).subscribe();
   }
 
-  beforeUpload = (_file: NzUploadFile, fileList: NzUploadFile[]) => {
-    this.fileList = [...this.fileList, ...fileList];
-    return false;
+  beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]) => {
+    this.getBase64(file as any, (img: string) => {
+      file.thumbUrl = img; // hiện preview
+      this.fileList = [...this.fileList, file];
+    });
+    return false; // ngăn upload tự động
   };
+
+  handleRemove = (file: NzUploadFile) => {
+    this.fileList = this.fileList.filter(f => f.uid !== file.uid);
+    return true;
+  };
+
+  // convert sang base64 để preview
+  getBase64(file: File, callback: (img: string) => void) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result as string));
+    reader.readAsDataURL(file);
+  }
   protected readonly selectedLanguage = ORIGINAL_LANGUAGE;
 }
