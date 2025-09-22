@@ -11,7 +11,6 @@ import { TravelGuideResDTO } from '../../../../interface';
 import { DateTimeFormatPipe } from '../../../shared/pipes/date-time-format.pipe';
 import {
   TranslationResponse,
-  TranslationSection,
   TranslationService,
 } from '../translation.service';
 import { TranslatePipe } from '../translatepipe';
@@ -60,8 +59,5 @@ export class TabTravelGuideDetailComponent implements OnInit {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
     });
-  }
-  getTrans(key: TranslationSection, value: string, fallback = ''): string {
-    return this.dataTrans?.[key]?.[value] ?? fallback;
   }
 }

@@ -22,7 +22,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { BannerConfigService } from '../../banner-config.service';
 import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
 import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers/common.helper';
-import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-banner-form',
@@ -38,7 +37,6 @@ import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
     NzInputModule,
     ReactiveFormsModule,
     NzButtonModule,
-    NzModalModule,
   ],
 })
 export class BannerFormComponent implements OnChanges {
@@ -47,12 +45,8 @@ export class BannerFormComponent implements OnChanges {
 
   fb = inject(FormBuilder);
   bannerService = inject(BannerConfigService);
-  modal = inject(NzModalService);
 
   submitting = false;
-
-  previewImage: string | undefined = '';
-  previewVisible = false;
 
   bannerForm: FormGroup = this.fb.group({
     id: [null],
@@ -88,6 +82,7 @@ export class BannerFormComponent implements OnChanges {
       });
   }
 
+  /* Hàm submit và upload form */
   onSubmit() {
     if (this.bannerForm.valid) {
       this.submitting = true;
@@ -96,41 +91,37 @@ export class BannerFormComponent implements OnChanges {
         this.bannerService
           .updateBannerById(formValues?.id, formValues)
           .subscribe({
-            next: _res => (this.submitting = false),
-            error: () => (this.submitting = false),
+            next: _res => {
+              this.submitting = false;
+            },
+            error: () => {
+              this.submitting = false;
+            },
           });
       } else {
         this.bannerService
           .updateBannerTransById(formValues?.id, formValues)
           .subscribe({
-            next: _res => (this.submitting = false),
-            error: () => (this.submitting = false),
+            next: _res => {
+              this.submitting = false;
+            },
+            error: () => {
+              this.submitting = false;
+            },
           });
       }
     }
   }
 
-  // 👉 cải tiến upload ảnh
+  /* Xử lý hình ảnh upload */
   beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]) => {
     this.getBase64(file as any, (img: string) => {
       file.thumbUrl = img;
       this.fileList.push(this.fb.control(file));
     });
-    return false; // ngăn upload tự động
+    return false;
   };
-
-  // helper đọc file base64
-  private getBase64(file: File, callback: (img: string) => void): void {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result as string));
-    reader.readAsDataURL(file);
-  }
-
-  handlePreview = async (file: NzUploadFile) => {
-    this.previewImage = file.url || (file.thumbUrl as string);
-    this.previewVisible = true;
-  };
-
+  /* Hàm xóa hình ảnh */
   handleRemove = (file: NzUploadFile) => {
     const index = this.fileList.value.findIndex(
       (f: NzUploadFile) => f.uid === file.uid
@@ -140,6 +131,12 @@ export class BannerFormComponent implements OnChanges {
     }
     return true;
   };
+  /* Hàm xử lý hình ảnh base64 */
+  getBase64(file: File, callback: (img: string) => void): void {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result as string));
+    reader.readAsDataURL(file);
+  }
 
   get fileList() {
     return this.bannerForm.controls['images'] as FormArray;
