@@ -28,7 +28,7 @@ export class BannerConfigService {
         value.forEach(v => {
           if (key === 'images') {
             if (v?.id) {
-              formData.append('ids', v.id);
+              formData.append('idsFile', v.id);
             } else {
               formData.append(key, v);
             }
