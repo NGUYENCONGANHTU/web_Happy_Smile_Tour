@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap } from 'rxjs';
@@ -10,7 +10,6 @@ interface IUserReqDTO {
 }
 
 interface ILoginResDTO {
-  token: string;
   role: string;
   userName: string;
 }
@@ -19,7 +18,6 @@ interface ILoginResDTO {
   providedIn: 'root',
 })
 export class AuthService {
-  private accessTokenKey = 'access_token';
   private userKey = 'user_info';
   private avatarKey = 'user_avatar';
   private readonly url = environment.API_URL_AUTH;
@@ -28,11 +26,8 @@ export class AuthService {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  private access_token = signal<string | null>(
-    localStorage.getItem(this.accessTokenKey)
-  );
   userName = signal<string | null>(localStorage.getItem(this.userKey));
-  isAuthenticated = computed(() => !!this.access_token());
+  isAuthenticated = signal<boolean>(false); // dựa trên cookie session
 
   avatar = signal<string | null>(localStorage.getItem(this.avatarKey) ?? null);
 
@@ -41,39 +36,28 @@ export class AuthService {
       .post<ILoginResDTO>(this.url + '/login', userData)
       .pipe(
         switchMap(res => {
-          const [accessToken, user] = [res?.token ?? '', res?.userName ?? ''];
-          localStorage.setItem(this.accessTokenKey, accessToken);
+          const user = res?.userName ?? '';
           localStorage.setItem(this.userKey, JSON.stringify(user));
-          this.access_token.set(accessToken);
           this.userName.set(user);
-          // if (this.user()?.username !== 'admin') {
-          //   this.getAvatar();
-          // }
+          this.isAuthenticated.set(true);
           return of(true);
         })
       );
   }
 
   logout(returnUrl?: string): void {
-    localStorage.removeItem(this.accessTokenKey);
-    localStorage.removeItem(this.userKey);
-    this.access_token.set(null);
-    this.avatar.set(null);
-    this.router.navigate(['/auth'], {
-      queryParams: { returnUrl: returnUrl },
-    });
+    this.httpClient
+      .post(this.url + '/logout', {}, { withCredentials: true })
+      .subscribe({
+        next: () => {
+          localStorage.removeItem(this.userKey);
+          this.userName.set(null);
+          this.avatar.set(null);
+          this.isAuthenticated.set(false);
+          this.router.navigate(['/auth'], {
+            queryParams: { returnUrl: returnUrl },
+          });
+        },
+      });
   }
-
-  // getAvatar() {
-  //   this.httpClient
-  //     .get<ResponseBase<string>>(environment.apiUrl + '/employee/avatar')
-  //     .subscribe({
-  //       next: res => {
-  //         if (res.data) {
-  //           this.avatar.set(res.data);
-  //           localStorage.setItem(this.avatarKey, res.data);
-  //         }
-  //       },
-  //     });
-  // }
 }
