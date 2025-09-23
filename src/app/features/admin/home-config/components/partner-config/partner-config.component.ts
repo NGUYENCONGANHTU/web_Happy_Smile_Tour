@@ -10,7 +10,7 @@ import { PartnerConfigService } from './partner-config.service';
 import { parseToNzUploadFile } from '../../../../../shared/utils/helpers/common.helper';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.constant';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-partner-config',
   templateUrl: 'partner-config.component.html',
@@ -26,7 +26,7 @@ import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.consta
 })
 export class PartnerConfigComponent implements OnInit {
   partnerService = inject(PartnerConfigService);
-
+  message = inject(NzMessageService);
   fetching = false;
 
   fileList: NzUploadFile[] = [];
@@ -59,7 +59,15 @@ export class PartnerConfigComponent implements OnInit {
         formData.append('image', file as unknown as File);
       }
     });
-    this.partnerService.updatePartners(formData).subscribe();
+
+    this.partnerService.updatePartners(formData).subscribe({
+      next: () => {
+        this.message.success('Cập nhật thành công');
+      },
+      error: () => {
+        this.message.error('Cập nhật không thành công');
+      },
+    });
   }
 
   beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]) => {

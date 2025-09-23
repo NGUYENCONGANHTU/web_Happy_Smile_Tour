@@ -22,7 +22,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { BannerConfigService } from '../../banner-config.service';
 import { ORIGINAL_LANGUAGE } from '../../../../../../../shared/constants/global.constant';
 import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers/common.helper';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-banner-form',
   templateUrl: 'banner-form.component.html',
@@ -42,7 +42,7 @@ import { parseToNzUploadFile } from '../../../../../../../shared/utils/helpers/c
 export class BannerFormComponent implements OnChanges {
   @Input({ required: true }) type!: 'HOME' | 'INTRO' | 'CONTACT';
   @Input() langCode!: string;
-
+  message = inject(NzMessageService);
   fb = inject(FormBuilder);
   bannerService = inject(BannerConfigService);
 
@@ -93,9 +93,11 @@ export class BannerFormComponent implements OnChanges {
           .subscribe({
             next: _res => {
               this.submitting = false;
+              this.message.create('success', 'Cập nhật thành công');
             },
             error: () => {
               this.submitting = false;
+              this.message.error('Cập nhật không thành công');
             },
           });
       } else {
@@ -104,9 +106,11 @@ export class BannerFormComponent implements OnChanges {
           .subscribe({
             next: _res => {
               this.submitting = false;
+              this.message.create('success', 'Cập nhật thành công');
             },
             error: () => {
               this.submitting = false;
+              this.message.error('Cập nhật không thành công');
             },
           });
       }

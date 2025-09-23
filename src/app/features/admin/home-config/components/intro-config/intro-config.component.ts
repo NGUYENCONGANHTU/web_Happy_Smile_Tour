@@ -19,6 +19,7 @@ import {
   sanitizeUrl,
 } from '../../../../../shared/utils/helpers/common.helper';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-intro-config',
@@ -38,7 +39,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 export class IntroConfigComponent implements OnInit {
   fb = inject(FormBuilder);
   introConfigService = inject(IntroConfigService);
-
+  message = inject(NzMessageService);
   submitting = false;
 
   selectedLanguage = ORIGINAL_LANGUAGE;
@@ -144,9 +145,11 @@ export class IntroConfigComponent implements OnInit {
             .subscribe({
               next: () => {
                 this.submitting = false;
+                this.message.create('success', 'Cập nhật thành công');
               },
               error: () => {
                 this.submitting = false;
+                this.message.error('Cập nhật không thành công');
               },
             });
         }
@@ -185,9 +188,11 @@ export class IntroConfigComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this.submitting = false;
+                  this.message.create('success', 'Cập nhật thành công');
                 },
                 error: () => {
                   this.submitting = false;
+                  this.message.error('Cập nhật không thành công');
                 },
               });
           } else {
@@ -201,9 +206,11 @@ export class IntroConfigComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this.submitting = false;
+                  this.message.create('success', 'Thêm thành công');
                 },
                 error: () => {
                   this.submitting = false;
+                  this.message.error('Thêm không thành công');
                 },
               });
           }
@@ -217,7 +224,14 @@ export class IntroConfigComponent implements OnInit {
                   title: control.value.title,
                   languageCode: this.selectedLanguage,
                 })
-                .subscribe();
+                .subscribe({
+                  next: () => {
+                    this.message.create('success', 'Cập nhật thành công');
+                  },
+                  error: () => {
+                    this.message.error('Cập nhật không thành công');
+                  },
+                });
             } else {
               this.introConfigService
                 .createIntroTitleTrans({
@@ -225,7 +239,14 @@ export class IntroConfigComponent implements OnInit {
                   title: control.value.title,
                   languageCode: this.selectedLanguage,
                 })
-                .subscribe();
+                .subscribe({
+                  next: () => {
+                    this.message.create('success', 'Thêm thành công');
+                  },
+                  error: () => {
+                    this.message.error('Thêm không thành công');
+                  },
+                });
             }
           }
         });
@@ -238,7 +259,14 @@ export class IntroConfigComponent implements OnInit {
                   advertiseId: control.value?.advertiseId,
                   languageCode: this.selectedLanguage,
                 })
-                .subscribe();
+                .subscribe({
+                  next: () => {
+                    this.message.create('success', 'Cập nhật thành công');
+                  },
+                  error: () => {
+                    this.message.error('Cập nhật không thành công');
+                  },
+                });
             } else {
               this.introConfigService
                 .createAdvertisementTrans({
@@ -246,7 +274,14 @@ export class IntroConfigComponent implements OnInit {
                   advertiseId: control.value?.advertiseId,
                   languageCode: this.selectedLanguage,
                 })
-                .subscribe();
+                .subscribe({
+                  next: () => {
+                    this.message.create('success', 'Thêm thành công');
+                  },
+                  error: () => {
+                    this.message.error('Thêm không thành công');
+                  },
+                });
             }
           }
         });

@@ -12,6 +12,7 @@ import { ORIGINAL_LANGUAGE } from '../../../../../shared/constants/global.consta
 import { FooterConfigService } from './footer-config.service';
 import { LanguageSelectionComponent } from '../../../../../shared/components/language-selection/language-selection.component';
 import { CkeditorWrapperComponent } from '../../../../../shared/components/ckeditor-wrapper/ckeditor-wrapper.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-footer-config',
@@ -30,7 +31,7 @@ import { CkeditorWrapperComponent } from '../../../../../shared/components/ckedi
 export class FooterConfigComponent implements OnInit {
   fb = inject(FormBuilder);
   footerService = inject(FooterConfigService);
-
+  message = inject(NzMessageService);
   submitting = false;
   fetching = false;
 
@@ -83,9 +84,11 @@ export class FooterConfigComponent implements OnInit {
           .subscribe({
             next: () => {
               this.submitting = false;
+              this.message.create('success', 'Cập nhật thành công');
             },
             error: () => {
               this.submitting = false;
+              this.message.error('Cập nhật không thành công');
             },
           });
       } else {
@@ -97,9 +100,11 @@ export class FooterConfigComponent implements OnInit {
           .subscribe({
             next: () => {
               this.submitting = false;
+              this.message.create('success', 'Cập nhật thành công');
             },
             error: () => {
               this.submitting = false;
+              this.message.error('Cập nhật không thành công');
             },
           });
       }
