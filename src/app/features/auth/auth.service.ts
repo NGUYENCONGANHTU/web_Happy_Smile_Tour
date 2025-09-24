@@ -10,13 +10,13 @@ interface IUserReqDTO {
 }
 
 interface ILoginResDTO {
-  token: string;
+  accessToken: string;
   role: string;
   userName: string;
 }
 
 interface IRefreshResDTO {
-  access_token: string;
+  accessToken: string;
 }
 
 @Injectable({
@@ -45,7 +45,10 @@ export class AuthService {
       .post<ILoginResDTO>(this.url + '/login', userData)
       .pipe(
         switchMap(res => {
-          const [accessToken, user] = [res?.token ?? '', res?.userName ?? ''];
+          const [accessToken, user] = [
+            res?.accessToken ?? '',
+            res?.userName ?? '',
+          ];
           localStorage.setItem(this.accessTokenKey, accessToken);
           localStorage.setItem(this.userKey, JSON.stringify(user));
           this.access_token.set(accessToken);

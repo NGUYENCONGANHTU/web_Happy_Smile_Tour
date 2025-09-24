@@ -21,11 +21,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError(error => {
       if (error instanceof HttpErrorResponse && error.status === 401) {
         return authService.refreshToken().pipe(
-          switchMap(({ access_token }) => {
-            localStorage.setItem('access_token', access_token);
+          switchMap(({ accessToken }) => {
+            localStorage.setItem('access_token', accessToken);
             const retryReq = req.clone({
               setHeaders: {
-                Authorization: `Bearer ${access_token}`,
+                Authorization: `Bearer ${accessToken}`,
               },
             });
             return next(retryReq);
