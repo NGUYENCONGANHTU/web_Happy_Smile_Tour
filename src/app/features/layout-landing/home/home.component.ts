@@ -8,7 +8,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
-import { NgStyle } from '@angular/common';
+import { NgOptimizedImage, NgStyle } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FeatureActionComponent } from './feature-action/feature-action.component';
 import { TabsForeignTourComponent } from './tabs-foreign-tour/tabs-foreign-tour.component';
@@ -57,6 +57,7 @@ import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
     CustomerFeedbackComponent,
     FeatureCustomerComponent,
     SafeHtmlPipe,
+    NgOptimizedImage,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
