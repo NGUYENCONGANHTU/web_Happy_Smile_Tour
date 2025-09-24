@@ -59,18 +59,20 @@ export class AuthService {
   }
 
   logout(returnUrl?: string): void {
-    this.httpClient.post(this.url + '/logout', {}).subscribe({
-      next: () => {
-        localStorage.removeItem(this.accessTokenKey);
-        localStorage.removeItem(this.userKey);
-        this.access_token.set(null);
-        this.userName.set(null);
-        this.avatar.set(null);
-        this.router.navigate(['/auth'], {
-          queryParams: { returnUrl: returnUrl },
-        });
-      },
-    });
+    this.httpClient
+      .post(this.url + '/logout', {}, { withCredentials: true })
+      .subscribe({
+        next: () => {
+          localStorage.removeItem(this.accessTokenKey);
+          localStorage.removeItem(this.userKey);
+          this.access_token.set(null);
+          this.userName.set(null);
+          this.avatar.set(null);
+          this.router.navigate(['/auth'], {
+            queryParams: { returnUrl: returnUrl },
+          });
+        },
+      });
   }
 
   refreshToken() {
