@@ -25,14 +25,14 @@
     <nz-slider
       [nzRange]="true"
       [nzMin]="0"
-      [nzMax]="200000000"
-      [nzStep]="1000000"
+      [nzMax]="max"
+      [nzStep]="step"
       [(ngModel)]="rangeValue"
       nzTooltipVisible="never">
     </nz-slider>
 
     <div class="font-medium text-center text-[16px]">
-      {{ rangeValue[0] | number }} - {{ rangeValue[1] | number }} VNĐ
+      {{ rangeValue[0] | number }} - {{ rangeValue[1] | number }} {{ unit }}
     </div>
 
     <!--============= Chọn điểm đi ===================-->

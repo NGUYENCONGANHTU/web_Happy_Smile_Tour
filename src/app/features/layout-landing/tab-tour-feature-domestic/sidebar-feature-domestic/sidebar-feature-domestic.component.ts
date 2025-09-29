@@ -46,9 +46,13 @@ export class SidebarFeatureDomesticComponent implements OnInit {
 
   @Output() filtersChanged = new EventEmitter<any>();
 
-  rangeValue: number[] = [0, 200000000];
   departure = '';
   destination = '';
+  max = 200000000;
+  step = 1000000;
+  unit = 'VNĐ';
+  rangeValue: number[] = [0, this.max];
+
   dataStartingPointDomestic: LocationResDTO[] = [];
 
   // dữ liệu translation
@@ -74,7 +78,7 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   }
 
   resetFilters(): void {
-    this.rangeValue = [0, 200000000];
+    this.rangeValue = [0, this.max];
     this.departure = '';
     this.destination = '';
 
@@ -96,6 +100,18 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
+      // Lấy dữ liệụ bản dịch của thanh slider
+      const foreign: Record<string, string> | undefined =
+        this.dataTrans?.tab_domestic;
+      if (foreign) {
+        this.max = Number(foreign['max']);
+        this.step = Number(foreign['step']);
+        this.unit = foreign['unit'];
+
+        // reset lại Slider value theo max mới
+        this.rangeValue = [0, this.max];
+        console.log('Max:', this.max, 'Step:', this.step, 'Unit:', this.unit); // Kiểm tra giá trị
+      }
     });
   }
 

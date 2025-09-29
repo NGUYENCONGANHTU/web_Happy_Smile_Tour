@@ -14,6 +14,7 @@ import {
   TranslationService,
 } from '../../translation.service';
 import { TranslatePipe } from '../../translatepipe';
+import { LanguageService } from '../../../../shared/services/language.service';
 
 @Component({
   selector: 'app-sidebar-feature-foreign',
@@ -44,13 +45,17 @@ import { TranslatePipe } from '../../translatepipe';
 export class SidebarFeatureForeignComponent implements OnInit {
   appService = inject(AppService);
   @Output() filtersChanged = new EventEmitter<any>();
-
-  rangeValue: number[] = [0, 200000000];
+  languageService = inject(LanguageService); // language Service
   departure = '';
   destination = '';
 
+  max = 200000000;
+  step = 1000000;
+  unit = 'VNĐ';
+  rangeValue: number[] = [0, this.max];
+
   translate: any;
-  tabs: any[] = [];
+  tabs: { tabName: string; href: string }[] = [];
 
   dataStartingPointDomestic: LocationResDTO[] = [];
   dataStartingPointForeign: LocationResDTO[] = [];
@@ -73,7 +78,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
   }
 
   resetFilters(): void {
-    this.rangeValue = [0, 200000000];
+    this.rangeValue = [0, this.max];
     this.departure = '';
     this.destination = '';
 
@@ -103,6 +108,18 @@ export class SidebarFeatureForeignComponent implements OnInit {
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
+      //
+      const foreign: Record<string, string> | undefined =
+        this.dataTrans?.tab_foreign;
+      if (foreign) {
+        this.max = Number(foreign['max']);
+        this.step = Number(foreign['step']);
+        this.unit = foreign['unit'];
+
+        // reset lại Slider value theo max mới
+        this.rangeValue = [0, this.max];
+        console.log('Max:', this.max, 'Step:', this.step, 'Unit:', this.unit); // Kiểm tra giá trị
+      }
     });
   }
   setTabs() {
