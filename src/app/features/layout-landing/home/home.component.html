@@ -1,17 +1,14 @@
 <section>
   @for (data of dataBannerHome; track data.id) {
     <div class="relative h-[480px] overflow-hidden">
-      <nz-carousel nzAutoPlay class="absolute inset-0 z-0" [nzDots]="false">
-        @for (image of data.images; track $index) {
-          <div
-            nz-carousel-content
-            [ngStyle]="{
-              'background-image': 'url(' + sanitizeUrl(image.storagePath) + ')',
-              'object-fit': 'cover',
-              'background-position': 'center',
-              'background-size': 'cover',
-              height: '100%',
-            }"></div>
+      <nz-carousel nzAutoPlay [nzDots]="false">
+        @for (image of data.images; track image.id) {
+          <div nz-carousel-content>
+            <img
+              [src]="image.storagePath"
+              alt="banner-tourist"
+              class="w-full h-full bg-center bg-cover object-cover" />
+          </div>
         }
       </nz-carousel>
 

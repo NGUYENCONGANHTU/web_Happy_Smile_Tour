@@ -2,19 +2,15 @@
   <!-- ======================= Banner giới thiệu ======================= -->
   @for (data of dataBannerIntroduce; track data.id) {
     @for (image of data.images; track image.id) {
-      <div
-        class="banner-introduce-service"
-        [ngStyle]="{
-          'background-image': 'url(' + formatImage(image.storagePath) + ')',
-        }"
-        style="
-          width: auto;
-          height: 480px;
-          background-position: center;
-          background-size: cover;
-        ">
+      <div class="banner-introduce-service relative w-auto h-[480px]">
+        <!-- Ảnh nền -->
+        <img
+          [src]="image.storagePath"
+          alt="banner-about"
+          class="absolute top-0 left-0 w-full h-full object-cover" />
+        <!-- Overlay + nội dung -->
         <div
-          class="flex flex-col justify-center items-center text-center h-full text-white bg-black/10">
+          class="flex flex-col justify-center items-center text-center h-full text-white bg-black/10 relative z-10">
           <div
             class="text-[45px] font-bold"
             [innerHTML]="data?.title | safeHtml"></div>
@@ -22,6 +18,7 @@
       </div>
     }
   }
+
   <!-- ======================= Nội dung dưới Banner ======================= -->
   <div class="main-content">
     <div class="why-choose-us">
