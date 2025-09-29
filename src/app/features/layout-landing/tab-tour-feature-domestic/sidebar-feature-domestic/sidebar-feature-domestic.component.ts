@@ -41,10 +41,10 @@ import { TranslatePipe } from '../../translatepipe';
   ],
 })
 export class SidebarFeatureDomesticComponent implements OnInit {
+  @Output() filtersChanged = new EventEmitter<any>();
+  // service
   appService = inject(AppService);
   transitionService = inject(TranslationService);
-
-  @Output() filtersChanged = new EventEmitter<any>();
 
   departure = '';
   destination = '';
@@ -53,20 +53,13 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   unit = 'VNĐ';
   rangeValue: number[] = [0, this.max];
 
-  dataStartingPointDomestic: LocationResDTO[] = [];
-
-  // dữ liệu translation
-  dataTrans: TranslationResponse['data'] | null = null;
-
-  // Tabs hiển thị
-  tabs: { tabName: string; href: string }[] = [];
-
   ngOnInit() {
     this.getDataStartingPoint();
     this.getDataTransitionTour();
     this.setTabs();
   }
 
+  // Hàm reset filter
   searchTour(): void {
     const formData = {
       min: this.rangeValue[0],
@@ -77,6 +70,7 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.filtersChanged.emit(formData);
   }
 
+  // Hàm reset filter
   resetFilters(): void {
     this.rangeValue = [0, this.max];
     this.departure = '';
@@ -91,12 +85,17 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.filtersChanged.emit(defaultData);
   }
 
+  // Hàm lấy điểm đến
+  dataStartingPointDomestic: LocationResDTO[] = [];
   getDataStartingPoint() {
     this.appService.getAlLDataLocationDomestic().subscribe(res => {
       this.dataStartingPointDomestic = res.data;
     });
   }
 
+  // Hàm lấy bản dịch
+  // dữ liệu translation
+  dataTrans: TranslationResponse['data'] | null = null;
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
@@ -115,6 +114,8 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     });
   }
 
+  // Tabs hiển thị side-bar
+  tabs: { tabName: string; href: string }[] = [];
   setTabs() {
     this.tabs = [
       { tabName: 'domestic', href: '/tour-feature-domestic' },

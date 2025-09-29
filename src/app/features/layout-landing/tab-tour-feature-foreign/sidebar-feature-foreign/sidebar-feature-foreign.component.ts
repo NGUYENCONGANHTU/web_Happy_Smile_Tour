@@ -43,22 +43,20 @@ import { LanguageService } from '../../../../shared/services/language.service';
   ],
 })
 export class SidebarFeatureForeignComponent implements OnInit {
-  appService = inject(AppService);
   @Output() filtersChanged = new EventEmitter<any>();
+  // service
+  appService = inject(AppService);
   languageService = inject(LanguageService); // language Service
+
+  // giá trị lọc
   departure = '';
   destination = '';
-
   max = 200000000;
   step = 1000000;
   unit = 'VNĐ';
   rangeValue: number[] = [0, this.max];
 
   translate: any;
-  tabs: { tabName: string; href: string }[] = [];
-
-  dataStartingPointDomestic: LocationResDTO[] = [];
-  dataStartingPointForeign: LocationResDTO[] = [];
 
   ngOnInit() {
     this.getDataStartingPointDomestic();
@@ -66,7 +64,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
     this.getDataTransitionTour();
     this.setTabs();
   }
-
+  // Hàm lọc tour
   searchTour(): void {
     const formData = {
       min: this.rangeValue[0],
@@ -77,6 +75,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
     this.filtersChanged.emit(formData);
   }
 
+  // Hàm reset filter
   resetFilters(): void {
     this.rangeValue = [0, this.max];
     this.departure = '';
@@ -90,25 +89,28 @@ export class SidebarFeatureForeignComponent implements OnInit {
     });
   }
 
+  // Hàm lấy điểm đến
+  dataStartingPointDomestic: LocationResDTO[] = [];
   getDataStartingPointDomestic() {
     this.appService.getAlLDataLocationDomestic().subscribe(res => {
       this.dataStartingPointDomestic = res.data;
     });
   }
 
+  // Hàm lấy điểm đi
+  dataStartingPointForeign: LocationResDTO[] = [];
   getDataStartingPointForeign() {
     this.appService.getAlLDataLocationInternational().subscribe(res => {
       this.dataStartingPointForeign = res.data;
     });
   }
+
   // service Language
   transitionService = inject(TranslationService);
   dataTrans: TranslationResponse['data'] | null = null;
-
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
-      //
       const foreign: Record<string, string> | undefined =
         this.dataTrans?.tab_foreign;
       if (foreign) {
@@ -122,6 +124,9 @@ export class SidebarFeatureForeignComponent implements OnInit {
       }
     });
   }
+
+  // Tabs hiển thị side-bar
+  tabs: { tabName: string; href: string }[] = [];
   setTabs() {
     this.tabs = [
       { tabName: 'domestic', href: '/tour-feature-domestic' },
