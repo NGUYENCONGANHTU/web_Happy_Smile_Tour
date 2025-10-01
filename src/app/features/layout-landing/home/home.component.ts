@@ -8,7 +8,6 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
-import { NgStyle } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FeatureActionComponent } from './feature-action/feature-action.component';
 import { TabsForeignTourComponent } from './tabs-foreign-tour/tabs-foreign-tour.component';
@@ -28,9 +27,6 @@ import {
   PartnerResDTO,
   TravelGuideResDTO,
 } from '../../../../interface';
-import { BANNER_WEB } from '../../../shared/constants/global.constant';
-import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   TranslationResponse,
   TranslationSection,
@@ -47,7 +43,6 @@ import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
     NzButtonModule,
     NzInputModule,
     FormsModule,
-    NgStyle,
     FeatureActionComponent,
     TabsForeignTourComponent,
     TabsDomesticTourComponent,
@@ -85,8 +80,6 @@ export class HomeComponent implements OnInit {
   //service
   appService = inject(AppService);
 
-  array = BANNER_WEB;
-
   ngOnInit() {
     this.getAllData();
     this.getAlLDataTitle();
@@ -97,8 +90,6 @@ export class HomeComponent implements OnInit {
     this.getAllDataPartner();
     this.getDataTransitionTour();
   }
-  // Hàm biến đổi url từ BE trả về
-  sanitizeUrl = sanitizeUrl;
 
   /*========================== Home Banner =============================*/
   dataBannerHome: BannerResDTO[] = [];
@@ -194,7 +185,6 @@ export class HomeComponent implements OnInit {
 
   /*========================== KHÁCH HÀNG NÓI GÌ VỀ CHÚNG TÔI =============================*/
   dataCustomerFeedback: CommentFeedbackResDTO[] = [];
-
   getAllDataCommentFeedBack() {
     this.appService.getAllDataCommentFeedback().subscribe(res => {
       if (res?.data) {
@@ -216,15 +206,10 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  private sanitizer = inject(DomSanitizer);
-  sanitizeHtml(content: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(content);
-  }
 
-  // service Language
+  /* Hàm lấy bản dịch */
   transitionService = inject(TranslationService);
   dataTrans: TranslationResponse['data'] | null = null;
-
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;

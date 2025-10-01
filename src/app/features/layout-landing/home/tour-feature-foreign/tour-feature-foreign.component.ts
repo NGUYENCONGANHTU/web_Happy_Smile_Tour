@@ -24,12 +24,15 @@ import { TranslatePipe } from '../../translatepipe';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TourFeatureForeignComponent implements OnInit {
-  faStar = faStar;
-  formatImage = sanitizeUrl;
-  translate = inject(TranslateService);
-  languageService = inject(LanguageService);
   @Input() selectedTabForeignTour!: LocationResDTO;
   @Input() dataTour: FeatureResDTO[] = [];
+  // service
+  translate = inject(TranslateService);
+  languageService = inject(LanguageService);
+  // icon
+  faStar = faStar;
+  // change href data
+  formatImage = sanitizeUrl;
 
   ngOnInit() {
     this.translate.use(this.languageService.locale);

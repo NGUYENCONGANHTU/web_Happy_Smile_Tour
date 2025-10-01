@@ -56,7 +56,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
   unit = 'VNĐ';
   rangeValue: number[] = [0, this.max];
 
-  translate: any;
+  // translate: any;
 
   ngOnInit() {
     this.getDataStartingPointDomestic();
@@ -64,6 +64,7 @@ export class SidebarFeatureForeignComponent implements OnInit {
     this.getDataTransitionTour();
     this.setTabs();
   }
+
   // Hàm lọc tour
   searchTour(): void {
     const formData = {

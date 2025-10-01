@@ -5,7 +5,6 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AppService } from '../../../../app.service';
 import { BannerResDTO } from '../../../../interface';
-import { NgStyle } from '@angular/common';
 import {
   AdvertiseResDTO,
   IntroducePageResDTO,
@@ -13,7 +12,6 @@ import {
 } from './interface-introduce';
 import { sanitizeUrl } from '../../../shared/utils/helpers/common.helper';
 import { IntroduceService } from './introduce.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
 @Component({
   selector: 'app-introduce',
@@ -22,7 +20,6 @@ import { SafeHtmlPipe } from '../../../shared/utils/helpers/safe-html.pipe';
     NzCollapseModule,
     NzIconModule,
     NzCarouselModule,
-    NgStyle,
     SafeHtmlPipe,
   ],
   templateUrl: './introduce.component.html',
@@ -57,6 +54,7 @@ export class IntroduceComponent implements OnInit {
     this.getDataIntroPage();
     this.getDataStatistical();
   }
+
   // banner Gioi thieu
   dataBannerIntroduce: BannerResDTO[] = [];
   getDataBannerIntroducePage() {
@@ -104,10 +102,5 @@ export class IntroduceComponent implements OnInit {
         this.dataServiceIntroduce = [];
       }
     });
-  }
-
-  private sanitizer = inject(DomSanitizer);
-  sanitizeHtml(content: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

@@ -23,19 +23,23 @@ import { TranslatePipe } from '../../translatepipe';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FeatureActionComponent implements OnInit {
+  // service
   translate = inject(TranslateService);
   languageService = inject(LanguageService);
-
   appService = inject(AppService);
+
+  // icon
+  faStar = faStar;
+
+  // change href image
+  formatImage = sanitizeUrl;
 
   ngOnInit() {
     this.translate.use(this.languageService.locale);
     this.getAllData();
   }
 
-  formatImage = sanitizeUrl;
-  faStar = faStar;
-
+  // Hàm lấy data
   dataFeatureTour: FeatureResDTO[] = [];
   getAllData() {
     this.appService.getAllDataTourFeature4().subscribe(res => {
