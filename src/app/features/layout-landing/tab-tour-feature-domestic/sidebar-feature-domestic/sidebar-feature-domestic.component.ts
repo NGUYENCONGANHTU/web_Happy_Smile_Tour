@@ -44,7 +44,6 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<any>();
   // service
   appService = inject(AppService);
-  transitionService = inject(TranslationService);
 
   departure = '';
   destination = '';
@@ -76,13 +75,12 @@ export class SidebarFeatureDomesticComponent implements OnInit {
     this.departure = '';
     this.destination = '';
 
-    const defaultData = {
+    this.filtersChanged.emit({
       min: this.rangeValue[0],
       max: this.rangeValue[this.rangeValue.length - 1],
       departure: this.departure,
       destination: this.destination,
-    };
-    this.filtersChanged.emit(defaultData);
+    });
   }
 
   // Hàm lấy điểm đến
@@ -96,6 +94,7 @@ export class SidebarFeatureDomesticComponent implements OnInit {
   // Hàm lấy bản dịch
   // dữ liệu translation
   dataTrans: TranslationResponse['data'] | null = null;
+  transitionService = inject(TranslationService);
   getDataTransitionTour() {
     this.transitionService.getDataTransLate().subscribe(res => {
       this.dataTrans = res.data;
